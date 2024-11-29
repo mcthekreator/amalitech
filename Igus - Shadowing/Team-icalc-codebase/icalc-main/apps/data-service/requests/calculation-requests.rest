@@ -1,0 +1,128 @@
+### create new calculation with new configuration
+POST http://localhost:3000/api/calculation/createCalculationAndConfiguration
+Content-Type: application/json
+
+{
+   "calculation":{
+      "calculationNumber":"calc-10",
+      "customerType":"serialCustomer",
+      "calculationFactor":2,
+      "createdBy":"firstName lastName"
+   },
+   "configuration":{
+      "matNumber":"configuration-2003",
+      "labelingLeft":"2",
+      "labelingRight":"2",
+      "createdBy":"firstName lastName"
+   },
+   "singleCableCalculation":{
+      "batchSize":2,
+      "chainflexLength":null
+   }
+}
+
+### duplicate configuration inside calculation
+POST http://localhost:3000/api/calculation/duplicateConfigurationInsideExistingCalculation
+Content-Type: application/json
+
+{
+   "newMatNumber":"configuration-202002",
+   "configurationId":"709e7f16-5b9d-44e7-ab2e-8051b6bff4a6",
+   "createdBy":"firstName lastName",
+   "calculationId":"4a2ed63f-984a-4a86-b1cf-b5d85506108b",
+   "labelingLeft":"2",
+   "labelingRight":"0",
+   "batchSize":2,
+   "chainflexLength":2
+}
+
+### assign configurations to copied calculation
+POST http://localhost:3000/api/calculation/assignConfigurationItemsToCopiedCalculation
+Content-Type: application/json
+
+{
+   "calculationId":"40bd5693-487b-4537-9f71-d8e4b5f393c2",
+   "newCalculationNumber":"calc-90",
+   "singleCableCalculationIds":[
+      "d2cbf0f7-9b75-41f2-900d-c1d67020a60f"
+   ],
+   "createdBy":"firstName lastName"
+}
+
+### copy configuraiton to new calculation
+POST http://localhost:3000/api/calculation/copyConfigurationToNewCalculation
+Content-Type: application/json
+
+{
+   "calculationNumber":"calc-8",
+   "createdBy":"firstName lastName",
+   "calculationFactor":2,
+   "customerType":"serialCustomer",
+   "configurationId":"058bbc74-d827-4fbb-a4ad-a26000116234",
+   "newMatNumber":"configuration-020202",
+   "labelingLeft":"2",
+   "labelingRight":"2",
+   "batchSize":1,
+   "chainflexLength":1
+}
+
+### remove link between configuraiton and calculation
+POST http://localhost:3000/api/calculation/removeLinkBetweenConfigurationAndCalculation
+Content-Type: application/json
+
+{
+   "calculationId":"c3d03cd5-31f4-4a9b-b79c-8e63408f9d43",
+   "configurationId":"618bd415-e996-48eb-b213-cc3e83dc40fd",
+   "modifiedBy":"Astrid",
+   "singleCableCalculationId":"29c771e6-8641-4ad1-9270-34417b5a97be"
+}
+
+### can link between configuraiton and calculation be removed
+POST http://localhost:3000/api/calculation/canLinkBetweenConfigurationAndCalculationBeRemoved
+Content-Type: application/json
+
+{
+   "singleCableCalculationId":"5418d324-a7ba-426c-bc70-3ea352d9c0f9"
+}
+
+### update calculation
+PATCH http://localhost:3000/api/calculation
+Content-Type: application/json
+
+{
+  "calculationNumber": "CALC-1",
+  "calculationFactor": 5
+}
+
+
+### update calculation with scc
+PATCH http://localhost:3000/api/calculation
+Content-Type: application/json
+
+{
+  "calculationNumber": "CALC-1",
+  "singleCableCalculation": {
+   "id": "38eec84c-2426-4f05-9f32-25d77a41a039",
+   "calculationFactor": 11
+  }
+}
+
+### assign configuration item to a calculation
+PUT http://localhost:3000/api/calculation/CALC3/configuration/MAT2
+
+### get all calculations
+GET http://localhost:3000/api/calculation/
+
+### find calculation by calculation number
+GET http://localhost:3000/api/calculation/findByNumber?calculationNumber=CALC-1
+
+### find calculation by calculation id
+GET http://localhost:3000/api/calculation/findById?id=ff6e9793-0f3e-4025-b85e-baf46c1ed68f
+
+### filter all calculation items with pagination
+GET http://localhost:3000/api/calculation/filter?customerType=
+  &orderDirection=asc
+  &search=CALC3
+  &skip=0
+  &take=100
+  &orderBy=calculationNumber

@@ -1,0 +1,16 @@
+{
+  "name": "@igus/icalc-cli",
+  "description": "icalc CLI",
+  "version": "2.8.0",
+  "license": "UNLICENSED",
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igusdev/icalc.git",
+    "directory": "apps/icalc-cli"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.igusdev.igus.de/"
+  }
+}

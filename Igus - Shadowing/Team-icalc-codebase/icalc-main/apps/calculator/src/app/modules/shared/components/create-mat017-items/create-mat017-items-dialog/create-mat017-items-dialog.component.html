@@ -1,0 +1,79 @@
+<div class="title-container">
+  <h2 matDialogTitle>
+    {{ 'icalc.create_new_mat017_item_dialog.DIALOG_MAIN_HEADER' | translate }}
+  </h2>
+  <p class="kopla-font-body-2 main-sub-header">
+    {{ 'icalc.create_new_mat017_item_dialog.DIALOG_MAIN_HEADER_ADDITIONAL_TEXT' | translate }}
+  </p>
+  <h3>
+    {{ 'icalc.create_new_mat017_item_dialog.DIALOG_SUB_HEADER' | translate }}
+  </h3>
+  <ul class="header-list kopla-font-body-2">
+    <li *ngFor="let item of subHeaderList | async" class="text-content">
+      {{ item }}
+    </li>
+  </ul>
+</div>
+
+<div class="error-info-container" *ngIf="errorMessages$ | async as message">
+  <div class="error-info">
+    <span>
+      <mat-icon color="warn">error_outline</mat-icon>
+    </span>
+    <span class="warning-text">
+      {{ message }}
+    </span>
+    <span class="warning-close" (click)="onWarningClose()">
+      <mat-icon color="warn">close</mat-icon>
+    </span>
+  </div>
+</div>
+
+<mat-dialog-content>
+  <form [formGroup]="createMat017ItemsForm.form">
+    <formly-form
+      [model]="createMat017ItemsForm.model"
+      [fields]="createMat017ItemsForm.fields"
+      [form]="createMat017ItemsForm.form"
+      [options]="createMat017ItemsForm.options"
+    >
+    </formly-form>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <div class="data-action-button-container">
+    <div class="action-button">
+      <button
+        mat-stroked-button
+        class="kopla-mat-button--small"
+        color="primary"
+        (click)="onPasteButtonClick()"
+        [matTooltip]="'icalc.create_new_mat017_item_dialog.DIALOG_PASTE_DATA_BUTTON_TEXT_DESCRIPTION' | translate"
+      >
+        <mat-icon class="rotate-icon-180">content_copy</mat-icon>
+        {{ 'icalc.create_new_mat017_item_dialog.DIALOG_PASTE_DATA_BUTTON_TEXT' | translate }}
+      </button>
+    </div>
+    <div class="action-button">
+      <button mat-stroked-button class="kopla-mat-button--small" color="primary" (click)="onAddNewRow()">
+        <mat-icon>add</mat-icon>
+        {{ 'icalc.create_new_mat017_item_dialog.DIALOG_ADD_NEW_ROW_BUTTON_TEXT' | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="dialog-action-button-container">
+    <button mat-button class="kopla-mat-button--small" matDialogClose color="primary" dataCy="cancel-solve-dialog">
+      {{ 'icalc.connector.CANCEL' | translate }}
+    </button>
+    <button
+      class="kopla-mat-button--small"
+      dataCy="add-mat017-item-and-update-other-side"
+      color="primary"
+      mat-flat-button
+      [disabled]="!createMat017ItemsForm.form.valid"
+      (click)="onSubmit()"
+    >
+      {{ 'icalc.create_new_mat017_item_dialog.DIALOG_ACTION_CREATE_NEW_ITEMS' | translate }}
+    </button>
+  </div>
+</mat-dialog-actions>

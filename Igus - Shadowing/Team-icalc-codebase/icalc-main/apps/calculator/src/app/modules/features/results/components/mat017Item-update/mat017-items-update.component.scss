@@ -1,0 +1,87 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$orange-300: kopla.get-color('orange', 300);
+
+.kopla-table {
+  .kopla-table__row:hover {
+    background-color: kopla.get-color('grey', 100);
+  }
+
+  &__header {
+    &__icon :not(.discount-header) {
+      margin-right: 7px;
+    }
+  }
+  .kopla-table__cell {
+    vertical-align: top;
+    padding-right: 3px;
+    word-wrap: break-word;
+  }
+}
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mat017-time-update {
+  margin-right: 2.8rem;
+  margin-top: 1rem;
+}
+
+.sticky_table_header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+.info-box {
+  margin-top: 15px;
+  border: 3px solid $orange-300;
+
+  .align-content {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}
+
+.mat017Item-dialog-cell-width {
+  max-width: 110px;
+
+  &.kopla-table__cell {
+    word-wrap: break-word;
+    vertical-align: top;
+  }
+}
+
+.config-mat-number {
+  max-width: 120px;
+  vertical-align: top;
+}
+
+.item-description {
+  min-width: 250px;
+  vertical-align: top;
+}
+
+.float-right {
+  float: right;
+  text-align: right;
+}
+
+.part-number {
+  min-width: 160px;
+  vertical-align: top;
+}
+
+.mat017-item-mat-number {
+  max-width: 100px;
+  vertical-align: top;
+}
+
+.assignments {
+  max-width: 110px;
+  vertical-align: top;
+  text-align: center;
+}

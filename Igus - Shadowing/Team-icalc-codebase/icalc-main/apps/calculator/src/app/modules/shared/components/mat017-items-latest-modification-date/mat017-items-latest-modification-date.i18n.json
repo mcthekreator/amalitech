@@ -1,0 +1,16 @@
+{
+  "icalc": {
+    "mat017-item-latest-modification-date": {
+      "TIME_PREFIX_TEXT": {
+        "de": "Letztes Update in iCalc:",
+        "en": "Last Update in iCalc:",
+        "_info": "icalc.mat017-item-latest-modification-date.TIME_PREFIX_TEXT"
+      },
+      "INFO_ICON_HOVER_TEXT": {
+        "de": "Der Datenübertrag der MAT017 Excel wird 5x pro Tag um 4 Uhr, 7 Uhr, 10 Uhr, 13 Uhr und 16 Uhr angestoßen. Die Dauer des Datenübertrags beläuft sich auf ca. 3-4 Stunden, da die Daten durch diverse Tools wie Merlin, AX und weiteren geleitet werden. iCalc prüft nach entsprechenden Updates 1x pro Stunde.",
+        "en": "The MAT017 Excel file transfer is initiated 5 times a day at 4am, 7am, 10am, 1pm and 4pm. The data transfer between Excel and iCalc is expected to take 3-4 hours due to processes in Merlin, AX and further tools. iCalc checks for new items once every hour.",
+        "_info": "icalc.mat017-item-latest-modification-date.INFO_ICON_HOVER_TEXT"
+      }
+    }
+  }
+}

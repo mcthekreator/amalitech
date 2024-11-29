@@ -1,0 +1,381 @@
+{
+  "icalc": {
+    "pin-assignment": {
+      "ONE_TO_ONE_ASSIGNMENT_OPTION": {
+        "de": "1:1 Belegung \"an PIN gelegter\" Adern",
+        "en": "1:1 assign, for all cores \"on contact",
+        "_info": "icalc.pin-assignment.ONE_TO_ONE_ASSIGNMENT_OPTION"
+      },
+      "VALUES_FOR_EVERY_LINE": {
+        "de": "Werte für alle",
+        "en": "Values for every line",
+        "_info": "icalc.pin-assignment.VALUES_FOR_EVERY_LINE"
+      },
+      "RESET_PIN_ASSIGNMENT_SUB_VALUES_HEADER": {
+        "de": "Werte zurücksetzen",
+        "en": "Reset values",
+        "_info": "icalc.pin-assignment.RESET_PIN_ASSIGNMENT_SUB_VALUES_HEADER"
+      },
+      "RESET_PIN_ASSIGNMENT_ACTIONS_HEADER": {
+        "de": "Pinbelegung zurücksetzen",
+        "en": "Pin Assignment reset",
+        "_info": "icalc.pin-assignment.RESET_PIN_ASSIGNMENT_ACTIONS_HEADER"
+      },
+      "RESET_PIN_ASSIGNMENT_CANCEL_RESET": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.pin-assignment.RESET_PIN_ASSIGNMENT_CANCEL_RESET"
+      },
+      "RESET_PIN_ASSIGNMENT": {
+        "de": "zurücksetzen",
+        "en": "Reset pin-assignment?",
+        "_info": "icalc.pin-assignment.RESET_PIN_ASSIGNMENT"
+      },
+      "RESET_PIN_AUTOMATION_TOOL_TIP": {
+        "de": "Auswahl löschen",
+        "en": "Reset selection",
+        "_info": "icalc.pin-assignment.RESET_PIN_AUTOMATION_TOOL_TIP"
+      },
+      "RESET_PIN_ASSIGNMENT_ACTIONS_MESSAGE": {
+        "de": "Möchten Sie alle Leitungen, Schirme und zusätzliche Litze für diese Seite zurücksetzen? Hierdurch gehen alle Änderungen verloren.",
+        "en": "Do you want to reset each core, shield and strand on this side? All changes will be lost.",
+        "_info": "icalc.pin-assignment.RESET_PIN_ASSIGNMENT_ACTIONS_MESSAGE"
+      },
+      "RESET_PIN_ASSIGNMENT_SUB_VALUES_MESSAGE": {
+        "de": "Möchten Sie die Werte aller Leitungen, Schirme und zusätzlicher Litze zurücksetzen? Hierdurch gehen alle Änderungen verloren.",
+        "en": "Do you want to reset the values of each core, shield and strand on this side? All changes will be lost.",
+        "_info": "icalc.pin-assignment.RESET_PIN_ASSIGNMENT_SUB_VALUES_MESSAGE"
+      },
+      "ACTIONS_FOR_EVERY_LINE": {
+        "de": "Aktion für alle",
+        "en": "Actions for every line",
+        "_info": "icalc.pin-assignment.ACTIONS_FOR_EVERY_LINE"
+      },
+      "SET_ALL_CORES_ON_CONTACT": {
+        "de": "Alle Adern an PIN legen",
+        "en": "Set all cores on contact",
+        "_info": "icalc.pin-assignment.SET_ALL_CORES_ON_CONTACT"
+      },
+      "CONNECT_ALL_SHIELDS_ON_HOUSING": {
+        "de": "Alle Schirme ans Gehäuse",
+        "en": "Connect all shields on housing",
+        "_info": "icalc.pin-assignment.CONNECT_ALL_SHIELDS_ON_HOUSING"
+      },
+      "TITLE": {
+        "de": "Pinbelegung",
+        "en": "Pin Assignment",
+        "_info": "icalc.pin-assignment.TITLE"
+      },
+      "TITLE_CABLE_STRUCTURE": {
+        "de": "Aderzahl und Leiternennquerschnitt [mm²]",
+        "en": "Number of cores and nominal core cross-section [mm²]",
+        "_info": "chainflex.TITLE_CABLE_STRUCTURE"
+      },
+      "LEFT_CONNECTOR": {
+        "de": "Linke Seite",
+        "en": "Left side",
+        "_info": "icalc.pin-assignment.LEFT_CONNECTOR"
+      },
+      "RIGHT_CONNECTOR": {
+        "de": "Rechte Seite",
+        "en": "Right side",
+        "_info": "icalc.pin-assignment.RIGHT_CONNECTOR"
+      },
+      "LABEL_DESCRIPTION": {
+        "de": "Beschreibung",
+        "en": "Description",
+        "_info": "icalc.pin-assignment.LABEL_DESCRIPTION"
+      },
+      "LABEL_DESCRIPTION_LEFT": {
+        "de": "Beschreibung links",
+        "en": "Description left",
+        "_info": "icalc.pin-assignment.LABEL_DESCRIPTION_LEFT"
+      },
+      "LABEL_DESCRIPTION_RIGHT": {
+        "de": "Beschreibung rechts",
+        "en": "Description right",
+        "_info": "icalc.pin-assignment.LABEL_DESCRIPTION_RIGHT"
+      },
+      "LABEL_CROSS_SECTION": {
+        "de": "Querschnitt",
+        "en": "Cross Section",
+        "_info": "icalc.pin-assignment.LABEL_CROSS_SECTION"
+      },
+      "NONE": {
+        "de": "keine",
+        "en": "none",
+        "_info": "icalc.pin-assignment.NONE"
+      },
+      "CUT_OFF": {
+        "de": "abschneiden",
+        "en": "cut off",
+        "_info": "icalc.pin-assignment.CUT_OFF"
+      },
+      "CUT_OFF_AND_SKIN": {
+        "de": "abschneiden und isolieren",
+        "en": "cut off and skin",
+        "_info": "icalc.pin-assignment.CUT_OFF_AND_SKIN"
+      },
+      "ROLL_UP": {
+        "de": "zurückschlagen",
+        "en": "roll up",
+        "_info": "icalc.pin-assignment.ROLL_UP"
+      },
+      "ROLL_UP_PLACEHOLDER": {
+        "de": "0-99999",
+        "en": "0-99999",
+        "_info": "icalc.pin-assignment.ROLL_UP_PLACEHOLDER"
+      },
+      "ROLL_UP_SUFFIX": {
+        "de": "mm",
+        "en": "mm",
+        "_info": "icalc.pin-assignment.ROLL_UP_SUFFIX"
+      },
+      "SKIN": {
+        "de": "abisolieren",
+        "en": "skin",
+        "_info": "icalc.pin-assignment.SKIN"
+      },
+      "SKIN_PLACEHOLDER": {
+        "de": "0-99999",
+        "en": "0-99999",
+        "_info": "icalc.pin-assignment.SKIN_PLACEHOLDER"
+      },
+      "SKIN_SUFFIX": {
+        "de": "mm",
+        "en": "mm",
+        "_info": "icalc.pin-assignment.SKIN_SUFFIX"
+      },
+      "ISOLATE": {
+        "de": "isolieren",
+        "en": "isolate",
+        "_info": "icalc.pin-assignment.ISOLATE"
+      },
+      "SET_ON_CONTACT": {
+        "de": "an Pin legen",
+        "en": "set on contact",
+        "_info": "icalc.pin-assignment.SET_ON_CONTACT"
+      },
+      "CONTACT": {
+        "de": "Pin",
+        "en": "contact",
+        "_info": "icalc.pin-assignment.CONTACT"
+      },
+      "PIN_INPUT_PLACEHOLDER": {
+        "de": "0-99 oder A-Z",
+        "en": "0-99 or A-Z",
+        "_info": "icalc.pin-assignment.PIN_INPUT_PLACEHOLDER"
+      },
+      "MAT017_ITEM": {
+        "de": "MAT017",
+        "en": "MAT017",
+        "_info": "icalc.pin-assignment.MAT017_ITEM"
+      },
+      "PLACE_ON_JACKET": {
+        "de": "ans Gehäuse",
+        "en": "Connect to housing",
+        "_info": "icalc.pin-assignment.PLACE_ON_JACKET"
+      },
+      "SH": {
+        "de": "SH",
+        "en": "SH",
+        "_info": "icalc.pin-assignment.SH"
+      },
+      "library": {
+        "de": "Skizze",
+        "en": "Library",
+        "_info": "icalc.pin-assignment.library"
+      },
+      "results": {
+        "de": "Kalkulation anzeigen",
+        "en": "Show calculation",
+        "_info": "icalc.pin-assignment.results"
+      },
+      "SAVE_IMAGE": {
+        "de": "Bild speichern",
+        "en": "Save image",
+        "_info": "icalc.pin-assignment.SAVE_IMAGE"
+      },
+      "LEFT": {
+        "de": "Links",
+        "en": "left",
+        "_info": "icalc.pin-assignment.LEFT"
+      },
+      "RIGHT": {
+        "de": "Rechts",
+        "en": "right",
+        "_info": "icalc.pin-assignment.RIGHT"
+      },
+      "ERROR_NONE_OR_INVALID_DATA": {
+        "de": "Die Daten zur Leitungstruktur dieser Chainflex Leitung sind nicht vorhanden oder fehlerhaft.",
+        "en": "There is none or invalid Akeneo data for the structure of this chainflex cable.",
+        "_info": "icalc.pin-assignment.ERROR_NONE_OR_INVALID_DATA"
+      },
+      "EDIT_BRIDGES": {
+        "de": "Brücken editieren",
+        "en": "Edit bridges",
+        "_info": "icalc.pin-assignment.EDIT_BRIDGES"
+      },
+      "SAVE_BRIDGES": {
+        "de": "Editieren beenden",
+        "en": "End editing",
+        "_info": "icalc.pin-assignment.SAVE_BRIDGES"
+      },
+      "PIN_ASSIGNMENT__LEFT_RCK6_ITEM_CONTACT_MISMATCH": {
+        "de": "Die Menge der in Schritt 3 ausgewählten Kontakte entspricht nicht der linken Pinbelegung.",
+        "en": "The set of contacts selected in step 3 does not correspond to the left pin assignment.",
+        "_info": "icalc.pin-assignment.PIN_ASSIGNMENT__LEFT_RCK6_ITEM_CONTACT_MISMATCH"
+      },
+      "PIN_ASSIGNMENT__RIGHT_RCK6_ITEM_CONTACT_MISMATCH": {
+        "de": "Die Menge der in Schritt 4 ausgewählten Kontakte entspricht nicht der rechten Pinbelegung.",
+        "en": "The set of contacts selected in step 4 does not correspond to the right pin assignment.",
+        "_info": "icalc.pin-assignment.PIN_ASSIGNMENT__RIGHT_RCK6_ITEM_CONTACT_MISMATCH"
+      },
+      "PIN_ASSIGNMENT__LEFT_AND_RIGHT_RCK6_ITEM_CONTACT_MISMATCH": {
+        "de": "Die Menge der in Schritt 3 & 4 ausgewählten Kontakte entspricht nicht der Pinbelegung.",
+        "en": "The set of contacts selected in step 3 & 4 does not correspond to the pin assignment.",
+        "_info": "icalc.pin-assignment.PIN_ASSIGNMENT__LEFT_AND_RIGHT_RCK6_ITEM_CONTACT_MISMATCH"
+      },
+      "CHECK_IGNORE": {
+        "de": "Freigeben und fortfahren",
+        "en": "Approve and continue",
+        "_info": "icalc.pin-assignment.CHECK_IGNORE"
+      },
+      "CHECK_HEADER": {
+        "de": "Pinbelegung überprüfen",
+        "en": "Check Pin Assignment",
+        "_info": "icalc.pin-assignment.CHECK_HEADER"
+      },
+      "SELECTION_ARTICLES_LEFT": {
+        "de": "Gruppe RC-K6 Artikel (links):",
+        "en": "Group RC-K6 Articles (left):",
+        "_info": "icalc.pin-assignment.SELECTION_ARTICLES_LEFT"
+      },
+      "SELECTION_CONTACTS_LEFT": {
+        "de": "Belegte Kontakte (links):",
+        "en": "Assigned Contacts (left):",
+        "_info": "icalc.pin-assignment.SELECTION_CONTACTS_LEFT"
+      },
+      "SELECTION_ARTICLES_RIGHT": {
+        "de": "Gruppe RC-K6 Artikel (rechts):",
+        "en": "Group RC-K6 Articles (right):",
+        "_info": "icalc.pin-assignment.SELECTION_ARTICLES_RIGHT"
+      },
+      "SELECTION_CONTACTS_RIGHT": {
+        "de": "Belegte Kontakte (rechts):",
+        "en": "Assigned Contacts (right):",
+        "_info": "icalc.pin-assignment.SELECTION_CONTACTS_RIGHT"
+      },
+      "AND-TWIST": {
+        "de": "& verdrillen",
+        "en": "& twist",
+        "_info": "icalc.pin-assignment.AND-TWIST"
+      },
+      "AND-TIN": {
+        "de": "& verzinnen",
+        "en": "& tin",
+        "_info": "icalc.pin-assignment.AND-TIN"
+      },
+      "TWIST": {
+        "de": "Verdrillen",
+        "en": "twist",
+        "_info": "icalc.pin-assignment.TWIST"
+      },
+      "TIN": {
+        "de": "Verzinnen",
+        "en": "tin",
+        "_info": "icalc.pin-assignment.TIN"
+      },
+      "NO-SUB-ACTION": {
+        "de": " & keine weitere Aktion",
+        "en": " & no further actions",
+        "_info": "icalc.pin-assignment.NO-SUB-ACTION"
+      },
+      "INSULATE": {
+        "de": " & isolieren",
+        "en": " & insulate",
+        "_info": "icalc.pin-assignment.INSULATE"
+      },
+      "NO-INSULATE": {
+        "de": " & nicht isolieren",
+        "en": " & do not insulate ",
+        "_info": "icalc.pin-assignment.NO-INSULATE"
+      },
+      "COPPER-BAND": {
+        "de": "mit Kupferband",
+        "en": "w/ copper band",
+        "_info": "icalc.pin-assignment.COPPER-BAND"
+      },
+      "WITH-HEAT-SHRINK-WITHOUT-GLUE": {
+        "de": " mit Schrumpfschlauch ohne Kleber",
+        "en": " w/ heat shrink w/o glue",
+        "_info": "icalc.pin-assignment.WITH-HEAT-SHRINK-WITHOUT-GLUE"
+      },
+      "FIX-WITH-INSULATING-TAPE": {
+        "de": " & mit Isolierband fixieren",
+        "en": " & fix w/ insulating tape",
+        "_info": "icalc.pin-assignment.FIX-WITH-INSULATING-TAPE"
+      },
+      "NO-FIX": {
+        "de": " & nicht fixieren",
+        "en": "  & do not fix",
+        "_info": "icalc.pin-assignment.NO-FIX"
+      },
+      "PARTIAL-DEDUCTION": {
+        "de": "Teilabzug",
+        "en": "partial deduction",
+        "_info": "icalc.pin-assignment.PARTIAL-DEDUCTION"
+      },
+      "NUMERIC-PLACEHOLDER": {
+        "de": "0-99999",
+        "en": "0-99999",
+        "_info": "icalc.pin-assignment.NUMERIC-PLACEHOLDER"
+      },
+      "NUMERIC-PLACEHOLDER-SUFFIX": {
+        "de": "mm",
+        "en": "mm",
+        "_info": "icalc.pin-assignment.NUMERIC-PLACEHOLDER-SUFFIX"
+      },
+      "ALPHANUMERIC-PLACEHOLDER": {
+        "de": "0-99 oder A-Z",
+        "en": "0-99 or A-Z",
+        "_info": "icalc.pin-assignment.ALPHANUMERIC-PLACEHOLDER"
+      },
+      "SCREEN-WINDOW": {
+        "de": "Schirmfenster",
+        "en": "screen window",
+        "_info": "icalc.pin-assignment.SCREEN-WINDOW"
+      },
+      "LEAVE-IT-STANDING": {
+        "de": "Stehen lassen",
+        "en": "leave it standing",
+        "_info": "icalc.pin-assignment.LEAVE-IT-STANDING"
+      },
+      "WITH-COPPER-BAND": {
+        "de": "mit Kupferband",
+        "en": "w/ copper band",
+        "_info": "icalc.pin-assignment.WITH-COPPER-BAND"
+      },
+      "WITHOUT-COPPER-BAND": {
+        "de": "ohne Kupferband",
+        "en": "w/o copper band",
+        "_info": "icalc.pin-assignment.WITHOUT-COPPER-BAND"
+      },
+      "WITH-HEAT-SHRINK": {
+        "de": "mit Schrumpfschlauch",
+        "en": "w/ heat shrink",
+        "_info": "icalc.pin-assignment.WITH-HEAT-SHRINK"
+      },
+      "WITHOUT-HEAT-SHRINK": {
+        "de": "ohne Schrumpfschlauch",
+        "en": "w/o heat shrink",
+        "_info": "icalc.pin-assignment.WITHOUT-HEAT-SHRINK"
+      },
+      "EXTEND-SHIELD": {
+        "de": "Schirm verlängern",
+        "en": "extend shield",
+        "_info": "icalc.pin-assignment.EXTEND-SHIELD"
+      }
+    }
+  }
+}

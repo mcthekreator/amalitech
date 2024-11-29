@@ -1,0 +1,174 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$orange-500: kopla.get-color('orange', 500);
+$select-background: kopla.get-color('orange', 500);
+$background-disabled: #e0e0e0;
+
+// Responsive Buttons (in Select) in Footer
+.options-wrapper {
+  .mat-mdc-form-field {
+    min-width: 280px;
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) {
+      background-color: white;
+
+      &:hover,
+      &:active {
+        .mdc-notched-outline__notch {
+          border-top-color: $orange-500;
+          border-bottom-color: $orange-500;
+          border-width: 2px;
+        }
+
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__trailing {
+          border-color: $orange-500 !important;
+          border-width: 2px;
+        }
+      }
+
+      .mdc-notched-outline__notch {
+        border-top-color: $orange-500;
+        border-bottom-color: $orange-500;
+      }
+
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__trailing {
+        border-color: $orange-500;
+      }
+
+      .mdc-floating-label {
+        color: $orange-500;
+      }
+
+      .mat-mdc-select-arrow svg {
+        fill: $orange-500;
+      }
+    }
+
+    .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+      transform: translateY(-20.75px);
+    }
+
+    .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-floating-label {
+      transition: unset;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      max-height: 36px;
+
+      .mat-mdc-floating-label {
+        top: 17px;
+
+        &.mdc-floating-label--float-above {
+          top: 28px;
+        }
+      }
+    }
+
+    .mat-mdc-form-field-infix {
+      height: 36px;
+      min-height: 0;
+      padding-top: 10px !important;
+      padding-bottom: 10px;
+
+      .mat-mdc-select-arrow-wrapper {
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align::before {
+    display: none !important;
+    height: 0 !important;
+  }
+}
+.options-wrapper-nonresponsive {
+  .mat-mdc-form-field {
+    min-width: 280px;
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) {
+      background-color: $select-background;
+      color: white;
+
+      &:hover,
+      &:active {
+        .mdc-notched-outline__notch {
+          border-top-color: $orange-500;
+          border-bottom-color: $orange-500;
+          border-width: 2px;
+        }
+
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__trailing {
+          border-color: $orange-500 !important;
+          border-width: 2px;
+        }
+      }
+
+      .mdc-notched-outline__notch {
+        border-top-color: $orange-500;
+        border-bottom-color: $orange-500;
+      }
+
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__trailing {
+        border-color: $orange-500;
+      }
+
+      .mdc-floating-label {
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .mat-mdc-select-arrow svg {
+        fill: white;
+      }
+    }
+    .mdc-text-field--disabled {
+      background-color: $background-disabled;
+
+      .mdc-floating-label {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+
+    .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+      transform: translateY(-14.75px);
+    }
+
+    .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-floating-label {
+      transition: unset;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      height: 48px;
+
+      .mat-mdc-floating-label {
+        top: 23px;
+
+        &.mdc-floating-label--float-above {
+          top: 28px;
+        }
+      }
+    }
+
+    .mat-mdc-form-field-infix {
+      height: 36px;
+      min-height: 0;
+      padding-top: 10px !important;
+      padding-bottom: 10px;
+
+      .mat-mdc-select-arrow-wrapper {
+        padding-top: 6px;
+      }
+    }
+  }
+
+  .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align::before {
+    display: none !important;
+    height: 0 !important;
+  }
+}

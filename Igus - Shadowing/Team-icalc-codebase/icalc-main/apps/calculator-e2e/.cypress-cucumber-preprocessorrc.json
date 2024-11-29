@@ -1,0 +1,7 @@
+{
+  "stepDefinitions": ["./src/tests/**/[filepath]/*.steps.{js,ts}", "./src/support/step_definitions/**/*.{js,ts}"],
+  "html": {
+    "enabled": true,
+    "output": "../../cyreport/cucumber_report.html"
+  }
+}

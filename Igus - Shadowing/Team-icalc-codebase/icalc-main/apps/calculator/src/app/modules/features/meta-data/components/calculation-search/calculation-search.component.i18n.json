@@ -1,0 +1,31 @@
+{
+  "icalc": {
+    "calculation_search": {
+      "MAT-NUMBERS": {
+        "de": "MAT-Nummern",
+        "en": "MAT numbers",
+        "_info": "icalc.calculation_search.MAT-NUMBERS"
+      },
+      "TOOLTIP_CALCULATION_MORE_MATS": {
+        "de": "Diese Kalkulation enthält mehr als drei Konfigurationen:",
+        "en": "This calculation includes more than three configurations:",
+        "_info": "icalc.calculation_search.TOOLTIP_CALCULATION_MORE_MATS"
+      },
+      "STATUS": {
+        "de": "Status",
+        "en": "Status",
+        "_info": "icalc.calculation_search.STATUSs"
+      },
+      "LOCKING_DATE": {
+        "de": "Abschlussdatum",
+        "en": "Locking date",
+        "_info": "icalc.calculation_search.LOCKING_DATE"
+      },
+      "LOCKED_BY": {
+        "de": "Abgeschlossen durch",
+        "en": "Locked by",
+        "_info": "icalc.calculation_search.LOCKED_BY"
+      }
+    }
+  }
+}

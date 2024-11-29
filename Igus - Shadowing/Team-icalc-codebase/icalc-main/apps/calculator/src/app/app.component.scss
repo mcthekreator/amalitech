@@ -1,0 +1,60 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+:host {
+  flex-grow: 1;
+  display: flex;
+}
+
+.icalc-app {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .kopla-main.row {
+    flex-grow: 1;
+    width: 100%;
+    height: 100px;
+    display: flex;
+
+    &.app-full-width {
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    &.app-medium-width {
+      max-width: none;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+  }
+
+  .icalc-hiddenFileInput {
+    display: none;
+  }
+
+  label.icalc-hiddenFileInputLabel:hover {
+    cursor: pointer;
+  }
+
+  .kopla-footer.kopla-footer--dark {
+    margin-top: 0;
+  }
+}
+
+.kopla-app--fs .kopla-main {
+  width: auto;
+  max-width: none;
+}
+
+@media (max-width: kopla.$media-min-width-ms - 1) and (min-width: kopla.$media-min-width-s) {
+  .kopla-section--action .kopla-button:first-child {
+    float: right;
+    margin-bottom: 0;
+  }
+
+  .kopla-section--action .kopla-button {
+    width: auto;
+  }
+}

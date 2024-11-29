@@ -1,0 +1,13 @@
+{
+  "name": "pg-demo",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@aws-sdk/rds-signer": "^3.121.0",
+    "pg": "^8.7.3"
+  }
+}

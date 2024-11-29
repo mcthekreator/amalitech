@@ -1,0 +1,161 @@
+<div class="title-container">
+  <h1 mat-dialog-title>{{ 'icalc.results.REMOVE-MAT017ITEM_DIALOG-TITLE' | translate }}</h1>
+  <div class="mat017-time-update">
+    <ng-container *ngIf="mat017ItemsLatestModificationDate$ | async as latestModificationDate">
+      <icalc-mat017-items-latest-modification-date [latestModificationDate]="latestModificationDate">
+      </icalc-mat017-items-latest-modification-date>
+    </ng-container>
+  </div>
+</div>
+<div mat-dialog-content>
+  <p>{{ 'icalc.results.REMOVE-MAT017ITEM_DIALOG-SUBTITLE' | translate }}</p>
+  <div class="timestamp-container"></div>
+  <div class="kopla-table kopla-table--8">
+    <div class="kopla-table__header sticky_table_header">
+      <div class="kopla-table__cell config-mat-number">
+        {{ 'icalc.results.CONFIGURATION' | translate }}
+      </div>
+      <div class="kopla-table__cell assignments">
+        {{ 'icalc.results.NUMBER-OF-CONFIGURATION-ASSIGNMENT' | translate }}
+      </div>
+      <div class="kopla-table__cell mat017-item-mat-number">
+        {{ 'icalc.results.MATNUMBER' | translate }}
+      </div>
+      <div class="kopla-table__cell item-description">
+        {{ 'icalc.results.ITEMDESCRIPTION1' | translate }}
+      </div>
+      <div class="kopla-table__cell item-description">
+        {{ 'icalc.results.ITEMDESCRIPTION2' | translate }}
+      </div>
+      <div class="kopla-table__cell mat017Item-dialog-cell-width">
+        {{ 'icalc.results.ITEMGROUP' | translate }}
+      </div>
+
+      <div
+        class="kopla-table__cell text-center pin-sketch-relevance info-relevance"
+        [matTooltip]="'icalc.results.MAT017_ITEM_SKETCH_AND_PIN-ASSIGNMENT_RELEVANCE-INFO' | translate"
+        matTooltipPosition="above"
+      >
+        {{ 'icalc.results.REMOVE-MAT017ITEM_DIALOG-SKETCH-RELEVANCE' | translate }}
+      </div>
+      <div
+        class="kopla-table__cell text-center pin-sketch-relevance info-relevance"
+        [matTooltip]="'icalc.results.MAT017_ITEM_SKETCH_AND_PIN-ASSIGNMENT_RELEVANCE-INFO' | translate"
+        matTooltipPosition="above"
+      >
+        {{ 'icalc.results.REMOVE-MAT017ITEM_DIALOG-PIN_ASSIGNMENT-RELEVANCE' | translate }}
+      </div>
+      <div class="kopla-table__cell text-center mat017Item-dialog-cell-width">
+        {{ 'icalc.results.OLD-MAT017ITEM-PRICE' | translate }}
+      </div>
+      <div class="kopla-table__cell text-center mat017Item-dialog-cell-width">
+        {{ 'icalc.results.NEW-MAT017ITEM-PRICE' | translate }}
+      </div>
+      <div class="kopla-table__cell mat017Item-dialog-cell-width">
+        {{ 'icalc.results.REMOVE-MAT017ITEM-CHECKMARK' | translate }}
+      </div>
+    </div>
+
+    <div
+      [formGroup]="mat017ItemRemovalByMat017ItemNumberForm"
+      class="kopla-table__row"
+      *ngFor="let configuration of mat017ItemListWithNoPrices$ | async; let isFirst = first"
+      [ngClass]="{ 'kopla-table__row--first': isFirst }"
+    >
+      <ng-container *ngFor="let mat017Item of configuration.mat017ItemsChanges; let isSubFirst = first; index as i">
+        <div class="kopla-table__cell config-mat-number font-black">
+          <ng-container *ngIf="isSubFirst">
+            {{ configuration.matNumber }}
+          </ng-container>
+        </div>
+        <div class="kopla-table__cell assignments font-black">
+          <ng-container *ngIf="isSubFirst">
+            {{ configuration.assignments }}
+          </ng-container>
+        </div>
+        <div class="kopla-table__cell mat017-item-mat-number font-black" dataCy="mat-number-of-removed-mat017-item">
+          <div *ngIf="mat017Item.itemStatus === removed" class="display-flex-row">
+            <i
+              [matTooltip]="'icalc.results.MAT017ITEM_DOES_NOT_EXIST' | translate"
+              matTooltipPosition="right"
+              class="material-icons"
+              dataCy="removed-mat017-item-info"
+              >info</i
+            >
+            <span class="font-red">{{ mat017Item.matNumber }}</span>
+          </div>
+          <p *ngIf="mat017Item.itemStatus === inactive">{{ mat017Item.matNumber }}</p>
+        </div>
+        <div class="kopla-table__cell item-description">
+          <p [ngClass]="{ 'font-black': mat017Item.itemDescription1, 'font-red': !mat017Item.itemDescription1 }">
+            {{ mat017Item.itemDescription1 | displayWithFallback }}
+          </p>
+        </div>
+        <div class="kopla-table__cell item-description">
+          <p [ngClass]="{ 'font-black': mat017Item.itemDescription2, 'font-red': !mat017Item.itemDescription2 }">
+            {{ mat017Item.itemDescription2 | displayWithFallback }}
+          </p>
+        </div>
+        <div class="kopla-table__cell mat017Item-dialog-cell-width">
+          <p [ngClass]="{ 'font-black': mat017Item.mat017ItemGroup, 'font-red': !mat017Item.mat017ItemGroup }">
+            {{ mat017Item.mat017ItemGroup | displayWithFallback }}
+          </p>
+        </div>
+
+        <div class="kopla-table__cell text-center pin-sketch-relevance" dataCy="used-mat017-item-in-library">
+          <p [ngClass]="{ 'font-red': mat017Item.usedInSketch, 'font-black': !mat017Item.usedInSketch }">
+            {{ mat017Item.usedInSketch ? 'Yes' : 'No' }}
+          </p>
+        </div>
+        <div class="kopla-table__cell text-center pin-sketch-relevance" dataCy="used-mat017-item-in-pin-assignment">
+          <p [ngClass]="{ 'font-red': mat017Item.usedInPinAssignment, 'font-black': !mat017Item.usedInPinAssignment }">
+            {{ mat017Item.usedInPinAssignment ? 'Yes' : 'No' }}
+          </p>
+        </div>
+        <div
+          class="kopla-table__cell text-center mat017Item-dialog-cell-width font-black"
+          dataCy="old-mat017-item-price"
+        >
+          {{ mat017Item.oldPrice | convertPrice }}
+        </div>
+        <div class="kopla-table__cell text-center mat017Item-dialog-cell-width" dataCy="new-mat017-item-price">
+          <p [ngClass]="{ 'font-red': !mat017Item.newPrice, 'font-black': mat017Item.newPrice }">
+            {{
+              mat017Item.newPrice ? (mat017Item.newPrice | convertPrice) : ('icalc.results.NOT-AVAILABLE' | translate)
+            }}
+          </p>
+        </div>
+        <div class="kopla-table__cell text-center mat017Item-dialog-cell-width">
+          <mat-checkbox
+            color="primary"
+            [formControlName]="createUniqueMat017ItemMatNumber(mat017Item.matNumber, configuration.matNumber)"
+            dataCy="select-mat017-item-for-removal-checkbox"
+          ></mat-checkbox>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-actions align="end" class="justify-content-between">
+  <button
+    mat-button
+    matDialogClose
+    class="kopla-mat-button--small"
+    color="primary"
+    dataCy="cancel-mat017-item-removal-button"
+  >
+    {{ 'icalc.results.CANCEL-MAT017_ITEM-UPDATE' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    matDialogClose
+    class="kopla-mat-button--small"
+    color="primary"
+    [disabled]="!enableItemRemovalButton"
+    (click)="onRemoveMat017Items()"
+    dataCy="confirm-mat017-item-removal-button"
+  >
+    {{ 'icalc.results.REMOVE-OUTDATED-MAT017ITEM_BUTTON' | translate }}
+  </button>
+</mat-dialog-actions>

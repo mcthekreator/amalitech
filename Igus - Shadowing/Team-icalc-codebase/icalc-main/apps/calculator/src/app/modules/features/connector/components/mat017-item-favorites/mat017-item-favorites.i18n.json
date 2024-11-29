@@ -1,0 +1,16 @@
+{
+  "icalc": {
+    "favorites": {
+      "SUB_HEADER": {
+        "de": "Es können partielle, ganze und auch mehrere Steckersätze ausgewählt und der Stückliste hinzugefügt werden",
+        "en": "It is possible to select partial, full and multiple connector sets",
+        "_info": "icalc.favorites.SUB_HEADER"
+      },
+      "GENERAL_TEMPLATES": {
+        "de": "Allgemeine Vorlagen",
+        "en": "General templates",
+        "info": "icalc.favorites.GENERAL_TEMPLATES"
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<h2 matDialogTitle>
+  {{ 'icalc.meta_data.REMOVE_CONF' | translate }}
+</h2>
+<mat-dialog-content>
+  <ng-container *ngIf="dialogIsLoading; else dialogContentTemplate">
+    <div class="is-loading">
+      <div>
+        <mat-progress-spinner mode="indeterminate" [diameter]="50" [strokeWidth]="4"></mat-progress-spinner>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #dialogContentTemplate>
+    <div class="info-width">
+      <kopla-info
+        *ngIf="!canLinkBetweenConfigurationAndCalculationBeRemoved && httpError === null"
+        dataCy="removal-not-permitted-info"
+      >
+        {{ 'icalc.meta_data.REMOVE_NOT_POSSIBLE_INFO' | translate }}
+      </kopla-info>
+      <p
+        *ngIf="canLinkBetweenConfigurationAndCalculationBeRemoved && httpError === null"
+        dataCy="remove-configuration-info"
+        class="width-800"
+      >
+        {{ 'icalc.meta_data.REMOVE_CONF_INFO' | translate }}
+      </p>
+    </div>
+    <div *ngIf="httpError">
+      <div class="dialog-error">
+        <p class="kopla-font-headline-6">
+          {{ httpError?.statusText }}
+        </p>
+        <p class="kopla-font-subheading">
+          {{ httpError?.name }}
+        </p>
+        <p>
+          {{ httpError?.message }}
+        </p>
+      </div>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-button matDialogClose color="primary" dataCy="remove-configuration-cancel">
+    {{ 'icalc.meta_data_form.CANCEL' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    matDialogClose
+    color="primary"
+    (click)="removeConfiguration()"
+    [disabled]="!canLinkBetweenConfigurationAndCalculationBeRemoved"
+    dataCy="remove-configuration-confirm"
+  >
+    {{ 'icalc.meta_data_form.CONFIRM' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,220 @@
+<ng-container *ngIf="(isLoading$ | async) === true; else tableTemplate">
+  <mat-progress-spinner mode="indeterminate" [diameter]="50" [strokeWidth]="4"></mat-progress-spinner>
+  <div class="search-indicator-text">
+    {{ 'icalc.connector-mat017-items-table.SEARCHING_FOR_SUITABLE_ELEMENTS' | translate }}
+  </div>
+</ng-container>
+<ng-template #tableTemplate>
+  <ng-container *ngIf="listResponseInformation$ | async as listResponseInformation; else tableAvailableTemplate">
+    <div class="table-warning">{{ listResponseInformation?.text | translate }}</div>
+  </ng-container>
+  <ng-template #tableAvailableTemplate>
+    <ng-container *ngIf="listInformation$ | async as listInformation">
+      <div class="timestamp-container">
+        <ng-container *ngIf="mat017ItemsLatestModificationDate$ | async as latestModificationDate">
+          <icalc-mat017-items-latest-modification-date [latestModificationDate]="latestModificationDate">
+          </icalc-mat017-items-latest-modification-date>
+        </ng-container>
+      </div>
+      <div class="table-container" [ngClass]="{ locked: isLocked }">
+        <table
+          class="table full-width connector-mat017-items-table"
+          *ngIf="addedMat017Items$ | async as addedMat017Items"
+          mat-table
+          dataCy="mat017-items-table"
+          [dataSource]="dataSource$ | async"
+          matSort
+          matSortDisableClear
+          [matSortDirection]="listInformation.orderDirection"
+          [matSortActive]="listInformation.orderBy"
+          (matSortChange)="sortChange($event)"
+        >
+          <!-- Actions -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="item-button-column">
+              <ng-container *ngIf="!addedMat017Items[element.matNumber]; else itemInItemListTemplate">
+                <div
+                  [matTooltip]="'icalc.connector-mat017-items-table.MAT017ITEM_SELECTION_DISABLED' | translate"
+                  [matTooltipDisabled]="element.itemStatus === validMat017ItemStatus || isLocked"
+                  class="kopla-font-subheading sub-headline"
+                >
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    aria-label="Add item"
+                    dataCy="add-mat017-item"
+                    [disabled]="element | disableMat017ItemSelection: isLocked"
+                    class="icalc-mini-mini-fab"
+                    (click)="onAddToMat017ItemListWithWidenData(element)"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+              <ng-template #itemInItemListTemplate>
+                <div class="added-item-container" [ngClass]="{ locked: isLocked }">
+                  <button
+                    [disabled]="isLocked"
+                    mat-mini-fab
+                    dataCy="show-remove-mat017-item-button"
+                    class="side-indicator-button"
+                    [ngClass]="whichConnector"
+                    aria-label="Left"
+                  >
+                    {{ whichConnector === 'leftConnector' ? 'L' : 'R' }}
+                  </button>
+                  <button
+                    mat-mini-fab
+                    color="warn"
+                    dataCy="remove-mat017-item"
+                    class="remove-element-button"
+                    [disabled]="isLocked"
+                    (click)="!isLocked && onRemoveFromMat017ItemListWithWidenData(element)"
+                  >
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <!-- Mat Number -->
+          <ng-container matColumnDef="matNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header dataCy="sort-by-mat-number">
+              <span>{{ 'icalc.connector-mat017-items-table.MATNUMBER' | translate }}</span>
+              <icalc-table-sort-icon [listInformation]="listInformation" columnName="matNumber"></icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element" dataCy="results-table-mat-number-cell">
+              <span>{{ element.matNumber }}</span>
+            </td>
+          </ng-container>
+
+          <!-- Score -->
+          <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.connector-mat017-items-table.SCORE' | translate }}
+              <icalc-table-sort-icon [listInformation]="listInformation" columnName="score"></icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+          </ng-container>
+
+          <!-- Item Description 1 Column -->
+          <ng-container matColumnDef="itemDescription1">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.connector-mat017-items-table.ITEMDESCRIPTION1' | translate }}
+              <icalc-table-sort-icon [listInformation]="listInformation" columnName="itemDescription1">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element" dataCy="results-table-itemDescription1-cell">
+              <ng-container *ngIf="element.itemDescription1; else infoUnavailable">
+                {{ element.itemDescription1 }}
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <!-- Item Description 2 Column -->
+          <ng-container matColumnDef="itemDescription2">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.connector-mat017-items-table.ITEMDESCRIPTION2' | translate }}
+              <icalc-table-sort-icon [listInformation]="listInformation" columnName="itemDescription2">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.itemDescription2 }}</td>
+          </ng-container>
+
+          <!-- Group Column -->
+          <ng-container matColumnDef="mat017ItemGroup">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.connector-mat017-items-table.GROUP' | translate }}
+              <icalc-table-sort-icon
+                [listInformation]="listInformation"
+                columnName="mat017ItemGroup"
+              ></icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element" dataCy="results-table-mat017ItemGroup-cell">
+              <ng-container *ngIf="element.mat017ItemGroup; else infoUnavailable">
+                {{ element.mat017ItemGroup }}
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <!-- Supplier Item Number Column -->
+          <ng-container matColumnDef="supplierItemNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.connector-mat017-items-table.PARTNUMBER' | translate }}
+              <icalc-table-sort-icon [listInformation]="listInformation" columnName="supplierItemNumber">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.supplierItemNumber }}</td>
+          </ng-container>
+
+          <!-- Purchase Price Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.connector-mat017-items-table.PURCHASEPRICE' | translate }}
+              <icalc-table-sort-icon [listInformation]="listInformation" columnName="price"> </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element" dataCy="results-table-amountDividedByPriceUnit-cell">
+              <ng-container *ngIf="element.amountDividedByPriceUnit; else infoUnavailable">
+                {{ element.amountDividedByPriceUnit | convertPrice }}
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <!-- Delete manually created mat017 item -->
+          <ng-container matColumnDef="manuallyCreated">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td
+              mat-cell
+              *matCellDef="let element"
+              class="delete-item-column"
+              dataCy="results-table-delete-item-cell"
+              [ngClass]="{ locked: isLocked }"
+            >
+              <ng-container *ngIf="element.manuallyCreated">
+                <button
+                  [matTooltip]="
+                    'icalc.connector-mat017-items-table.DELETION_OF_MANUALLY_CREATED_MAT017ITEM' | translate
+                  "
+                  [matTooltipDisabled]="isLocked"
+                  [disabled]="isLocked"
+                  class="delete-item-button"
+                  (click)="openDeleteManuallyCreatedMat017ItemDialog(element.matNumber)"
+                  dataCy="result-table-delete-item-button"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            [ngClass]="{
+              grey: row.itemStatus !== validMat017ItemStatus,
+              selected: addedMat017Items[row.matNumber],
+              locked: isLocked
+            }"
+          ></tr>
+        </table>
+      </div>
+      <ng-container *ngIf="listInformation$ | async as listInformation">
+        <mat-paginator
+          [length]="totalCount$ | async"
+          [pageIndex]="(listInformation.skip + listInformation.take) / listInformation.take - 1"
+          [pageSize]="listInformation.take"
+          [pageSizeOptions]="[25, 50, 100]"
+          (page)="onPageChange($event)"
+        >
+        </mat-paginator>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</ng-template>
+
+<ng-template #infoUnavailable>
+  <div class="unavailable">{{ 'icalc.connector.INFO_UNAVAILABLE' | translate }}</div>
+</ng-template>

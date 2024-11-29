@@ -1,0 +1,114 @@
+{
+  "icalc": {
+    "create_new_mat017_item_dialog": {
+      "DIALOG_MAIN_HEADER": {
+        "de": "Neue Artikel anlegen",
+        "en": "Create new MAT017 items",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_MAIN_HEADER"
+      },
+      "DIALOG_MAIN_HEADER_ADDITIONAL_TEXT": {
+        "de": "Ihr Artikel ist noch nicht nach iCalc übertragen worden? Legen Sie ihn einfach vorübergehend an, bis der nächste Datenimport erfolgt ist.",
+        "en": "Your item has not been transferred to iCalc yet? Simply temporarily create it until the next data import is done.",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_MAIN_HEADER_ADDITIONAL_TEXT"
+      },
+      "DIALOG_SUB_HEADER": {
+        "de": "Hinweise",
+        "en": "Notices",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_SUB_HEADER"
+      },
+      "DIALOG_SUB_HEADER_LIST": {
+        "de": [
+          " Sie können die Spalten A bis G aus der MAT017-Excel kopieren und hier einfügen (keine Spalten darüber hinaus).",
+          " iCalc kann ausschließlich Artikel von Hauptlieferanten abbilden.",
+          " iCalc kann derzeit noch keine Staffelpreise abbilden."
+        ],
+        "en": [
+          " You can copy the columns A to G from the MAT017 Excel file and paste them here (no further columns needed).",
+          " iCalc can only create \"main supplier\" items.",
+          " iCalc is currently not working with staggered prices."
+        ],
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_SUB_HEADER_LIST"
+      },
+      "DIALOG_PASTE_DATA_BUTTON_TEXT": {
+        "de": "Am Ende der Liste einfügen",
+        "en": "Paste to end of list",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_PASTE_DATA_BUTTON_TEXT"
+      },
+      "DIALOG_PASTE_DATA_BUTTON_TEXT_DESCRIPTION": {
+        "de": "Sie können die Daten aus der Zwischenablage unterhalb der letzten aktivierten Reihe einfügen.",
+        "en": "You can insert data from your clipboard underneath the last activated row.",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_PASTE_DATA_BUTTON_TEXT_DESCRIPTION"
+      },
+      "DIALOG_ADD_NEW_ROW_BUTTON_TEXT": {
+        "de": "Weitere Zeile hinzufügen",
+        "en": "Add new row",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_ADD_NEW_ROW_BUTTON_TEXT"
+      },
+      "DIALOG_ACTION_CREATE_NEW_ITEMS": {
+        "de": "Neue Artikel anlegen",
+        "en": "Create new items",
+        "_info": "icalc.create_new_mat017_item_dialog.DIALOG_ACTION_CREATE_NEW_ITEMS"
+      },
+      "UNIQUE_MAT_NUMBER_ERROR": {
+        "de": "MAT-Nr existiert bereits",
+        "en": "MAT number is taken",
+        "_info": "icalc.create_new_mat017_item_dialog.UNIQUE_MAT_NUMBER_ERROR"
+      },
+      "CREATION_FAILED_ERROR": {
+        "de": "Netzwerkprobleme lassen das Speichern der Artikel nicht zu. Bitte versuchen Sie es später erneut.",
+        "en": "Network issues prevent the item from being saved. Please try again later.",
+        "_info": "icalc.create_new_mat017_item_dialog.CREATION_FAILED_ERROR"
+      },
+      "VALID_MAT_NUMBER_FORMAT_ERROR": {
+        "de": "Muss mit MAT017 beginnen",
+        "en": "Should begin with MAT017",
+        "_info": "icalc.create_new_mat017_item_dialog.VALID_MAT_NUMBER_FORMAT_ERROR"
+      },
+      "DUPLICATE_ITEM_NUMBER_ERROR": {
+        "de": "Muss eindeutig sein",
+        "en": "Must be unique",
+        "_info": "icalc.create_new_mat017_item_dialog.DUPLICATE_ITEM_NUMBER_ERROR"
+      },
+      "DUPLICATE_SUPPLIER_ITEM_NUMBER_ERROR": {
+        "de": "Muss eindeutig sein",
+        "en": "Must be unique",
+        "_info": "icalc.create_new_mat017_item_dialog.DUPLICATE_ITEM_NUMBER_ERROR"
+      },
+      "REQUIRED_ERROR": {
+        "de": "Pflichtfeld",
+        "en": "Mandatory field",
+        "_info": "icalc.create_new_mat017_item_dialog.REQUIRED_ERROR"
+      },
+      "MISSING_FIELD_ON_PASTE_ERROR": {
+        "de": "Fehler bei der Verarbeitung von MAT017-Daten. Kopieren Sie mindestens die Spalten A-G aus der MAT017-Excel.",
+        "en": "Error processing MAT017 data. Copy at least the columns A to G from the MAT017 Excel file.",
+        "_info": "icalc.create_new_mat017_item_dialog.MISSING_FIELD_ON_PASTE_ERROR"
+      },
+      "VALID_PRICE_UNIT_ERROR": {
+        "de": "Optionen: S, M, H, T",
+        "en": "Use: S, M, H, T",
+        "_info": "icalc.create_new_mat017_item_dialog.VALID_PRICE_UNIT_ERROR"
+      },
+      "PRICE_UNIT": {
+        "de": "Preiseinheit",
+        "en": "Price Unit",
+        "_info": "icalc.create_new_mat017_item_dialog.PRICE_UNIT"
+      },
+      "ADD_TO_ITEM_LIST": {
+        "de": "Zur Stückliste hinzufügen",
+        "en": "Add to item list",
+        "_info": "icalc.create_new_mat017_item_dialog.ADD_TO_ITEM_LIST"
+      },
+      "SUPPLIER_ITEM_NUMBER": {
+        "de": "Bestellnummer",
+        "en": "Part number",
+        "_info": "icalc.create_new_mat017_item_dialog.SUPPLIER_ITEM_NUMBER"
+      },
+      "ITEM_GROUP": {
+        "de": "Artikelgruppe",
+        "en": "Item Group",
+        "_info": "icalc.create_new_mat017_item_dialog.ITEM_GROUP"
+      }
+    }
+  }
+}

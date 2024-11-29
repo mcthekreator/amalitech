@@ -1,0 +1,4 @@
+export class Started {
+  public static readonly type = '[<%= sourceClassName %>] <%= useCaseClassName %> Started';
+  constructor(public payload: any) {}
+}

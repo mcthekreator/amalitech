@@ -1,0 +1,14 @@
+{
+  "name": "@igus/icalc-entities",
+  "description": "TypeORM entities for icalc",
+  "version": "2.8.0",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igusdev/icalc.git",
+    "directory": "libs/entities"
+  },
+  "publishConfig": {
+    "registry": "https://npm.igusdev.igus.de/"
+  }
+}

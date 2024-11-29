@@ -1,0 +1,34 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+:host {
+  height: auto;
+  background-color: kopla.get-color('gray', 50);
+  width: 100%;
+  display: flex;
+  border-top: 1px solid kopla.get-color('gray', 400);
+  box-shadow: 0 -4px 4px -5px #000;
+  z-index: 100;
+
+  div {
+    flex-grow: 1;
+    display: flex;
+    margin-top: 0.4em;
+    margin-bottom: 00.4em;
+  }
+
+  .left-container {
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 32px;
+  }
+
+  .center-container {
+    justify-content: center;
+  }
+
+  .right-container {
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 32px;
+  }
+}

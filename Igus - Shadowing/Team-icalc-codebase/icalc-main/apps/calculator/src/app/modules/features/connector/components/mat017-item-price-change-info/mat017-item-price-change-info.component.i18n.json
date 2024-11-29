@@ -1,0 +1,16 @@
+{
+  "icalc": {
+    "connector-mat017-items-price-change": {
+      "MAT017ITEM_PRICE_CHANGE_SECTION1": {
+        "de": "Der Preis eines oder mehrerer ausgewählter MAT017 Artikel ist nicht aktuell.",
+        "en": "The price of one or more selected MAT017 items are not up to date.",
+        "_info": "connector-mat017-items-price-change.MAT017ITEM_PRICE_CHANGE"
+      },
+      "MAT017ITEM_PRICE_CHANGE_SECTION2": {
+        "de": "In Schritt 7 können Sie den Preis für alle MAT017 Artikel innerhalb dieser Kalkulation aktualisieren.",
+        "en": "In step 7 you can update the prices for all MAT017 items within this calculation.",
+        "_info": "connector-mat017-items-price-change.MAT017ITEM_PRICE_CHANGE"
+      }
+    }
+  }
+}

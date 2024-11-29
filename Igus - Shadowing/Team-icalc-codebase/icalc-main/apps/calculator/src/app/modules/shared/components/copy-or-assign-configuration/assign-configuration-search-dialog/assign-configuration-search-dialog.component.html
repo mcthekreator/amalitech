@@ -1,0 +1,31 @@
+<h2 matDialogTitle>{{ 'icalc.assign_configuration_search_dialog.CONFIGURATION-SEARCH' | translate }}</h2>
+<mat-dialog-content>
+  <p>{{ 'icalc.assign_configuration_search_dialog.INFO_TEXT' | translate }}</p>
+  <icalc-configuration-search
+    [selectedConfigurationId]="selectedRow?.id"
+    (configurationSelected)="onConfigurationSelected($event)"
+    [filterConfigurations]="filterConfigurations"
+  ></icalc-configuration-search>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="justify-content-between">
+  <button
+    mat-button
+    class="kopla-mat-button--small"
+    matDialogClose
+    color="primary"
+    (click)="onActionSelect(primaryButtonAction)"
+  >
+    {{ 'icalc.assign_configuration_search_dialog.CANCEL' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    matDialogClose
+    class="kopla-mat-button--small"
+    dataCy="open-assign-existing-config-or-copy-dialog"
+    color="primary"
+    (click)="onActionSelect(secondaryButtonAction)"
+    [disabled]="!selectedRow?.id"
+  >
+    {{ 'icalc.meta_data.BUTTON_ASSIGN_CONF' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,16 @@
+{
+  "name": "@igus/icalc-data-import",
+  "description": "import service to import data to the postgres DB",
+  "version": "2.7.0",
+  "license": "UNLICENSED",
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igusdev/icalc.git",
+    "directory": "apps/data-service"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.igusdev.igus.de/"
+  }
+}

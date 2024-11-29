@@ -1,0 +1,484 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$orange-300: kopla.get-color('orange', 300);
+$orange-500: kopla.get-color('orange', 500);
+
+$gray: gray;
+$grey-3: #ececec;
+$black: #0000004d;
+$white: white;
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  text-align: center;
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 24rem;
+    overflow-y: auto;
+    overflow-x: unset;
+
+    mat-card {
+      background-color: $grey-3;
+      position: relative;
+      border: solid 1px $grey-3;
+      margin: 10px;
+      margin-bottom: 5px;
+      box-shadow: 0 1px 2px 1px $black;
+      padding: 2.5px;
+
+      mat-card-content {
+        margin-bottom: 0 !important;
+        padding: 0;
+
+        mat-progress-spinner {
+          align-items: center;
+          margin: 0 auto;
+        }
+        .text {
+          word-wrap: break-word;
+        }
+        .desc-2 {
+          font-size: smaller;
+        }
+        .part-number {
+          font-size: smaller;
+        }
+        .pic-type {
+          font-size: smaller;
+          font-weight: bold;
+        }
+      }
+
+      mat-card-actions {
+        display: block;
+        position: relative;
+        padding: 2.5px;
+
+        button {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .align-buttons {
+          display: flex;
+          flex-direction: row;
+
+          .upload-icon {
+            position: relative;
+            top: 15%;
+          }
+
+          .buttons {
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .file-name {
+          position: relative;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: 500;
+          color: $orange-500;
+        }
+
+        .fileInput {
+          position: absolute;
+          cursor: pointer;
+          z-index: 10;
+          opacity: 0;
+          height: 100%;
+          width: 100%;
+          left: 0;
+          right: 0;
+          top: 0;
+        }
+      }
+
+      img {
+        width: 100%;
+      }
+
+      p.title {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.border-red {
+  border: red solid 3px;
+}
+
+.drop-area {
+  padding: 20px 10px;
+  width: 100%;
+}
+
+#container-wrapper_temp {
+  padding: 91px 10px;
+  width: auto;
+}
+
+#container-wrapper_temp,
+.drop-area {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: $white;
+
+  .metadata-box {
+    align-self: flex-end;
+    border: 1px solid $orange-300;
+    padding: 10px;
+    border-radius: 16px;
+    background: $white;
+    z-index: 100;
+
+    .configuration {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .last-modified-by-description {
+      text-align: right;
+    }
+    .last-modified-by {
+      text-align: right;
+    }
+
+    .date {
+      text-align: right;
+    }
+  }
+
+  .resizable-sketch-image {
+    z-index: 100;
+
+    img.sketch {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .resizable-sketch-comment {
+    z-index: 100;
+
+    textarea {
+      height: 100%;
+      width: 100%;
+      white-space: normal;
+      text-align: justify;
+      text-align-last: center;
+    }
+  }
+
+  .resizable-sketch-box {
+    z-index: 100;
+
+    .box {
+      border: 1px solid black;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .resizable-sketch-circle {
+    z-index: 100;
+
+    .circle {
+      border: 1px solid black;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .resizable-sketch-line {
+    z-index: 100;
+
+    .icalc-line {
+      height: 1px;
+      width: 100%;
+      background: black;
+      margin-top: 50px;
+    }
+  }
+
+  .resizable-sketch-arrow {
+    z-index: 100;
+
+    .icalc-arrow {
+      position: relative;
+      height: 1px;
+      width: 100%;
+      background: black;
+      margin-top: 50px;
+
+      mat-icon {
+        position: absolute;
+        right: -10px;
+        top: -12px;
+      }
+    }
+  }
+
+  .field {
+    width: 150px;
+    height: 63px;
+    border: 1px solid black;
+    background-color: $white;
+    resize: none;
+    border-radius: 2px;
+    font-family: Roboto, sans-serif;
+    color: rgba(0, 0, 0, 0.87);
+
+    input {
+      width: 100%;
+      border: none;
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+
+    button[mat-stroked-button] {
+      height: 28px;
+      min-width: 20px;
+    }
+  }
+
+  .chainflex-wrapper {
+    display: flex;
+    align-self: center;
+    height: 100%;
+  }
+
+  .chainflex {
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    margin: 5rem;
+
+    .cable {
+      width: 300px;
+      height: 35px;
+      background-color: $gray;
+      border-radius: 2px 0 0 2px;
+      margin: 20px;
+    }
+
+    .marker-input-wrapper-left {
+      position: absolute;
+      top: -30px;
+      left: 20px;
+
+      .input {
+        input {
+          max-width: 60px;
+          max-height: 30px;
+        }
+      }
+    }
+
+    .left-marker {
+      position: absolute;
+      top: -5px;
+      left: 20px;
+      width: 60px;
+      height: 25px;
+      border-left: 2px dotted $gray;
+      border-right: 2px dotted $gray;
+    }
+
+    .left-arrow {
+      position: absolute;
+      top: -7px;
+      left: 14px;
+      height: 30px;
+
+      .input-unit {
+        font-size: small;
+        position: relative;
+        top: -15px;
+      }
+
+      mat-icon {
+        margin-top: 10px;
+        position: relative;
+        top: -8px;
+      }
+    }
+
+    .marker-input-wrapper-right {
+      position: absolute;
+      top: -30px;
+      left: 700px;
+
+      .input {
+        input {
+          max-width: 60px;
+          max-height: 30px;
+        }
+      }
+
+      .input-unit {
+        position: absolute;
+        top: 28px;
+        left: 18px;
+      }
+    }
+
+    .right-marker {
+      position: absolute;
+      top: 55px;
+      left: 20px;
+      width: 60px;
+      height: 25px;
+      border-left: 2px dotted $gray;
+      border-right: 2px dotted $gray;
+    }
+
+    .right-arrow {
+      position: absolute;
+      top: -7px;
+      left: 695px;
+      width: 71px;
+      height: 30px;
+
+      .input-unit {
+        font-size: small;
+        position: relative;
+        top: -15px;
+      }
+
+      mat-icon {
+        margin-top: 10px;
+        position: relative;
+        top: -8px;
+      }
+    }
+
+    .curve-right {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      height: 35px;
+      width: 50px;
+      background-color: $gray;
+    }
+
+    .curve-right::before {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 100% 50%;
+      width: 99px;
+      height: 32px;
+      background-color: $white;
+      transform: translate(43%, -39%);
+    }
+
+    .curve-right::after {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 50% 100%;
+      width: 60px;
+      height: 24px;
+      background-color: $gray;
+      transform: translate(4%, 46%);
+    }
+
+    .text-field-wrapper {
+      position: absolute;
+      left: 80px;
+      top: 7px;
+      display: flex;
+      flex-direction: column;
+
+      .button-wrapper {
+        display: none;
+      }
+
+      &:hover {
+        .button-wrapper {
+          display: flex;
+          gap: 10px;
+        }
+      }
+    }
+
+    &.rotate {
+      transform: rotate(180deg);
+
+      .text-field-wrapper {
+        bottom: 7px;
+        top: unset;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .add-comment {
+    max-width: 203px;
+    bottom: -20px;
+
+    &.margin {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.buttons-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+
+  button.file-upload-button {
+    position: relative;
+
+    input[type='file'] {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  .fileInput {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+}

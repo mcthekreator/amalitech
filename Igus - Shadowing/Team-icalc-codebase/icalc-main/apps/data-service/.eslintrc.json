@@ -1,0 +1,28 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "no-await-in-loop": "error",
+        "no-return-await": "error"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["apps/data-service/tsconfig.*?.json"]
+      },
+      "rules": {
+        "@typescript-eslint/prefer-for-of": "error",
+        "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/prefer-readonly": "error"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

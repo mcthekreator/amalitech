@@ -1,0 +1,46 @@
+{
+  "icalc": {
+    "mat017-item-picker-dialog": {
+      "DIALOG_HEADER": {
+        "de": "MAT017 Artikel für Pinbelegung auswählen",
+        "en": "Select MAT017 item for pin assignment",
+        "_info": "icalc.mat017-item-picker-dialog.DIALOG_HEADER"
+      },
+      "PRIMARY_BUTTON_TEXT": {
+        "de": "Artikel auswählen",
+        "en": "Select item",
+        "_info": "icalc.mat017-item-picker-dialog.PRIMARY_BUTTON_TEXT"
+      },
+      "SECONDARY_BUTTON_TEXT": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.mat017-item-picker-dialog.SECONDARY_BUTTON_TEXT"
+      },
+      "MAT_NUMBER": {
+        "de": "MAT-Nummer",
+        "en": "MAT number",
+        "_info": "icalc.mat017-item-picker-dialog.MAT_NUMBER"
+      },
+      "ITEM_DESCRIPTION_1": {
+        "de": "Artikelbezeichnung 1",
+        "en": "Item description 1",
+        "_info": "icalc.mat017-item-picker-dialog.ITEM_DESCRIPTION_1"
+      },
+      "ITEM_DESCRIPTION_2": {
+        "de": "Artikelbezeichnung 2",
+        "en": "Item description 2",
+        "_info": "icalc.mat017-item-picker-dialog.ITEM_DESCRIPTION_2"
+      },
+      "MAT_ITEM_GROUP": {
+        "de": "Artikelgruppe",
+        "en": "Item Group",
+        "_info": "icalc.mat017-item-picker-dialog.MAT_ITEM_GROUP"
+      },
+      "SUPPLIER_ITEM_NUMBER": {
+        "de": "Bestellnummer",
+        "en": "Part number",
+        "_info": "icalc.mat017-item-picker-dialog.SUPPLIER_ITEM_NUMBER"
+      }
+    }
+  }
+}

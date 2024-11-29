@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-title>
+    <img class="logo" dataCy="logo" src="images/kopla/logo.svg" />
+    <div class="login-headline" dataCy="login-headline">{{ 'login.user.LOGIN' | translate }}</div>
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="form" dataCy="login-form">
+      <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+    </form>
+    <div class="aut-failed">
+      <span dataCy="auth-error" *ngIf="(isLoginFailed$ | async) && !form.dirty"
+        >{{ 'login.user.NOT_AUTHENTICATED' | translate }}
+      </span>
+    </div>
+    <button [disabled]="!form.valid" type="submit" dataCy="submit" mat-flat-button color="primary" (click)="onLogin()">
+      {{ 'login.user.LOGIN' | translate }}
+    </button>
+  </mat-card-content>
+</mat-card>

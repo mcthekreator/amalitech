@@ -1,0 +1,16 @@
+{
+  "icalc": {
+    "mat017-item-picker": {
+      "NO_MAT017_ITEMS_TOOLTIP": {
+        "de": "Es wurde kein Artikel für diese Seite ausgewählt",
+        "en": "No item has been selected for this side",
+        "_info": "icalc.mat017-item-picker.NO_MAT017_ITEMS_TOOLTIP"
+      },
+      "CHOOSE_MAT017_ITEM": {
+        "de": "+ Artikel wählen",
+        "en": "+ Select item",
+        "_info": "icalc.mat017-item-picker.CHOOSE_MAT017_ITEM"
+      }
+    }
+  }
+}

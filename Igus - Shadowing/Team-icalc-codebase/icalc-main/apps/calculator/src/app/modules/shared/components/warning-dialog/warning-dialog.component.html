@@ -1,0 +1,20 @@
+<h1 mat-dialog-title dataCy="warning-header">{{ dialogData.header | translate }}</h1>
+<mat-dialog-content>
+  <p dataCy="warning-message">{{ dialogData.message | translate }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="justify-content-between">
+  <button mat-button matDialogClose dataCy="warning-cancel-button" class="kopla-mat-button--small" color="primary">
+    {{ 'icalc.meta_data_form.CANCEL' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    matDialogClose
+    class="kopla-mat-button--small"
+    color="primary"
+    dataCy="warning-confirm-button"
+    (click)="onActionSelect(confirmButton)"
+  >
+    {{ 'icalc.meta_data_form.CONFIRM' | translate }}
+  </button>
+</mat-dialog-actions>

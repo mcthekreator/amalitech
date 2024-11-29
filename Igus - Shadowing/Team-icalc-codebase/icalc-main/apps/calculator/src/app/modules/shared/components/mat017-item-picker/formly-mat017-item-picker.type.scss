@@ -1,0 +1,27 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$gray-400: kopla.get-color('gray', 400);
+$orange-300: kopla.get-color('orange', 300);
+
+.mat017-item-picker-info {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.selected-value-container {
+  height: 40px;
+}
+
+.mdc-button.open-dialog-button {
+  height: 40px;
+}
+
+.disabled {
+  color: $gray-400;
+}
+
+.reset-mat017-item-selection {
+  cursor: pointer;
+  color: $orange-300;
+  font-size: 20px;
+}

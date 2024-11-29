@@ -1,0 +1,711 @@
+<mat-progress-spinner
+  *ngIf="isLoadingUi$ | async"
+  class="loading-image"
+  mode="indeterminate"
+  [diameter]="50"
+  [strokeWidth]="4"
+>
+</mat-progress-spinner>
+
+<ng-container *ngIf="isReady; else loadingTemplate">
+  <div id="container-wrapper" class="container-wrapper">
+    <div class="sidebar">
+      <div class="images left" *ngFor="let item of imageList$ | async">
+        <mat-card *ngIf="item.group === 'RC-K2' && item.picType === 'pinAss' && item.side === 'left'">
+          <mat-card-content>
+            <p class="headline-6">{{ item.matNumber }}</p>
+            <p>{{ 'icalc.pin-assignment.LEFT' | translate }}</p>
+            <img *ngIf="item.src" [src]="item.src" class="preview" />
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="images right" *ngFor="let item of imageList$ | async">
+        <mat-card *ngIf="item.group === 'RC-K2' && item.picType === 'pinAss' && item.side === 'right'">
+          <mat-card-content>
+            <p class="headline-6">{{ item.matNumber }}</p>
+            <p>{{ 'icalc.pin-assignment.RIGHT' | translate }}</p>
+            <img *ngIf="item.src" [src]="item.src" class="preview" />
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div
+      *ngIf="cableStructureInformation && actionModels"
+      [ngClass]="{ 'edit-bridges': isEditingBridges }"
+      class="pin-container"
+      id="pin-container"
+    >
+      <div class="headline-container">
+        <div class="kopla-font-headline-4 headline-5" dataCy="pin-assignment-title">
+          {{ 'icalc.pin-assignment.TITLE' | translate }}: {{ partNumber }}
+        </div>
+        <div class="kopla-font-subtitle-1">
+          {{ 'icalc.pin-assignment.TITLE_CABLE_STRUCTURE' | translate }}: {{ cableStructure | translateGerman }}
+        </div>
+      </div>
+
+      <div *ngIf="cableStructureInformation.isValid === false" class="error-row">
+        <kopla-info>
+          {{ 'icalc.pin-assignment.ERROR_NONE_OR_INVALID_DATA' | translate }}
+
+          <ng-container *ngIf="cableStructureInformation.validationErrors?.length > 0">
+            <ng-container *ngFor="let error of cableStructureInformation.validationErrors">
+              <div class="error">{{ error }}</div>
+            </ng-container>
+          </ng-container>
+        </kopla-info>
+      </div>
+
+      <ng-container *ngIf="cableStructureInformation.isValid">
+        <form [formGroup]="pinAutomationForm" *ngIf="pinAssignmentStructure?.length > 0" class="labels-row">
+          <button
+            *ngIf="showPinAutomationSubValueSelectLeft$ | async"
+            [disabled]="isLocked"
+            class="sub-value-automation-reset left"
+            color="primary"
+            mat-button
+            [matTooltip]="'icalc.pin-assignment.RESET_PIN_AUTOMATION_TOOL_TIP' | translate"
+            (click)="openResetSubValuesConfirmationModal('left')"
+            dataCy="left-reset-sub-values-button"
+          >
+            <mat-icon>replay</mat-icon>
+          </button>
+          <mat-form-field *ngIf="showPinAutomationSubValueSelectLeft$ | async" class="sub-option-select left">
+            <mat-label>
+              {{ 'icalc.pin-assignment.VALUES_FOR_EVERY_LINE' | translate }}
+            </mat-label>
+            <mat-select
+              formControlName="leftPinAutomationSubValueSelection"
+              id="sub-option-select-left"
+              (selectionChange)="setAutomatedSubValuesSelect($event, 'left')"
+              dataCy="left-pin-automation-sub-values-selection"
+            >
+              <mat-option [value]="pinAssignmentAutomationSubValuesOptions.oneToOne">
+                {{ 'icalc.pin-assignment.ONE_TO_ONE_ASSIGNMENT_OPTION' | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="dropdown-wrapper left">
+            <div class="side-column-header">{{ 'icalc.pin-assignment.LEFT_CONNECTOR' | translate }}</div>
+            <mat-form-field>
+              <mat-label>
+                {{ 'icalc.pin-assignment.ACTIONS_FOR_EVERY_LINE' | translate }}
+              </mat-label>
+              <mat-select
+                formControlName="leftPinAutomationActionSelection"
+                (selectionChange)="handlePinAutomationSelection($event, 'left')"
+                dataCy="left-pin-automation-action-selection"
+              >
+                <mat-option [value]="pinAssignmentAutomationActionOptions.setAllCoresOnContact">
+                  {{ 'icalc.pin-assignment.SET_ALL_CORES_ON_CONTACT' | translate }}
+                </mat-option>
+                <mat-option [value]="pinAssignmentAutomationActionOptions.connectAllShieldsOnHousing">
+                  {{ 'icalc.pin-assignment.CONNECT_ALL_SHIELDS_ON_HOUSING' | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button
+            [disabled]="isLocked"
+            class="pin-automation-reset left"
+            mat-button
+            color="primary"
+            [matTooltip]="'icalc.pin-assignment.RESET_PIN_AUTOMATION_TOOL_TIP' | translate"
+            (click)="openResetActionsConfirmationModal('left')"
+            dataCy="left-reset-actions-button"
+          >
+            <mat-icon>replay</mat-icon>
+          </button>
+          <div class="center-column">
+            <button
+              [disabled]="isLocked"
+              mat-stroked-button
+              color="primary"
+              class="edit-bridges kopla-mat-button--small"
+              [ngClass]="{ 'is-in-edit-mode': isEditingBridges }"
+              (click)="toggleEditBridges()"
+              dataCy="edit-bridges"
+            >
+              <mat-icon class="bridges-icon mat-18">linear_scale</mat-icon>
+              {{ 'icalc.pin-assignment.' + (isEditingBridges ? 'SAVE_BRIDGES' : 'EDIT_BRIDGES') | translate }}
+            </button>
+            <div class="center-column-label">
+              {{ 'icalc.pin-assignment.LABEL_DESCRIPTION' | translate }}
+              {{ 'icalc.pin-assignment.LABEL_CROSS_SECTION' | translate }}
+            </div>
+          </div>
+          <div class="dropdown-wrapper right">
+            <div class="side-column-header right">{{ 'icalc.pin-assignment.RIGHT_CONNECTOR' | translate }}</div>
+            <mat-form-field>
+              <mat-label>
+                {{ 'icalc.pin-assignment.ACTIONS_FOR_EVERY_LINE' | translate }}
+              </mat-label>
+              <mat-select
+                formControlName="rightPinAutomationActionSelection"
+                (selectionChange)="handlePinAutomationSelection($event, 'right')"
+                dataCy="right-pin-automation-action-selection"
+              >
+                <mat-option [value]="pinAssignmentAutomationActionOptions.setAllCoresOnContact">
+                  {{ 'icalc.pin-assignment.SET_ALL_CORES_ON_CONTACT' | translate }}
+                </mat-option>
+                <mat-option [value]="pinAssignmentAutomationActionOptions.connectAllShieldsOnHousing">
+                  {{ 'icalc.pin-assignment.CONNECT_ALL_SHIELDS_ON_HOUSING' | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button
+            class="pin-automation-reset right"
+            color="primary"
+            mat-button
+            [disabled]="isLocked"
+            [matTooltip]="'icalc.pin-assignment.RESET_PIN_AUTOMATION_TOOL_TIP' | translate"
+            (click)="openResetActionsConfirmationModal('right')"
+            dataCy="right-reset-actions-button"
+          >
+            <mat-icon>replay</mat-icon>
+          </button>
+          <mat-form-field *ngIf="showPinAutomationSubValueSelectRight$ | async" class="sub-option-select right">
+            <mat-label>
+              {{ 'icalc.pin-assignment.VALUES_FOR_EVERY_LINE' | translate }}
+            </mat-label>
+            <mat-select
+              id="sub-option-select-right"
+              formControlName="rightPinAutomationSubValueSelection"
+              (selectionChange)="setAutomatedSubValuesSelect($event, 'right')"
+              dataCy="right-pin-automation-sub-values-selection"
+            >
+              <mat-option [value]="pinAssignmentAutomationSubValuesOptions.oneToOne">
+                {{ 'icalc.pin-assignment.ONE_TO_ONE_ASSIGNMENT_OPTION' | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button
+            *ngIf="showPinAutomationSubValueSelectRight$ | async"
+            [disabled]="isLocked"
+            class="sub-value-automation-reset right"
+            color="primary"
+            mat-button
+            [matTooltip]="'icalc.pin-assignment.RESET_PIN_AUTOMATION_TOOL_TIP' | translate"
+            (click)="openResetSubValuesConfirmationModal('right')"
+            dataCy="right-reset-sub-values-button"
+          >
+            <mat-icon>replay</mat-icon>
+          </button>
+        </form>
+        <!-- only visible in png snapshot -->
+        <div class="png-export-header">
+          <div class="side-column-header-left">{{ 'icalc.pin-assignment.LEFT_CONNECTOR' | translate }}</div>
+          <div class="center-column-label">
+            {{ 'icalc.pin-assignment.LABEL_DESCRIPTION' | translate }}
+            {{ 'icalc.pin-assignment.LABEL_CROSS_SECTION' | translate }}
+          </div>
+          <div class="side-column-header-right">{{ 'icalc.pin-assignment.RIGHT_CONNECTOR' | translate }}</div>
+        </div>
+        <div
+          *ngFor="let item of pinAssignmentStructure; let i = index"
+          class="cable-structure-container"
+          [ngClass]="{ odd: item.isOdd, first: i === 0 }"
+        >
+          <!-- CORE -->
+          <ng-container *ngIf="item.type === 'core'">
+            <div
+              *ngIf="asCore(item) as item"
+              class="core-row"
+              [ngClass]="{ 'has-sub-actions': item | hasSubActions | async }"
+            >
+              <!-- LEFT -->
+              <div class="icalc-label">
+                <span class="action-value-text" *ngIf="!showForms" dataCy="pin-assignment-left-display">
+                  {{ actionModels[item.lineOrder].left | actionModelValue }}
+                </span>
+                <form *ngIf="showForms" class="icalc-pin-assignment-config-form" [formGroup]="item.forms.left.form">
+                  <formly-form
+                    class="icalc-pin-assignment-config-form"
+                    [model]="actionModels[item.lineOrder].left"
+                    [fields]="item.forms.left.fields"
+                    [options]="item.forms.left.options"
+                    [form]="item.forms.left.form"
+                    (modelChange)="handleFormlyChange('left')"
+                  ></formly-form>
+                </form>
+              </div>
+              <div class="core-container">
+                <div class="core-bg" [ngClass]="item | coreToCssClassName">
+                  <div class="core" [ngClass]="item | coreToCssClassName" dataCy="core-left"></div>
+                </div>
+                <div class="dots-container">
+                  <ng-container
+                    [ngTemplateOutlet]="bridgeDotTemplate"
+                    [ngTemplateOutletContext]="{
+                      item: item,
+                      side: 'left'
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <div class="description">
+                <span>{{ 'icalc.core-description.' + (item | coreToTranslateKey) | translate }}</span>
+                <span>{{ item | coreToThickness | convertDecimalToDeString }}</span>
+              </div>
+              <div class="core-container right">
+                <div class="core-bg" [ngClass]="item | coreToCssClassName">
+                  <div class="core" [ngClass]="item | coreToCssClassName" dataCy="core-right"></div>
+                </div>
+                <div class="dots-container right">
+                  <ng-container
+                    [ngTemplateOutlet]="bridgeDotTemplate"
+                    [ngTemplateOutletContext]="{
+                      item: item,
+                      side: 'right'
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <!-- RIGHT -->
+              <div class="icalc-label right">
+                <span class="action-value-text" *ngIf="!showForms">{{
+                  actionModels[item.lineOrder].right | actionModelValue
+                }}</span>
+                <form *ngIf="showForms" class="icalc-pin-assignment-config-form" [formGroup]="item.forms.right.form">
+                  <formly-form
+                    class="icalc-pin-assignment-config-form right-side"
+                    [model]="actionModels[item.lineOrder].right"
+                    [fields]="item.forms.right.fields"
+                    [options]="item.forms.right.options"
+                    [form]="item.forms.right.form"
+                    (select)="handleFormlyChange('right')"
+                  ></formly-form>
+                </form>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- SHIELD -->
+          <ng-container *ngIf="item.type === 'shield'">
+            <div
+              *ngIf="asShield(item) as item"
+              class="core-row sh-row"
+              [ngClass]="{ 'has-sub-actions': item | hasSubActions | async }"
+            >
+              <!-- LEFT -->
+              <div class="icalc-label">
+                <span class="action-value-text" *ngIf="!showForms">{{
+                  actionModels[item.lineOrder].left | actionModelValue
+                }}</span>
+                <form *ngIf="showForms" class="icalc-pin-assignment-config-form" [formGroup]="item.forms.left.form">
+                  <formly-form
+                    class="icalc-pin-assignment-config-form"
+                    [model]="actionModels[item.lineOrder].left"
+                    [fields]="item.forms.left.fields"
+                    [options]="item.forms.left.options"
+                    [form]="item.forms.left.form"
+                  ></formly-form>
+                </form>
+              </div>
+              <div class="core-container">
+                <div [ngClass]="getShieldHeightAndOrderClasses(item, actionModels)" class="sh"></div>
+                <div [ngClass]="['order-' + item.horizontalOrder]" class="sh-label-line"></div>
+
+                <div class="dots-container">
+                  <ng-container
+                    [ngTemplateOutlet]="bridgeDotTemplate"
+                    [ngTemplateOutletContext]="{
+                      item: item,
+                      side: 'left'
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <div class="description">{{ item.description }}</div>
+              <div class="core-container right">
+                <div [ngClass]="getShieldHeightAndOrderClasses(item, actionModels)" class="sh"></div>
+                <div [ngClass]="['order-' + item.horizontalOrder]" class="sh-label-line"></div>
+
+                <div class="dots-container right">
+                  <ng-container
+                    [ngTemplateOutlet]="bridgeDotTemplate"
+                    [ngTemplateOutletContext]="{
+                      item: item,
+                      side: 'right'
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <!-- RIGHT -->
+              <div class="icalc-label right">
+                <span class="action-value-text" *ngIf="!showForms">{{
+                  actionModels[item.lineOrder].right | actionModelValue
+                }}</span>
+                <form *ngIf="showForms" class="icalc-pin-assignment-config-form" [formGroup]="item.forms.right.form">
+                  <formly-form
+                    class="icalc-pin-assignment-config-form right-side"
+                    [model]="actionModels[item.lineOrder].right"
+                    [fields]="item.forms.right.fields"
+                    [options]="item.forms.right.options"
+                    [form]="item.forms.right.form"
+                  ></formly-form>
+                </form>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- TWISTING -->
+          <ng-container *ngIf="item.type === 'twisting'">
+            <div class="twisting-container" *ngIf="asTwisting(item) as item">
+              <!-- Placeholder for the left part -->
+              <div class="icalc-label"></div>
+              <!-- LEFT -->
+              <div class="twisting-side">
+                <div class="twisting" [ngClass]="getTwistingAmountAndOrderClasses(item, i, pinAssignmentStructure)">
+                  <div class="twist-top-line"></div>
+                  <div class="twist"></div>
+                  <div class="twist-bottom-line"></div>
+                </div>
+              </div>
+              <!-- Placeholder for the middle part -->
+              <div class="description"></div>
+              <!-- RIGHT -->
+              <div class="twisting-side right">
+                <div
+                  class="twisting right"
+                  [ngClass]="getTwistingAmountAndOrderClasses(item, i, pinAssignmentStructure)"
+                >
+                  <div class="twist-top-line"></div>
+                  <div class="twist"></div>
+                  <div class="twist-bottom-line"></div>
+                </div>
+              </div>
+              <!-- Placeholder for the right part -->
+              <div class="icalc-label"></div>
+            </div>
+          </ng-container>
+
+          <!-- LITZE -->
+          <ng-container
+            *ngIf="
+              item.type === 'litze' &&
+              ((bridges.left | isLitzeSideActive: item.lineOrder) ||
+                (bridges.right | isLitzeSideActive: item.lineOrder))
+            "
+          >
+            <div
+              *ngIf="asLitze(item) as item"
+              class="core-row"
+              [ngClass]="{ 'has-sub-actions': item | hasSubActions | async }"
+            >
+              <!-- LEFT -->
+              <div class="icalc-label">
+                <span class="action-value-text" *ngIf="!showForms">{{
+                  actionModels[item.lineOrder].left | actionModelValue
+                }}</span>
+                <form
+                  *ngIf="showForms && bridges.left | isLitzeSideActive: item.lineOrder"
+                  class="icalc-pin-assignment-config-form"
+                  [formGroup]="item.forms.left.form"
+                >
+                  <formly-form
+                    class="icalc-pin-assignment-config-form"
+                    [model]="actionModels[item.lineOrder].left"
+                    [fields]="item.forms.left.fields"
+                    [options]="item.forms.left.options"
+                    [form]="item.forms.left.form"
+                  ></formly-form>
+                </form>
+              </div>
+              <div class="core-container">
+                <div class="dots-container">
+                  <ng-container
+                    [ngTemplateOutlet]="bridgeDotTemplate"
+                    [ngTemplateOutletContext]="{
+                      item: item,
+                      side: 'left'
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <div class="description litze">
+                <div class="litze-description-container">
+                  <div class="litze-label">
+                    <span *ngIf="!showForms">{{ item.leftLabel }}</span>
+                    <input
+                      *ngIf="showForms"
+                      type="text"
+                      (keyup)="onSetLabel(item, 'left', $event?.target)"
+                      [value]="item.leftLabel"
+                      [disabled]="isLocked"
+                      [attr.placeholder]="'icalc.pin-assignment.LABEL_DESCRIPTION_LEFT' | translate"
+                      [attr.disabled]="!(bridges.left | isLitzeSideActive: item.lineOrder) ? '' : null"
+                    />
+                  </div>
+                  <div class="litze-label right">
+                    <span *ngIf="!showForms">{{ item.rightLabel }}</span>
+                    <input
+                      *ngIf="showForms"
+                      type="text"
+                      (keyup)="onSetLabel(item, 'right', $event?.target)"
+                      [value]="item.rightLabel"
+                      [disabled]="isLocked"
+                      [attr.placeholder]="'icalc.pin-assignment.LABEL_DESCRIPTION_RIGHT' | translate"
+                      [attr.disabled]="!(bridges.right | isLitzeSideActive: item.lineOrder) ? '' : null"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="core-container right">
+                <div class="dots-container right">
+                  <ng-container
+                    [ngTemplateOutlet]="bridgeDotTemplate"
+                    [ngTemplateOutletContext]="{
+                      item: item,
+                      side: 'right'
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <!-- RIGHT -->
+              <div class="icalc-label right">
+                <span class="action-value-text" *ngIf="!showForms"
+                  >{{ actionModels[item.lineOrder].right | actionModelValue }}
+                </span>
+                <form
+                  *ngIf="showForms && bridges.right | isLitzeSideActive: item.lineOrder"
+                  class="icalc-pin-assignment-config-form"
+                  [formGroup]="item.forms.right.form"
+                >
+                  <formly-form
+                    class="icalc-pin-assignment-config-form right-side"
+                    [model]="actionModels[item.lineOrder].right"
+                    [fields]="item.forms.right.fields"
+                    [options]="item.forms.right.options"
+                    [form]="item.forms.right.form"
+                  ></formly-form>
+                </form>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="cable-structure-container">
+          <div class="core-row">
+            <div class="icalc-label"></div>
+            <div class="core-container">
+              <div class="dots-container">
+                <div class="button-placeholder" *ngFor="let x of [0, 1, 2, 3, 4]">
+                  <button
+                    [disabled]="isLocked"
+                    mat-mini-fab
+                    *ngIf="
+                      currentBridge
+                        | isLitzeDotVisible
+                          : {
+                              button: { side: 'left', dot: [x, lineOrder] },
+                              bridges,
+                              currentBridgeSide
+                            }
+                    "
+                    (click)="onCreateNewLitzeLine('left', x)"
+                    class="connector-dot"
+                  ></button>
+                </div>
+              </div>
+            </div>
+            <div class="description litze"></div>
+            <div class="core-container right">
+              <div class="dots-container right">
+                <div class="button-placeholder" *ngFor="let x of [0, 1, 2, 3, 4]">
+                  <button
+                    [disabled]="isLocked"
+                    mat-mini-fab
+                    *ngIf="
+                      currentBridge
+                        | isLitzeDotVisible
+                          : {
+                              button: { side: 'right', dot: [x, lineOrder] },
+                              bridges,
+                              currentBridgeSide
+                            }
+                    "
+                    (click)="onCreateNewLitzeLine('right', x)"
+                    class="connector-dot"
+                  ></button>
+                </div>
+              </div>
+            </div>
+            <!-- RIGHT -->
+            <div class="icalc-label right"></div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loadingTemplate> </ng-template>
+
+<icalc-cdk-portal [selectorId]="'footer-left-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    mat-button
+    *ngIf="previousStep$ | async as previousStep"
+    [disabled]="isEditingBridges"
+    [routerLink]="[previousStep.route]"
+    dataCy="back-to-library-button"
+  >
+    {{ 'icalc.pin-assignment.' + previousStep.label | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-right-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    dataCy="save-and-validate-configuration"
+    mat-flat-button
+    [disabled]="(isLoadingUi$ | async) || isEditingBridges"
+    *ngIf="nextStep$ | async as nextStep"
+    (click)="startSavingAndValidatingConfiguration()"
+  >
+    {{ 'icalc.pin-assignment.' + nextStep.label | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<ng-template #bridgeDotTemplate let-item="item" let-side="side">
+  <div class="button-placeholder" *ngFor="let x of [0, 1, 2, 3, 4]">
+    <ng-container
+      *ngIf="
+        currentBridge
+          | bridgeButton
+            : {
+                button: { side: side, dot: [x, item.lineOrder] },
+                bridges: bridges,
+                currentBridgeSide: currentBridgeSide
+              } as cssClass
+      "
+    >
+      <button
+        mat-mini-fab
+        *ngIf="!(!showForms && cssClass === 'no-class')"
+        (click)="
+          currentBridge === null
+            ? onStartBridge([x, item.lineOrder], side, cssClass)
+            : onEndBridge([x, item.lineOrder], side, cssClass)
+        "
+        [disabled]="cssClass | isBridgeButtonDisabled"
+        class="connector-dot"
+        [ngClass]="cssClass"
+        dataCy="connector-dot"
+      >
+        <mat-icon *ngIf="isEditingBridges" class="delete-icon">close</mat-icon>
+        <div class="separator-line"></div>
+      </button>
+      <div [ngClass]="cssClass" class="bridge up" dataCy="bridge-up"></div>
+      <div [ngClass]="cssClass" class="bridge down"></div>
+    </ng-container>
+
+    <!-- <button mat-mini-fab
+            (click)="onEndBridge([x, item.lineOrder], side)"
+            class="connector-dot"
+            [ngClass]="'end' | bridgeButton: { button: { side: side, dot: [x ,item.lineOrder] }, bridges: bridges, currentBridge: currentBridge, currentBridgeSide: currentBridgeSide }">
+      <mat-icon></mat-icon>
+    </button>
+        [matTooltip]="cssClass"-->
+  </div>
+</ng-template>
+<ng-template #confirmResetPinAssignmentSubValuesDialog let-data>
+  <h2 matDialogTitle>
+    {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_SUB_VALUES_HEADER' | translate }}
+  </h2>
+  <mat-dialog-content>
+    <h5>{{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_SUB_VALUES_MESSAGE' | translate }}</h5>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-between">
+    <button mat-button matDialogClose color="primary" *ngIf="nextStep$ | async as nextStep">
+      {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_CANCEL_RESET' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      matDialogClose
+      color="primary"
+      (click)="resetPinAutomationValues(data.side)"
+      dataCy="reset-pin-automation-values-button"
+    >
+      {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT' | translate }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+<ng-template #confirmResetPinAssignmentActionsDialog let-data>
+  <h2 matDialogTitle>
+    {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_ACTIONS_HEADER' | translate }}
+  </h2>
+  <mat-dialog-content>
+    <h5>{{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_ACTIONS_MESSAGE' | translate }}</h5>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-between">
+    <button mat-button matDialogClose color="primary" *ngIf="nextStep$ | async as nextStep">
+      {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_CANCEL_RESET' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      matDialogClose
+      color="primary"
+      (click)="resetPinAutomationActions(data.side)"
+      dataCy="reset-pin-automation-actions-button"
+    >
+      {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT' | translate }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #confirmCheckSelectionDialog>
+  <h2 matDialogTitle>{{ 'icalc.pin-assignment.CHECK_HEADER' | translate }}</h2>
+  <mat-dialog-content>
+    <h5>{{ pinAssignmentErrorMessage | translate }}</h5>
+    <div class="check-selection">
+      <div class="selection" *ngIf="!pinAssignmentValidationResult?.leftIsValid">
+        <div class="selection-row">
+          <div>{{ 'icalc.pin-assignment.SELECTION_ARTICLES_LEFT' | translate }}</div>
+          <div>{{ pinAssignmentValidationResult?.leftItemCount }}</div>
+        </div>
+        <div class="selection-row">
+          <div>{{ 'icalc.pin-assignment.SELECTION_CONTACTS_LEFT' | translate }}</div>
+          <div [ngClass]="{ 'selection-alert': !pinAssignmentValidationResult?.leftIsValid }">
+            {{ pinAssignmentValidationResult?.leftContactCount }}
+          </div>
+        </div>
+      </div>
+      <div class="selection" *ngIf="!pinAssignmentValidationResult?.rightIsValid">
+        <div class="selection-row">
+          <div>{{ 'icalc.pin-assignment.SELECTION_ARTICLES_RIGHT' | translate }}</div>
+          <div>{{ pinAssignmentValidationResult?.rightItemCount }}</div>
+        </div>
+        <div class="selection-row">
+          <div>{{ 'icalc.pin-assignment.SELECTION_CONTACTS_RIGHT' | translate }}</div>
+          <div [ngClass]="{ 'selection-alert': !pinAssignmentValidationResult?.rightIsValid }">
+            {{ pinAssignmentValidationResult?.rightContactCount }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-between">
+    <button mat-button matDialogClose color="primary">
+      {{ 'icalc.pin-assignment.RESET_PIN_ASSIGNMENT_CANCEL_RESET' | translate }}
+    </button>
+    <div>
+      <button mat-flat-button matDialogClose color="primary">
+        {{ 'icalc.pin-assignment.CHECK_HEADER' | translate }}
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        dataCy="approve-and-go-to-result"
+        *ngIf="nextStep$ | async as nextStep"
+        [disabled]="(isLoadingUi$ | async) === true"
+        matDialogClose
+        (click)="onGoToResult(nextStep, true)"
+      >
+        {{ 'icalc.pin-assignment.CHECK_IGNORE' | translate }}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</ng-template>

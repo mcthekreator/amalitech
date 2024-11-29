@@ -1,0 +1,40 @@
+### find all chainflex items
+GET http://localhost:3000/api/chainflex?orderDirection=desc
+  &search=
+  &skip=0
+  &take=100
+  &orderBy=outerDiameter
+
+### [INT] find all chainflex items
+GET https://data-icalc-kopla-integration.igusdev.igus.de/api/chainflex?orderDirection=desc
+  &search=
+  &skip=0
+  &take=100
+  &orderBy=zzz
+
+### create chainflex item
+POST http://localhost:3000/api/chainflex
+Content-Type: application/json
+
+{
+  "partNumber": "CFLG.2LB.PUR.62.5/125",
+  "description": {
+    "en_US": "chainflex® CFLG-LB fibre optic cable PUR, 5 x",
+    "de_DE": "chainflex® PUR Lichtwellen-Ltg. 2 Gradientenfasern / Festadern | Ø 8,5 mm"
+  },
+  "overallShield": "val_overall_shield_07",
+  "outerJacket": "val_outer_jacket_12",
+  "innerJacket": {},
+  "numberOfCores": "no data",
+  "nominalCrossSection": { "en_US": "AWG2/0 / AWG4/0", "de_DE": "62,5/125" },
+  "outerDiameter": { "amount": 8.5, "unit": "MILLIMETER" },
+  "cableStructure": "no data",
+  "purchasePrice": null,
+  "shopImageUrl": "https://igus.widen.net/content/azordkicii/jpeg/chainflex_CFLG.LB.PUR.jpeg?w=1050&h=700&position=c&color=ffffffff&quality=80&u=gqh1pb"
+}
+
+### find chainflex item by partNumber
+GET http://localhost:3000/api/chainflex/search?partNumber=CF10.01.12
+
+### delete chainflex item by partNumber
+DELETE http://localhost:3000/api/chainflex/CF2828

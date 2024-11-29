@@ -1,0 +1,116 @@
+<!-- UPDATE MAT017ITEM DIALOG -->
+<div class="info-box" *ngIf="showNewMat017ItemPricesInfo$ | async">
+  <kopla-info dataCy="mat017-item-price-has-changed-info">
+    <div class="align-content">
+      {{ 'icalc.results.INFO-MAT017ITEM-PRICE-HAS-CHANGED' | translate }}
+      <button
+        color="primary"
+        mat-button
+        (click)="openUpdateMat017ItemPricesDialog()"
+        dataCy="show-mat017-item-price-changes"
+      >
+        {{ 'icalc.results.SHOW-CHAINFLEX-OR-MAT017ITEM-PRICE-DEVIATIONS' | translate }}
+      </button>
+    </div>
+  </kopla-info>
+</div>
+
+<ng-template #updateMat017ItemPricesDialog>
+  <div class="title-container">
+    <h1 mat-dialog-title>{{ 'icalc.results.UPDATE-MAT017ITEM-PRICES_DIALOG-TITLE' | translate }}</h1>
+    <div class="mat017-time-update">
+      <ng-container *ngIf="mat017ItemsLatestModificationDate$ | async as latestModificationDate">
+        <icalc-mat017-items-latest-modification-date [latestModificationDate]="latestModificationDate">
+        </icalc-mat017-items-latest-modification-date>
+      </ng-container>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <p>{{ 'icalc.results.UPDATE-MAT017ITEM-PRICES_DIALOG-SUBTITLE' | translate }}</p>
+
+    <div class="kopla-table kopla-table--6">
+      <div class="kopla-table__header sticky_table_header">
+        <div class="kopla-table__cell config-mat-number">
+          {{ 'icalc.results.CONFIGURATION' | translate }}
+        </div>
+        <div class="kopla-table__cell assignments">
+          {{ 'icalc.results.NUMBER-OF-CONFIGURATION-ASSIGNMENT' | translate }}
+        </div>
+        <div class="kopla-table__cell mat017-item-mat-number">
+          {{ 'icalc.results.MATNUMBER' | translate }}
+        </div>
+        <div class="kopla-table__cell item-description">
+          {{ 'icalc.results.ITEMDESCRIPTION1' | translate }}
+        </div>
+        <div class="kopla-table__cell item-description">
+          {{ 'icalc.results.ITEMDESCRIPTION2' | translate }}
+        </div>
+        <!-- float right -->
+        <div class="kopla-table__cell text-right mat017Item-dialog-cell-width float-right">
+          {{ 'icalc.results.NEW-MAT017ITEM-PRICE' | translate }}
+        </div>
+        <div class="kopla-table__cell text-right mat017Item-dialog-cell-width float-right">
+          {{ 'icalc.results.OLD-MAT017ITEM-PRICE' | translate }}
+        </div>
+      </div>
+
+      <div
+        class="kopla-table__row"
+        *ngFor="let configuration of mat017ItemListWithNewPrices$ | async; let isFirst = first"
+        [ngClass]="{ 'kopla-table__row--first': isFirst }"
+      >
+        <ng-container *ngFor="let mat017Item of configuration.mat017ItemsChanges; let isSubFirst = first">
+          <div class="kopla-table__cell config-mat-number font-black">
+            <ng-container *ngIf="isSubFirst">
+              {{ configuration.matNumber }}
+            </ng-container>
+          </div>
+          <div class="kopla-table__cell assignments font-black">
+            <ng-container *ngIf="isSubFirst"> {{ configuration.assignments }} </ng-container>
+          </div>
+          <div class="kopla-table__cell mat017-item-mat-number font-black">
+            <ng-container>
+              {{ mat017Item.matNumber }}
+            </ng-container>
+          </div>
+          <div class="kopla-table__cell item-description font-black">{{ mat017Item.itemDescription1 }}</div>
+          <div class="kopla-table__cell item-description font-black">
+            {{ mat017Item.itemDescription2 }}
+          </div>
+          <!-- float right -->
+          <div class="kopla-table__cell text-right mat017Item-dialog-cell-width float-right font-black">
+            <ng-container> {{ mat017Item.newPrice | convertPrice }} </ng-container>
+          </div>
+          <div
+            class="kopla-table__cell text-right mat017Item-dialog-cell-width float-right font-black"
+            dataCy="old-mat017-item-price"
+          >
+            <ng-container>{{ mat017Item.oldPrice | convertPrice }}</ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <mat-dialog-actions align="end" class="justify-content-between">
+    <button
+      matDialogClose
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-button
+      dataCy="cancel-mat017-item-price-update-button"
+    >
+      {{ 'icalc.results.CANCEL-MAT017_ITEM-UPDATE' | translate }}
+    </button>
+    <button
+      matDialogClose
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-flat-button
+      (click)="onUpdateMat017ItemPrices()"
+      dataCy="confirm-price-update-button"
+    >
+      {{ 'icalc.results.UPDATE-MAT017ITEM-PRICES_BUTTON' | translate }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>

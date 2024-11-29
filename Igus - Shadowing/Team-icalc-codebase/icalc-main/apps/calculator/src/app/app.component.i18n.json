@@ -1,0 +1,56 @@
+{
+  "icalc": {
+    "app": {
+      "TITLE": {
+        "de": "iCalc",
+        "en": "iCalc",
+        "_info": "Application title"
+      },
+      "LOGOUT": {
+        "de": "Log out",
+        "en": "Log out",
+        "_info": "Log out"
+      }
+    },
+    "button_labels": {
+      "OK": {
+        "de": "ok",
+        "en": "ok en",
+        "_info": "ok"
+      }
+    },
+    "FORM_VALIDATION": {
+      "MAX": {
+        "de": "Maximumwert für dieses Feld ist: {{max}}",
+        "en": "Maximum value for this field is {{max}}",
+        "_info": "FORM_VALIDATION"
+      },
+      "MIN": {
+        "de": "Minimummwert für dieses Feld ist: {{min}}",
+        "en": "Minimum value for this field is {{min}}",
+        "_info": "FORM_VALIDATION"
+      }
+    },
+    "REVOKE_CONFIGURATION_APPROVAL": {
+      "MESSAGE": {
+        "de": "Die Freigabe für diese und/oder (eine) andere Konfiguration(en) wurde aufgrund der jüngsten Änderungen widerrufen.",
+        "en": "The approval for this and/or another configuration has been revoked due to recent changes.",
+        "_info": "icalc.REVOKE_CONFIGURATION_APPROVAL.MESSAGE"
+      }
+    },
+    "ITEMLIST_LIMIT_REACHED": {
+      "MESSAGE": {
+        "de": "Es können nicht mehr als 36 unterschiedliche MAT017-Artikel zur Konfiguration hinzugefügt werden.",
+        "en": "No more than a total of 36 different MAT017-Items can be added to the configuration.",
+        "_info": "icalc.ITEMLIST-LIMIT-REACHED.MESSAGE"
+      }
+    },
+    "SNACKBARS": {
+      "CLOSE": {
+        "de": "Schließen",
+        "en": "Close",
+        "_info": "icalc.SNACKBARS.CLOSE"
+      }
+    }
+  }
+}

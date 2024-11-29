@@ -1,0 +1,22 @@
+{
+  "name": "configurations-infrastructure",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/configurations/infrastructure/src",
+  "projectType": "library",
+  "prefix": "igus",
+  "tags": ["scope:infrastructure"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/configurations/infrastructure/jest.config.ts",
+        "codeCoverage": true
+      }
+    }
+  }
+}

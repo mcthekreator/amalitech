@@ -1,0 +1,103 @@
+{
+  "name": "data-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/data-service/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/data-service",
+        "main": "apps/data-service/src/main.ts",
+        "tsConfig": "apps/data-service/tsconfig.app.json",
+        "externalDependencies": "none",
+        "webpackConfig": "apps/data-service/webpack.config.js",
+        "additionalEntryPoints": [],
+        "assets": [
+          {
+            "input": "node_modules/@juicyllama/nestjs-redoc/views",
+            "glob": "**/*",
+            "output": "views"
+          },
+          {
+            "input": "apps/data-service/src/assets",
+            "glob": "**/*.xlsx",
+            "output": "assets"
+          },
+          "apps/data-service/src/global-bundle.pem"
+        ],
+        "tsPlugins": [],
+        "compiler": "tsc",
+        "target": "node"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        },
+        "staging": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        },
+        "integration": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "data-service:build",
+        "host": "0.0.0.0"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/data-service"],
+      "options": {
+        "jestConfig": "apps/data-service/jest.config.ts",
+        "codeCoverage": true
+      }
+    },
+    "doc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn run kopla d d -s apps/data-service/src/main.ts -c apps/data-service/tsconfig.app.json -o doc/apps/data-service"
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-container:build",
+      "options": {
+        "metadata": {
+          "images": ["400535313706.dkr.ecr.eu-central-1.amazonaws.com/igus/icalc-data-service"],
+          "tags": [
+            "type=raw,value=latest",
+            "type=semver,pattern={{version}}",
+            "type=semver,pattern={{major}}.{{minor}}",
+            "type=semver,pattern={{major}}",
+            "type=sha"
+          ]
+        }
+      }
+    },
+    "docker-local": {
+      "executor": "@nx-tools/nx-container:build",
+      "options": {
+        "load": true,
+        "tags": ["igus/icalc-data-service:latest"]
+      }
+    }
+  }
+}

@@ -1,0 +1,327 @@
+<div class="basic-data-container">
+  <div class="kopla-font-headline-4 headline">{{ 'icalc.chainflex.HEADLINE' | translate }}</div>
+  <div class="kopla-font-body-1 sub-headline">{{ 'icalc.chainflex.SUB-HEADLINE' | translate }}</div>
+
+  <!-- NEW PRICE -->
+  <div class="cf-price-info-box" *ngIf="showNewPriceInfoBox$ | async" dataCy="chainflex-price-changed">
+    <kopla-info>
+      <ng-container
+        *ngIf="priceUpdateReference$ | async as priceUpdateReference; else priceUpdateReferenceNotAvailableTemplate"
+      >
+        {{
+          'icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED'
+            | translate: { partNumber: priceUpdateReference.partNumber }
+        }}
+        <ul>
+          <li>
+            {{ 'icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_OLD-PRICE' | translate }}:
+            {{ priceUpdateReference?.oldPriceObject?.germanListPrice | convertPrice }}
+          </li>
+          <li>
+            {{ 'icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_NEW-PRICE' | translate }}:
+            {{ priceUpdateReference?.newPriceObject?.germanListPrice | convertPrice }}
+          </li>
+        </ul>
+        {{ 'icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_CHANGE-POSSIBLE' | translate }}
+      </ng-container>
+      <ng-template #priceUpdateReferenceNotAvailableTemplate
+        >Error: Could not obtain price update reference.</ng-template
+      >
+    </kopla-info>
+  </div>
+
+  <!-- NO PRICE -->
+  <div class="cf-price-info-box" *ngIf="showNoPriceInfoBox$ | async" dataCy="chainflex-price-removed">
+    <kopla-info>
+      <ng-container
+        *ngIf="priceUpdateReference$ | async as priceUpdateReference; else priceUpdateReferenceNotAvailableTemplate"
+      >
+        {{
+          'icalc.chainflex.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING'
+            | translate: { partNumber: priceUpdateReference.partNumber }
+        }}
+        <ul>
+          <li>
+            {{ 'icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_OLD-PRICE' | translate }}:
+            {{ priceUpdateReference?.oldPriceObject?.germanListPrice | convertPrice }}
+          </li>
+          <li>
+            {{ 'icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_NEW-PRICE' | translate }}:
+            <span class="price-not-available">{{
+              'icalc.chainflex.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING_PRICE-NOT-AVAILABLE' | translate
+            }}</span>
+          </li>
+        </ul>
+        {{ 'icalc.chainflex.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING_CHANGE-POSSIBLE' | translate }}
+      </ng-container>
+      <ng-template #priceUpdateReferenceNotAvailableTemplate
+        >Error: Could not obtain price update reference.</ng-template
+      >
+    </kopla-info>
+  </div>
+
+  <div class="search-container">
+    <div class="search-input-container">
+      <form *ngIf="isFormReady" [formGroup]="form">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      </form>
+    </div>
+  </div>
+  <div>
+    <ng-container *ngIf="model.searchString && (chainflexIsLoading$ | async) === false && noItemsFound$ | async">
+      <div class="announcement-container">
+        <mat-card class="announcement-red">{{ 'icalc.chainflex.ANNOUNCEMENT-NO-RESULTS' | translate }}</mat-card>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="is-loading">
+  <ng-container *ngIf="chainflexIsLoading$ | async">
+    <div>
+      <mat-progress-spinner mode="indeterminate" [diameter]="50" [strokeWidth]="4"></mat-progress-spinner>
+    </div>
+  </ng-container>
+</div>
+<ng-container *ngIf="chainflexItems$ | async as chainflexItems">
+  <ng-container *ngIf="listInformation$ | async as listInformation">
+    <div class="chainflex-table-container" [ngClass]="{ locked: isLocked }">
+      <table
+        mat-table
+        *ngIf="chainflexItems.length > 0"
+        [dataSource]="chainflexItems"
+        class="mat-elevation-z8 chainflex-table"
+        dataCy="chainflex-search-result-table"
+        matSort
+        matSortDisableClear
+        [matSortDirection]="sortDirection"
+        [matSortActive]="sortActive"
+        (matSortChange)="sortChange($event)"
+      >
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="image-cell">
+            <div class="cropped">
+              <img class="chainflex-image" src="{{ element.shopImageUrl }}" />
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="partNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header dataCy="part-number-header">
+            {{ 'icalc.chainflex.TABLE-PART-NUMBER' | translate }}
+            <icalc-table-sort-icon
+              [listInformation]="listInformation"
+              columnName="partNumber"
+              dataCy="part-number-sort"
+            ></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <strong>{{ element.partNumber }}</strong>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-DESCRIPTION' | translate }}
+            <icalc-table-sort-icon [listInformation]="listInformation" columnName="description"></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.description | translateGerman }}</td>
+        </ng-container>
+        <ng-container matColumnDef="outerJacket">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-OUTER-JACKET' | translate }}
+            <icalc-table-sort-icon [listInformation]="listInformation" columnName="outerJacket"></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.outerJacket | translateGerman }}</td>
+        </ng-container>
+        <ng-container matColumnDef="overallShield">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-OVERALL-SHIELD' | translate }}
+            <icalc-table-sort-icon
+              [listInformation]="listInformation"
+              columnName="overallShield"
+            ></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon *ngIf="element.overallShield === true">check</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="numberOfCores">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-NUMBER-OF-CORES' | translate }}
+            <icalc-table-sort-icon
+              [listInformation]="listInformation"
+              columnName="numberOfCores"
+            ></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.numberOfCores }}</td>
+        </ng-container>
+        <ng-container matColumnDef="nominalCrossSection">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-NOMINAL-CROSS-SECTION' | translate }}
+            <icalc-table-sort-icon
+              [listInformation]="listInformation"
+              columnName="nominalCrossSection"
+            ></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.nominalCrossSection | translateGerman }}</td>
+        </ng-container>
+        <ng-container matColumnDef="outerDiameter">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-OUTER-DIAMETER' | translate }}
+            <icalc-table-sort-icon
+              [listInformation]="listInformation"
+              columnName="outerDiameter"
+            ></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.outerDiameter.amount | convertDecimalToDeString }}
+            <!-- {{ element.outerDiameter.unit }} -->
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="cableStructure">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-CABLE-STRUCTURE' | translate }}
+            <icalc-table-sort-icon
+              [listInformation]="listInformation"
+              columnName="cableStructure"
+            ></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.cableStructure | translateGerman }}</td>
+        </ng-container>
+        <ng-container matColumnDef="ul">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-UL' | translate }}
+            <icalc-table-sort-icon [listInformation]="listInformation" columnName="ul"></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon *ngIf="element.ul === true">check</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'icalc.chainflex.TABLE-PRICE' | translate }}
+            <icalc-table-sort-icon [listInformation]="listInformation" columnName="price"></icalc-table-sort-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.price?.germanListPrice | convertPrice }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: columnsToDisplay"
+          (click)="!isLocked && onRowClicked(row)"
+          class="chainflex-row"
+          [ngClass]="{ locked: isLocked }"
+          [class.selected]="chosenChainflexCable?.partNumber === row.partNumber"
+        ></tr>
+      </table>
+    </div>
+
+    <ng-container *ngIf="listInformation$ | async as listInformation">
+      <mat-paginator
+        [disabled]="isLocked"
+        [length]="totalCount$ | async"
+        [pageIndex]="(listInformation.skip + listInformation.take) / listInformation.take - 1"
+        [pageSize]="listInformation.take"
+        [pageSizeOptions]="[25, 50, 100]"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<icalc-cdk-portal [selectorId]="'footer-left-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    mat-button
+    dataCy="back-to-meta-data"
+    *ngIf="previousStep$ | async as previousStep"
+    [routerLink]="[previousStep.route]"
+  >
+    {{ 'icalc.chainflex.' + previousStep.label | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-center'">
+  <div *ngIf="chosenChainflexCable as cfl" class="chosen-container">
+    <div class="chosen-chainflex" dataCy="chosen-chainflex">
+      <p>{{ 'icalc.chainflex.CHOSEN-CHAINFLEX' | translate }}</p>
+      <mat-card>
+        <p dataCy="selected-chainflex-cable">
+          <strong dataCy="selected-chainflex-cable-part-number">{{ cfl.partNumber }}</strong>
+          {{ cfl.description | translateGerman }}
+        </p>
+      </mat-card>
+    </div>
+    <div class="chosen-chainflex-length">
+      <mat-form-field appearance="outline" class="white">
+        <mat-label>{{ 'icalc.chainflex.LENGTH' | translate }}</mat-label>
+        <input
+          matInput
+          dataCy="choose-chainflex-length"
+          type="number"
+          min="0"
+          max="10000.00"
+          step=".01"
+          [formControl]="chainflexLength"
+          [errorStateMatcher]="matcher"
+        />
+        <div matSuffix>m</div>
+        <mat-error *ngIf="chainflexLength.invalid">
+          {{ 'icalc.chainflex.LENGTH-ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-right-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    mat-flat-button
+    dataCy="save-chainflex-length"
+    *ngIf="nextStep$ | async as nextStep"
+    [disabled]="!form.valid || chosenChainflexCable === null || (!chainflexLength.valid && !isLocked)"
+    [routerLink]="[nextStep.route]"
+  >
+    {{ (isLocked ? 'icalc.chainflex.' + nextStep.label + '-locked' : 'icalc.chainflex.' + nextStep.label) | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<!-- CF REMOVAL WARNING DIALOG -->
+<ng-template #chainflexRemovalWarningDialog let-data>
+  <h1 mat-dialog-title dataCy="removal-warning-dialog">
+    {{ 'icalc.chainflex.CF-REMOVAL-WARNING_HEADER' | translate }}
+  </h1>
+  <div mat-dialog-content>
+    <p>{{ 'icalc.chainflex.CF-REMOVAL-WARNING' | translate }}</p>
+  </div>
+
+  <div mat-dialog-actions align="center">
+    <div>
+      <button
+        matDialogClose
+        class="kopla-mat-button--small"
+        color="primary"
+        mat-stroked-button
+        dataCy="removal-warning-dialog-cancel-button"
+      >
+        {{ 'icalc.chainflex.CF-REMOVAL-WARNING_CANCEL' | translate }}
+      </button>
+      <button
+        matDialogClose
+        class="kopla-mat-button--small"
+        color="primary"
+        mat-stroked-button
+        (click)="onRemoveOutdatedCFConfirmed(data.row)"
+        dataCy="removal-warning-dialog-confirm-button"
+      >
+        {{ 'icalc.chainflex.CF-REMOVAL-WARNING_CHANGE-CF' | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,21 @@
+{
+  "icalc": {
+    "page-not-found": {
+      "TITLE": {
+        "de": "Die Seite konnte nicht gefunden werden",
+        "en": "Page not found",
+        "_info": "Application title"
+      },
+      "GO_TO_ICALC_HOME": {
+        "de": "Zur iCalc Startseite",
+        "en": "Go to iCalc homepage",
+        "_info": "Button to iCalc Homepage"
+      },
+      "CONTACT_IGUS": {
+        "de": "Kontakt igus",
+        "en": "Contact igus",
+        "_info": "Button to igus support page"
+      }
+    }
+  }
+}

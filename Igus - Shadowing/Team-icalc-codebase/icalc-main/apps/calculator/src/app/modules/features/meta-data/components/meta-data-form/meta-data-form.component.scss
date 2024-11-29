@@ -1,0 +1,22 @@
+:host {
+  .headline {
+    line-height: 32px;
+    margin-top: 24px;
+    margin-bottom: 30px;
+  }
+
+  .sub-title {
+    line-height: 30px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .is-loading {
+    width: 50px;
+    margin: 0 auto;
+  }
+
+  form {
+    display: block;
+  }
+}

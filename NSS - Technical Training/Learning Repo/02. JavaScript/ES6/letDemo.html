@@ -1,0 +1,44 @@
+<html>
+<head>
+<script>
+    // const pi = 3.14
+    // pi = 3.79
+    // console.log(pi);
+
+    // const product = Object.freeze({});
+    // product['nam'] = "Iphone";
+    // console.log(product);
+
+
+
+    // object Destructuring
+
+    // let student = {
+    //     firName: "John",
+    //     lastName: "Bailey",
+    //     score: 90
+    // }
+    // const{firName, lastName,score} = student;
+    // console.log(`${firName}${lastName}${score}`);
+
+
+    // array destructuring
+    const courses = ['Angular', 'React', 'Node']
+    const [course1,course2,course3] = course;
+    console.log(course1, course2, ourse3);
+
+    // fuction parameter
+    function add({num1,num2,num3}) {
+        console.log(num1+num2+num3)   
+    }
+    add({num1: 10, num2:20,num3:30})
+
+
+    // Looops
+    let names = ["john", "bob", "ben"]
+    for (const value of names) {
+        console.log(value);
+    }
+</script>
+</head>
+</html>

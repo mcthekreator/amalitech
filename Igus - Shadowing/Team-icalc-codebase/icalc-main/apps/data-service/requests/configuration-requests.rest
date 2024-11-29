@@ -1,0 +1,148 @@
+### create configuration
+POST http://localhost:3000/api/configuration
+Content-Type: application/json
+
+{
+  "matNumber": "MAT-014",
+  "state": {},
+  "createdBy": "TGS"
+}
+
+### update configuration
+PUT http://localhost:3000/api/configuration/MAT-002
+Content-Type: application/json
+
+{
+  "matNumber": "MAT-002",
+  "modifiedBy": "TGS",
+  "batchSize": 4,
+  "labelingLeft": "a",
+  "labelingRight": "b"
+}
+
+### get all configurations
+GET http://localhost:3000/api/configuration
+
+
+### find configuration items by MAT number
+GET http://localhost:3000/api/configuration/findByNumber?matNumber=M-1
+
+### save or update configuration item
+POST http://localhost:3000/api/configuration/saveConfiguration
+Content-Type: application/json
+
+{
+  "calculationId": "78fb06cd-264b-41a7-8a26-f9b6dbbec405",
+  "configuration": {
+    "matNumber": "MAT-5",
+    "labelingLeft": "a",
+    "labelingRight": "b",
+    "batchSize": 3,
+    "createdBy": "firstName lastName",
+    "modifiedBy": "firstName lastName",
+    "creationDate": "2023-02-03T07:59:24.979Z",
+    "modificationDate": "2023-02-03T07:59:24.979Z",
+    "state": {
+      "chainFlexState": {
+        "chainflexCable": {
+          "id": "0845cbac-5f5e-436a-a025-ac229ae97e07",
+          "partNumber": "CF10.02.04",
+          "description": {
+            "de_DE": "chainflex® TPE Steuer-Ltg. (4x0,25)C | Ø 6,5 mm",
+            "en_US": "chainflex® TPE control cable CF10"
+          },
+          "overallShield": true,
+          "outerJacket": {
+            "de_DE": "TPE",
+            "en_US": "no data"
+          },
+          "innerJacket": {
+            "de_DE": "no data",
+            "en_US": "no data"
+          },
+          "numberOfCores": "4",
+          "nominalCrossSection": {
+            "de_DE": "0,25",
+            "en_US": "AWG24"
+          },
+          "outerDiameter": {
+            "unit": "MILLIMETER",
+            "amount": 6.5
+          },
+          "cableStructure": {
+            "de_DE": "(4x0,25)C",
+            "en_US": "4 x 24 AWG (0.25)"
+          },
+          "shopImageUrl": "https://igus.widen.net/content/lbpzzqri6a/jpeg/chainflex_CF10.jpeg?w=1050&h=700&position=c&color=ffffffff&quality=80&u=gqh1pb",
+          "ul": false,
+          "cableStructureInformation": {
+            "isValid": true,
+            "structure": [
+              {
+                "type": "core",
+                "color": {
+                  "cssClassName": "white",
+                  "translateKey": "CORE_DESC_WH"
+                },
+                "thickness": 0.25
+              },
+              {
+                "type": "core",
+                "color": {
+                  "cssClassName": "brown",
+                  "translateKey": "CORE_DESC_BN"
+                },
+                "thickness": 0.25
+              },
+              {
+                "type": "core",
+                "color": {
+                  "cssClassName": "green",
+                  "translateKey": "CORE_DESC_GN"
+                },
+                "thickness": 0.25
+              },
+              {
+                "type": "core",
+                "color": {
+                  "cssClassName": "yellow",
+                  "translateKey": "CORE_DESC_YE"
+                },
+                "thickness": 0.25
+              },
+              {
+                "type": "shield",
+                "description": "SH0",
+                "horizontalOrder": 3,
+                "shieldedItemCount": 4
+              }
+            ],
+            "validationErrors": []
+          },
+          "price": {
+            "id": "73a241f9-e80f-4d93-a928-f76ff73aa0af",
+            "partNumber": "CF10.02.04",
+            "germanListPrice": 0.963428571
+          }
+        },
+        "chainflexCableLength": 15
+      },
+      "connectorState": null,
+      "libraryState": null,
+      "pinAssignmentState": null,
+      "workStepOverrides": {}
+    },
+    "partNumber": null,
+    "id": "4d698b6f-3ac4-413e-beae-19a17af917c6"
+  }
+}
+
+### find all configuration items by pagination
+GET http://localhost:3000/api/configuration/filterConfiguration?batchSize=
+  &batchSizeOperand==
+  &calculationFactorOperand==
+  &orderDirection=asc
+  &search=
+  &skip=0
+  &take=100
+  &orderBy=matNumber

@@ -1,0 +1,62 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$grey-100: kopla.get-color('grey', 100);
+
+.kopla-table__header {
+  background-color: $grey-100;
+  .kopla-table__cell {
+    font-size: 11px;
+    line-height: 11px;
+    vertical-align: middle;
+    padding-top: 0;
+    font-weight: bold;
+  }
+}
+
+.kopla-table__cell {
+  padding-top: 2rem;
+}
+
+.kopla-table  {
+  padding: 0 5rem;
+}
+
+.center-icon-vertically {
+  vertical-align: middle;
+}
+
+.mat-number-col,
+.supplier-item-number-col {
+  width: 13%;
+}
+
+.item-description-col {
+  width: 17.666667%;
+}
+
+.mat-item-group-col {
+  width: 8%;
+}
+
+.amount-col,
+.price-unit-col,
+.add-to-bom-col {
+  width: 8.33%;
+}
+
+.price-unit-col {
+  .mat-mdc-form-field-error-wrapper {
+    padding: 0;
+  }
+}
+
+.remove-col {
+  min-height: 10px;
+  padding-top: 0;
+  text-align: right;
+  width: 5%;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}

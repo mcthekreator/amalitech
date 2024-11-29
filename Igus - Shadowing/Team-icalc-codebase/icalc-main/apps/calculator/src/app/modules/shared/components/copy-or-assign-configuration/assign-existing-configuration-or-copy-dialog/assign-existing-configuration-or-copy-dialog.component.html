@@ -1,0 +1,36 @@
+<h2 matDialogTitle>{{ 'icalc.assign_existing_configuration_or_copy_dialog.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p>
+    {{
+      'icalc.assign_existing_configuration_or_copy_dialog.INFO-TEXT'
+        | translate : { matNumber: selectedConfigurationMatNumber }
+    }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-button matDialogClose color="primary">
+    {{ 'icalc.meta_data_form.CANCEL' | translate }}
+  </button>
+  <div>
+    <button
+      mat-flat-button
+      class="kopla-mat-button--small"
+      dataCy="open-link-existing-config-dialog"
+      matDialogClose
+      color="primary"
+      (click)="onActionSelect(primaryButtonAction)"
+    >
+      {{ 'icalc.assign_existing_configuration_or_copy_dialog.CONFIRM-ASSIGN' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      class="kopla-mat-button--small"
+      dataCy="open-duplicate-config-dialog"
+      matDialogClose
+      color="primary"
+      (click)="onActionSelect(secondaryButtonAction)"
+    >
+      {{ 'icalc.assign_existing_configuration_or_copy_dialog.COPY-BUTTON' | translate }}
+    </button>
+  </div>
+</mat-dialog-actions>

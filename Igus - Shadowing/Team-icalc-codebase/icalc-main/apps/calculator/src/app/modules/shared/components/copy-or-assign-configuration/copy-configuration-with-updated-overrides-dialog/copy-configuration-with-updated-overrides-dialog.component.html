@@ -1,0 +1,83 @@
+<h1 mat-dialog-title>{{ 'icalc.copy_with_updated_prices_modal.DIALOG_HEADER' | translate }}</h1>
+<div mat-dialog-content>
+  <p>{{ 'icalc.copy_with_updated_prices_modal.DIALOG_SUB_HEADER' | translate }}</p>
+
+  <div class="kopla-table kopla-table--6">
+    <div class="kopla-table__header">
+      <div class="kopla-table__cell config-column">
+        {{ 'icalc.connector-mat017-items-table.MATNUMBER' | translate }}
+      </div>
+      <div class="kopla-table__cell part-number">
+        {{ 'icalc.connector-mat017-items-table.ITEMDESCRIPTION1' | translate }}
+      </div>
+      <div class="kopla-table__cell cf-length">
+        {{ 'icalc.connector-mat017-items-table.ITEMDESCRIPTION2' | translate }}
+      </div>
+      <!-- float right -->
+      <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+        {{ 'icalc.results.OLD-CF-PRICE' | translate }}
+      </div>
+      <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+        {{ 'icalc.results.NEW-CF-PRICE' | translate }}
+      </div>
+    </div>
+
+    <div
+      class="kopla-table__row"
+      *ngFor="let item of tableData; let isFirst = first"
+      [ngClass]="{ 'kopla-table__row--first': isFirst }"
+    >
+      <div class="kopla-table__cell config-column font-black">
+        {{ item.matNumber }}
+      </div>
+      <div class="kopla-table__cell part-number font-black">
+        {{ item.itemDescription1 }}
+      </div>
+      <div class="kopla-table__cell batch-size font-black">
+        {{ item.itemDescription2 }}
+      </div>
+      <!-- float right -->
+      <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right font-black">
+        {{ item.currentPrice | convertPrice }}
+      </div>
+      <div
+        class="kopla-table__cell text-right cf-price-deviation-cell-width float-right font-black"
+        dataCy="old-chainflex-price"
+      >
+        {{ item.newPrice | convertPrice }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="justify-content-between">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    mat-button
+    dataCy="cancel-price-update-button"
+    (click)="onActionSelect()"
+  >
+    {{ 'icalc.copy_with_updated_prices_modal.CANCEL_BUTTON_TEXT' | translate }}
+  </button>
+  <div>
+    <button
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-stroked-button
+      dataCy="confirm-copy-with-old-prices-button"
+      (click)="onActionSelect(primaryButtonAction)"
+    >
+      {{ 'icalc.copy_with_updated_prices_modal.COPY_WITH_OUTDATED_BUTTON_TEXT' | translate }}
+    </button>
+    <button
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-flat-button
+      dataCy="confirm-copy-with-new-prices-button"
+      (click)="onActionSelect(secondaryButtonAction)"
+    >
+      {{ 'icalc.copy_with_updated_prices_modal.COPY_WITH_NEW_BUTTON_TEXT' | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div
+  [matTooltip]="!hasMat017Items ? ('icalc.mat017-item-picker.NO_MAT017_ITEMS_TOOLTIP' | translate) : ''"
+  matTooltipPosition="above"
+  *ngIf="!formControl.value && !props.disabled; else withSelectedMatNumber"
+>
+  <button
+    color="primary"
+    mat-button
+    (click)="openDialog()"
+    [disabled]="!hasMat017Items"
+    dataCy="pick-mat017-item-button"
+    class="open-dialog-button"
+  >
+    {{ 'icalc.mat017-item-picker.CHOOSE_MAT017_ITEM' | translate}}
+  </button>
+</div>
+
+<ng-template #withSelectedMatNumber>
+  <div class="flex align-items-center selected-value-container">
+    <span [class.disabled]="props.disabled">{{ formControl.value }}</span>
+    <ng-container *ngIf="!props.disabled">
+      <mat-icon
+        class="mat017-item-picker-info flex align-items-center"
+        inline="true"
+        [matTooltip]="selectedMat017ItemDetails"
+        matTooltipClass="list-tooltip"
+        >info</mat-icon
+      >
+
+      <mat-icon class="reset-mat017-item-selection flex align-items-center" inline="true" (click)="resetSelection()">
+        replay
+      </mat-icon>
+    </ng-container>
+  </div>
+</ng-template>

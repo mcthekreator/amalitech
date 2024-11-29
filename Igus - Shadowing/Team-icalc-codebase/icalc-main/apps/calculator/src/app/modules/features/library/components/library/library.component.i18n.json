@@ -1,0 +1,106 @@
+{
+  "icalc": {
+    "library": {
+      "connector-right": {
+        "de": "Stecker rechts",
+        "en": "Right connector",
+        "_info": "icalc.library.button-to-right-connector"
+      },
+      "pin-assignment": {
+        "de": "Zur Pinbelegung",
+        "en": "Pin Assignment",
+        "_info": "icalc.library.button-to-pin-assignment"
+      },
+      "card-action-upload": {
+        "de": "Bild hochladen",
+        "en": "Upload image",
+        "_info": "icalc.library.card-action-upload"
+      },
+      "card-picture-type-photo": {
+        "de": "Foto",
+        "en": "Photo",
+        "_info": "icalc.library.card-picture-type-photo"
+      },
+      "card-picture-type-tech-draw": {
+        "de": "Technische Zeichnung",
+        "en": "Technical drawing",
+        "_info": "icalc.library.card-picture-type-tech-draw"
+      },
+      "card-picture-type-pin-ass": {
+        "de": "Pinbelegung",
+        "en": "Pin assignment",
+        "_info": "icalc.library.card-picture-type-pin-ass"
+      },
+      "action-add-to-left": {
+        "de": "Links hinzufügen",
+        "en": "Add to left",
+        "_info": "icalc.library.action-add-to-right"
+      },
+      "action-add-to-right": {
+        "de": "Rechts hinzufügen",
+        "en": "Add to right",
+        "_info": "icalc.library.action-add-to-right"
+      },
+      "action-add-comment": {
+        "de": "Kommentar hinzufügen",
+        "en": "Add comment",
+        "_info": "icalc.library.action-comment"
+      },
+      "action-add-image": {
+        "de": "Bild hinzufügen",
+        "en": "Add image",
+        "_info": "icalc.library.action-image"
+      },
+      "action-add-box": {
+        "de": "Viereck hinzufügen",
+        "en": "Add box",
+        "_info": "icalc.library.action-box"
+      },
+      "action-add-circle": {
+        "de": "Kreis hinzufügen",
+        "en": "Add circle",
+        "_info": "icalc.library.action-circle"
+      },
+      "action-add-line": {
+        "de": "Linie hinzufügen",
+        "en": "Add line",
+        "_info": "icalc.library.action-line"
+      },
+      "action-add-arrow": {
+        "de": "Pfeil hinzufügen",
+        "en": "Add arrow",
+        "_info": "icalc.library.action-arrow"
+      },
+      "action-save-sketch": {
+        "de": "Skizze speichern",
+        "en": "Save sketch",
+        "_info": "icalc.library.action-sketch"
+      },
+      "action-reset-sketch": {
+        "de": "Skizze zurücksetzen",
+        "en": "Reset sketch",
+        "_info": "icalc.library.action-reset-sketch"
+      },
+      "action-undo": {
+        "de": "rückgängig machen",
+        "en": "undo",
+        "_info": "icalc.library.action-reset-sketch"
+      },
+      "action-redo": {
+        "de": "wiederherstellen",
+        "en": "redo",
+        "_info": "icalc.library.action-reset-sketch"
+      },
+      "PARTNUMBER": {
+        "de": "Bestellnr.:",
+        "en": "Part number:",
+        "_info": "icalc.library.PARTNUMBER"
+      },
+      "marker-input-unit": {
+        "de": "mm",
+        "en": "mm",
+        "_info": "icalc.library.marker-input-unit"
+      }
+    }
+  }
+}

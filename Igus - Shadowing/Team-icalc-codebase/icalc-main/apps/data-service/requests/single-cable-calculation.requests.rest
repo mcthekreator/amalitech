@@ -1,0 +1,602 @@
+### removeChainflexData
+POST http://localhost:3000/api/single-cable-calculation/removeChainflexData
+Content-Type: application/json
+
+{
+  "singleCableCalculationIds":[
+    "817a4010-21ab-42f7-b0bd-7b660efa806b"
+  ]
+}
+
+### updateChainflexPrices
+POST http://localhost:3000/api/single-cable-calculation/updateChainflexPrices
+Content-Type: application/json
+
+{
+  "singleCableCalculationIds":[
+    "521a49ad-8fad-43e3-82ec-9eea4ef6fb94"
+  ]
+}
+
+### checkChainflexAndPriceExistence
+POST http://localhost:3000/api/single-cable-calculation/checkChainflexAndPriceExistence
+Content-Type: application/json
+
+{
+  "singleCableCalculationIds":[
+    "521a49ad-8fad-43e3-82ec-9eea4ef6fb94"
+  ]
+}
+
+### update SingleCableCalculation item with configuration
+POST http://localhost:3000/api/single-cable-calculation/saveSingleCableCalculation
+Content-Type: application/json
+
+{
+   "singleCableCalculation":{
+      "id":"b754f9fc-b9cb-491e-9052-d143e2f5be5c",
+      "batchSize":17,
+      "chainflexLength":15
+   },
+   "configuration":{
+      "isCopyOfConfigurationId":"42b81466-4e60-4824-83b1-4feecc74c5da",
+      "id":"709e7f16-5b9d-44e7-ab2e-8051b6bff4a6",
+      "matNumber":"configuration-2001",
+      "labelingLeft":"2",
+      "labelingRight":"2",
+      "creationDate":"2023-03-20T08:59:36.590Z",
+      "modificationDate":"2023-03-20T08:59:36.590Z",
+      "createdBy":"firstName lastName",
+      "modifiedBy":"firstName lastName",
+      "state":{
+         "chainFlexState":{
+            "chainflexCable":{
+               "id":"d8da51a0-ebe8-46af-be41-f6019011c441",
+               "ul":false,
+               "price":{
+                  "id":"3c8d53bd-4b58-44e6-ac7f-f02dad1c5b87",
+                  "partNumber":"CF10.01.18",
+                  "germanListPrice":2.268571429
+               },
+               "partNumber":"CF10.01.18",
+               "description":{
+                  "de_DE":"chainflex® TPE Steuer-Ltg. (18x0,14)C",
+                  "en_US":"chainflex® TPE control cable CF10"
+               },
+               "outerJacket":{
+                  "de_DE":"TPE",
+                  "en_US":"no data"
+               },
+               "innerJacket":{
+                  "de_DE":"no data",
+                  "en_US":"no data"
+               },
+               "shopImageUrl":"https://igus.widen.net/content/lbpzzqri6a/jpeg/chainflex_CF10.jpeg?w=1050&h=700&position=c&color=ffffffff&quality=80&u=gqh1pb",
+               "cableStructure":{
+                  "de_DE":"(18x0,14)C",
+                  "en_US":"18 x 26 AWG (0.14)"
+               },
+               "numberOfCores":"18",
+               "outerDiameter":{
+                  "unit":"MILLIMETER",
+                  "amount":9.5
+               },
+               "overallShield":true,
+               "nominalCrossSection":{
+                  "de_DE":"0,14",
+                  "en_US":"AWG26"
+               },
+               "cableStructureInformation":{
+                  "isValid":true,
+                  "structure":[
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"white",
+                           "translateKey":"CORE_DESC_WH"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"brown",
+                           "translateKey":"CORE_DESC_BN"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"green",
+                           "translateKey":"CORE_DESC_GN"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"yellow",
+                           "translateKey":"CORE_DESC_YE"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"gray",
+                           "translateKey":"CORE_DESC_GY"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"pink",
+                           "translateKey":"CORE_DESC_PK"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"blue",
+                           "translateKey":"CORE_DESC_BU"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"red",
+                           "translateKey":"CORE_DESC_RD"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"black",
+                           "translateKey":"CORE_DESC_BK"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"violet",
+                           "translateKey":"CORE_DESC_VT"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"grayPink",
+                           "translateKey":"CORE_DESC_GYPK"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"redBlue",
+                           "translateKey":"CORE_DESC_RDBU"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"whiteGreen",
+                           "translateKey":"CORE_DESC_WHGN"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"brownGreen",
+                           "translateKey":"CORE_DESC_BNGN"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"whiteYellow",
+                           "translateKey":"CORE_DESC_WHYE"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"yellowBrown",
+                           "translateKey":"CORE_DESC_YEBN"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"whiteGray",
+                           "translateKey":"CORE_DESC_WHGY"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"core",
+                        "color":{
+                           "cssClassName":"grayBrown",
+                           "translateKey":"CORE_DESC_GYBN"
+                        },
+                        "thickness":0.14
+                     },
+                     {
+                        "type":"shield",
+                        "description":"SH0",
+                        "horizontalOrder":3,
+                        "shieldedItemCount":18
+                     }
+                  ],
+                  "validationErrors":[
+
+                  ]
+               }
+            }
+         },
+         "connectorState":{
+            "leftConnector":{
+               "addedMat017Items":{
+                  "MAT0170270":1,
+                  "MAT0172104":1
+               },
+               "mat017ItemListWithWidenData":[
+                  {
+                     "id":"979ea6c9-e7a2-4818-a096-eefe45766f3d",
+                     "itemStatus": "ACTIVE",
+                     "score":47,
+                     "amount":34.7,
+                     "status":"left",
+                     "photoUrl":"",
+                     "quantity":1,
+                     "matNumber":"MAT0172104",
+                     "priceUnit":1000,
+                     "mat017ItemGroup":"RC-K8",
+                     "supplierId":"7620080",
+                     "itemDescription1":"Kabelmarkierer",
+                     "itemDescription2":"für Thermotransferdrucker KMT-07323V-9",
+                     "supplierItemNumber":"KRT2-P-023x073/18-WE",
+                     "amountDividedByPriceUnit":0.0347
+                  },
+                  {
+                     "id":"673445ec-3148-43b7-809e-f0716755aaad",
+                     "itemStatus": "ACTIVE",
+                     "score":129,
+                     "amount":7.2,
+                     "status":"left",
+                     "photoUrl":"",
+                     "quantity":1,
+                     "matNumber":"MAT0170270",
+                     "priceUnit":1000,
+                     "mat017ItemGroup":"RC-K1",
+                     "supplierId":"7301021",
+                     "itemDescription1":"Aderendhülse, isoliert",
+                     "itemDescription2":"0,25qmm / 8mm Farbe: hellblau",
+                     "supplierItemNumber":"V30AE000002",
+                     "amountDividedByPriceUnit":0.0072
+                  }
+               ]
+            },
+            "rightConnector":{
+               "addedMat017Items":{
+
+               },
+               "mat017ItemListWithWidenData":[
+
+               ]
+            }
+         },
+         "libraryState":{
+            "boxList":[
+
+            ],
+            "lineList":[
+
+            ],
+            "arrowList":[
+
+            ],
+            "imageList":[
+
+            ],
+            "circleList":[
+
+            ],
+            "sketchDate":"03/17/2023",
+            "base64Image":"",
+            "commentList":[
+
+            ],
+            "fontSizeLeft":14,
+            "fontSizeRight":14,
+            "labelTextLeft":"",
+            "leftChainFlex":{
+               "text":"",
+               "fontSize":14
+            },
+            "labelTextRight":"",
+            "rightChainFlex":{
+               "text":"",
+               "fontSize":14
+            },
+            "leftMarkerDistance":100,
+            "rightMarkerDistance":100
+         },
+         "pinAssignmentState":{
+            "litze":[
+
+            ],
+            "bridges":{
+               "left":[
+
+               ],
+               "right":[
+
+               ]
+            },
+            "base64Image":"",
+            "actionModels":{
+               "0":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "1":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "2":{
+                  "left":{
+                     "actionSelect":"cutOff"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "3":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "4":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "5":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "6":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "7":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "8":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "9":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "10":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "11":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "12":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "13":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "14":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "15":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "16":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "17":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"core",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               },
+               "18":{
+                  "left":{
+                     "actionSelect":"none"
+                  },
+                  "type":"shield",
+                  "right":{
+                     "actionSelect":"none"
+                  }
+               }
+            },
+            "chainFlexNumber":"CF10.01.18"
+         },
+         "workStepOverrides":{
+
+         }
+      },
+      "partNumber":"CF10.01.18"
+   }
+}
+
+### update SingleCableCalculation item with snapshot
+POST http://localhost:3000/api/single-cable-calculation/saveSingleCableCalculation
+Content-Type: application/json
+
+{
+   "singleCableCalculation":{
+      "id":"b754f9fc-b9cb-491e-9052-d143e2f5be5c"
+   },
+   "snapshot":{
+      "libraryState":{
+         "boxList":[
+         ],
+         "lineList":[
+         ],
+         "arrowList":[
+         ],
+         "imageList":[
+         ],
+         "circleList":[
+         ],
+         "sketchDate":"03/17/2023",
+         "base64Image":"",
+         "commentList":[
+         ],
+         "fontSizeLeft":14,
+         "fontSizeRight":14,
+         "labelTextLeft":"",
+         "leftChainFlex":{
+            "text":"",
+            "fontSize":14
+         },
+         "labelTextRight":"",
+         "rightChainFlex":{
+            "text":"",
+            "fontSize":14
+         },
+         "leftMarkerDistance":100,
+         "rightMarkerDistance":100
+      }
+   }
+}
+
+### approve configuration within calculation
+POST http://localhost:3000/api/single-cable-calculation/configuration/status/approve
+Content-Type: application/json
+
+{
+  "calculationId": "49595d7f-19e8-4c8f-94a4-d5c03edd2af1",
+  "configurationId": "90d709b2-58b7-4fda-93ac-eeeb07a04276"
+}
+
+
+### get calc configuration status by ids
+GET http://localhost:3000/api/single-cable-calculation/status/findCalculationConfigurationStatusByIds
+Content-Type: application/json
+
+{
+  "calculationId": "49595d7f-19e8-4c8f-94a4-d5c03edd2af1",
+  "configurationId": "90d709b2-58b7-4fda-93ac-eeeb07a04276"
+}
+
+### find all singleCableCalculations items by pagination
+GET http://localhost:3000/api/single-cable-calculation/filterSingleCableCalculation?batchSize=
+  &batchSizeOperand==
+  &calculationFactorOperand==
+  &orderDirection=asc
+  &search=001
+  &skip=0
+  &take=100
+  &orderBy=matNumber

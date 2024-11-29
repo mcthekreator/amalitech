@@ -1,0 +1,15 @@
+{
+  "extends": "../../.eslintrc.json",
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["libs/entities/tsconfig.*?.json"]
+      },
+      "rules": {
+        "import/no-cycle": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "auth-infrastructure",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/auth/infrastructure/src",
+  "prefix": "igus",
+  "tags": ["scope:infrastructure"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/auth/infrastructure/jest.config.ts",
+        "codeCoverage": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  }
+}

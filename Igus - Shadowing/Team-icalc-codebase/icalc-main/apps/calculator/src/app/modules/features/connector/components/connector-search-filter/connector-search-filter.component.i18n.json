@@ -1,0 +1,26 @@
+{
+  "icalc": {
+    "connector-search-filter": {
+      "SEARCH_PLACEHOLDER": {
+        "de": "Suche nach MAT-Nummer, Artikelbezeichnung 1 & 2 oder Bestellnummer",
+        "en": "Search for MAT number, item description 1 & 2 or part number",
+        "_info": "connector-search-filter.SEARCH_PLACEHOLDER"
+      },
+      "NO_CHAINFLEX": {
+        "de": "Keine Chainflex Leitung ausgewählt",
+        "en": "no Chainflex cable selected",
+        "_info": "connector-search-filter.NO_CHAINFLEX"
+      },
+      "SHOW_ZERO-MATCHES": {
+        "de": "Alle Artikel anzeigen, einschließlich bisher nicht kombinierter",
+        "en": "Show all connectors including unmatched",
+        "_info": "connector-search-filter.SHOW_ZERO-MATCHES"
+      },
+      "SHOW_ONLY_MANUALLY_CREATED": {
+        "de": "Nur manuell erzeugte Artikel anzeigen",
+        "en": "Show only manually added items",
+        "_info": "connector-search-filter.SHOW_ONLY_MANUALLY_CREATED"
+      }
+    }
+  }
+}

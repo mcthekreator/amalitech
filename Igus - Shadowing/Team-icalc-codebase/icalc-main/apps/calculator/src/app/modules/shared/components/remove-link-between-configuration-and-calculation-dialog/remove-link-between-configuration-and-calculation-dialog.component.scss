@@ -1,0 +1,24 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$red-600: kopla.get-color('red', 600);
+$red-400: kopla.get-color('red', 400);
+$red-50: kopla.get-color('red', 50);
+
+:host {
+  .is-loading {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dialog-error {
+    padding: 10px;
+    border-radius: 3px;
+    color: $red-400;
+    background: $red-50;
+    border: 1px solid $red-600;
+  }
+
+  .info-width {
+    width: 800px;
+  }
+}

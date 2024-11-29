@@ -1,0 +1,166 @@
+{
+  "icalc": {
+    "chainflex": {
+      "HEADLINE": {
+        "de": "Chainflex Leitung",
+        "en": "Chainflex Search",
+        "_info": "chainflex.headline"
+      },
+      "SUB-HEADLINE": {
+        "de": "Wählen Sie die passende chainflex Leitung aus und bestimmen Sie deren Länge.",
+        "en": "Select the appropriate chainflex cable and determine its length.",
+        "_info": "chainflex.sub-headline"
+      },
+      "SEARCH-PROMPT": {
+        "de": "Artikelnummer",
+        "en": "Part Number",
+        "_info": "chainflex.searchPrompt"
+      },
+      "LENGTH": {
+        "de": "Länge",
+        "en": "Length",
+        "_info": "chainflex.length"
+      },
+      "LENGTH-ERROR": {
+        "de": "Länge (00,01 - 10000,00) ist erforderlich.",
+        "en": "Length (00.01 - 10000.00) is required.",
+        "_info": "chainflex.lengthError"
+      },
+      "CHOSEN-CHAINFLEX": {
+        "de": "Ausgewählte chainflex Leitung",
+        "en": "Chosen chainflex cable",
+        "_info": "chainflex.chosenChainflex"
+      },
+      "TABLE-PART-NUMBER": {
+        "de": "Art.-Nr.",
+        "en": "Part Number",
+        "_info": "chainflex.partNumber"
+      },
+      "TABLE-DESCRIPTION": {
+        "de": "chainflex ® Leitung",
+        "en": "Description",
+        "_info": "chainflex.description"
+      },
+      "TABLE-OUTER-JACKET": {
+        "de": "Mantel",
+        "en": "Outer Jacket",
+        "_info": "chainflex.outerJacket"
+      },
+      "TABLE-UL": {
+        "de": "UL",
+        "en": "UL",
+        "_info": "chainflex.ul"
+      },
+      "TABLE-OVERALL-SHIELD": {
+        "de": "Schirm",
+        "en": "Overall Shield",
+        "_info": "chainflex.overallShield"
+      },
+      "TABLE-NUMBER-OF-CORES": {
+        "de": "Aderzahl",
+        "en": "Number of Cores",
+        "_info": "chainflex.numberOfCores"
+      },
+      "TABLE-OUTER-DIAMETER": {
+        "de": "Außendurchmesser (d) max. [mm]",
+        "en": "Outer Diameter [mm]",
+        "_info": "chainflex.outerDiameter"
+      },
+      "TABLE-NOMINAL-CROSS-SECTION": {
+        "de": "Nennquerschnitt [mm²]",
+        "en": "Nominal Cross Section [mm²]",
+        "_info": "chainflex.nominalCrossSection"
+      },
+      "TABLE-CABLE-STRUCTURE": {
+        "de": "Aderzahl und Leiternennquerschnitt [mm²]",
+        "en": "Number of cores and nominal core cross-section [mm²]",
+        "_info": "chainflex.cableStructure"
+      },
+      "TABLE-PRICE": {
+        "de": "Preis (€)",
+        "en": "Price (€)",
+        "_info": "chainflex.price"
+      },
+      "ANNOUNCEMENT-SEARCH": {
+        "de": "Artikelnummer eingeben, um Suche zu starten",
+        "en": "Enter part number to start search",
+        "_info": "chainflex.search"
+      },
+      "ANNOUNCEMENT-NO-RESULTS": {
+        "de": "Ihre Suche ergab keine Ergebnisse",
+        "en": "Your search did not return any results",
+        "_info": "chainflex.noResults"
+      },
+      "INFO-CHAINFLEX-PRICE-HAS-CHANGED": {
+        "de": "Der Preis der ausgewählten chainflex Leitung {{ partNumber }} ist nicht aktuell.",
+        "en": "The price of the selected chainflex cable {{ partNumber }} is not up to date.",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED"
+      },
+      "INFO-CHAINFLEX-PRICE-HAS-CHANGED_OLD-PRICE": {
+        "de": "Preis der aktuellen Auswahl",
+        "en": "Price of current selection",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_OLD-PRICE"
+      },
+      "INFO-CHAINFLEX-PRICE-HAS-CHANGED_NEW-PRICE": {
+        "de": "Neuer Preis",
+        "en": "New price",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_NEW-PRICE"
+      },
+      "INFO-CHAINFLEX-PRICE-HAS-CHANGED_CHANGE-POSSIBLE": {
+        "de": "In Schritt 7 können Sie den Preis für alle chainflex Leitungen innerhalb dieser Kalkulation aktualisieren.",
+        "en": "In step 7 you can update the prices for all chainflex cables within this calculation.",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-HAS-CHANGED_CHANGE-POSSIBLE"
+      },
+      "INFO-CHAINFLEX-PRICE-OR-DATA-MISSING": {
+        "de": "Die ausgewählte chainflex Leitung {{ partNumber }} existiert nicht oder hat keinen gültigen Preis in der chainflex Preis Excel.",
+        "en": "The selected chainflex cable {{ partNumber }} does not exist or does not have a price in the chainflex pricing Excel.",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING"
+      },
+      "INFO-CHAINFLEX-PRICE-OR-DATA-MISSING_PRICE-NOT-AVAILABLE": {
+        "de": "nicht verfügbar",
+        "en": "not available",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING_PRICE-NOT-AVAILABLE"
+      },
+      "INFO-CHAINFLEX-PRICE-OR-DATA-MISSING_CHANGE-POSSIBLE": {
+        "de": "Sie können eine neue chainflex Leitung auswählen. Wenn nicht, verwendet iCalc weiterhin den veralteten Preis der aktuellen Auswahl. In Schritt 7 können Sie alle chainflex Leitungen mit veralteten Preisen innerhalb dieser Kalkulation entfernen.",
+        "en": "You may select a new chainflex cable. If not, iCalc will continue to use the outdated price of the current selection. In step 7 you can remove all chainflex cables with outdated prices within this calculation.",
+        "_info": "icalc.chainflex.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING_CHANGE-POSSIBLE"
+      },
+      "meta-data": {
+        "de": "Stammdaten",
+        "en": "Order",
+        "_info": "chainflex.button-to-order"
+      },
+      "connector-left": {
+        "de": "Weiter zur Steckerkonfiguration",
+        "en": "Configure connectors",
+        "_info": "chainflex.button-to-left-connector"
+      },
+      "connector-left-locked": {
+        "de": "Steckerkonfiguration ansehen",
+        "en": "Review connectors",
+        "_info": "chainflex.button-to-left-connector"
+      },
+      "CF-REMOVAL-WARNING_HEADER": {
+        "de": "Achtung",
+        "en": "Warning",
+        "_info": "icalc.chainflex.CF-REMOVAL-WARNING_HEADER"
+      },
+      "CF-REMOVAL-WARNING": {
+        "de": "Die momentan ausgewählte chainflex Leitung ist veraltet. Sobald eine neue chainflex Leitung ausgewählt wird, gehen die Daten zur bisher ausgewählten chainflex Leitung verloren. Das Entfernen einer chainflex Leitung aus der Konfiguration kann nicht rückgängig gemacht werden.",
+        "en": "The currently selected chainflex cable is outdated. As soon as a new chainflex cable is selected, the data for the previously selected chainflex cable is lost. The removal of a chainflex cable from the configuration cannot be undone.",
+        "_info": "icalc.chainflex.CF-REMOVAL-WARNING_HEADER"
+      },
+      "CF-REMOVAL-WARNING_CANCEL": {
+        "de": "chainflex Leitung weiterverwenden",
+        "en": "Keep chainflex cable",
+        "_info": "icalc.chainflex.CF-REMOVAL-WARNING_CANCEL"
+      },
+      "CF-REMOVAL-WARNING_CHANGE-CF": {
+        "de": "Neue chainflex Leitung auswählen",
+        "en": "Select new chainflex cable",
+        "_info": "icalc.chainflex.CF-REMOVAL-WARNING_CHANGE-CF"
+      }
+    }
+  }
+}

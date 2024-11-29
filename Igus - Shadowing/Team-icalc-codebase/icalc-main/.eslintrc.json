@@ -1,0 +1,166 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ],
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:presentation",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:application", "scope:infrastructure"]
+              },
+              {
+                "sourceTag": "scope:application",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:application", "scope:infrastructure"]
+              },
+              {
+                "sourceTag": "scope:infrastructure",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:infrastructure"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", ".tsx"],
+      "extends": ["plugin:@nx/typescript", "plugin:@igus/recommended"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": ["rxjs/Rx"],
+            "patterns": ["@igus/icalc-domain/dist", "@igus/icalc-domain/dist/**"]
+          }
+        ],
+        "import/no-default-export": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ],
+        "@angular-eslint/sort-ngmodule-metadata-arrays": "off",
+        "@typescript-eslint/no-useless-constructor": ["error"],
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
+        "@typescript-eslint/method-signature-style": ["error", "method"],
+        "arrow-parens": ["off", "always"],
+        "default-case": "error",
+        "default-case-last": "error",
+        "comma-spacing": "error",
+        "padding-line-between-statements": [
+          "error",
+          {
+            "blankLine": "always",
+            "prev": ["const", "let", "var"],
+            "next": "*"
+          },
+          {
+            "blankLine": "any",
+            "prev": ["const", "let", "var"],
+            "next": ["const", "let", "var"]
+          }
+        ],
+        "computed-property-spacing": [
+          "error",
+          "never",
+          {
+            "enforceForClassMembers": true
+          }
+        ],
+        "lines-between-class-members": [
+          "error",
+          "always",
+          {
+            "exceptAfterSingleLine": true
+          }
+        ],
+        "func-name-matching": "error",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "constructors": "no-public",
+              "methods": "explicit",
+              "properties": "explicit",
+              "parameterProperties": "explicit"
+            }
+          }
+        ],
+        "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
+    },
+    {
+      "files": ["*.http-spec.ts", "*.spec.ts", "*.unit.ts", "*.int.ts", "*.mock.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["jest.config.ts", "jest-int.config.ts"],
+      "rules": {
+        "import/no-default-export": "off",
+        "@typescript-eslint/naming-convention": "off"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*state-facade.service.ts", "*state.ts"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ]
+}

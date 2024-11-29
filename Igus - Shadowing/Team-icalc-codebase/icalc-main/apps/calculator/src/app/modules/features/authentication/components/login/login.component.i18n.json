@@ -1,0 +1,43 @@
+{
+  "login": {
+    "user": {
+      "LOGIN": {
+        "de": "Login",
+        "en": "Login",
+        "_info": "LOGIN"
+      },
+      "USERNAME": {
+        "de": "Name",
+        "en": "name",
+        "_info": "Log in"
+      },
+      "ROLE": {
+        "de": "Rolle",
+        "en": "role",
+        "_info": "Log in"
+      },
+      "PROJECTRESPONSIBLE": {
+        "de": "Projekteur",
+        "en": "project responsible",
+        "_info": "Log in"
+      },
+      "CUSTOMER": {
+        "de": "Kunde",
+        "en": "customer",
+        "_info": "Log in"
+      },
+      "MANAGER": {
+        "de": "Admin",
+        "en": "manager",
+        "_info": "Log in"
+      },
+      "EMAIL": { "de": "E-Mail", "en": "email", "_info": "login.email" },
+      "NOT_AUTHENTICATED": {
+        "de": "Die eingegebene E-Mail oder das Passwort nicht korrekt.",
+        "en": "The email or the password you entered is not correct.",
+        "_info": "login.email"
+      },
+      "PASSWORD": { "de": "Passwort", "en": "password", "_info": "login.password" }
+    }
+  }
+}

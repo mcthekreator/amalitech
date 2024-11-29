@@ -1,0 +1,22 @@
+{
+  "name": "configurations-application",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/configurations/application/src",
+  "projectType": "library",
+  "prefix": "igus",
+  "tags": ["scope:application"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/configurations/application/jest.config.ts",
+        "codeCoverage": true
+      }
+    }
+  }
+}

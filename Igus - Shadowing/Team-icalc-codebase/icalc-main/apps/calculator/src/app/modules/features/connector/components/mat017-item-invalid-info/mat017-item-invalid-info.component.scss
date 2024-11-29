@@ -1,0 +1,22 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$orange-300: kopla.get-color('orange', 300);
+$red-500: kopla.get-color('red', 500);
+
+:host {
+  .mat017-invalid-info-box {
+    border: 3px solid $orange-300;
+    margin: 20px 0 10px 0;
+    margin-left: 0;
+    box-sizing: border-box;
+    width: 605px;
+  }
+  .mat017-info-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .removed {
+    color: $red-500;
+  }
+}

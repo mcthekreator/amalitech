@@ -1,0 +1,26 @@
+{
+  "icalc": {
+    "assign_existing_configuration_or_copy_dialog": {
+      "TITLE": {
+        "de": "Gewählte Konfiguration hinzufügen",
+        "en": "Add selected Configuration",
+        "_info": "icalc.assign_existing_configuration_or_copy_dialog.TITLE"
+      },
+      "INFO-TEXT": {
+        "de": "Sie können die ausgewählte Konfiguration {{matNumber}} kopieren und die Kopie als Vorlage zur weiteren Anpassung anlegen oder die bestehende Konfiguration verknüpfen.",
+        "en": "You can copy the selected configuration {{matNumber}} and create the copy as a template for further customization or link the existing configuration.",
+        "_info": "icalc.assign_existing_configuration_or_copy_dialog.INFO-TEXT"
+      },
+      "CONFIRM-ASSIGN": {
+        "de": "Bestehende Konfiguration verknüpfen",
+        "en": "Link existing Configuration",
+        "_info": "icalc.assign_existing_configuration_or_copy_dialog.CONFIRM-ASSIGN"
+      },
+      "COPY-BUTTON": {
+        "de": "Kopie der Konfiguration anlegen",
+        "en": "Create a copy of the Configuration",
+        "_info": "icalc.assign_existing_configuration_or_copy_dialog.COPY-BUTTON"
+      }
+    }
+  }
+}

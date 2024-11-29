@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "CreateAction",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What is the source of the event (either the name of a component or Api)?"
+    },
+    "useCase": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What is the use case of the event (e.g SelectingConfiguration. The verb should always include 'ing' suffix to indicate ongoing process)?"
+    }
+  },
+
+  "required": ["name", "useCase"]
+}

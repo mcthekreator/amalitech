@@ -1,0 +1,54 @@
+{
+  "name": "data-import",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/data-import/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/data-import",
+        "main": "apps/data-import/src/main.ts",
+        "tsConfig": "apps/data-import/tsconfig.app.json",
+        "externalDependencies": "none",
+        "webpackConfig": "apps/data-import/webpack.config.js",
+        "additionalEntryPoints": [],
+        "assets": ["apps/data-import/src/assets"],
+        "compiler": "tsc",
+        "target": "node"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/data-import/src/environments/environment.ts",
+              "with": "apps/data-import/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "data-import:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/data-import"],
+      "options": {
+        "jestConfig": "apps/data-import/jest.config.ts"
+      }
+    }
+  }
+}

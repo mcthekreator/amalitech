@@ -1,0 +1,30 @@
+<div class="icalc-app kopla-app container-fluid" koplaRoot>
+  <icalc-header-menu
+    [homepageUrl]="homepageUrl"
+    [imprintUrl]="imprintUrl"
+    [imprintLabel]="'kopla.footer.IMPRINT' | translate"
+    [dataPrivacyUrl]="dataPrivacyUrl"
+    [dataPrivacyLabel]="'kopla.common.DATA_PRIVACY' | translate"
+  >
+  </icalc-header-menu>
+  <icalc-toolbar></icalc-toolbar>
+  <div class="kopla-main row" [ngClass]="mainCssClass$ | async" *ngIf="(isUserLoggedIn$ | async) === true">
+    <router-outlet></router-outlet>
+  </div>
+
+  <icalc-footer></icalc-footer>
+
+  <!-- <kopla-footer [isDark]="true"
+    [nodeId]="''"></kopla-footer> -->
+  <kopla-cookie-policy> </kopla-cookie-policy>
+</div>
+
+
+1. Ayisi
+2. Pure Akan 
+3. Baaba J
+4. Worlasi 
+5. The township
+
+1. Asap Rocky 
+2. Tyler the Creator 

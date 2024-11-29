@@ -1,0 +1,4 @@
+<div class="addon action-button" [attr.dataCy]="props.attributes?.dataCy" (click)="onClick($event)">
+  <mat-icon *ngIf="props.icon" [matTooltip]="props.tooltip">{{ props.icon }}</mat-icon>
+  <span *ngIf="props.text">{{ props.text }}</span>
+</div>

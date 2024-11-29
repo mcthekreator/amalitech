@@ -1,0 +1,28 @@
+{
+  "name": "calculator-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/calculator-e2e/src",
+  "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["calculator", "icalc-cli"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "dependsOn": ["^build"],
+      "options": {
+        "cypressConfig": "apps/calculator-e2e/cypress.config.ts",
+        "devServerTarget": "calculator:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "calculator:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  }
+}

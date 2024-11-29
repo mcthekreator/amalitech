@@ -1,0 +1,45 @@
+### authentication post (signin)
+POST http://localhost:3000/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "tgs@aleri.de",
+  "password": "sicher"
+}
+
+### auth login with credentials test
+GET http://localhost:3000/api/auth/profile
+Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTY2NjY1MDg5NywiZXhwIjoxNjY2NjUxNzk3fQ.KL9574elnL_kEM2yfnznyEIV_E8nn89Hf3EWCLBEwUg}
+
+// To use this endpoint, uncomment the "signup" endpoint in auth.controller.ts
+### authentication post (signup)
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "firstName", 
+  "lastName": "lastName", 
+  "role": "ProjectResponsible", 
+  "email": "your@email.de",
+  "password": "yourpassword"
+}
+
+### authentication post (logout)
+POST http://localhost:3000/api/auth/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTI1NjUwNC1mYjIyLTQ0OGYtOWUyMy05YTZlMmM5ODJmNzgiLCJlbWFpbCI6ImtzYXZjaUB5YWhvby5jb20iLCJpYXQiOjE2NjY3Mjk2OTMsImV4cCI6MTY2NjcyOTcyOH0.nH4tSMcA4c-eeZgS2Jm6F_HCrvTAI5RuRty5DjDcseo
+
+
+### authentication post (refresh)
+POST http://localhost:3000/api/auth/refresh
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTI1NjUwNC1mYjIyLTQ0OGYtOWUyMy05YTZlMmM5ODJmNzgiLCJlbWFpbCI6ImtzYXZjaUB5YWhvby5jb20iLCJpYXQiOjE2NjY3Mjk0MDUsImV4cCI6MTY2NzMzNDIwNX0.smGzSn2RydmD3l9Kv0lIE-wOBus6hzb9DETDV_AGh_A
+
+
+### authentication post (remove user)
+POST http://localhost:3000/api/auth/delete-account
+Content-Type: application/json
+
+{
+  "email": "de-icalc-support@igusgmbh.onmicrosoft.com"
+}

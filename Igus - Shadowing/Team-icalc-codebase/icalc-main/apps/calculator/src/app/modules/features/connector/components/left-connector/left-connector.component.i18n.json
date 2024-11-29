@@ -1,0 +1,51 @@
+{
+  "icalc": {
+    "left-connector": {
+      "SELECTED_ITEMS": {
+        "de": "{{count}} ausgewählt",
+        "en": "{{count}} elements selected",
+        "_info": "left-connector.SELECTED_ITEMS"
+      },
+      "chainflex": {
+        "de": "Leitung",
+        "en": "Chainflex",
+        "_info": "left-connector.chainflex"
+      },
+      "ADD_ITEMS": {
+        "de": "Fügen Sie MAT017-Artikel auf die Stückliste des linken Steckers hinzu.",
+        "en": "Add MAT017 items to the item list of the left connector.",
+        "_info": "left-connector.ADD-ITEMS"
+      },
+      "connector-right": {
+        "de": "Zum rechten Stecker",
+        "en": "Choose right connector",
+        "_info": "left-connector.connector-right"
+      },
+      "REMOVE": {
+        "de": "Entfernen",
+        "en": "Remove",
+        "_info": "left-connector.REMOVE"
+      },
+      "SHOW_ZERO-MATCHES": {
+        "de": "Alle Artikel anzeigen, einschließlich bisher nicht kombinierter",
+        "en": "Show all connectors including unmatched",
+        "_info": "left-connector.SHOW_ZERO-MATCHES"
+      },
+      "INVALID_ITEM_IN_BOM_WARNING_SECTION_1": {
+        "de": "Einer oder mehrere ausgewählte MAT017 Artikel existieren nicht oder haben fehlende Pflichtdaten wie Artikelbezeichnung 1, Artikelgruppe oder Preis.",
+        "en": "One or more of the selected MAT017 items no longer exists or do not have all mandatory data that include the item description 1, item group or a price.",
+        "_info": "icalc.LEFT-CONNECTOR.INVALID_ITEM_IN_BOM_WARNING_SECTION_1"
+      },
+      "INVALID_ITEM_IN_BOM_WARNING_SECTION_2": {
+        "de": " Sie können neue Artikel auswählen. Wenn nicht, verwendet iCalc weiterhin die veralteten oder fehlerhaften Artikel der aktuellen Auswahl. In Schritt 7 können Sie alle entsprechenden  MAT017 Artikel innerhalb dieser Kalkulation entfernen.",
+        "en": " You may select new items. If not, iCalc will continue to use the outdated items of the current selection. In the results step you can remove all invalid items within this calculation.",
+        "_info": "icalc.LEFT-CONNECTOR.INVALID_ITEM_IN_BOM_WARNING_SECTION_2"
+      },
+      "ADD_NEW_ITEMS": {
+        "de": "Neue Artikel anlegen",
+        "en": "Create new items",
+        "_info": "icalc.left-connector.ADD_NEW_ITEMS"
+      }
+    }
+  }
+}

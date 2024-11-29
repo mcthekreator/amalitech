@@ -1,0 +1,13 @@
+{
+  "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "project": "apps/calculator-e2e/tsconfig.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "calculations-presentation",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/calculations/presentation/src",
+  "projectType": "library",
+  "tags": ["scope:presentation"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/calculations/presentation/jest.config.ts",
+        "codeCoverage": true
+      }
+    }
+  }
+}

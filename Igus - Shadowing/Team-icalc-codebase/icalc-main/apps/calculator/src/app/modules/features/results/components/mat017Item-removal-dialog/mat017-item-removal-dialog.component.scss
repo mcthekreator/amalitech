@@ -1,0 +1,74 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$orange-400: kopla.get-color('orange', 400);
+$red-500: kopla.get-color('red', 500);
+$gray-200: kopla.get-color('gray', 200);
+
+.mat017Item-dialog-cell-width {
+  max-width: 110px;
+
+  &.kopla-table__cell {
+    word-wrap: break-word;
+  }
+}
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mat017-time-update {
+  margin-right: 2.8rem;
+  margin-top: 1rem;
+}
+.sticky_table_header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+.config-mat-number {
+  max-width: 120px;
+  vertical-align: top;
+}
+
+.pin-sketch-relevance {
+  max-width: 160px;
+
+  &.info-relevance {
+    color: $orange-400;
+  }
+}
+
+.item-description {
+  min-width: 250px;
+  vertical-align: top;
+}
+
+.mat017-item-mat-number {
+  text-align: center;
+  max-width: 130px;
+  vertical-align: top;
+}
+
+.display-flex-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.assignments {
+  max-width: 100px;
+  vertical-align: top;
+  text-align: center;
+}
+.timestamp-container {
+  padding: 2px;
+}
+.font-red {
+  color: $red-500;
+}
+
+.font-black {
+  color: #140101;
+}

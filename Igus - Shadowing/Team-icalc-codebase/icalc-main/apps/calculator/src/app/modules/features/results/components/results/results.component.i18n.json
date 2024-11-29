@@ -1,0 +1,818 @@
+{
+  "icalc": {
+    "results": {
+      "CONFIGURATIONS": {
+        "de": "Konfiguration(en):",
+        "en": "Configuration(s):",
+        "_info": "icalc.results.CONFIGURATIONS"
+      },
+      "CALCULATION": {
+        "de": "Kalkulation: {{ calculationNumber }}",
+        "en": "Calculation: {{ calculationNumber }}",
+        "_info": "icalc.results.CALCULATION"
+      },
+      "OVERRIDE_INFORMATION_HEADLINE": {
+        "de": "Die Anzahl folgender Arbeitsschritte der {{ matNumber }} wurden durch Änderungen in den vorherigen Schritten zurückgesetzt:",
+        "en": "Values for the following work steps of {{ matNumber }} have been reset due to the changes in the previous steps:",
+        "_info": "icalc.results.OVERRIDE_INFORMATION_HEADLINE"
+      },
+      "OVERRIDE_INFORMATION_HEADLINE_MAT-NUMBER_LIST": {
+        "de": "Die Anzahl der Arbeitsschritte der folgenden MAT-Nummern wurden durch Änderungen in den vorherigen Schritten zurückgesetzt:",
+        "en": "Values for the work steps of the following MAT numbers have been reset due to the changes in the previous steps:",
+        "_info": "icalc.results.OVERRIDE_INFORMATION_HEADLINE_MAT-NUMBER_LIST"
+      },
+      "BUTTON_START_NEW_CALC": {
+        "de": "Neue Kalkulation starten",
+        "en": "Start new Calculation",
+        "_info": "icalc.results.BUTTON_START_NEW_CALC"
+      },
+      "BUTTON_START_NEW_CONF": {
+        "de": "Zusätzliche Konfiguration erstellen",
+        "en": "Add new Configuration",
+        "_info": "icalc.results.BUTTON_START_NEW_CONF"
+      },
+      "EDIT": {
+        "de": "bearbeiten",
+        "en": "edit",
+        "_info": "icalc.results.EDIT"
+      },
+      "SAVE": {
+        "de": "speichern",
+        "en": "save",
+        "_info": "icalc.results.SAVE"
+      },
+      "CANCEL": {
+        "de": "abbrechen",
+        "en": "cancel",
+        "_info": "icalc.results.CANCEL"
+      },
+      "CANCEL-DIALOG": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.results.CANCEL-DIALOG"
+      },
+      "CANCEL-CF-UPDATE": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.results.CANCEL-CF-UPDATE"
+      },
+      "CANCEL-MAT017_ITEM-UPDATE": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.results.CANCEL-MAT017_ITEM-UPDATE"
+      },
+      "YES": {
+        "de": "Ja",
+        "en": "Yes",
+        "_info": "icalc.results.YES"
+      },
+      "NO": {
+        "de": "Nein",
+        "en": "No",
+        "_info": "icalc.results.NO"
+      },
+      "METADATA": {
+        "de": "Kalkulationsdaten",
+        "en": "Calculation data",
+        "_info": "icalc.results.METADATA"
+      },
+      "SCC-METADATA": {
+        "de": "Konfigurationsdaten",
+        "en": "Configuration data",
+        "_info": "icalc.results.SCC-METADATA"
+      },
+      "CUSTOMER_TYPE": {
+        "de": "Kundentyp",
+        "en": "Customer Type",
+        "_info": "icalc.results.CUSTOMER_TYPE"
+      },
+      "CALC_FACTOR": {
+        "de": "Kalkulationsfaktor",
+        "en": "Calculation Factor",
+        "_info": "icalc.results.CALC_FACTOR"
+      },
+      "MAT017_ITEM_RISK_FACTOR": {
+        "de": "Risk’22",
+        "en": "Risk’22",
+        "_info": "icalc.results.MAT017_ITEM_RISK_FACTOR"
+      },
+      "MAT017_ITEM_AND_WORK_STEP_RISK_FACTOR": {
+        "de": "Risk’07-22",
+        "en": "Risk’07-22",
+        "_info": "icalc.results.MAT017_ITEM_AND_WORK_STEP_RISK_FACTOR"
+      },
+      "SCC-CALC_FACTOR": {
+        "de": "Individueller Kalkulationsfaktor",
+        "en": "Individual Calculation Factor",
+        "_info": "icalc.results.SCC-CALC_FACTOR"
+      },
+      "CONFIGURATION_DESCRIPTION": {
+        "de": "Konfigurationsbeschreibung",
+        "en": "Configuration description",
+        "_info": "icalc.results.CONFIGURATION_DESCRIPTION"
+      },
+      "NOT_APPLICABLE": {
+        "de": "n/a",
+        "en": "n/a",
+        "_info": "icalc.results.NOT_APPLICABLE"
+      },
+      "NO_METADATA_FOUND": {
+        "de": "Keine Kalkulationsdaten gefunden.",
+        "en": "No calculation data found.",
+        "_info": "icalc.results.NO_METADATA_FOUND"
+      },
+      "NO_SCC-METADATA_FOUND": {
+        "de": "Keine Konfigurationsdaten gefunden.",
+        "en": "No configuration data found.",
+        "_info": "icalc.results.NO_SCC-METADATA_FOUND"
+      },
+      "CHAINFLEX": {
+        "de": "Chainflex Leitung",
+        "en": "Chainflex",
+        "_info": "icalc.results.CHAINFLEX"
+      },
+      "NO_CHAINFLEX_FOUND": {
+        "de": "Keine Chainflex Leitung gefunden.",
+        "en": "No chainflex cable found.",
+        "_info": "icalc.results.NO_CHAINFLEX_FOUND"
+      },
+      "SELLING-PRICE-PER-UNIT-CF": {
+        "de": "VK Preis/m",
+        "en": "Selling Price/m",
+        "_info": "icalc.results.SELLING-PRICE-PER-UNIT-CF"
+      },
+      "SELLING-PRICE-PER-UNIT-MAT017": {
+        "de": "VK Preis/Stk.",
+        "en": "Selling Price/piece",
+        "_info": "icalc.results.SELLING-PRICE-PER-UNIT-MAT017"
+      },
+      "SELLING-PRICE-PER-UNIT-STEP": {
+        "de": "VK Preis/Schritt",
+        "en": "Selling Price/step",
+        "_info": "icalc.results.SELLING-PRICE-PER-UNIT-STEP"
+      },
+      "SELLING-PRICE": {
+        "de": "VK Preis",
+        "en": "Selling Price",
+        "_info": "icalc.results.SELLING-PRICE"
+      },
+      "LENGTH": {
+        "de": "Länge",
+        "en": "Length",
+        "_info": "icalc.results.LENGTH"
+      },
+      "QUANTITY": {
+        "de": "Anzahl",
+        "en": "Quantity",
+        "_info": "icalc.results.QUANTITY"
+      },
+      "PRICE-M": {
+        "de": "Preis/m",
+        "en": "Price/m",
+        "_info": "icalc.results.PRICE-M"
+      },
+      "CONNECTOR_LIST": {
+        "de": "Stückliste",
+        "en": "Connector list",
+        "_info": "results.CONNECTOR_LIST"
+      },
+      "LEFT_CONNECTOR": {
+        "de": "Linker Stecker",
+        "en": "Left connector",
+        "_info": "icalc.results.LEFT_CONNECTOR"
+      },
+      "RIGHT_CONNECTOR": {
+        "de": "Rechter Stecker",
+        "en": "Right connector",
+        "_info": "icalc.results.RIGHT_CONNECTOR"
+      },
+      "NO_MAT-ARTICLES_FOUND": {
+        "de": "Keine MAT-Artikel gefunden.",
+        "en": "No MAT articles found.",
+        "_info": "icalc.results.NO_MAT-ARTICLES_FOUND"
+      },
+      "PRICE-PIECE": {
+        "de": "Preis/Stk.",
+        "en": "Price/piece",
+        "_info": "icalc.results.PRICE-PIECE"
+      },
+      "MATNUMBER": {
+        "de": "MAT-Nummer",
+        "en": "MAT number",
+        "_info": "icalc.results.MATNUMBER"
+      },
+      "ITEMDESCRIPTION1": {
+        "de": "Artikelbezeichnung 1",
+        "en": "Item description 1",
+        "_info": "icalc.results.ITEMDESCRIPTION1"
+      },
+      "ITEMDESCRIPTION2": {
+        "de": "Artikelbezeichnung 2",
+        "en": "Item description 2",
+        "_info": "icalc.results.ITEMDESCRIPTION2"
+      },
+      "MAT017ITEM_DOES_NOT_EXIST": {
+        "de": "Artikel existiert nicht",
+        "en": "Item does not exist",
+        "_info": "icalc.results.ITEMDESCRIPTION1"
+      },
+      "ITEMGROUP": {
+        "de": "Artikelgruppe",
+        "en": "Item group",
+        "_info": "icalc.results.ITEMGROUP"
+      },
+      "MATNUMBER_VALUE": {
+        "de": "MAT-Nummer: {{ matNumber }}",
+        "en": "MAT number: {{ matNumber }}",
+        "_info": "icalc.results.MATNUMBER_VALUE"
+      },
+      "CHAINFLEX_LENGTH": {
+        "de": "CF-Länge: ",
+        "en": "CF-Length: ",
+        "_info": "icalc.results.CHAINFLEX_LENGTH"
+      },
+      "BATCH-SIZE": {
+        "de": "Losgröße: ",
+        "en": "Batch size: ",
+        "_info": "icalc.results.BATCH-SIZE"
+      },
+      "BEZ_1": {
+        "de": "Bez. 1",
+        "en": "Bez. 1",
+        "_info": "icalc.results.BEZ_1"
+      },
+      "BEZ_2": {
+        "de": "Bez. 2",
+        "en": "Bez. 2",
+        "_info": "icalc.results.BEZ_2"
+      },
+      "WORK_STEPS": {
+        "de": "Arbeitsschritte",
+        "en": "Work Steps",
+        "_info": "icalc.results.WORK_STEPS"
+      },
+      "SET_OF_WORK_STEPS": {
+        "de": "Arbeitsschritt-Set",
+        "en": "Set of Work Steps",
+        "_info": "icalc.results.SET_OF_WORK_STEPS"
+      },
+      "STANDARD_WORK_STEPS": {
+        "de": "Standard Arbeitsschritte",
+        "en": "Standard Work Steps",
+        "_info": "icalc.results.STANDARD_WORK_STEPS"
+      },
+      "DRIVE_CLIQ_WORK_STEPS": {
+        "de": "DriveCliq Arbeitsschritte",
+        "en": "DriveCliq Work Steps",
+        "_info": "icalc.results.DRIVE_CLIQ_WORK_STEPS"
+      },
+      "COMMERCIAL_WORK_STEPS": {
+        "de": "Kaufmännische Arbeitsschritte",
+        "en": "Commercial Work Steps",
+        "_info": "icalc.results.COMMERCIAL_WORK_STEPS"
+      },
+      "MACHINE_LINE_WORK_STEPS": {
+        "de": "MachineLine Arbeitsschritte",
+        "en": "MachineLine Work Steps",
+        "_info": "icalc.results.MACHINE_LINE_WORK_STEPS"
+      },
+      "ETHERNET_WORK_STEPS": {
+        "de": "Ethernet Arbeitsschritte",
+        "en": "Ethernet Work Steps",
+        "_info": "icalc.results.ETHERNET_WORK_STEPS"
+      },
+      "TECHNICAL_WORK_STEPS": {
+        "de": "Technische Arbeitsschritte",
+        "en": "Technical Work Steps",
+        "_info": "icalc.results.TECHNICAL_WORK_STEPS"
+      },
+      "NO_WORK-STEPS_FOUND": {
+        "de": "Keine Arbeitsschritte gefunden.",
+        "en": "No work steps found.",
+        "_info": "icalc.results.NO_WORK-STEPS_FOUND"
+      },
+      "WORK_STEP": {
+        "de": "Arbeitsschritt",
+        "en": "Step",
+        "_info": "icalc.results.WORK_STEP"
+      },
+      "DISCOUNT-HEADER": {
+        "de": "Rabatt",
+        "en": "Discount",
+        "_info": "icalc.results.DISCOUNT-HEADER"
+      },
+      "CALC_FACTOR-HEADER": {
+        "de": "Kalk.-Faktor",
+        "en": "Calc. Factor",
+        "_info": "icalc.results.CALC_FACTOR-HEADER"
+      },
+      "PRICE-STEP": {
+        "de": "Preis/Schritt",
+        "en": "Price/step",
+        "_info": "icalc.results.PRICE-STEP"
+      },
+      "STRIP_SHIELD_HANDLING_HIGHLIGHT": {
+        "de": "Der Preis pro Einheit variiert je nachdem, ob das CF eine Innenabschirmung hat oder nicht.",
+        "en": "The value for the price/unit differs depending on whether the CF has an inner shield or not",
+        "_info": "icalc.results.STRIP_SHIELD_HANDLING_HIGHLIGHT"
+      },
+      "projektierung": {
+        "de": "Projektierung (1/2 Kalk. / 1/2 MAT-Plan)",
+        "en": "Projektierung",
+        "_info": "icalc.results.projektierung"
+      },
+      "auftragsmanagement": {
+        "de": "Auftragsmanagement (1/3 Angebot / 1/3 Auftragserfass. / 1/3 PZ prüfen)",
+        "en": "Auftragsmanagement",
+        "_info": "icalc.results.auftragsmanagement"
+      },
+      "assembly": {
+        "de": "Anschluß / Montage",
+        "en": "Connection / Assembly",
+        "_info": "icalc.results.assembly"
+      },
+      "einkaufDispo": {
+        "de": "Einkauf / Disposition",
+        "en": "Einkauf / Disposition",
+        "_info": "icalc.results.einkaufDispo"
+      },
+      "transportStock": {
+        "de": "Interner Transport / Lagerung",
+        "en": "Transport / Stock",
+        "_info": "icalc.results.transportStock"
+      },
+      "consignment": {
+        "de": "Kommissionierung",
+        "en": "Consignment",
+        "_info": "icalc.results.consignment"
+      },
+      "strip": {
+        "de": "Abmanteln",
+        "en": "Strip",
+        "_info": "icalc.results.strip"
+      },
+      "shieldHandling": {
+        "de": "Schirmbehandlung",
+        "en": "Shield Handling",
+        "_info": "icalc.results.shieldHandling"
+      },
+      "stripShieldHandling": {
+        "de": "Abmanteln / Schirmbehandlung",
+        "en": "Strip / Shield Handling",
+        "_info": "icalc.results.stripShieldHandling"
+      },
+      "stripInnerJacket": {
+        "de": "Abmanteln Innenmantel",
+        "en": "Strip inner jacket",
+        "_info": "icalc.results.stripInnerJacket"
+      },
+      "stripOuterJacket": {
+        "de": "Abmanteln Aussenmantel",
+        "en": "Strip outer Jacket",
+        "_info": "icalc.results.stripOuterJacket"
+      },
+      "shieldHandlingOuterShield": {
+        "de": "Schirmbehandlung Aussenschirm",
+        "en": "Shield handling outer Shield",
+        "_info": "icalc.results.shieldHandlingOuterShield"
+      },
+      "shieldHandlingInnerShield": {
+        "de": "Schirmbehandlung Innenschirm",
+        "en": "Shield handling inner Shied",
+        "_info": "icalc.results.shieldHandlingInnerShield"
+      },
+      "skinning": {
+        "de": "Abisolieren",
+        "en": "Skinning",
+        "_info": "icalc.results.skinning"
+      },
+      "crimp": {
+        "de": "Anschluß Crimp",
+        "en": "Crimp",
+        "_info": "icalc.results.crimp"
+      },
+      "labeling": {
+        "de": "Beschriftung",
+        "en": "Labeling",
+        "_info": "icalc.results.labeling"
+      },
+      "drillingSealInsert": {
+        "de": "Bohren Dichteinsatz",
+        "en": "Drilling Seal Insert",
+        "_info": "icalc.results.drillingSealInsert"
+      },
+      "test": {
+        "de": "Funktionsprüfung",
+        "en": "Test",
+        "_info": "icalc.results.test"
+      },
+      "sendTestReport": {
+        "de": "Prüfprotokolle mitverschicken",
+        "en": "Send Test Report",
+        "_info": "icalc.results.sendTestReport"
+      },
+      "cutUnder20MM": {
+        "de": "Schnittkosten für Leitungen bis 20mm Außendurchmesser",
+        "en": "Cut cost 0-20 mm diameter",
+        "_info": "icalc.results.cutUnder20MM"
+      },
+      "cutOver20MM": {
+        "de": "Schnittkosten für Leitungen ab 20mm Außendurchmesser",
+        "en": "Cut cost more than 20 mm diameter",
+        "_info": "icalc.results.cutOver20MM"
+      },
+      "testFieldPrep": {
+        "de": "Prüffeld-Vorbereitung",
+        "en": "Test Field Preparation",
+        "_info": "icalc.results.testFieldPrep"
+      },
+      "package": {
+        "de": "Verpackung",
+        "en": "Package",
+        "_info": "icalc.results.package"
+      },
+      "pin-assignment": {
+        "de": "Pinbelegung",
+        "en": "Pin Assignment",
+        "_info": "icalc.results.pin-assignment"
+      },
+      "download-calculation": {
+        "de": "Kalkulation als Excel-Datei herunterladen",
+        "en": "Download calculation as Excel sheet",
+        "_info": "icalc.results.download-calculation"
+      },
+      "download-mat-excel": {
+        "de": "MAT-Pläne als Excel-Datei herunterladen",
+        "en": "Download MAT-Plans as Excel sheet",
+        "_info": "icalc.results.download-mat-excel"
+      },
+      "download-mat-xlsx": {
+        "de": "MAT-Pläne im .xlsx Format herunterladen",
+        "en": "Download MAT-Plans in .xlsx format",
+        "_info": "icalc.results.download-mat-xlsx"
+      },
+      "mat-plans": {
+        "de": "MAT-Plaene",
+        "en": "MAT-Plans",
+        "_info": "icalc.results.mat-plans"
+      },
+      "configuration-price": {
+        "de": "VK Preis",
+        "en": "Selling Price",
+        "_info": "icalc.results.configuration-price"
+      },
+      "calculation-price": {
+        "de": "Summe VK Preise",
+        "en": "Sum of Selling Prices",
+        "_info": "icalc.results.calculation-price"
+      },
+      "changes-are-overridden": {
+        "de": "Bitte Anzahl bei Arbeitsschritte prüfen. Die vorherigen manuellen Änderungen wurden überschrieben.",
+        "en": "Please check the Work Steps amounts. Your former edits were overriden.",
+        "_info": "icalc.results.changes-are-overridden"
+      },
+      "VALUE_IS_OVERRIDDEN": {
+        "de": "Dieser Wert wurde manuell angepasst.",
+        "en": "This value has been overridden",
+        "_info": "icalc.results.VALUE_IS_OVERRIDDEN"
+      },
+      "SCC_CALC_FACTOR_VALUE_IS_OVERRIDDEN": {
+        "de": "Dieser Wert weicht vom Kalkulationsfaktor der Kalkulation ab.",
+        "en": "This value differs from the calculation factor of the calculation.",
+        "_info": "icalc.results.SCC_CALC_FACTOR_VALUE_IS_OVERRIDDEN"
+      },
+      "CLICK_TO_RESET_OVERRIDDEN": {
+        "de": "Den überschriebenen Wert zurücksetzen.",
+        "en": "Click to reset the overridden value.",
+        "_info": "icalc.results.CLICK_TO_RESET_OVERRIDDEN"
+      },
+      "CLICK_TO_RESET": {
+        "de": "Den Wert zurücksetzen.",
+        "en": "Click to reset the value.",
+        "_info": "icalc.results.CLICK_TO_RESET"
+      },
+      "CLICK_TO_RESET_ALL": {
+        "de": "Überschreibungen löschen",
+        "en": "Remove overrides",
+        "_info": "icalc.results.CLICK_TO_RESET_ALL"
+      },
+      "INCOMPLETE-INFO": {
+        "de": "Konfiguration unvollständig",
+        "en": "Configuration incomplete",
+        "_info": "icalc.results.INCOMPLETE-INFO"
+      },
+      "UNUSEABLE-CALC-INFO": {
+        "de": "Enthält unvollständige Konfigurationen",
+        "en": "Includes incomplete configurations",
+        "_info": "icalc.results.UNUSEABLE-CALC-INFO"
+      },
+      "EXCEL_EXPORT_NOT_POSSIBLE": {
+        "de": "Ein Excel Export ist aufgrund unvollständiger Konfigurationen nicht möglich",
+        "en": "An Excel export is not possible due to incomplete configurations",
+        "_info": "icalc.results.EXCEL_EXPORT_NOT_POSSIBLE"
+      },
+      "BUTTON_ADJUST_INCOMPLETE_MAT": {
+        "de": "Konfiguration vervollständigen",
+        "en": "Complete configuration",
+        "_info": "icalc.results.BUTTON_ADJUST_INCOMPLETE_MAT"
+      },
+      "EXPORT-EXCEL-FILES": {
+        "de": "Dateien exportieren",
+        "en": "Export files",
+        "_info": "icalc.results.EXPORT-EXCEL-FILES"
+      },
+      "DOWNLOAD-EXCEL-DIALOG-CONTENT": {
+        "de": "Die Kalkulation und MAT-Pläne stehen als separate Dateien zum Download zur Verfügung. Der Download beider Dateien als Excel führt zum Abschluss und zur Sperrung der Kalkulation und darin enthaltenen Konfigurationen.",
+        "en": "You can download the calculation and the MAT-Plans as separate files. Downloading both files in Excel format will trigger the calculation to lock.",
+        "_info": "icalc.results.DOWNLOAD-EXCEL-DIALOG-CONTENT"
+      },
+      "DOWNLOAD-EXCEL-SUB-DIALOG-CONTENT-1": {
+        "de": "Der Download der MAT-Pläne als Excel ist ein Auslöser für die Sperrung der Kalkulation.",
+        "en": "Downloading the MAT-Plans in Excel format is a trigger to lock the calculation.",
+        "_info": "icalc.results.DOWNLOAD-EXCEL-SUB-DIALOG-CONTENT-1"
+      },
+      "DOWNLOAD-EXCEL-SUB-DIALOG-CONTENT-2": {
+        "de": "Der Download der MAT-Pläne als PDF ist kein Auslöser für die Sperrung der Kalkulation.",
+        "en": "Downloading the MAT-Plan as PDF is not a trigger to lock the calculation.",
+        "_info": "icalc.results.DOWNLOAD-EXCEL-SUB-DIALOG-CONTENT-2"
+      },
+      "ALREADY-DOWNLOADED": {
+        "de": "Bereits heruntergeladen",
+        "en": "Already downloaded",
+        "_info": "icalc.results.ALREADY-DOWNLOADED"
+      },
+      "NO-VALUE": {
+        "de": "Kein Wert;",
+        "en": "No value;",
+        "_info": "icalc.results.NO-VALUE"
+      },
+      "DOWNLOAD-LOCKED": {
+        "de": "Sie können die Excel Dateien jederzeit herunterladen. Mit dem Download beider Excel Exporte wird die Kalkulation abgeschlossen",
+        "en": "You can download the Excel files at any time. With the download of both Excel exports the calculation is completed",
+        "_info": "icalc.results.DOWNLOAD-LOCKED"
+      },
+      "COMMERCIAL_WORK_STEPS-INFO": {
+        "de": "Automatisch berechnete und manuell angepasste Anzahlen der kaufmännischen Arbeitsschritte werden für jede Zuordnung einer Konfiguration zu einer Kalkulation individuell erfasst.",
+        "en": "Automatically calculated and manually adjusted numbers of commercial work steps are recorded individually for each assignment of a configuration to a calculation.",
+        "_info": "icalc.results.COMMERCIAL_WORK_STEPS-INFO"
+      },
+      "TECHNICAL_WORK_STEPS-INFO": {
+        "de": "Automatisch berechnete und manuell angepasste Anzahlen der technischen Arbeitsschritte gelten übergreifend für jede Zuordnung einer Konfiguration zu einer oder mehrerer Kalkulationen (gesperrte Kalkulationen und historisierte Konfigurationen ausgenommen)",
+        "en": "Automatically calculated and manually adjusted numbers of technical work steps apply across the board for each assignment of a configuration to one or more calculations (locked calculations and historicized configurations excluded)",
+        "_info": "icalc.results.TECHNICAL_WORK_STEPS-INFO"
+      },
+      "MAT017_ITEM_RISK_FACTOR-INFO": {
+        "de": "Dieser Risikofaktor wird als \"MAT017 Artikel Risikofaktor\" verwendet und ist nur für MAT017 Artikel relevant.",
+        "en": "This risk factor is used as a \"MAT017 item risk factor\" with relevance for MAT017 items only.",
+        "_info": "icalc.results.MAT017_ITEM_RISK_FACTOR-INFO"
+      },
+      "MAT017_ITEM_SKETCH_AND_PIN-ASSIGNMENT_RELEVANCE-INFO": {
+        "de": "Ein Artikel gilt als relevant, wenn dieser im entsprechenden Schritt 'Skizze' oder 'Pinbelegung' verwendet wird. Er wird nicht automatisch entfernt, jedoch wird die Konfiguration als unvollständig markiert bis der entsprechende Schritt überarbeitet wurde.",
+        "en": "An item counts as relevant, if it is used in the respective steps 'Library' or 'Pin assignment'. The item will not be removed automatically from that step. Therefore, the configuration will be marked as incomplete until the step has been reworked.",
+        "_info": "icalc.results.MAT017_ITEM_SKETCH_RELEVANCE-INFO"
+      },
+      "MAT017_ITEM_AND_WORK_STEP_RISK_FACTOR-INFO": {
+        "de": "Dieser Risikofaktor wird als \"MAT017 Artikel- und Arbeitsschritt-Risikofaktor\" mit Relevanz für Arbeitsschritte und in Kombination mit Risk'22 mit Relevanz für MAT017 Artikel verwendet.",
+        "en": "This risk factor is used as a \"MAT017 item and work step risk factor\" with relevance for work steps and with relevance for MAT017 items in combination with Risk'22.",
+        "_info": "icalc.results.MAT017_ITEM_AND_WORK_STEP_RISK_FACTOR-INFO"
+      },
+      "RISK_FACTOR_DEFAULT_DEVIATION-INFO": {
+        "de": "Dieser Wert weicht vom Standardwert ab.",
+        "en": "This value differs from the default.",
+        "_info": "icalc.results.RISK_FACTOR_DEFAULT_DEVIATION-INFO"
+      },
+      "DISCOUNT-INFO-CF": {
+        "de": "Der Standardwert des Rabatts für Chainflex Leitungen beträgt 1. Es erfolgt keine Berechnung auf Basis der geltenden Risikofaktoren.",
+        "en": "The default discount value for chainflex cables is 1. There is no calculation based on the risk factors.",
+        "_info": "icalc.results.DISCOUNT-INFO-CF"
+      },
+      "DISCOUNT-INFO-MAT017": {
+        "de": "Der Standardwert des Rabatts für MAT017 Artikel entspricht dem Produkt der geltenden Risikofaktoren Risk’22 und Risk’07-22.",
+        "en": "The default discount value for MAT017 items equals the product of the risk factors Risk’22 and Risk’07-22.",
+        "_info": "icalc.results.DISCOUNT-INFO-MAT017"
+      },
+      "DISCOUNT-INFO-WORK-STEPS": {
+        "de": "Der Standardwert des Rabatts für Arbeitsschritte entspricht dem geltenden Risikofaktor Risk’07-22.",
+        "en": "The default discount value for work steps equals the risk factor Risk’07-22.",
+        "_info": "icalc.results.DISCOUNT-INFO-WORK-STEPS"
+      },
+      "INFO-CHAINFLEX-PRICE-HAS-CHANGED": {
+        "de": "Chainflex Preise veraltet",
+        "en": "chainflex prices outdated",
+        "_info": "icalc.results.INFO-CHAINFLEX-PRICE-HAS-CHANGED"
+      },
+      "INFO-CHAINFLEX-PRICE-OR-DATA-MISSING": {
+        "de": "Chainflex nicht vorhanden",
+        "en": "chainflex not available",
+        "_info": "icalc.results.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING"
+      },
+      "INFO-MAT017ITEM-PRICE-HAS-CHANGED": {
+        "de": "MAT017 Artikelpreise veraltet",
+        "en": "MAT017 item prices outdated",
+        "_info": "icalc.results.INFO-MAT017ITEM-PRICE-HAS-CHANGED"
+      },
+      "INFO-MAT017ITEM-PRICE-OR-DATA-MISSING": {
+        "de": "MAT017 Artikel nicht vorhanden",
+        "en": "MAT017 items not available",
+        "_info": "icalc.results.INFO-MAT107ITEM-PRICE-OR-DATA-MISSING"
+      },
+      "UPDATE-MAT017ITEM-PRICES_DIALOG-TITLE": {
+        "de": "MAT017 Artikel Preise aktualisieren",
+        "en": "Update MAT017 Items Prices",
+        "_info": "icalc.results.UPDATE-MAT017ITEM-PRICE_DIALOG-TITLE"
+      },
+      "UPDATE-MAT017ITEM-PRICES_DIALOG-SUBTITLE": {
+        "de": "Die Preise der folgenden MAT017 Artikel sind nicht aktuell. Sie können alle Preise aktualisieren oder die veralteten Werte beibehalten. Eine Aktualisierung kann nicht rückgängig gemacht werden.",
+        "en": "The prices of the following MAT017 items are outdated. You can update all prices or continue with the outdated prices. An update cannot be undone.",
+        "_info": "icalc.results.UPDATE-MAT017ITEM-PRICE_DIALOG-TITLE"
+      },
+      "NUMBER-OF-CONFIGURATION-ASSIGNMENT": {
+        "de": "Verknüpfungen",
+        "en": "Assignments",
+        "_info": "icalc.results.NUMBER-OF-CONFIGURATION-ASSIGNMENT"
+      },
+      "UPDATE-CHAINFLEX-PRICES_DIALOG-TITLE": {
+        "de": "Chainflex Preise aktualisieren",
+        "en": "Update Chainflex Prices",
+        "_info": "icalc.results.UPDATE-CHAINFLEX-PRICE_DIALOG-TITLE"
+      },
+      "UPDATE-CHAINFLEX-PRICES_DIALOG-SUBTITLE": {
+        "de": "Die Preise der folgenden chainflex Leitungen sind nicht aktuell. Sie können alle Preise aktualisieren oder die veralteten Werte beibehalten. Eine Aktualisierung kann nicht rückgängig gemacht werden.",
+        "en": "The prices of the following chainflex cables are outdated. You can update all prices or continue with the outdated values. An update cannot be undone.",
+        "_info": "icalc.results.UPDATE-CHAINFLEX-PRICE_DIALOG-TITLE"
+      },
+      "REMOVE-CHAINFLEX-CABLES_DIALOG-TITLE": {
+        "de": "Veraltete Chainflex Leitungen entfernen",
+        "en": "Remove outdated Chainflex Cables",
+        "_info": "icalc.results.REMOVE-CHAINFLEX-CABLES_DIALOG-TITLE"
+      },
+      "REMOVE-MAT017ITEM_DIALOG-TITLE": {
+        "de": "Veraltete MAT017 Artikel entfernen",
+        "en": "Remove outdated MAT017 Items",
+        "_info": "icalc.results.REMOVE-MAT017ITEM_DIALOG-TITLE"
+      },
+      "REMOVE-MAT017ITEM_DIALOG-SUBTITLE": {
+        "de": "Die folgenden Artikel sind aufgrund verschiedener, möglicher Ursachen veraltet. Rot dargestellter Text zeigt die Ursachen an. Die Entfernung eines Artikels kann nicht rückgängig gemacht werden und kann dazu führen, dass eine Konfiguration unvollständig wird.",
+        "en": "The following items are outdated due to different possible causes. Red text indicates the issue for each item. An item removal cannot be undone and it can cause a configuration to become incomplete.",
+        "_info": "icalc.results.REMOVE-MAT017ITEM_DIALOG-SUBTITLE"
+      },
+      "REMOVE-CHAINFLEX-CABLES_DIALOG-SUBTITLE": {
+        "de": "Markieren Sie alle Konfigurationen, aus denen die chainflex Leitungen entfernt werden sollen. Die Entfernung kann nicht rückgängig gemacht werden.",
+        "en": "Select all configurations from which the chainflex cables should be removed. The removal cannot be undone.",
+        "_info": "icalc.results.REMOVE-CHAINFLEX-CABLES_DIALOG-SUBTITLE"
+      },
+      "REMOVE-MAT017ITEM_DIALOG-PIN_ASSIGNMENT-RELEVANCE": {
+        "de": "Relevant für Pinbelegung",
+        "en": " Pin assignment relevant",
+        "_info": "icalc.results.REMOVE-MAT017ITEM_DIALOG-PIN_ASSIGNMENT-RELEVANCE"
+      },
+      "REMOVE-MAT017ITEM_DIALOG-SKETCH-RELEVANCE": {
+        "de": "Relevant für Skizze",
+        "en": "Library relevant",
+        "_info": "icalc.results.REMOVE-MAT017ITEM_DIALOG-SKETCH-RELEVANCE"
+      },
+      "CONFIGURATION": {
+        "de": "Konfiguration",
+        "en": "Configuration",
+        "_info": "icalc.results.CONFIGURATION"
+      },
+      "CHAINFLEX-LENGTH_PRICE-DEVIATIONS": {
+        "de": "CF-Länge",
+        "en": "CF-Length",
+        "_info": "icalc.results.CHAINFLEX-LENGTH_PRICE-DEVIATIONS"
+      },
+      "BATCH-SIZE_PRICE-DEVIATIONS": {
+        "de": "Losgröße",
+        "en": "Batch size",
+        "_info": "icalc.results.BATCH-SIZE_PRICE-DEVIATIONS"
+      },
+      "KEEP-CF": {
+        "de": "CF beibehalten",
+        "en": "Keep CF",
+        "_info": "icalc.results.KEEP-CF"
+      },
+      "UPDATE-CHAINFLEX-PRICES_BUTTON": {
+        "de": "Alle aktualisieren",
+        "en": "Update all",
+        "_info": "icalc.results.UPDATE-CHAINFLEX-PRICES_BUTTON"
+      },
+      "UPDATE-MAT017ITEM-PRICES_BUTTON": {
+        "de": "Alle aktualisieren",
+        "en": "Update all",
+        "_info": "icalc.results.UPDATE-MAT017ITEM-PRICES_BUTTON"
+      },
+      "SHOW-CHAINFLEX-OR-MAT017ITEM-PRICE-DEVIATIONS": {
+        "de": "Preisabweichungen anzeigen",
+        "en": "Show price differences",
+        "_info": "icalc.results.SHOW-CHAINFLEX-OR-MAT017ITEM-PRICE-DEVIATIONS"
+      },
+      "SHOW-OUTDATED-CF-CABLES": {
+        "de": "Veraltete Chainflex Leitungen anzeigen",
+        "en": "Show outdated Chainflex cables",
+        "_info": "icalc.results.SHOW-OUTDATED-CF-CABLES"
+      },
+      "SHOW-OUTDATED-MAT017ITEM": {
+        "de": "Veraltete MAT017 Artikel anzeigen",
+        "en": "Show outdated MAT017 items",
+        "_info": "icalc.results.SHOW-OUTDATED-MAT017ITEM"
+      },
+      "REMOVE-OUTDATED-CF-CABLES_BUTTON": {
+        "de": "Veraltete CFs entfernen",
+        "en": "Remove selected CFs",
+        "_info": "icalc.results.REMOVE-OUTDATED-CF-CABLES_BUTTON"
+      },
+      "REMOVE-OUTDATED-MAT017ITEM_BUTTON": {
+        "de": "Veraltete Artikel entfernen",
+        "en": "Remove selected items",
+        "_info": "icalc.results.REMOVE-OUTDATED-MAT017ITEM_BUTTON"
+      },
+      "REMOVE-CF-CHECKMARK": {
+        "de": "CF entfernen",
+        "en": "Remove CF",
+        "_info": "icalc.results.REMOVE-CF-CHECKMARK"
+      },
+      "REMOVE-MAT017ITEM-CHECKMARK": {
+        "de": "Artikel entfernen",
+        "en": "Remove items",
+        "_info": "icalc.results.REMOVE-MAT017ITEM-CHECKMARK"
+      },
+      "OLD-CF-PRICE": {
+        "de": "Bisheriger Preis",
+        "en": "Previous price",
+        "_info": "icalc.results.OLD-CF-PRICE"
+      },
+      "OLD-MAT017ITEM-PRICE": {
+        "de": "Bisheriger Preis",
+        "en": "Previous price",
+        "_info": "icalc.results.OLD-MAT017ITEM-PRICE"
+      },
+      "NEW-MAT017ITEM-PRICE": {
+        "de": "Neuer Preis",
+        "en": "New price",
+        "_info": "icalc.results.NEW-MAT017ITEM-PRICE"
+      },
+      "NEW-CF-PRICE": {
+        "de": "Neuer Preis",
+        "en": "New price",
+        "_info": "icalc.results.NEW-CF-PRICE"
+      },
+      "NOT-AVAILABLE": {
+        "de": "nicht verfügbar",
+        "en": "not available",
+        "_info": "icalc.results.NOT-AVAILABLE"
+      },
+      "NO-NEW-MAT017ITEM-PRICE": {
+        "de": "nicht verfügbar",
+        "en": "not available",
+        "_info": "icalc.results.NO-NEW-MAT017ITEM-PRICE"
+      },
+      "CHAINFLEX-PARTNUMBER-FROM-CONF": {
+        "de": "Chainflex in Configuration",
+        "en": "Chainflex of selected configuration",
+        "_info": "results.chainflexPartnumberSelectedConfiguration"
+      },
+      "CHAINFLEX-PRICE-FROM-CONF": {
+        "de": "Chainflexpreis der ausgewählten Configuration",
+        "en": "Chainflex price of selected configuration",
+        "_info": "results.chainflexPriceSelectedConfiguration"
+      },
+      "CHAINFLEX-PARTNUMBER-FROM-DATABASE": {
+        "de": "Chainflex aus der Datenbank",
+        "en": "Chainflex from Database",
+        "_info": "results.chainflexPartnumberFromDatabase"
+      },
+      "CHAINFLEX-PRICE-FROM-DATABASE": {
+        "de": "Chainflexpreis aus der Datenbank",
+        "en": "Chainflex price from Database",
+        "_info": "results.chainflexPriceFromDatabase"
+      }
+    },
+    "matplan_download_button": {
+      "MAIN_LABEL": {
+        "de": "MAT-Pläne herunterladen",
+        "en": "Download MAT-Plans",
+        "_info": "icalc.matplan_download_button.MAIN_LABEL"
+      },
+      "XLS_OPTION": {
+        "de": ".xls Format (Standard)",
+        "en": ".xls Format (Standard)",
+        "_info": "icalc.matplan_download_button.XLS_OPTION"
+      },
+      "XLSX_OPTION": {
+        "de": ".xlsx Format",
+        "en": ".xlsx Format",
+        "_info": "icalc.matplan_download_button.XLSX_OPTION"
+      },
+      "FULL_PDF_OPTION": {
+        "de": "PDF vollständig",
+        "en": "PDF full version",
+        "_info": "icalc.matplan_download_button.FULL_PDF_OPTION"
+      },
+      "PARTIAL_PDF_OPTION": {
+        "de": "PDF exkl. Lief.Art.Nr)",
+        "en": "PDF excl. Suppl.Item.Nr",
+        "_info": "icalc.matplan_download_button.PARTIAL_PDF_OPTION"
+      }
+    }
+  }
+}

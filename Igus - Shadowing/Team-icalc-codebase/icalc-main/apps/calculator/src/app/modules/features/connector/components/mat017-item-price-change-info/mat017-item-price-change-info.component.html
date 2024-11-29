@@ -1,0 +1,13 @@
+<div class="mat017-info-container">
+  <div class="mat017-price-info-box" *ngIf="hasMat017ItemsWithOutdatedPrices && !isLocked" dataCy="mat017-update-info">
+    <kopla-info>
+      {{ 'icalc.connector-mat017-items-price-change.MAT017ITEM_PRICE_CHANGE_SECTION1' | translate }}
+      <ul>
+        <li *ngFor="let matNumber of mat017ItemsWithOldPrice">
+          {{ matNumber }}
+        </li>
+      </ul>
+      {{ 'icalc.connector-mat017-items-price-change.MAT017ITEM_PRICE_CHANGE_SECTION2' | translate }}
+    </kopla-info>
+  </div>
+</div>

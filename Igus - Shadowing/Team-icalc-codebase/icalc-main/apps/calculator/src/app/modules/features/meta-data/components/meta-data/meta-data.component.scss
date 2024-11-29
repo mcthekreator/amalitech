@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+
+  .meta-data-container {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 16px;
+
+    mat-tab-group {
+      display: flex;
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+}
+
+mat-dialog-content {
+  kopla-info {
+    font-size: 14px;
+  }
+
+  h4 {
+    white-space: pre-wrap;
+  }
+  table {
+    th.wide {
+      width: 54px;
+    }
+    min-width: 48vw;
+  }
+}
+
+.options-wrapper {
+  display: none;
+}
+
+.buttons-wrapper {
+  display: flex;
+}
+
+@media only screen and (max-width: 1400px) {
+  .options-wrapper {
+    display: block;
+  }
+  .buttons-wrapper {
+    display: none;
+  }
+}

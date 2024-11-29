@@ -1,0 +1,153 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$grey: #dedede;
+$grey-2: #e0e0e0;
+$grey-3: #ececec;
+$black: #0000004d;
+$white: white;
+
+// mat017-price-info-box
+$orange-300: kopla.get-color('orange', 300);
+$red-500: kopla.get-color('red', 500);
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+
+    .sidebar {
+      width: 250px;
+      overflow-y: auto;
+
+      .itemlist-text {
+        margin-top: 2rem;
+        margin-left: 2rem;
+
+        .paragraph {
+          margin-top: 2rem;
+        }
+      }
+
+      mat-card {
+        background-color: $grey-3;
+        position: relative;
+        border: solid 1px $grey-3;
+        margin: 10px;
+        box-shadow: 0 1px 2px 1px $black;
+
+        mat-card-content {
+          margin-bottom: 0 !important;
+
+          .input {
+            display: flex;
+            justify-content: flex-end;
+
+            input {
+              max-width: 60px;
+              max-height: 30px;
+            }
+          }
+
+          .text {
+            word-wrap: break-word;
+          }
+        }
+
+        mat-card-actions {
+          position: relative;
+
+          button {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 10px;
+          }
+        }
+
+        p.title {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .mat017-price-info-box {
+    border: 3px solid $orange-300;
+    margin: 30px 0 10px 0;
+    margin-left: 70px;
+    box-sizing: border-box;
+    width: 605px;
+  }
+  .mat017-info-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.favorites-dialog {
+  .search-indicator-text {
+    margin: 40px;
+    text-align: center;
+  }
+
+  .favorites-spinner {
+    margin: 0 auto;
+  }
+
+  table {
+    width: 100%;
+
+    .right {
+      text-align: right;
+    }
+
+    .mat-mdc-cell {
+      padding: 0;
+
+      &:first-of-type {
+        padding-left: 16px;
+      }
+
+      &:last-of-type {
+        padding-right: 16px;
+      }
+    }
+  }
+
+  button.mat-mdc-mini-fab {
+    transform: scale(0.745);
+    color: $white;
+  }
+
+  mat-icon {
+    margin-bottom: 2px;
+  }
+
+  .favorite-name {
+    margin-left: 15px;
+  }
+}
+
+.options-wrapper {
+  display: none;
+}
+
+.buttons-wrapper {
+  display: flex;
+}
+
+@media only screen and (max-width: 1400px) {
+  .options-wrapper {
+    display: block;
+  }
+  .buttons-wrapper {
+    display: none;
+  }
+}

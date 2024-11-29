@@ -1,0 +1,50 @@
+<!-- For directive -->
+<div class="profile-card">
+    <div *ngFor="let user of users">
+        <app-profile [name]="user.name" [username]="user.email"></app-profile>
+    </div>
+</div>
+
+<!-- If diective -->
+<!-- <div *ngIf="users.length > 0; ">
+    <div *ngFor="let user of users">
+        <app-profile [name]="user.name" [username]="user.email"></app-profile>
+    </div>
+ </div> -->
+
+
+<!-- If diective -->
+<!-- <div *ngIf="users.length < 0; else noUsers">
+    <div *ngFor="let user of users">
+        <app-profile [name]="user.name" [username]="user.email"></app-profile>
+    </div>
+ </div>
+
+<ng-template #noUsers>
+    <h1>no data found</h1>
+</ng-template> -->
+
+
+<!-- ngSwitch -->
+<!-- <section [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'posts'">
+        <div *ngFor="let post of posts">
+            <app-posts [title]="post.title" [message]="post.body"></app-posts>
+        </div>
+    </div>
+    <div *ngSwitchCase="'users'">
+        <div *ngFor="let user of users">
+            <app-profile [name]="user.name" [username]="user.email"></app-profile>
+        </div>
+    </div>
+    <div *ngSwitchDefault>No View Selected</div>
+</section> -->
+
+
+<!-- Custom Directive -->
+<!-- <section *appHideAfter="3000">
+    <div *ngFor="let user of users">
+      <app-profile [name]="user.name" [username]="user.email"></app-profile>
+    </div>
+  </section>
+   -->

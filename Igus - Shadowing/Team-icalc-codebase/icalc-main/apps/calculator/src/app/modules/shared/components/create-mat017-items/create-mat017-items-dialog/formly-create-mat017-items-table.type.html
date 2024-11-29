@@ -1,0 +1,21 @@
+<div [class]="fieldArray.className" class="kopla-table">
+  <div class="kopla-table__header px-5rem">
+    <div
+      *ngFor="let head of fieldArray.fieldGroup; trackBy: trackByFn"
+      [class]="head.props.cellClassName"
+      class="kopla-table__cell"
+    >
+      {{ head.props.headerText }}
+    </div>
+    <div class="kopla-table__cell remove-col"></div>
+  </div>
+
+  <div *ngFor="let row of field.fieldGroup; let i = index; trackBy: trackByFn" class="kopla-table__row px-5rem">
+    <div *ngFor="let field of row.fieldGroup;" [class]="field.props.cellClassName" class="kopla-table__cell">
+      <formly-field [field]="field"></formly-field>
+    </div>
+    <div class="kopla-table__cell center-icon-vertically remove-col font-orange-300">
+      <mat-icon (click)="onRemove(i)">delete</mat-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,219 @@
+{
+  "icalc": {
+    "meta_data": {
+      "Configuration_TAKEN": {
+        "de": "Diese MAT-Nummer existiert bereits.",
+        "en": "This MAT number is taken.",
+        "en-US": "This MAT number is taken.",
+        "_info": "icalc.meta_data.Configuration_TAKEN"
+      },
+      "CALC-NUMBER_TAKEN": {
+        "de": "Kalkulationsnummer existiert bereits.",
+        "en": "This Calculation number is taken.",
+        "en-US": "This Calculation number is taken.",
+        "_info": "icalc.meta_data.CALC-NUMBER_TAKEN"
+      },
+      "TAB-HEADLINE-NEW": {
+        "de": "Neue Kalkulation",
+        "en": "Create new calculation",
+        "en-US": "Create new calculation",
+        "_info": "icalc.meta_data.TAB-HEADLINE-NEW"
+      },
+      "CLOSE_CALCULATION": {
+        "de": "Kalkulation schließen",
+        "en": "Close calculation",
+        "_info": "icalc.meta_data.CLOSE_CALCULATION"
+      },
+      "CREATED_NEW_CONFIG": {
+        "de": "Neue Konfiguration {{ matNumber }} wurde erstellt.",
+        "en": "New configuration {{ matNumber }} created.",
+        "en-US": "New configuration {{ matNumber }} created.",
+        "_info": "icalc.meta_data.START_NEW_CONFIG"
+      },
+      "CREATED_NEW_CALC": {
+        "de": "Neue Kalkulation {{ calculationNumber }} wurde erstellt.",
+        "en": "New calculation {{ calculationNumber }} created.",
+        "en-US": "New calculation {{ calculationNumber }} created.",
+        "_info": "icalc.meta_data.START_NEW_CALC"
+      },
+      "TAB-HEADLINE-EDIT": {
+        "de": "Kalkulation editieren",
+        "en": "Edit calculation",
+        "en-US": "Edit calculation",
+        "_info": "icalc.meta_data.TAB-HEADLINE-EDIT"
+      },
+      "TAB-HEADLINE-Configuration-SEARCH": {
+        "de": "Konfigurationssuche",
+        "en": "Configuration Search",
+        "en-US": "Configuration Search",
+        "_info": "icalc.meta_data.TAB-HEADLINE-Configuration-SEARCH"
+      },
+      "TAB-HEADLINE-CALC-SEARCH": {
+        "de": "Kalkulationssuche",
+        "en": "Calculation Search",
+        "en-US": "Calculation Search",
+        "_info": "icalc.meta_data.TAB-HEADLINE-CALC-SEARCH"
+      },
+      "MAT-NUMBER": {
+        "de": "MAT-Nummer",
+        "en": "MAT number",
+        "_info": "icalc.meta_data.MAT-NUMBER"
+      },
+      "MAT-NUMBERS": {
+        "de": "MAT-Nummern",
+        "en": "MAT numbers",
+        "_info": "icalc.meta_data.MAT-NUMBERS"
+      },
+      "CALCULATION-NUMBER": {
+        "de": "Kalkulationsnummer",
+        "en": "Calculation number",
+        "_info": "icalc.meta_data.CALCULATION-NUMBER"
+      },
+      "QUOTE-NUMBER": {
+        "de": "Angebotsnummer",
+        "en": "Quote number",
+        "_info": "icalc.meta_data.QUOTE-NUMBER"
+      },
+      "CUSTOMER": {
+        "de": "Kunde",
+        "en": "Customer",
+        "_info": "icalc.meta_data.CUSTOMER"
+      },
+      "FILTER": {
+        "de": "Filtern",
+        "en": "Filter",
+        "_info": "icalc.meta_data.FILTER"
+      },
+      "APPLY_FILTER": {
+        "de": "Filter anwenden",
+        "en": "Apply filter",
+        "_info": "icalc.meta_data.APPLY_FILTER"
+      },
+      "SEARCH-CALC-NUMBER": {
+        "de": "Suche nach Kalkulationsnummer oder MAT-Nummer",
+        "en": "Search for Calculation number or MAT number",
+        "_info": "icalc.meta_data.SEARCH-CALC-NUMBER"
+      },
+      "SEARCH-MAT-NUMBER": {
+        "de": "Suche nach MAT-Nummer oder Kalkulationsnummer",
+        "en": "Search for MAT number or Calculation number",
+        "_info": "icalc.meta_data.SEARCH-MAT-NUMBER"
+      },
+      "LABELING": {
+        "de": "Leitungsbeschriftung (rechts & links)",
+        "en": "Labeling (right & left)",
+        "_info": "icalc.meta_data.LABELING"
+      },
+      "LABELING-LEFT": {
+        "de": "Leitungsbeschriftung links",
+        "en": "Labeling left",
+        "_info": "icalc.meta_data.LABELING-LEFT"
+      },
+      "LABELING-RIGHT": {
+        "de": "Leitungsbeschriftung rechts",
+        "en": "Labeling right",
+        "_info": "icalc.meta_data.LABELING-RIGHT"
+      },
+      "BATCH-SIZE": {
+        "de": "Losgröße",
+        "en": "Batch size",
+        "_info": "icalc.meta_data.BATCH-SIZE"
+      },
+      "CONFIGURATION_DESCRIPTION": {
+        "de": "Konfigurationsbeschreibung",
+        "en": "Configuration description",
+        "_info": "icalc.meta_data.CONFIGURATION_DESCRIPTION"
+      },
+      "CHAINFLEX-LENGTH": {
+        "de": "Chainflex-Länge",
+        "en": "Chainflex length",
+        "_info": "icalc.meta_data.CHAINFLEX-LENGTH"
+      },
+      "CALCULATION-FACTOR": {
+        "de": "Kalkulationsfaktor",
+        "en": "Calculation factor",
+        "_info": "icalc.meta_data.CALCULATION-FACTOR"
+      },
+      "CREATION_DATE": {
+        "de": "Erstellungsdatum",
+        "en": "Creation date",
+        "_info": "icalc.meta_data.CREATION_DATE"
+      },
+      "CREATED_BY": {
+        "de": "Erstellt von",
+        "en": "Created by",
+        "_info": "icalc.meta_data.CREATED_BY"
+      },
+      "MODIFICATION_DATE": {
+        "de": "Bearbeitungsdatum",
+        "en": "Modification date",
+        "_info": "icalc.meta_data.MODIFICATION_DATE"
+      },
+      "MODIFIED_BY": {
+        "de": "Bearbeitet von",
+        "en": "Modified by",
+        "_info": "icalc.meta_data.MODIFIED_BY"
+      },
+      "CUSTOMER-TYPE": {
+        "de": "Kundentyp",
+        "en": "Customer type",
+        "_info": "icalc.meta_data.CUSTOMER-TYPE"
+      },
+      "CUSTOMER-SERIAL-CUSTOMER": {
+        "de": "Serienkunde",
+        "en": "Serial customer",
+        "_info": "icalc.meta_data.CUSTOMER-SERIAL-CUSTOMER"
+      },
+      "CUSTOMER-BETRIEBSMITTLER": {
+        "de": "Betriebsmittler",
+        "en": "Spot buy customer",
+        "_info": "icalc.meta_data.CUSTOMER-BETRIEBSMITTLER"
+      },
+      "BUTTON_ASSIGN_CONF": {
+        "de": "Bestehende Konfiguration hinzufügen",
+        "en": "Assign existing Configuration",
+        "_info": "icalc.meta_data.BUTTON_ASSIGN_CONF"
+      },
+      "BUTTON_START_NEW_CONF": {
+        "de": "Zusätzliche Konfiguration erstellen",
+        "en": "Add new Configuration",
+        "_info": "icalc.meta_data.BUTTON_START_NEW_CONF"
+      },
+      "CHAINFLEX_LENGTH": {
+        "de": "CF-Länge",
+        "en": "CF-length",
+        "_info": "icalc.meta_data.CHAINFLEX_LENGTH"
+      },
+      "chainflex": {
+        "de": "Konfiguration starten",
+        "en": "Start configuration",
+        "_info": "icalc.meta_data.chainflex"
+      },
+      "chainflex_LOCKED": {
+        "de": "Konfiguration ansehen",
+        "en": "Look at Configuration",
+        "_info": "icalc.meta_data.chainflex_LOCKED"
+      },
+      "REMOVE_CONF": {
+        "de": "Ausgewählte Konfiguration entfernen",
+        "en": "Remove selected Configuration",
+        "_info": "icalc.meta_data.REMOVE_CONF"
+      },
+      "REMOVE_CONF_INFO": {
+        "de": "Entfernen Sie die Zuordnung der ausgewählten Konfiguration zur ausgewählten Kalkulation. Mit dieser Auswahl löschen Sie ausschließlich die Verknüpfung, nicht jedoch die Kalkulation oder die Konfiguration selbst.",
+        "en": "Remove the assignment of the selected configuration to the selected calculation. With this action only the assignment is deleted, but not the calculation or the configuration itself.",
+        "_info": "icalc.meta_data.REMOVE_CONF_INFO"
+      },
+      "REMOVE_NOT_POSSIBLE_INFO": {
+        "de": "Die Verknüpfung der ausgewählte Konfiguration kann nicht entfernen werden. Eine Verknüpfung kann nur aufgehoben werden, wenn sowohl die ausgewählte Kalkulation als auch die ausgewählte Konfiguration nach Aufhebung ihrer Verknüpfung jeweils noch mindestens eine weitere hat.",
+        "en": "The assignment of the selected configuration cannot be removed. An assignment between configuration and calculation can only be removed if the selected configuration and calculation have at least one more assignment after the removal.",
+        "_info": "icalc.meta_data.REMOVE_NOT_POSSIBLE_INFO"
+      },
+      "FURTHER_EDITING_OPTIONS": {
+        "de": "Weitere Bearbeitungsoptionen",
+        "en": "Further editing options",
+        "_info": "icalc.meta_data.FURTHER_EDITING_OPTIONS"
+      }
+    }
+  }
+}

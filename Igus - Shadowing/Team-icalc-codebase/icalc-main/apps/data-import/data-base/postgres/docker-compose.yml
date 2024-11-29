@@ -1,0 +1,50 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:15.3-alpine
+    restart: always
+    container_name: db
+    env_file:
+      - ./env/postgres.env
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - icalc-dev-net
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - icalc-dev-net
+    depends_on:
+      - db
+
+  flyway:
+    container_name: flyway
+    image: flyway/flyway:10.14.0
+    environment:
+      FLYWAY_URL: jdbc:postgresql://db:5432/icalc
+      FLYWAY_USER: icalc
+      FLYWAY_PASSWORD: icalc
+      FLYWAY_CLEAN_DISABLED: true
+    depends_on:
+      - db
+    networks:
+      - icalc-dev-net
+    volumes:
+      - ./sql:/flyway/sql
+    command: migrate
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  icalc-dev-net:
+    driver: bridge

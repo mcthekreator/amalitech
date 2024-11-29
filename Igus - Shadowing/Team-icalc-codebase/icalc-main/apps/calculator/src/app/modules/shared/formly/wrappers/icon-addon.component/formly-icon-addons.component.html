@@ -1,0 +1,25 @@
+<div class="container" [ngClass]="field.type">
+  <div *ngIf="props.addonLeft" class="addon" (click)="$event.stopPropagation(); addonLeftClick($event)">
+    <mat-icon
+      *ngIf="props.addonLeft.icon"
+      [attr.dataCy]="props.addonLeft.props?.attributes?.dataCy"
+      [matTooltip]="props.addonLeft.tooltip"
+      >{{ props.addonLeft.icon }}</mat-icon
+    >
+    <span *ngIf="props.addonLeft.text">{{ props.addonLeft.text }}</span>
+  </div>
+
+  <div class="field-container" [ngClass]="{ 'has-left-addon': !props.addonLeft }">
+    <ng-container #fieldComponent></ng-container>
+  </div>
+
+  <div *ngIf="props.addonRight" class="addon" (click)="$event.stopPropagation(); addonRightClick($event)">
+    <mat-icon
+      *ngIf="props.addonRight.icon"
+      [attr.dataCy]="props.addonRight.props?.attributes?.dataCy"
+      [matTooltip]="props.addonRight.tooltip"
+      >{{ props.addonRight.icon }}
+    </mat-icon>
+    <span *ngIf="props.addonRight.text">{{ props.addonRight.text }}</span>
+  </div>
+</div>

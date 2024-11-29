@@ -1,0 +1,31 @@
+<h2 matDialogTitle>
+  {{ 'icalc.meta_data_form.NEW_CALCULATION_NUMBER' | translate }}
+</h2>
+<mat-dialog-content>
+  <div>
+    <p class="kopla-font-body-2">{{ 'icalc.meta_data_form.NEW_CALCULATION_NUMBER_NEEDED' | translate }}</p>
+    <form *ngIf="isFormReady" [formGroup]="configurationToNewCalculationForm.form">
+      <formly-form
+        [model]="configurationToNewCalculationForm.model"
+        [fields]="configurationToNewCalculationForm.fields"
+        [options]="configurationToNewCalculationForm.options"
+        [form]="configurationToNewCalculationForm.form"
+      ></formly-form>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="justify-content-between">
+  <button mat-button class="kopla-mat-button--small" matDialogClose color="primary">
+    {{ 'icalc.meta_data_form.CANCEL' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    class="kopla-mat-button--small"
+    dataCy="add-new-config-to-new-calculation"
+    color="primary"
+    [disabled]="!configurationToNewCalculationForm.form?.valid"
+    (click)="onActionSelect(secondaryButtonAction)"
+  >
+    {{ 'icalc.meta_data_form.CONFIRM-COPY-CONFIG' | translate }}
+  </button>
+</mat-dialog-actions>

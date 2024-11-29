@@ -1,0 +1,1536 @@
+<div class="navigation-menu">
+  <mat-list icalcDynamicList (elementsListUpdate)="onElementsListUpdate()">
+    <mat-list-item class="calculation-item">
+      <div matListItemTitle>
+        {{ 'icalc.results.CALCULATION' | translate: selectedCalculationItem }}
+      </div>
+      <div matListItemLine class="price" *ngIf="calculationTotalPrice$ | async as calculationTotalPrice">
+        {{ 'icalc.results.calculation-price' | translate }}: {{ calculationTotalPrice | convertPrice }}
+      </div>
+
+      <div matListItemLine class="price" *ngIf="(allResultsValid$ | async) === false">
+        {{ 'icalc.results.UNUSEABLE-CALC-INFO' | translate }}
+      </div>
+    </mat-list-item>
+    <mat-divider class="navigation-divider"></mat-divider>
+    <mat-list-item class="list-item parent">
+      <div>{{ 'icalc.results.CONFIGURATIONS' | translate }}</div>
+    </mat-list-item>
+
+    <mat-list-item
+      *ngFor="let processResult of processResults; index as i"
+      (click)="onSelectSCC(processResult.configurationReference.sccId)"
+      class="list-item child-item"
+      [ngClass]="{
+        'current-section': processResult.configurationReference.sccId === selectedSingleCableCalculation?.id
+      }"
+      id="navigation-item{{ processResult.configurationReference.sccId }}"
+      icalcDynamicListItem
+      dataCy="assignment-list-item"
+    >
+      <div matListItemTitle>
+        {{ 'icalc.results.MATNUMBER_VALUE' | translate: processResult.configurationReference }}
+      </div>
+      <div matListItemLine>
+        <span dataCy="assignment-data-cf-len-batch-size">
+          ({{ 'icalc.results.CHAINFLEX_LENGTH' | translate }}
+          <span>{{ processResult.chainflexLength | formatLengthWithFallBack }}</span>
+          {{ 'icalc.results.BATCH-SIZE' | translate }}
+          <span>{{ processResult.batchSize }}</span
+          >)
+        </span>
+      </div>
+      <div
+        *ngIf="processResult.configurationReference.isValid; else incompleteInfo"
+        matListItemLine
+        class="price"
+        dataCy="configuration-list-item-price"
+      >
+        {{ 'icalc.results.configuration-price' | translate }}: {{ processResult.lumpSum | convertPrice }}
+      </div>
+      <ng-template #incompleteInfo matListItemLine class="price">
+        <span dataCy="incomplete-info">{{ 'icalc.results.INCOMPLETE-INFO' | translate }}</span>
+      </ng-template>
+    </mat-list-item>
+  </mat-list>
+  <br />
+</div>
+<br />
+
+<div id="parentDiv" class="results-container">
+  <div id="calculation-wrapper" class="headline-wrapper">
+    <h4 class="kopla-font-headline-4 headline">
+      <mat-icon *ngIf="isLocked" fontIcon="lock"></mat-icon>
+      {{ 'icalc.results.CALCULATION' | translate: selectedCalculationItem }}
+    </h4>
+    <div class="button-wrapper">
+      <button
+        mat-button
+        class="new-calculation-button kopla-mat-button--small"
+        (click)="onStartNewCalculation()"
+        [routerLink]="['meta-data']"
+      >
+        {{ 'icalc.results.BUTTON_START_NEW_CALC' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <ng-container
+    *ngIf="
+      ((isProcessing$ | async) && (processServerError$ | async) === null) || !isCalculationReady;
+      else calculationTemplate
+    "
+  >
+    <div class="is-loading">
+      <div>
+        <mat-progress-spinner mode="indeterminate" [diameter]="50" [strokeWidth]="4"></mat-progress-spinner>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #calculationTemplate>
+    <!-- META DATA -->
+    <div class="result-box" dataCy="meta-data-result-box">
+      <div class="info-part">
+        <div class="kopla-font-subtitle-2 head-line">{{ 'icalc.results.METADATA' | translate }}</div>
+        <button
+          [disabled]="currentlyEditedWorkStepsSccId !== null || isLocked || editSectionName === 'scc'"
+          *ngIf="editSectionName !== 'calculation' && selectedCalculationItem"
+          class="kopla-mat-button--small"
+          color="primary"
+          mat-button
+          (click)="onEditCalculation()"
+          dataCy="edit-calculation-button"
+        >
+          {{ 'icalc.results.EDIT' | translate }}
+        </button>
+        <div *ngIf="editSectionName === 'calculation'" class="wrapper">
+          <button
+            class="kopla-mat-button--small"
+            color="primary"
+            mat-button
+            [disabled]="calculationForm.form.invalid || calculationForm.form.pristine || isLocked"
+            (click)="onSubmitMetaData()"
+            dataCy="save-edited-calculation-button"
+          >
+            {{ 'icalc.results.SAVE' | translate }}
+          </button>
+          <button
+            class="kopla-mat-button--small"
+            color="primary"
+            mat-button
+            (click)="onCancelCalculationDataEdit()"
+            dataCy="cancel-edited-calculation-button"
+          >
+            {{ 'icalc.results.CANCEL' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <kopla-info *ngIf="!selectedCalculationItem; else metaDataInformation">
+        {{ 'icalc.results.NO_METADATA_FOUND' | translate }}
+      </kopla-info>
+
+      <ng-template #metaDataInformation>
+        <div class="kopla-table kopla-table--10">
+          <div class="kopla-table__header">
+            <div class="kopla-table__cell primary-cell">{{ 'icalc.results.CUSTOMER_TYPE' | translate }}</div>
+            <div class="kopla-table__cell calculation-factor">{{ 'icalc.results.CALC_FACTOR' | translate }}</div>
+            <div class="kopla-table__cell info-i">
+              <div [matTooltip]="'icalc.results.MAT017_ITEM_RISK_FACTOR-INFO' | translate" matTooltipPosition="above">
+                {{ 'icalc.results.MAT017_ITEM_RISK_FACTOR' | translate }}
+              </div>
+            </div>
+            <div class="kopla-table__cell info-i">
+              <div
+                [matTooltip]="'icalc.results.MAT017_ITEM_AND_WORK_STEP_RISK_FACTOR-INFO' | translate"
+                matTooltipPosition="above"
+              >
+                {{ 'icalc.results.MAT017_ITEM_AND_WORK_STEP_RISK_FACTOR' | translate }}
+              </div>
+            </div>
+          </div>
+
+          <!-- calculation display mode -->
+          <div *ngIf="editSectionName !== 'calculation'" class="kopla-table__row kopla-table__row--first">
+            <div class="kopla-table__cell primary-cell">
+              <div>
+                <div *ngIf="selectedCalculationItem.customerType === 'serialCustomer'">
+                  {{ 'icalc.meta_data.CUSTOMER-SERIAL-CUSTOMER' | translate }}
+                </div>
+                <div *ngIf="selectedCalculationItem.customerType === 'betriebsMittler'">
+                  {{ 'icalc.meta_data.CUSTOMER-BETRIEBSMITTLER' | translate }}
+                </div>
+              </div>
+            </div>
+            <div class="kopla-table__cell calculation-factor" dataCy="calculation-factor-display">
+              {{ selectedCalculationItem.calculationFactor | convertDecimalToDeString }}
+            </div>
+
+            <!-- mat017ItemRiskFactor -->
+            <div class="kopla-table__cell risk-factor-cell">
+              <mat-icon
+                class="default-deviation"
+                [matTooltip]="'icalc.results.RISK_FACTOR_DEFAULT_DEVIATION-INFO' | translate"
+                *ngIf="selectedCalculationItem.mat017ItemRiskFactor !== defaultMat017ItemRiskFactor"
+              >
+                info
+              </mat-icon>
+              <div class="align-vertically" dataCy="mat017Item-risk-factor-display">
+                {{ selectedCalculationItem.mat017ItemRiskFactor | convertDecimalToDeString }}
+              </div>
+            </div>
+
+            <!-- mat017ItemAndWorkStepRiskFactor -->
+            <div class="kopla-table__cell risk-factor-cell">
+              <mat-icon
+                class="default-deviation"
+                [matTooltip]="'icalc.results.RISK_FACTOR_DEFAULT_DEVIATION-INFO' | translate"
+                *ngIf="
+                  selectedCalculationItem.mat017ItemAndWorkStepRiskFactor !== defaultMat017ItemAndWorkStepRiskFactor
+                "
+              >
+                info
+              </mat-icon>
+              <div class="align-vertically" dataCy="mat017Item-and-work-steps-risk-factor-display">
+                {{ selectedCalculationItem.mat017ItemAndWorkStepRiskFactor | convertDecimalToDeString }}
+              </div>
+            </div>
+          </div>
+
+          <!-- calculation edit mode -->
+          <div *ngIf="editSectionName === 'calculation'" class="kopla-table__row kopla-table__row--first">
+            <form [formGroup]="calculationForm.form">
+              <formly-form
+                [model]="calculationForm.model"
+                [fields]="calculationForm.fields"
+                [options]="calculationForm.options"
+                [form]="calculationForm.form"
+              ></formly-form>
+            </form>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="factored-price" dataCy="meta-data-factored-price">
+      <div *ngIf="calculationTotalPrice$ | async as calculationTotalPrice">
+        {{ 'icalc.results.calculation-price' | translate }}: {{ calculationTotalPrice | convertPrice }}
+      </div>
+    </div>
+
+    <!-- CF PRICE UPDATES -->
+    <div class="cf-price-info-box" *ngIf="showNewChainflexPricesInfo$ | async">
+      <kopla-info dataCy="chainflex-price-has-changed-info">
+        <div class="align-content">
+          {{ 'icalc.results.INFO-CHAINFLEX-PRICE-HAS-CHANGED' | translate }}
+          <button
+            color="primary"
+            mat-button
+            (click)="openUpdateChainflexPricesDialog()"
+            dataCy="show-chainflex-price-changes"
+          >
+            {{ 'icalc.results.SHOW-CHAINFLEX-OR-MAT017ITEM-PRICE-DEVIATIONS' | translate }}
+          </button>
+        </div>
+      </kopla-info>
+    </div>
+
+    <div class="cf-price-info-box" *ngIf="showChainflexListWithNoPricesInfo$ | async">
+      <kopla-info dataCy="chainflex-removed-price-info">
+        <div class="align-content">
+          {{ 'icalc.results.INFO-CHAINFLEX-PRICE-OR-DATA-MISSING' | translate }}
+          <button
+            color="primary"
+            mat-button
+            (click)="openRemoveChainflexCablesDialog()"
+            dataCy="show-chainflex-price-removals"
+          >
+            {{ 'icalc.results.SHOW-OUTDATED-CF-CABLES' | translate }}
+          </button>
+        </div>
+      </kopla-info>
+    </div>
+
+    <icalc-mat017-items-update></icalc-mat017-items-update>
+
+    <div class="info-box" *ngIf="showListOfInvalidOrRemovedMat017ItemInfo$ | async">
+      <kopla-info dataCy="mat017-item-removed-info">
+        <div class="align-content">
+          {{ 'icalc.results.INFO-MAT017ITEM-PRICE-OR-DATA-MISSING' | translate }}
+          <button
+            color="primary"
+            mat-button
+            (click)="this.mat017ItemRemovalDialogService.open()"
+            dataCy="show-mat017-item-removals"
+          >
+            {{ 'icalc.results.SHOW-OUTDATED-MAT017ITEM' | translate }}
+          </button>
+        </div>
+      </kopla-info>
+    </div>
+
+    <!-- PROCESS RESULTS -->
+    <ng-container>
+      <mat-divider></mat-divider>
+
+      <h5 class="kopla-font-headline-5">
+        {{ 'icalc.results.MATNUMBER_VALUE' | translate: selectedProcessResult?.configurationReference }}
+        ({{ 'icalc.results.CHAINFLEX_LENGTH' | translate }}
+        <span dataCy="scc-length">{{ selectedSingleCableCalculation.chainflexLength | formatLengthWithFallBack }}</span>
+        {{ 'icalc.results.BATCH-SIZE' | translate }}
+        <span dataCy="scc-batch-size">{{ selectedSingleCableCalculation.batchSize }}</span
+        >)
+      </h5>
+
+      <ng-container *ngIf="!selectedProcessResult.configurationReference.isValid; else validConfig">
+        <div class="result-box" dataCy="complete-configuration-box">
+          <div class="complete-configuration-button-wrapper">
+            <button
+              dataCy="complete-configuration-button"
+              color="primary"
+              [routerLink]="['meta-data']"
+              mat-button
+              [disabled]="isLocked"
+              (click)="onAdjustConfigurationButtonClicked(selectedProcessResult.configurationReference.sccId)"
+            >
+              {{ 'icalc.results.BUTTON_ADJUST_INCOMPLETE_MAT' | translate }}
+            </button>
+          </div>
+          <kopla-info>{{ 'icalc.results.INCOMPLETE-INFO' | translate }}</kopla-info>
+        </div>
+      </ng-container>
+
+      <ng-template #validConfig>
+        <!-- SCC -->
+        <div class="result-box" dataCy="scc-result-box">
+          <div class="info-part">
+            <div class="kopla-font-subtitle-2 head-line">{{ 'icalc.results.SCC-METADATA' | translate }}</div>
+            <button
+              [disabled]="currentlyEditedWorkStepsSccId !== null || isLocked || editSectionName === 'calculation'"
+              *ngIf="editSectionName !== 'scc' && selectedCalculationItem"
+              class="kopla-mat-button--small"
+              color="primary"
+              mat-button
+              (click)="onEditSCC()"
+              dataCy="edit-assignment-button"
+            >
+              {{ 'icalc.results.EDIT' | translate }}
+            </button>
+            <div *ngIf="editSectionName === 'scc'" class="wrapper">
+              <button
+                class="kopla-mat-button--small"
+                color="primary"
+                mat-button
+                [disabled]="sccForm.form.invalid || sccForm.form.pristine"
+                (click)="onSubmitSCCData()"
+                dataCy="save-edited-assignment-button"
+              >
+                {{ 'icalc.results.SAVE' | translate }}
+              </button>
+              <button
+                class="kopla-mat-button--small"
+                color="primary"
+                mat-button
+                (click)="onCancelSCCDataEdit()"
+                dataCy="cancel-edited-assignment-button"
+              >
+                {{ 'icalc.results.CANCEL' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <kopla-info *ngIf="!selectedSingleCableCalculation; else sccMetaDataInformation">
+            {{ 'icalc.results.NO_SCC-METADATA_FOUND' | translate }}
+          </kopla-info>
+
+          <ng-template #sccMetaDataInformation>
+            <div class="kopla-table kopla-table--10">
+              <div class="kopla-table__header scc-header">
+                <div class="kopla-table__cell scc-primary-cell">{{ 'icalc.results.SCC-CALC_FACTOR' | translate }}</div>
+                <div class="kopla-table__cell scc-primary-cell">
+                  {{ 'icalc.results.CONFIGURATION_DESCRIPTION' | translate }}
+                </div>
+              </div>
+
+              <!-- SCC display mode -->
+              <div *ngIf="editSectionName !== 'scc'" class="kopla-table__row kopla-table__row--first flex">
+                <div
+                  class="kopla-table__cell scc-primary-cell"
+                  *ngIf="selectedSingleCableCalculation.calculationFactor"
+                >
+                  <mat-icon
+                    class="override"
+                    [matTooltip]="'icalc.results.SCC_CALC_FACTOR_VALUE_IS_OVERRIDDEN' | translate"
+                    >info</mat-icon
+                  >
+                  <div class="align-vertically" dataCy="assignment-calculation-factor">
+                    {{ selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString }}
+                  </div>
+                </div>
+                <div
+                  class="kopla-table__cell scc-primary-cell"
+                  *ngIf="!selectedSingleCableCalculation.calculationFactor"
+                >
+                  <div class="align-vertically">
+                    {{ 'icalc.results.NOT_APPLICABLE' | translate }}
+                  </div>
+                </div>
+                <div
+                  class="kopla-table__cell scc-primary-cell config-description"
+                  *ngIf="selectedProcessResult?.configurationReference.description"
+                >
+                  <div class="align-vertically" dataCy="configuration-description">
+                    {{ selectedProcessResult?.configurationReference.description }}
+                  </div>
+                </div>
+                <div
+                  class="kopla-table__cell scc-primary-cell"
+                  *ngIf="!selectedProcessResult?.configurationReference.description"
+                >
+                  <div class="align-vertically">
+                    {{ 'icalc.results.NOT_APPLICABLE' | translate }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- SCC edit mode -->
+              <div *ngIf="editSectionName === 'scc'" class="kopla-table__row kopla-table__row--first">
+                <form [formGroup]="sccForm.form">
+                  <formly-form
+                    [model]="sccForm.model"
+                    [fields]="sccForm.fields"
+                    [options]="sccForm.options"
+                    [form]="sccForm.form"
+                  ></formly-form>
+                </form>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- CHAINFLEX -->
+        <div class="result-box" dataCy="configuration-result-box">
+          <div class="info-part">
+            <div class="kopla-font-subtitle-2 head-line">{{ 'icalc.results.CHAINFLEX' | translate }}</div>
+          </div>
+          <kopla-info *ngIf="!selectedProcessResult.chainflex; else chainflexInformation">
+            {{ 'icalc.results.NO_CHAINFLEX_FOUND' | translate }}
+          </kopla-info>
+
+          <ng-template #chainflexInformation>
+            <div class="kopla-table kopla-table--10">
+              <div class="kopla-table__header">
+                <div class="kopla-table__cell primary-cell">
+                  {{ 'icalc.chainflex.TABLE-PART-NUMBER' | translate }}
+                </div>
+                <div class="kopla-table__cell description-chainflex">
+                  {{ 'icalc.chainflex.TABLE-DESCRIPTION' | translate }}
+                </div>
+                <!-- float right -->
+                <div class="kopla-table__cell selling-price">
+                  {{ 'icalc.results.SELLING-PRICE' | translate }}
+                </div>
+                <div class="kopla-table__cell length">{{ 'icalc.results.LENGTH' | translate }}</div>
+                <div class="kopla-table__cell selling-price-per-unit">
+                  {{ 'icalc.results.SELLING-PRICE-PER-UNIT-CF' | translate }}
+                </div>
+                <div class="kopla-table__cell calc-factor">
+                  {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+                </div>
+                <div class="kopla-table__cell discount info-i">
+                  <div [matTooltip]="'icalc.results.DISCOUNT-INFO-CF' | translate" matTooltipPosition="above">
+                    {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+                  </div>
+                </div>
+                <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-M' | translate }}</div>
+              </div>
+
+              <div class="kopla-table__row kopla-table__row--first">
+                <div class="kopla-table__cell primary-cell" dataCy="chainflex-part-number">
+                  {{ selectedProcessResult.chainflex.partNumber }}
+                </div>
+                <div class="kopla-table__cell description-chainflex">
+                  {{ selectedProcessResult.chainflex.description | translateGerman }}
+                </div>
+                <!-- float right -->
+                <div class="kopla-table__cell selling-price" dataCY="chainflex-selling-price">
+                  {{ selectedProcessResult.chainflex.sellingPrice | convertPrice }}
+                </div>
+                <div class="kopla-table__cell length">
+                  {{ selectedProcessResult.chainflexLength | convertDecimalToDeString }}
+                  m
+                </div>
+                <div class="kopla-table__cell selling-price-per-unit">
+                  {{ selectedProcessResult.chainflex.sellingPricePerUnit | convertPrice }}
+                </div>
+                <div class="kopla-table__cell calc-factor">
+                  <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+                    selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+                  }}</ng-container>
+                  <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+                    selectedCalculationItem.calculationFactor | convertDecimalToDeString
+                  }}</ng-container>
+                </div>
+                <div class="kopla-table__cell discount">
+                  {{ selectedProcessResult.discounts.chainflexDiscount }}
+                </div>
+                <div class="kopla-table__cell price">
+                  {{ selectedProcessResult.chainflex?.price?.germanListPrice | convertPrice }}
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- LEFT CONNECTOR -->
+        <div class="result-box" dataCy="left-connector-result-box">
+          <div class="info-part">
+            <div class="kopla-font-subtitle-2 head-line">
+              {{ 'icalc.results.CONNECTOR_LIST' | translate }}: {{ 'icalc.results.LEFT_CONNECTOR' | translate }}
+            </div>
+          </div>
+
+          <kopla-info
+            *ngIf="
+              !(selectedProcessResult.leftMat017ItemList && selectedProcessResult.leftMat017ItemList.length > 0);
+              else leftMatListData
+            "
+          >
+            {{ 'icalc.results.NO_MAT-ARTICLES_FOUND' | translate }}
+          </kopla-info>
+
+          <ng-template #leftMatListData>
+            <div class="kopla-table kopla-table--10">
+              <div class="kopla-table__header">
+                <div class="kopla-table__cell primary-cell">{{ 'icalc.results.MATNUMBER' | translate }}</div>
+                <div class="kopla-table__cell description">{{ 'icalc.results.BEZ_1' | translate }}</div>
+                <div class="kopla-table__cell description">{{ 'icalc.results.BEZ_2' | translate }}</div>
+                <!-- float right -->
+                <div class="kopla-table__cell selling-price">
+                  {{ 'icalc.results.SELLING-PRICE' | translate }}
+                </div>
+                <div class="kopla-table__cell quantity">{{ 'icalc.results.QUANTITY' | translate }}</div>
+                <div class="kopla-table__cell selling-price-per-unit">
+                  {{ 'icalc.results.SELLING-PRICE-PER-UNIT-MAT017' | translate }}
+                </div>
+                <div class="kopla-table__cell calc-factor">
+                  {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+                </div>
+                <div class="kopla-table__cell discount info-i">
+                  <div [matTooltip]="'icalc.results.DISCOUNT-INFO-MAT017' | translate" matTooltipPosition="above">
+                    {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+                  </div>
+                </div>
+                <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-PIECE' | translate }}</div>
+              </div>
+
+              <div
+                *ngFor="let item of selectedProcessResult.leftMat017ItemList; let isFirst = first"
+                class="kopla-table__row"
+                [ngClass]="{ 'kopla-table__row--first': isFirst }"
+              >
+                <div class="kopla-table__cell primary-cell" dataCy="left-connector-mat-number">
+                  {{ item.matNumber }}
+                </div>
+                <div class="kopla-table__cell description">{{ item.itemDescription1 }}</div>
+                <div class="kopla-table__cell description">{{ item.itemDescription2 }}</div>
+                <!-- float right -->
+                <div class="kopla-table__cell selling-price" dataCy="mat-item-selling-price">
+                  {{ item.sellingPrice | convertPrice }}
+                </div>
+                <div class="kopla-table__cell quantity">{{ item.quantity | convertDecimalToDeString }}</div>
+                <div class="kopla-table__cell selling-price-per-unit">
+                  {{ item.sellingPricePerUnit | convertPrice }}
+                </div>
+                <div class="kopla-table__cell calc-factor">
+                  <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+                    selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+                  }}</ng-container>
+                  <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+                    selectedCalculationItem.calculationFactor | convertDecimalToDeString
+                  }}</ng-container>
+                </div>
+                <div class="kopla-table__cell discount">
+                  {{ selectedProcessResult.discounts.mat017ItemDiscount | convertToThreeDigits }}
+                </div>
+                <div class="kopla-table__cell price" dataCy="amountDividedByPriceUnit">
+                  {{ item.amountDividedByPriceUnit | convertPrice }}
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- RIGHT CONNECTOR -->
+        <div class="result-box" dataCy="right-connector-result-box">
+          <div class="info-part">
+            <div class="kopla-font-subtitle-2 head-line">
+              {{ 'icalc.results.CONNECTOR_LIST' | translate }}: {{ 'icalc.results.RIGHT_CONNECTOR' | translate }}
+            </div>
+          </div>
+
+          <kopla-info
+            *ngIf="
+              !(selectedProcessResult.rightMat017ItemList && selectedProcessResult.rightMat017ItemList.length > 0);
+              else rightMatListData
+            "
+          >
+            {{ 'icalc.results.NO_MAT-ARTICLES_FOUND' | translate }}
+          </kopla-info>
+
+          <ng-template #rightMatListData>
+            <div class="kopla-table kopla-table--10">
+              <div class="kopla-table__header">
+                <div class="kopla-table__cell primary-cell">{{ 'icalc.results.MATNUMBER' | translate }}</div>
+                <div class="kopla-table__cell description">{{ 'icalc.results.BEZ_1' | translate }}</div>
+                <div class="kopla-table__cell description">{{ 'icalc.results.BEZ_2' | translate }}</div>
+                <!-- float right -->
+                <div class="kopla-table__cell selling-price">
+                  {{ 'icalc.results.SELLING-PRICE' | translate }}
+                </div>
+                <div class="kopla-table__cell quantity">{{ 'icalc.results.QUANTITY' | translate }}</div>
+                <div class="kopla-table__cell selling-price-per-unit">
+                  {{ 'icalc.results.SELLING-PRICE-PER-UNIT-MAT017' | translate }}
+                </div>
+                <div class="kopla-table__cell calc-factor">
+                  {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+                </div>
+                <div class="kopla-table__cell discount info-i">
+                  <div [matTooltip]="'icalc.results.DISCOUNT-INFO-MAT017' | translate" matTooltipPosition="above">
+                    {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+                  </div>
+                </div>
+                <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-PIECE' | translate }}</div>
+              </div>
+
+              <div
+                *ngFor="let item of selectedProcessResult.rightMat017ItemList; let isFirst = first"
+                class="kopla-table__row"
+                [ngClass]="{ 'kopla-table__row--first': isFirst }"
+              >
+                <div class="kopla-table__cell primary-cell" dataCy="right-connector-mat-number">
+                  {{ item.matNumber }}
+                </div>
+                <div class="kopla-table__cell description">{{ item.itemDescription1 }}</div>
+                <div class="kopla-table__cell description">{{ item.itemDescription2 }}</div>
+                <!-- float right -->
+                <div class="kopla-table__cell selling-price">{{ item.sellingPrice | convertPrice }}</div>
+                <div class="kopla-table__cell quantity">{{ item.quantity | convertDecimalToDeString }}</div>
+                <div class="kopla-table__cell selling-price-per-unit">
+                  {{ item.sellingPricePerUnit | convertPrice }}
+                </div>
+                <div class="kopla-table__cell calc-factor">
+                  <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+                    selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+                  }}</ng-container>
+                  <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+                    selectedCalculationItem.calculationFactor | convertDecimalToDeString
+                  }}</ng-container>
+                </div>
+                <div class="kopla-table__cell discount">
+                  {{ selectedProcessResult.discounts.mat017ItemDiscount | convertToThreeDigits }}
+                </div>
+                <div class="kopla-table__cell price">{{ item.amountDividedByPriceUnit | convertPrice }}</div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- COMMERCIAL WORK STEPS -->
+        <div class="result-box" dataCy="commercial-steps-result-box">
+          <div class="info-part">
+            <div class="kopla-font-subtitle-2 head-line">
+              {{ 'icalc.results.COMMERCIAL_WORK_STEPS' | translate }}
+            </div>
+            <button
+              [disabled]="editSectionName !== null || isLocked"
+              *ngIf="editSectionName !== workStepCategory.commercial"
+              class="kopla-mat-button--small"
+              color="primary"
+              mat-button
+              (click)="onEditWorkSteps(selectedProcessResult.configurationReference.sccId, workStepCategory.commercial)"
+              dataCy="edit-commercial-work-steps-button"
+            >
+              {{ 'icalc.results.EDIT' | translate }}
+            </button>
+            <div
+              *ngIf="
+                currentlyEditedWorkStepsSccId === selectedProcessResult.configurationReference.sccId &&
+                editSectionName === workStepCategory.commercial
+              "
+              class="wrapper"
+            >
+              <button
+                class="kopla-mat-button--small"
+                color="primary"
+                mat-button
+                [disabled]="
+                  getFormGroupById(selectedProcessResult.configurationReference.sccId).invalid ||
+                  getFormGroupById(selectedProcessResult.configurationReference.sccId).pristine
+                "
+                (click)="submitWorkStepsForm(selectedProcessResult.configurationReference.sccId)"
+              >
+                {{ 'icalc.results.SAVE' | translate }}
+              </button>
+              <button
+                class="kopla-mat-button--small"
+                color="primary"
+                *ngIf="commercialWorkStepOverrides | hasKeys"
+                mat-button
+                [matTooltip]="'icalc.results.CLICK_TO_RESET_ALL' | translate"
+                (click)="
+                  onResetAllWorkStepQuantities(
+                    selectedProcessResult.configurationReference.sccId,
+                    workStepCategory.commercial
+                  )
+                "
+              >
+                <mat-icon>replay</mat-icon>
+              </button>
+              <button class="kopla-mat-button--small" color="primary" mat-button (click)="onCancelWorkStepsEdit()">
+                {{ 'icalc.results.CANCEL' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <kopla-info *ngIf="!(commercialWorkSteps && commercialWorkSteps.length > 0); else commercialWorkStepData">
+            {{ 'icalc.results.NO_WORK-STEPS_FOUND' | translate }}
+          </kopla-info>
+
+          <ng-template #commercialWorkStepData>
+            <div class="kopla-table kopla-table--10">
+              <!-- WorkSteps display mode -->
+              <div *ngIf="editSectionName !== workStepCategory.commercial">
+                <div class="kopla-table__header">
+                  <div class="kopla-table__cell work-step info-i">
+                    <div
+                      [matTooltip]="'icalc.results.COMMERCIAL_WORK_STEPS-INFO' | translate"
+                      matTooltipPosition="left"
+                    >
+                      {{ 'icalc.results.WORK_STEP' | translate }}
+                    </div>
+                  </div>
+                  <!-- float right -->
+                  <div class="kopla-table__cell selling-price">{{ 'icalc.results.SELLING-PRICE' | translate }}</div>
+                  <div class="kopla-table__cell quantity">{{ 'icalc.results.QUANTITY' | translate }}</div>
+                  <div class="kopla-table__cell selling-price-per-unit">
+                    {{ 'icalc.results.SELLING-PRICE-PER-UNIT-STEP' | translate }}
+                  </div>
+                  <div class="kopla-table__cell calc-factor">
+                    {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+                  </div>
+                  <div class="kopla-table__cell discount info-i">
+                    <div [matTooltip]="'icalc.results.DISCOUNT-INFO-WORK-STEPS' | translate" matTooltipPosition="above">
+                      {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+                    </div>
+                  </div>
+                  <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-STEP' | translate }}</div>
+                </div>
+
+                <div
+                  *ngFor="let commercialWorkStep of commercialWorkSteps; let isFirst = first"
+                  class="kopla-table__row"
+                  [ngClass]="{ 'kopla-table__row--first': isFirst }"
+                >
+                  <div class="kopla-table__cell work-step">
+                    {{ 'icalc.results.' + commercialWorkStep.name | translate }}
+                  </div>
+                  <!-- float right -->
+                  <div class="kopla-table__cell selling-price">
+                    {{ commercialWorkStep.sellingPrice | convertPrice }}
+                  </div>
+                  <div class="kopla-table__cell quantity">
+                    <mat-icon
+                      class="quantity-override-icon"
+                      [matTooltip]="'icalc.results.VALUE_IS_OVERRIDDEN' | translate"
+                      *ngIf="commercialWorkStep.name | workStepHasOverride: commercialWorkStepOverrides"
+                    >
+                      info
+                    </mat-icon>
+                    <span>{{ commercialWorkStep.quantity | convertDecimalToDeString }}</span>
+                  </div>
+                  <div
+                    class="kopla-table__cell selling-price-per-unit"
+                    dataCy="commercial-work-step-selling-price-per-unit"
+                  >
+                    {{ commercialWorkStep.sellingPricePerUnit | convertPrice }}
+                  </div>
+                  <div class="kopla-table__cell calc-factor">
+                    <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+                      selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+                    }}</ng-container>
+                    <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+                      selectedCalculationItem.calculationFactor | convertDecimalToDeString
+                    }}</ng-container>
+                  </div>
+                  <div class="kopla-table__cell discount">
+                    {{ selectedProcessResult.discounts.workStepDiscount | convertDecimalToDeString }}
+                  </div>
+                  <div class="kopla-table__cell price" dataCy="commercial-work-step-selling-price-per-unit">
+                    {{ commercialWorkStep.price | convertPrice }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- COMMERCIAL_WORK_STEPS_EDIT_MODE -->
+              <div
+                *ngIf="
+                  currentlyEditedWorkStepsSccId === selectedProcessResult.configurationReference.sccId &&
+                  editSectionName === workStepCategory.commercial
+                "
+              >
+                <form [formGroup]="getFormGroupById(selectedProcessResult.configurationReference.sccId)">
+                  <ng-container
+                    *ngTemplateOutlet="
+                      commercialWorkStepsEditMode;
+                      context: {
+                        formGroup: getFormGroupById(selectedProcessResult.configurationReference.sccId)
+                      }
+                    "
+                  ></ng-container>
+                </form>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- TECHNICAL WORK STEPS -->
+        <div class="result-box" dataCy="technical-steps-result-box">
+          <div class="info-part">
+            <div class="kopla-font-subtitle-2 head-line">
+              {{ 'icalc.results.TECHNICAL_WORK_STEPS' | translate }}
+            </div>
+            <button
+              [disabled]="editSectionName !== null || isLocked"
+              *ngIf="editSectionName !== workStepCategory.technical"
+              class="kopla-mat-button--small"
+              color="primary"
+              mat-button
+              (click)="onEditWorkSteps(selectedProcessResult.configurationReference.sccId, workStepCategory.technical)"
+              dataCy="edit-technical-work-steps-button"
+            >
+              {{ 'icalc.results.EDIT' | translate }}
+            </button>
+            <div
+              *ngIf="
+                currentlyEditedWorkStepsSccId === selectedProcessResult.configurationReference.sccId &&
+                editSectionName === workStepCategory.technical
+              "
+              class="wrapper"
+            >
+              <button
+                class="kopla-mat-button--small"
+                color="primary"
+                mat-button
+                [disabled]="
+                  getFormGroupById(selectedProcessResult.configurationReference.sccId).invalid ||
+                  getFormGroupById(selectedProcessResult.configurationReference.sccId).pristine
+                "
+                (click)="submitWorkStepsForm(selectedProcessResult.configurationReference.sccId)"
+              >
+                {{ 'icalc.results.SAVE' | translate }}
+              </button>
+              <button
+                class="kopla-mat-button--small"
+                color="primary"
+                *ngIf="technicalWorkStepOverrides | hasKeys"
+                mat-button
+                [matTooltip]="'icalc.results.CLICK_TO_RESET_ALL' | translate"
+                (click)="
+                  onResetAllWorkStepQuantities(
+                    selectedProcessResult.configurationReference.sccId,
+                    workStepCategory.technical
+                  )
+                "
+              >
+                <mat-icon>replay</mat-icon>
+              </button>
+              <button class="kopla-mat-button--small" color="primary" mat-button (click)="onCancelWorkStepsEdit()">
+                {{ 'icalc.results.CANCEL' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <formly-group [formGroup]="workStepSetSelectForm">
+            <mat-form-field class="technical-work-step-select-form">
+              <mat-label>
+                {{ 'icalc.results.SET_OF_WORK_STEPS' | translate }}
+              </mat-label>
+              <mat-select formControlName="workStepSet" dataCy="technical-steps-set-select">
+                <mat-option [value]="workStepSet.standard">
+                  {{ 'icalc.results.STANDARD_WORK_STEPS' | translate }}
+                </mat-option>
+                <mat-option [value]="workStepSet.driveCliq">
+                  {{ 'icalc.results.DRIVE_CLIQ_WORK_STEPS' | translate }}
+                </mat-option>
+                <mat-option [value]="workStepSet.machineLine">
+                  {{ 'icalc.results.MACHINE_LINE_WORK_STEPS' | translate }}
+                </mat-option>
+                <mat-option [value]="workStepSet.ethernet">
+                  {{ 'icalc.results.ETHERNET_WORK_STEPS' | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </formly-group>
+
+          <kopla-info *ngIf="!(technicalWorkSteps && technicalWorkSteps.length > 0); else technicalWorkStepData">
+            {{ 'icalc.results.NO_WORK-STEPS_FOUND' | translate }}
+          </kopla-info>
+
+          <ng-template #technicalWorkStepData>
+            <div class="kopla-table kopla-table--10">
+              <!-- WorkSteps display mode -->
+              <div *ngIf="editSectionName !== workStepCategory.technical">
+                <div class="kopla-table__header">
+                  <div class="kopla-table__cell work-step info-i">
+                    <div [matTooltip]="'icalc.results.TECHNICAL_WORK_STEPS-INFO' | translate" matTooltipPosition="left">
+                      {{ 'icalc.results.WORK_STEP' | translate }}
+                    </div>
+                  </div>
+                  <!-- float right -->
+                  <div class="kopla-table__cell selling-price">{{ 'icalc.results.SELLING-PRICE' | translate }}</div>
+                  <div class="kopla-table__cell quantity">{{ 'icalc.results.QUANTITY' | translate }}</div>
+                  <div class="kopla-table__cell selling-price-per-unit">
+                    {{ 'icalc.results.SELLING-PRICE-PER-UNIT-STEP' | translate }}
+                  </div>
+                  <div class="kopla-table__cell calc-factor">
+                    {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+                  </div>
+                  <div class="kopla-table__cell discount info-i">
+                    <div [matTooltip]="'icalc.results.DISCOUNT-INFO-WORK-STEPS' | translate" matTooltipPosition="above">
+                      {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+                    </div>
+                  </div>
+                  <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-STEP' | translate }}</div>
+                </div>
+
+                <div
+                  class="kopla-table__row"
+                  *ngFor="let technicalWorkStep of technicalWorkSteps; let isFirst = first"
+                  [ngClass]="{ 'kopla-table__row--first': isFirst }"
+                >
+                  <ng-container
+                    *ngIf="technicalWorkStep.name | shouldHighlightWorkStepName: currentWorkStepSet as highlightInfo"
+                  >
+                    <div
+                      *ngIf="highlightInfo.highlighted; else workStepNameNotHighlighted"
+                      class="kopla-table__cell work-step"
+                      [ngClass]="{ highlighted: highlightInfo.highlighted }"
+                      [matTooltip]="highlightInfo.text"
+                      matTooltipPosition="left"
+                    >
+                      {{ 'icalc.results.' + technicalWorkStep.name | translate }}
+                    </div>
+                  </ng-container>
+                  <ng-template #workStepNameNotHighlighted>
+                    <div class="kopla-table__cell work-step">
+                      {{ 'icalc.results.' + technicalWorkStep.name | translate }}
+                    </div>
+                  </ng-template>
+                  <!-- float right -->
+                  <div class="kopla-table__cell selling-price">
+                    {{ technicalWorkStep.sellingPrice | convertPrice }}
+                  </div>
+                  <div class="kopla-table__cell quantity">
+                    <mat-icon
+                      class="quantity-override-icon"
+                      [matTooltip]="'icalc.results.VALUE_IS_OVERRIDDEN' | translate"
+                      *ngIf="technicalWorkStep.name | workStepHasOverride: technicalWorkStepOverrides"
+                      >info</mat-icon
+                    >
+                    <span>{{ technicalWorkStep.quantity | convertDecimalToDeString }}</span>
+                  </div>
+                  <div class="kopla-table__cell selling-price-per-unit">
+                    {{ technicalWorkStep.sellingPricePerUnit | convertPrice }}
+                  </div>
+                  <div class="kopla-table__cell calc-factor">
+                    <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+                      selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+                    }}</ng-container>
+                    <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+                      selectedCalculationItem.calculationFactor | convertDecimalToDeString
+                    }}</ng-container>
+                  </div>
+                  <div class="kopla-table__cell discount">
+                    {{ selectedProcessResult.discounts.workStepDiscount | convertDecimalToDeString }}
+                  </div>
+                  <div class="kopla-table__cell price">{{ technicalWorkStep.price | convertPrice }}</div>
+                </div>
+              </div>
+
+              <!-- TECHNICAL_WORK_STEPS_EDIT_MODE -->
+              <div
+                *ngIf="
+                  currentlyEditedWorkStepsSccId === selectedProcessResult.configurationReference.sccId &&
+                  editSectionName === workStepCategory.technical
+                "
+              >
+                <form [formGroup]="getFormGroupById(selectedProcessResult.configurationReference.sccId)">
+                  <ng-container
+                    *ngTemplateOutlet="
+                      technicalWorkStepsEditMode;
+                      context: {
+                        formGroup: getFormGroupById(selectedProcessResult.configurationReference.sccId)
+                      }
+                    "
+                  ></ng-container>
+                </form>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="configuration-price" dataCy="configuration-price">
+          {{ 'icalc.results.configuration-price' | translate }}: {{ selectedProcessResult.lumpSum | convertPrice }}
+        </div>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+
+  <!-- COMMERCIAL_WORK_STEPS EDIT MODE TEMPLATE -->
+  <ng-template #commercialWorkStepsEditMode let-formGroup="formGroup">
+    <div class="kopla-table__header">
+      <div class="kopla-table__cell work-step info-i">
+        <div [matTooltip]="'icalc.results.COMMERCIAL_WORK_STEPS-INFO' | translate" matTooltipPosition="left">
+          {{ 'icalc.results.WORK_STEP' | translate }}
+        </div>
+      </div>
+      <!-- float right -->
+      <div class="kopla-table__cell selling-price">{{ 'icalc.results.SELLING-PRICE' | translate }}</div>
+      <div class="kopla-table__cell quantity">{{ 'icalc.results.QUANTITY' | translate }}</div>
+      <div class="kopla-table__cell selling-price-per-unit">
+        {{ 'icalc.results.SELLING-PRICE-PER-UNIT-STEP' | translate }}
+      </div>
+      <div class="kopla-table__cell calc-factor">
+        {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+      </div>
+      <div class="kopla-table__cell discount info-i">
+        <div [matTooltip]="'icalc.results.DISCOUNT-INFO-WORK-STEPS' | translate" matTooltipPosition="above">
+          {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+        </div>
+      </div>
+      <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-STEP' | translate }}</div>
+    </div>
+
+    <div
+      [formGroup]="formGroup"
+      *ngFor="let commercialWorkStep of commercialWorkSteps; let isFirst = first"
+      class="kopla-table__row"
+      [ngClass]="{ 'kopla-table__row--first': isFirst }"
+    >
+      <div class="kopla-table__cell work-step">{{ 'icalc.results.' + commercialWorkStep.name | translate }}</div>
+      <!-- float right -->
+      <div class="kopla-table__cell selling-price">{{ commercialWorkStep.sellingPrice | convertPrice }}</div>
+      <div class="kopla-table__cell quantity">
+        <mat-icon
+          class="quantity-override-icon"
+          [matTooltip]="'icalc.results.VALUE_IS_OVERRIDDEN' | translate"
+          *ngIf="commercialWorkStep.name | workStepHasOverride: commercialWorkStepOverrides"
+          >info
+        </mat-icon>
+        <mat-icon
+          class="quantity-override-icon reset"
+          [matTooltip]="'icalc.results.CLICK_TO_RESET' | translate"
+          (click)="onResetWorkStepQuantity(selectedProcessResult.configurationReference.sccId, commercialWorkStep.name)"
+          *ngIf="commercialWorkStep.name | workStepHasOverride: commercialWorkStepOverrides"
+        >
+          replay
+        </mat-icon>
+        <input
+          class="amount-input"
+          icalcDecimalDigitInput
+          [formControlName]="commercialWorkStep.name"
+          [value]="commercialWorkStep.quantity"
+        />
+      </div>
+      <div class="kopla-table__cell selling-price-per-unit">
+        {{ commercialWorkStep.sellingPricePerUnit | convertPrice }}
+      </div>
+      <div class="kopla-table__cell calc-factor">
+        <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+          selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+        }}</ng-container>
+        <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+          selectedCalculationItem.calculationFactor | convertDecimalToDeString
+        }}</ng-container>
+      </div>
+      <div class="kopla-table__cell discount">
+        {{ selectedProcessResult.discounts.workStepDiscount | convertDecimalToDeString }}
+      </div>
+      <div class="kopla-table__cell price">{{ commercialWorkStep.price | convertPrice }}</div>
+    </div>
+  </ng-template>
+
+  <!-- TECHNICAL_WORK_STEPS EDIT MODE TEMPLATE -->
+  <ng-template #technicalWorkStepsEditMode let-formGroup="formGroup">
+    <div class="kopla-table__header">
+      <div class="kopla-table__cell work-step info-i">
+        <div [matTooltip]="'icalc.results.TECHNICAL_WORK_STEPS-INFO' | translate" matTooltipPosition="left">
+          {{ 'icalc.results.WORK_STEP' | translate }}
+        </div>
+      </div>
+      <!-- float right -->
+      <div class="kopla-table__cell selling-price">{{ 'icalc.results.SELLING-PRICE' | translate }}</div>
+      <div class="kopla-table__cell quantity">{{ 'icalc.results.QUANTITY' | translate }}</div>
+      <div class="kopla-table__cell selling-price-per-unit">
+        {{ 'icalc.results.SELLING-PRICE-PER-UNIT-STEP' | translate }}
+      </div>
+      <div class="kopla-table__cell calc-factor">
+        {{ 'icalc.results.CALC_FACTOR-HEADER' | translate }}
+      </div>
+      <div class="kopla-table__cell discount info-i">
+        <div [matTooltip]="'icalc.results.DISCOUNT-INFO-WORK-STEPS' | translate" matTooltipPosition="above">
+          {{ 'icalc.results.DISCOUNT-HEADER' | translate }}
+        </div>
+      </div>
+      <div class="kopla-table__cell price">{{ 'icalc.results.PRICE-STEP' | translate }}</div>
+    </div>
+
+    <div
+      [formGroup]="formGroup"
+      *ngFor="let technicalWorkStep of technicalWorkSteps; let isFirst = first"
+      class="kopla-table__row"
+      [ngClass]="{ 'kopla-table__row--first': isFirst }"
+    >
+      <div class="kopla-table__cell work-step">{{ 'icalc.results.' + technicalWorkStep.name | translate }}</div>
+      <!-- float right -->
+      <div class="kopla-table__cell selling-price">{{ technicalWorkStep.sellingPrice | convertPrice }}</div>
+      <div class="kopla-table__cell quantity">
+        <mat-icon
+          class="quantity-override-icon"
+          [matTooltip]="'icalc.results.VALUE_IS_OVERRIDDEN' | translate"
+          *ngIf="technicalWorkStep.name | workStepHasOverride: technicalWorkStepOverrides"
+        >
+          info
+        </mat-icon>
+        <mat-icon
+          class="quantity-override-icon reset"
+          [matTooltip]="'icalc.results.CLICK_TO_RESET_OVERRIDDEN' | translate"
+          (click)="onResetWorkStepQuantity(selectedProcessResult.configurationReference.sccId, technicalWorkStep.name)"
+          *ngIf="technicalWorkStep.name | workStepHasOverride: technicalWorkStepOverrides"
+          >replay</mat-icon
+        >
+        <input
+          class="amount-input"
+          icalcDecimalDigitInput
+          [formControlName]="technicalWorkStep.name"
+          [value]="technicalWorkStep.quantity"
+        />
+      </div>
+      <div class="kopla-table__cell selling-price-per-unit">
+        {{ technicalWorkStep.sellingPricePerUnit | convertPrice }}
+      </div>
+      <div class="kopla-table__cell calc-factor">
+        <ng-container *ngIf="selectedSingleCableCalculation.calculationFactor">{{
+          selectedSingleCableCalculation.calculationFactor | convertDecimalToDeString
+        }}</ng-container>
+        <ng-container *ngIf="!selectedSingleCableCalculation.calculationFactor">{{
+          selectedCalculationItem.calculationFactor | convertDecimalToDeString
+        }}</ng-container>
+      </div>
+      <div class="kopla-table__cell discount">
+        {{ selectedProcessResult.discounts.workStepDiscount | convertDecimalToDeString }}
+      </div>
+      <div class="kopla-table__cell price">{{ technicalWorkStep.price | convertPrice }}</div>
+    </div>
+  </ng-template>
+
+  <!-- FOOTER -->
+  <icalc-cdk-portal [selectorId]="'footer-left-side'">
+    <button
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-button
+      *ngIf="previousStep$ | async as previousStep"
+      [routerLink]="[previousStep.route]"
+      dataCy="back-to-pin-assignment"
+    >
+      {{ 'icalc.results.' + previousStep.label | translate }}
+    </button>
+  </icalc-cdk-portal>
+
+  <icalc-cdk-portal [selectorId]="'footer-right-side'">
+    <ng-container *ngIf="isLocked$ | async; else notLocked">
+      <div class="options-wrapper">
+        <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+          <formly-form
+            [model]="footerActionButtons.model"
+            [fields]="footerActionButtons.fields"
+            [options]="footerActionButtons.options"
+            [form]="footerActionButtons.form"
+          ></formly-form>
+        </div>
+      </div>
+      <div class="buttons-wrapper">
+        <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="kopla-mat-button--small"
+            dataCy="open-remove-assignment-dialog"
+            disabled
+          >
+            {{ 'icalc.meta_data.REMOVE_CONF' | translate }}
+          </button>
+        </div>
+        <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="kopla-mat-button--small"
+            disabled
+            dataCy="open-assign-config-dialog"
+          >
+            {{ 'icalc.meta_data.BUTTON_ASSIGN_CONF' | translate }}
+          </button>
+        </div>
+        <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+          <button
+            class="kopla-mat-button--small"
+            color="primary"
+            mat-stroked-button
+            [disabled]="true"
+            dataCy="open-start-new-config-button"
+          >
+            {{ 'icalc.results.BUTTON_START_NEW_CONF' | translate }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #notLocked>
+      <div class="options-wrapper">
+        <formly-form
+          [model]="footerActionButtons.model"
+          [fields]="footerActionButtons.fields"
+          [options]="footerActionButtons.options"
+          [form]="footerActionButtons.form"
+        ></formly-form>
+      </div>
+      <div class="buttons-wrapper">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="kopla-mat-button--small"
+          dataCy="remove-link-between-config-and-calc-button"
+          (click)="openRemoveLinkBetweenConfigurationAndCalculationDialog()"
+        >
+          {{ 'icalc.meta_data.REMOVE_CONF' | translate }}
+        </button>
+        <button
+          mat-stroked-button
+          color="primary"
+          dataCy="assign-config-button"
+          class="kopla-mat-button--small"
+          (click)="assignConfiguration()"
+        >
+          {{ 'icalc.meta_data.BUTTON_ASSIGN_CONF' | translate }}
+        </button>
+        <button
+          mat-stroked-button
+          class="kopla-mat-button--small"
+          dataCy="reset-current-calc-and-config-button"
+          color="primary"
+          (click)="onStartNewConfiguration()"
+        >
+          {{ 'icalc.results.BUTTON_START_NEW_CONF' | translate }}
+        </button>
+      </div>
+    </ng-template>
+    <ng-container *ngIf="(excelNotDownloadable$ | async) === true; else enableExcel">
+      <div [matTooltip]="'icalc.results.EXCEL_EXPORT_NOT_POSSIBLE' | translate" matTooltipPosition="above">
+        <button
+          class="kopla-mat-button--small"
+          color="primary"
+          dataCy="disabled-download-excel"
+          mat-flat-button
+          disabled
+        >
+          {{ 'icalc.results.EXPORT-EXCEL-FILES' | translate }}
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #enableExcel>
+      <button
+        class="kopla-mat-button--small"
+        dataCy="open-download-excel-dialog"
+        color="primary"
+        mat-flat-button
+        (click)="openDownloadExcelDialog()"
+      >
+        {{ 'icalc.results.EXPORT-EXCEL-FILES' | translate }}
+      </button>
+    </ng-template>
+  </icalc-cdk-portal>
+
+  <!-- ERROR MESSAGE -->
+  <div class="error" *ngIf="processServerError$ | async as processServerError">
+    <h6 class="kopla-font-headline-6">{{ processServerError?.error?.statusCode }}</h6>
+    <ng-template #isArray>
+      <span class="kopla-font-subheading" *ngFor="let message of processServerError?.error?.message">
+        {{ message }}
+      </span>
+    </ng-template>
+    <span class="kopla-font-subheading" *ngIf="!processServerError?.error?.message | isArray; else isArray">
+      {{ processServerError?.error?.message }}
+    </span>
+  </div>
+</div>
+
+<!-- EXCEL DIALOG -->
+<ng-template #downloadExcelDialog>
+  <h1 mat-dialog-title>{{ 'icalc.results.EXPORT-EXCEL-FILES' | translate }}</h1>
+  <div mat-dialog-content>
+    <ng-container *ngIf="!!(isExcelFileDownloading$ | async); else excelFileNotDownloading">
+      <div class="is-downloading" dataCy="isDownloadingMatPlan">
+        <mat-progress-spinner mode="indeterminate" [diameter]="50" [strokeWidth]="4"></mat-progress-spinner>
+      </div>
+    </ng-container>
+    <ng-template #excelFileNotDownloading>
+      <div class="matplan-main-header">{{ 'icalc.results.DOWNLOAD-EXCEL-DIALOG-CONTENT' | translate }}</div>
+      <div class="matplan-copy-info">
+        <span><mat-icon>lock</mat-icon></span
+        ><span>{{ 'icalc.results.DOWNLOAD-EXCEL-SUB-DIALOG-CONTENT-1' | translate }}</span>
+      </div>
+      <div class="matplan-copy-info">
+        <span><mat-icon [ngStyle]="{ color: 'silver' }">no_encryption</mat-icon></span
+        ><span>{{ 'icalc.results.DOWNLOAD-EXCEL-SUB-DIALOG-CONTENT-2' | translate }}</span>
+      </div>
+    </ng-template>
+  </div>
+  <div mat-dialog-actions class="justify-content-between align-items-baseline no-wrap">
+    <button mat-button matDialogClose color="primary">
+      {{ 'icalc.results.CANCEL-DIALOG' | translate }}
+    </button>
+    <div class="align-excel-export-buttons">
+      <div>
+        <button
+          dataCy="export-calculation-excel"
+          color="primary"
+          mat-flat-button
+          (click)="onExportCalculationExcel()"
+          [disabled]="isExcelFileDownloading$ | async"
+        >
+          {{ 'icalc.results.download-calculation' | translate }}
+        </button>
+        <kopla-info
+          *ngIf="!isLocked"
+          [class.visibility-hidden]="selectedCalculationItem.calculationExcelDownloaded !== true || isLocked"
+          >{{ 'icalc.results.ALREADY-DOWNLOADED' | translate }}</kopla-info
+        >
+        <ng-container *ngIf="isLocked">
+          <div [matTooltip]="'icalc.results.DOWNLOAD-LOCKED' | translate" matTooltipPosition="above">
+            <kopla-info [class.visibility-hidden]="!isLocked">{{
+              'icalc.results.ALREADY-DOWNLOADED' | translate
+            }}</kopla-info>
+          </div>
+        </ng-container>
+      </div>
+      <div>
+        <div class="options-wrapper-nonresponsive">
+          <formly-form
+            [model]="matPlanDownloadOptionsButtons.model"
+            [fields]="matPlanDownloadOptionsButtons.fields"
+            [options]="matPlanDownloadOptionsButtons.options"
+            [form]="matPlanDownloadOptionsButtons.form"
+          ></formly-form>
+        </div>
+        <kopla-info
+          *ngIf="!isLocked"
+          [class.visibility-hidden]="selectedCalculationItem.productionPlanExcelDownloaded !== true || isLocked"
+          >{{ 'icalc.results.ALREADY-DOWNLOADED' | translate }}</kopla-info
+        >
+        <ng-container *ngIf="isLocked">
+          <div [matTooltip]="'icalc.results.DOWNLOAD-LOCKED' | translate" matTooltipPosition="above">
+            <kopla-info [class.visibility-hidden]="!isLocked">{{
+              'icalc.results.ALREADY-DOWNLOADED' | translate
+            }}</kopla-info>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- UPDATE CF DIALOG -->
+<ng-template #updateChainflexPricesDialog>
+  <h1 mat-dialog-title>{{ 'icalc.results.UPDATE-CHAINFLEX-PRICES_DIALOG-TITLE' | translate }}</h1>
+  <div mat-dialog-content>
+    <p>{{ 'icalc.results.UPDATE-CHAINFLEX-PRICES_DIALOG-SUBTITLE' | translate }}</p>
+
+    <div class="kopla-table kopla-table--6">
+      <div class="kopla-table__header">
+        <div class="kopla-table__cell config-column">
+          {{ 'icalc.results.CONFIGURATION' | translate }}
+        </div>
+        <div class="kopla-table__cell part-number">
+          {{ 'icalc.chainflex.TABLE-PART-NUMBER' | translate }}
+        </div>
+        <div class="kopla-table__cell cf-length">
+          {{ 'icalc.results.CHAINFLEX-LENGTH_PRICE-DEVIATIONS' | translate }}
+        </div>
+        <div class="kopla-table__cell batch-size">
+          {{ 'icalc.results.BATCH-SIZE_PRICE-DEVIATIONS' | translate }}
+        </div>
+        <!-- float right -->
+        <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+          {{ 'icalc.results.NEW-CF-PRICE' | translate }}
+        </div>
+        <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+          {{ 'icalc.results.OLD-CF-PRICE' | translate }}
+        </div>
+      </div>
+
+      <div
+        class="kopla-table__row"
+        *ngFor="let item of chainflexListWithNewPrices$ | async; let isFirst = first"
+        [ngClass]="{ 'kopla-table__row--first': isFirst }"
+      >
+        <div class="kopla-table__cell config-column font-black">
+          {{ item.configurationMatNumber }}
+        </div>
+        <div class="kopla-table__cell part-number font-black">
+          {{ item.partNumber }}
+        </div>
+        <div class="kopla-table__cell cf-length font-black">{{ item.chainflexLength }} m</div>
+        <div class="kopla-table__cell batch-size font-black">
+          {{ item.batchSize }}
+        </div>
+        <!-- float right -->
+        <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right font-black">
+          {{ item.newCFPrice | convertPrice }}
+        </div>
+        <div
+          class="kopla-table__cell text-right cf-price-deviation-cell-width float-right font-black"
+          dataCy="old-chainflex-price"
+        >
+          {{ item.oldCFPrice | convertPrice }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions align="center">
+    <div>
+      <button
+        matDialogClose
+        class="kopla-mat-button--small"
+        color="primary"
+        mat-stroked-button
+        dataCy="cancel-price-update-button"
+      >
+        {{ 'icalc.results.CANCEL-CF-UPDATE' | translate }}
+      </button>
+      <button
+        matDialogClose
+        class="kopla-mat-button--small"
+        color="primary"
+        mat-stroked-button
+        (click)="onUpdateChainflexPrices()"
+        dataCy="confirm-price-update-button"
+      >
+        {{ 'icalc.results.UPDATE-CHAINFLEX-PRICES_BUTTON' | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- NO NEW CF PRICE DIALOG -->
+<ng-template #removeChainflexCablesDialog>
+  <h1 mat-dialog-title>{{ 'icalc.results.REMOVE-CHAINFLEX-CABLES_DIALOG-TITLE' | translate }}</h1>
+  <div mat-dialog-content>
+    <p>{{ 'icalc.results.REMOVE-CHAINFLEX-CABLES_DIALOG-SUBTITLE' | translate }}</p>
+
+    <div class="kopla-table kopla-table--7">
+      <div class="kopla-table__header">
+        <div class="kopla-table__cell config-column">
+          {{ 'icalc.results.CONFIGURATION' | translate }}
+        </div>
+        <div class="kopla-table__cell part-number">
+          {{ 'icalc.chainflex.TABLE-PART-NUMBER' | translate }}
+        </div>
+        <div class="kopla-table__cell cf-length">
+          {{ 'icalc.results.CHAINFLEX-LENGTH_PRICE-DEVIATIONS' | translate }}
+        </div>
+        <div class="kopla-table__cell batch-size">
+          {{ 'icalc.results.BATCH-SIZE_PRICE-DEVIATIONS' | translate }}
+        </div>
+        <!-- float right -->
+        <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+          {{ 'icalc.results.REMOVE-CF-CHECKMARK' | translate }}
+        </div>
+        <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+          {{ 'icalc.results.NEW-CF-PRICE' | translate }}
+        </div>
+        <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+          {{ 'icalc.results.OLD-CF-PRICE' | translate }}
+        </div>
+      </div>
+
+      <div
+        [formGroup]="chainflexRemovalByMatNumberForm"
+        class="kopla-table__row"
+        *ngFor="let item of chainflexListWithNoPrices$ | async; let isFirst = first"
+        [ngClass]="{ 'kopla-table__row--first': isFirst }"
+      >
+        <ng-container *ngFor="let subitem of item.chainflexPriceDeviations; let isSubFirst = first; index as i">
+          <div class="kopla-table__cell config-column font-black">
+            <ng-container *ngIf="isSubFirst">
+              {{ subitem.configurationMatNumber }}
+            </ng-container>
+          </div>
+          <div class="kopla-table__cell part-number font-black" dataCy="chainflex-part-number-of-removed-price">
+            <ng-container *ngIf="isSubFirst">
+              {{ subitem.partNumber }}
+            </ng-container>
+          </div>
+          <div class="kopla-table__cell cf-length font-black">{{ subitem.chainflexLength }} m</div>
+          <div class="kopla-table__cell batch-size font-black">
+            {{ subitem.batchSize }}
+          </div>
+          <!-- float right -->
+          <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right">
+            <ng-container *ngIf="isSubFirst">
+              <mat-checkbox
+                color="primary"
+                [formControlName]="item.configurationMatNumber"
+                dataCy="select-for-price-removal-checkbox"
+              ></mat-checkbox>
+            </ng-container>
+          </div>
+          <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right font-red">
+            <ng-container *ngIf="isSubFirst">
+              {{ 'icalc.results.NOT-AVAILABLE' | translate }}
+            </ng-container>
+          </div>
+          <div class="kopla-table__cell text-right cf-price-deviation-cell-width float-right font-black">
+            <ng-container *ngIf="isSubFirst">{{ subitem.oldCFPrice | convertPrice }} </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions align="center">
+    <div>
+      <button
+        matDialogClose
+        class="kopla-mat-button--small"
+        color="primary"
+        mat-stroked-button
+        dataCy="cancel-price-removal-button"
+      >
+        {{ 'icalc.results.CANCEL-CF-UPDATE' | translate }}
+      </button>
+      <button
+        matDialogClose
+        class="kopla-mat-button--small"
+        color="primary"
+        [disabled]="!enableRemovalButton"
+        (click)="onRemoveChainflexCables()"
+        mat-stroked-button
+        dataCy="confirm-price-removal-button"
+      >
+        {{ 'icalc.results.REMOVE-OUTDATED-CF-CABLES_BUTTON' | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>

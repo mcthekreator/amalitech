@@ -1,0 +1,16 @@
+{
+  "name": "@igus/icalc-data-service",
+  "description": "The iCalc Data Service is a RESTful service which provides data for igus online tools",
+  "version": "2.8.0",
+  "license": "UNLICENSED",
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igusdev/icalc.git",
+    "directory": "apps/data-service"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.igusdev.igus.de/"
+  }
+}

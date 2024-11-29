@@ -1,0 +1,21 @@
+{
+  "header": {
+    "menu": {
+      "ADMIN_TITLE": {
+        "de": "Adminbereich",
+        "en": "Admin Dashboard",
+        "_info": "Admin Title"
+      },
+      "ADMIN_OPEN_DASHBOARD": {
+        "de": "Adminbereich anzeigen",
+        "en": "Open Admin Dashboard",
+        "_info": "Admin Open Dashboard Button"
+      },
+      "CHANGE_COOKIE_PREFERENCES": {
+        "de": "Cookie Einstellungen ändern",
+        "en": "Change cookie preferences",
+        "_info": "Admin Open Dashboard Button"
+      }
+    }
+  }
+}

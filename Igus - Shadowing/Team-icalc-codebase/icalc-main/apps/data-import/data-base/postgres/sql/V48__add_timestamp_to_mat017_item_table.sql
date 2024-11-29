@@ -1,0 +1,4 @@
+ALTER TABLE
+  mat017_item
+ADD
+  COLUMN modification_date timestamp DEFAULT CURRENT_TIMESTAMP(6) NOT NULL;

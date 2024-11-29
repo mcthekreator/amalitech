@@ -1,0 +1,70 @@
+services:
+  data-service:
+    build:
+      context: .
+      dockerfile: apps/data-service/Dockerfile-dev
+    container_name: data-service
+    environment:
+      POSTGRES_HOST: db
+    restart: unless-stopped
+    expose:
+      - 3000
+    ports:
+      - '3000:3000'
+    networks:
+      - postgres_icalc-dev-net
+    volumes:
+      - ./apps/data-service:/app/apps/data-service
+      - ./libs:/app/libs
+      - ./coverage:/app/coverage
+    healthcheck:
+      test: curl --fail http://localhost:3000/api || exit 1
+      interval: 10s
+      retries: 0
+      start_period: 20s
+      timeout: 2s
+
+  calculator:
+    build:
+      context: .
+      dockerfile: apps/calculator/Dockerfile
+    container_name: calculator
+    environment:
+      DATA_SERVICE_URL: http://data-service:3000/api
+    expose:
+      - 4200
+    ports:
+      - '4200:4200'
+    networks:
+      - postgres_icalc-dev-net
+    depends_on:
+      - data-service
+    volumes:
+      - ./apps/calculator:/app/apps/calculator
+      - ./dist:/app/dist
+      - ./libs:/app/libs
+
+  e2e:
+    build:
+      context: .
+      dockerfile: apps/calculator-e2e/Dockerfile
+    container_name: e2e
+    environment:
+      POSTGRES_HOST: db
+      DATA_SERVICE_URL: http://data-service:3000/api
+      BASE_URL: http://calculator:4200
+    networks:
+      - postgres_icalc-dev-net
+    depends_on:
+      - data-service
+      - calculator
+    volumes:
+      - ./apps/calculator:/app/apps/calculator
+      - ./apps/icalc-cli:/app/apps/icalc-cli
+      - ./apps/calculator-e2e:/app/apps/calculator-e2e
+      - ./dist:/app/dist
+      - ./libs:/app/libs
+
+networks:
+  postgres_icalc-dev-net:
+    external: true

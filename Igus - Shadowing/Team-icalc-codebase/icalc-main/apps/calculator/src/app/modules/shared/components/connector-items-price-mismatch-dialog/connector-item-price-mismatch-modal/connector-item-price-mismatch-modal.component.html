@@ -1,0 +1,29 @@
+<h2 matDialogTitle>
+  <p class="dialog-header" dataCy="price-mismatch-header">
+    {{ 'icalc.connector-mat017-items-price-mismatch-dialog.DIALOG_HEADER' | translate }}
+  </p>
+</h2>
+<mat-dialog-content>
+  <p class="kopla-font-body-2">
+    {{
+      (isFavorites
+        ? 'icalc.connector-mat017-items-price-mismatch-dialog.FAVORITE_DIALOG_MAIN_CONTENT'
+        : 'icalc.connector-mat017-items-price-mismatch-dialog.DIALOG_MAIN_CONTENT'
+      ) | translate : { items }
+    }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="justify-content-between">
+  <button mat-button class="kopla-mat-button--small" matDialogClose color="primary" dataCy="cancel-solve-dialog">
+    {{ 'icalc.connector-mat017-items-price-mismatch-dialog.PRIMARY_BUTTON_TEXT' | translate }}
+  </button>
+  <button
+    class="kopla-mat-button--small"
+    dataCy="add-mat017-item-and-update-other-side"
+    color="primary"
+    mat-flat-button
+    (click)="onActionSelect(secondaryButtonAction)"
+  >
+    {{ 'icalc.connector-mat017-items-price-mismatch-dialog.SECONDARY_BUTTON_TEXT' | translate }}
+  </button>
+</mat-dialog-actions>

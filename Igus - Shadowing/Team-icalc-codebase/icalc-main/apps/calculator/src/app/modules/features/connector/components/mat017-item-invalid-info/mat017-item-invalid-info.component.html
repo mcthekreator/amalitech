@@ -1,0 +1,16 @@
+<div *ngIf="!isLocked && hasInValidMat017Items" class="mat017-info-container">
+  <div class="mat017-invalid-info-box" *ngIf="hasInValidMat017Items">
+    <kopla-info>
+      {{ 'icalc.left-connector.INVALID_ITEM_IN_BOM_WARNING_SECTION_1' | translate }}
+      <ul>
+        <li *ngFor="let item of invalidMat017ItemsList">
+          <span [ngClass]="{ removed: item.itemStatus === itemStatusRemoved }">{{ item.matNumber }}</span>
+          <ng-container *ngIf="item.itemStatus === itemStatusRemoved">
+            ({{ 'icalc.connector.REMOVED_ITEM' | translate }})</ng-container
+          >
+        </li>
+      </ul>
+      {{ 'icalc.left-connector.INVALID_ITEM_IN_BOM_WARNING_SECTION_2' | translate }}
+    </kopla-info>
+  </div>
+</div>

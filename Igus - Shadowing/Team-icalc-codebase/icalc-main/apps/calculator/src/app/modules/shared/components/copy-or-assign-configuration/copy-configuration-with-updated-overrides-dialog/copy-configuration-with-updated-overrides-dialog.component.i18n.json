@@ -1,0 +1,31 @@
+{
+  "icalc": {
+    "copy_with_updated_prices_modal": {
+      "DIALOG_HEADER": {
+        "de": "Kopie mit veralteten oder neuen Preisen erzeugen",
+        "en": "Create copy with new or outdated prices",
+        "_info": "icalc.copy_with_updated_prices_modal.DIALOG_HEADER"
+      },
+      "DIALOG_SUB_HEADER": {
+        "de": "Die Konfiguration, die kopiert werden soll, enthält MAT017 Artikel mit veralteten Preisen. Die Kopie kann mit den alten Preisen oder den neuen Preisen angelegt werden.",
+        "en": "The configuration you want to copy has at least one MAT017 item with an outdated price. The copy can be created with the previously selected prices or with all MAT017 item prices updated",
+        "_info": "icalc.copy_with_updated_prices_modal.DIALOG_SUB_HEADER"
+      },
+      "CANCEL_BUTTON_TEXT": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.copy_with_updated_prices_modal.CANCEL_BUTTON_TEXT"
+      },
+      "COPY_WITH_OUTDATED_BUTTON_TEXT": {
+        "de": "Mit veralteten Preisen kopieren",
+        "en": "Copy with outdated prices",
+        "_info": "icalc.copy_with_updated_prices_modal.COPY_WITH_OUTDATED_BUTTON_TEXT"
+      },
+      "COPY_WITH_NEW_BUTTON_TEXT": {
+        "de": "Mit neuen Preisen kopieren",
+        "en": "Copy with new prices",
+        "_info": "icalc.copy_with_updated_prices_modal.COPY_WITH_NEW_BUTTON_TEXT"
+      }
+    }
+  }
+}

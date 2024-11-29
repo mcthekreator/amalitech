@@ -1,0 +1,41 @@
+{
+  "pipeline": {
+    "steps": {
+      "before_deployment": [
+        {
+          "command": "node ./apps/data-import/db-snapshot.js"
+        }
+      ]
+    }
+  },
+  "icalc": {
+    "packages": [".*"],
+    "node_modules": {
+      "deploy": "false"
+    },
+    "calculator": {
+      "type": "webapp"
+    },
+    "data-service": {
+      "pm2": {
+        "script": "main.js"
+      },
+      "runtime": "docker",
+      "docker": {
+        "image": "400535313706.dkr.ecr.eu-central-1.amazonaws.com/igus/icalc-data-service",
+        "ports": "3000:3000"
+      }
+    },
+    "data-import": {
+      "type": "data_importer",
+      "imports": {
+        "custom_tasks": [
+          {
+            "type": "pre",
+            "command": "bash ./apps/data-import/flyway-pipeline.sh"
+          }
+        ]
+      }
+    }
+  }
+}

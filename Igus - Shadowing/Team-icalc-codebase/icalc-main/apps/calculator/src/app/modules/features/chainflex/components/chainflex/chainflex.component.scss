@@ -1,0 +1,198 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$gray-50: kopla.get-color('gray', 50);
+$orange-50: kopla.get-color('orange', 50);
+$orange-100: kopla.get-color('orange', 100);
+$orange-500: kopla.get-color('orange', 500);
+$red-50: kopla.get-color('red', 50);
+$white: white;
+
+// cf-price-info-box
+$orange-300: kopla.get-color('orange', 300);
+$red-500: kopla.get-color('red', 500);
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .basic-data-container {
+    width: 640px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+
+    .headline {
+      line-height: 32px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    .sub-headline {
+      line-height: 30px;
+      font-weight: 400;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    .search-container {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 10px;
+
+      .search-input-container {
+        width: 640px;
+      }
+    }
+
+    .announcement-container {
+      width: 640px;
+      margin-top: 2px;
+    }
+
+    .announcement-orange {
+      background-color: $orange-50;
+    }
+
+    .announcement-red {
+      background-color: $red-50;
+    }
+  }
+
+  .kopla-info {
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .is-loading {
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .chainflex-table-container {
+    min-width: 900px;
+    overflow-y: auto;
+    margin: 0 auto;
+
+    display: flex;
+    flex-grow: 1;
+    &.locked {
+      overflow: hidden;
+    }
+
+    .spinner-container {
+      table mat-progress-spinner {
+        margin: 0 auto;
+        margin-top: 50px;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    height: 100px;
+    overflow-y: hidden;
+
+    .mat-mdc-header-cell {
+      padding-right: 10px;
+      padding-left: 5px;
+    }
+
+    tr {
+      cursor: pointer;
+
+      td {
+        padding-right: 10px;
+        padding-left: 5px;
+        max-width: 300px;
+
+        &.mat-mdc-cell {
+          border-bottom-color: $orange-500;
+        }
+      }
+      &.chainflex-row:not(.selected):not(.locked):hover {
+        background: $gray-50;
+      }
+
+      &.locked {
+        cursor: default;
+      }
+
+      &.selected {
+        background: $orange-100;
+      }
+    }
+
+    .image-cell {
+      background-color: $white;
+    }
+
+    .chainflex-image {
+      width: 180px;
+    }
+
+    .cropped {
+      width: 180px;
+      height: 60px;
+      overflow: hidden;
+
+      img {
+        margin: -30px 0 -30px 0;
+      }
+    }
+  }
+
+  .mat-mdc-paginator {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cf-price-info-box {
+    border: 3px solid $orange-300;
+    margin-bottom: 10px;
+
+    .price-not-available {
+      color: $red-500;
+    }
+  }
+}
+
+.chosen-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  .chosen-chainflex {
+    margin-top: 1.34375em;
+    margin-bottom: 16.5px;
+
+    mat-card {
+      display: flex;
+      flex-direction: row;
+      width: auto;
+      background-color: $orange-100;
+      align-items: center;
+      padding: 16px;
+
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .chosen-chainflex-length {
+    align-self: flex-end;
+
+    mat-form-field {
+      margin-top: 0;
+    }
+
+    ::ng-deep .mat-form-field-appearance-outline.white .mat-mdc-text-field-wrapper {
+      background-color: $white;
+    }
+  }
+}

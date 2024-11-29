@@ -1,0 +1,186 @@
+<div class="meta-data-container">
+  <mat-tab-group
+    [selectedIndex]="selectedTabIndex$ | async"
+    (selectedIndexChange)="onSelectedIndexChange($event)"
+    class="expanding-scrolling-mat-tab-group icalc-meta-data-mat-tab-group"
+    dataCy="meta-data-tab-group"
+  >
+    <!-- META DATA FORM TAB -->
+    <mat-tab
+      dataCy="mat-tab-meta-data"
+      bodyClass="meta-data-form"
+      label="{{
+        (createNewCalculation ? 'icalc.meta_data.TAB-HEADLINE-NEW' : 'icalc.meta_data.TAB-HEADLINE-EDIT') | translate
+      }}"
+    >
+      <icalc-meta-data-form
+        (startCalculationButtonDisabledEvent)="onButtonDisabled($event)"
+        (metaDataFormValueChanged)="onMetaDataFormValueChanged($event)"
+        [metaDataModelFromParent]="metaDataViewModel"
+        [selectedCalculationId]="selectedCalculationId"
+        [selectedConfigurationId]="selectedConfigurationId"
+        [createNewConfiguration]="createNewConfiguration"
+        [isDisplayed]="(selectedTabIndex$ | async) === 0"
+      ></icalc-meta-data-form>
+    </mat-tab>
+
+    <!-- CALCULATION TAB -->
+    <mat-tab
+      dataCy="mat-tab-calc-data"
+      bodyClass="filter-form-body"
+      label="{{ 'icalc.meta_data.TAB-HEADLINE-CALC-SEARCH' | translate }}"
+    >
+      <icalc-calculation-search
+        [selectedCalculationId]="selectedCalculationId"
+        [selectedIndexChange$]="selectedIndexChangeSubject.asObservable()"
+      ></icalc-calculation-search>
+    </mat-tab>
+
+    <!-- CONFIGURATION TAB -->
+    <mat-tab
+      dataCy="mat-tab-conf-data"
+      bodyClass="filter-form-body"
+      label="{{ 'icalc.meta_data.TAB-HEADLINE-Configuration-SEARCH' | translate }}"
+    >
+      <icalc-configuration-search
+        [selectedConfigurationId]="selectedConfigurationId"
+        (configurationSelected)="onConfigurationSelected($event)"
+        (resetSelectionEvent)="resetSelection()"
+        [selectedIndexChange$]="selectedIndexChangeSubject.asObservable()"
+      ></icalc-configuration-search>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<!-- FOOTER -->
+<icalc-cdk-portal [selectorId]="'footer-left-side'">
+  <button
+    mat-button
+    color="primary"
+    class="kopla-mat-button--small"
+    [disabled]="createNewCalculation"
+    (click)="resetFormView()"
+  >
+    {{ 'icalc.meta_data.CLOSE_CALCULATION' | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-right-side'" dataCy="footer-right-side">
+  <ng-container *ngIf="(isLocked$ | async) !== true; else lockedButtonsTemplate">
+    <div class="options-wrapper">
+      <formly-form
+        [model]="footerActionButtons.model"
+        [fields]="footerActionButtons.fields"
+        [options]="footerActionButtons.options"
+        [form]="footerActionButtons.form"
+      ></formly-form>
+    </div>
+    <div class="buttons-wrapper">
+      <button
+        mat-stroked-button
+        color="primary"
+        class="kopla-mat-button--small"
+        dataCy="open-remove-configuration-dialog"
+        [disabled]="createNewCalculation || tabIndex === 1 || tabIndex === 2"
+        (click)="openRemoveLinkBetweenConfigurationAndCalculationDialog()"
+      >
+        {{ 'icalc.meta_data.REMOVE_CONF' | translate }}
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        class="kopla-mat-button--small"
+        dataCy="open-assign-config-dialog"
+        [disabled]="createNewCalculation || tabIndex === 1 || tabIndex === 2"
+        (click)="assignConfiguration()"
+      >
+        {{ 'icalc.meta_data.BUTTON_ASSIGN_CONF' | translate }}
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        class="kopla-mat-button--small"
+        dataCy="clear-to-add-new-config"
+        [disabled]="createNewCalculation || tabIndex === 1 || tabIndex === 2"
+        (click)="startNewConfiguration()"
+      >
+        {{ 'icalc.meta_data.BUTTON_START_NEW_CONF' | translate }}
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #lockedButtonsTemplate>
+    <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+      <formly-form
+        [model]="footerActionButtons.model"
+        [fields]="footerActionButtons.fields"
+        [options]="footerActionButtons.options"
+        [form]="footerActionButtons.form"
+      ></formly-form>
+    </div>
+
+    <div class="buttons-wrapper">
+      <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+        <button mat-stroked-button color="primary" class="kopla-mat-button--small" disabled>
+          {{ 'icalc.meta_data.REMOVE_CONF' | translate }}
+        </button>
+      </div>
+      <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="kopla-mat-button--small"
+          dataCy="open-assign-config-dialog-disabled"
+          disabled
+        >
+          {{ 'icalc.meta_data.BUTTON_ASSIGN_CONF' | translate }}
+        </button>
+      </div>
+      <div [matTooltip]="'icalc.meta_data_form.LOCKED_INFO' | translate" matTooltipPosition="above">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="kopla-mat-button--small"
+          dataCy="clear-to-add-new-config-disabled"
+          disabled
+        >
+          {{ 'icalc.meta_data.BUTTON_START_NEW_CONF' | translate }}
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-container
+    *ngIf="
+      (selectedTabIndex$ | async) > 0 && createNewCalculation === false && createNewConfiguration === false;
+      else nextButtonTemplate
+    "
+  >
+    <button
+      class="kopla-mat-button--small"
+      dataCy="edit-calculation"
+      color="primary"
+      mat-flat-button
+      (click)="onSelectedIndexChange(0)"
+    >
+      {{ 'icalc.meta_data.TAB-HEADLINE-EDIT' | translate }}
+    </button>
+  </ng-container>
+  <ng-template #nextButtonTemplate>
+    <button
+      class="kopla-mat-button--small"
+      dataCy="start-calculation"
+      color="primary"
+      mat-flat-button
+      *ngIf="nextStep$ | async as nextStep"
+      (click)="startCalculation()"
+      [disabled]="buttonDisabled"
+      [routerLink]="[nextStep.route]"
+    >
+      {{
+        ((isLocked$ | async) ? 'icalc.meta_data.' + nextStep.label + '_LOCKED' : 'icalc.meta_data.' + nextStep.label)
+          | translate
+      }}
+    </button>
+  </ng-template>
+</icalc-cdk-portal>

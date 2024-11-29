@@ -1,0 +1,68 @@
+<kopla-header koplaMoveOnScroll [title]="'icalc.app.TITLE' | translate" [url]="homepageUrl">
+  <kopla-menu>
+    <kopla-menu-view [title]="'kopla.common.CONFIGURATION' | translate" [icon]="'build'" [id]="'configuration'">
+      <kopla-menu-button
+        [label]="'kopla.common.NEW_CONFIGURATION' | translate"
+        (actionFired)="loadNewConfig()"
+        [icon]="'&#xE863;'"
+      >
+      </kopla-menu-button>
+
+      <div id="ppms_cm_privacy_settings" data-editor-centralize="true" data-main-container="true" data-root="true">
+        <kopla-menu-button
+          id="ppms_cm_privacy_settings_button"
+          data-editor-centralize="true"
+          data-main-container="true"
+          data-root="true"
+          [label]="'header.menu.CHANGE_COOKIE_PREFERENCES' | translate"
+          (actionFired)="loadNewConfig()"
+          [icon]="'cookie'"
+        >
+        </kopla-menu-button>
+      </div>
+
+      <!-- <kopla-menu-culture-select></kopla-menu-culture-select> -->
+    </kopla-menu-view>
+    <kopla-menu-view [title]="'header.menu.ADMIN_TITLE' | translate" [icon]="'admin_panel_settings'" [id]="'admin'">
+      <kopla-menu-button
+        [label]="'header.menu.ADMIN_OPEN_DASHBOARD' | translate"
+        (actionFired)="openAdminDashboard()"
+        [icon]="'admin_panel_settings'"
+      >
+      </kopla-menu-button>
+    </kopla-menu-view>
+    <kopla-menu-button [label]="'icalc.app.LOGOUT' | translate" (actionFired)="onLogout()" [icon]="'settings'">
+    </kopla-menu-button>
+  </kopla-menu>
+  <kopla-menu-hamburger
+    [title]="'kopla.common.ACTIONS' | translate"
+    (menuIconClick)="trackMenuIconClick()"
+    (viewClick)="trackViewClick($event)"
+  >
+    <kopla-menu-view [title]="'kopla.common.CONFIGURATION' | translate" [icon]="'build'" [id]="'configuration'">
+      <kopla-menu-button
+        [label]="'kopla.common.NEW_CONFIGURATION' | translate"
+        (actionFired)="loadNewConfig()"
+        [icon]="'&#xE863;'"
+      >
+      </kopla-menu-button>
+
+      <!-- <kopla-menu-culture-select></kopla-menu-culture-select> -->
+    </kopla-menu-view>
+    <kopla-menu-button [label]="'icalc.app.LOGOUT' | translate" (actionFired)="onLogout()" [icon]="'settings'">
+    </kopla-menu-button>
+    <kopla-menu-view [title]="'header.menu.ADMIN_TITLE' | translate" [icon]="'admin_panel_settings'" [id]="'admin'">
+      <kopla-menu-button
+        [label]="'header.menu.ADMIN_OPEN_DASHBOARD' | translate"
+        (actionFired)="openAdminDashboard()"
+        [icon]="'admin_panel_settings'"
+      >
+      </kopla-menu-button>
+    </kopla-menu-view>
+  </kopla-menu-hamburger>
+</kopla-header>
+<kopla-culture-select
+  (cultureOpened)="cultureTrack('Open')"
+  (cultureSelected)="cultureTrack('Select')"
+  (cultureClosed)="cultureTrack('Close')"
+></kopla-culture-select>

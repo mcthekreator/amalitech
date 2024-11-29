@@ -1,0 +1,3 @@
+ALTER TABLE
+  mat017_item
+  ADD COLUMN manually_created BOOLEAN NOT NULL DEFAULT FALSE;

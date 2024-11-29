@@ -1,0 +1,1 @@
+CREATE INDEX "index_configuration_mat_number" ON "configuration_snapshot" ("configuration_mat_number");

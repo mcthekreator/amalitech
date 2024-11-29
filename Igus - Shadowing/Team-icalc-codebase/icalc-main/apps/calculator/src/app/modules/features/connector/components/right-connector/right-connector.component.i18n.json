@@ -1,0 +1,254 @@
+{
+  "icalc": {
+    "connector": {
+      "ITEM_LIST": { "de": "Stückliste", "en": "Item list", "_info": "connector.ITEM_LIST" },
+      "COPY_DATA": {
+        "de": "Stecker auf der anderen Seite spiegeln",
+        "en": "Copy connector to the other side",
+        "_info": "connector.COPY_DATA"
+      },
+      "INFO_UNAVAILABLE": {
+        "de": "nicht verfügbar",
+        "en": "not available",
+        "_info": "connector.INFO_UNAVAILABLE"
+      },
+      "REMOVED_ITEM": {
+        "de": "Artikel existiert nicht",
+        "en": "item does not exist",
+        "_info": "connector.REMOVED_ITEM"
+      },
+      "INFO_TEXT": {
+        "de": "Sicher? Dies wird die aktuelle Auswahl des Steckers auf der anderen Seite überschreiben.",
+        "en": "Are you sure? You will overwrite your current selection ot the other Connector.",
+        "_info": "connector.INFO_TEXT"
+      },
+      "CANCEL": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "connector.CANCEL"
+      },
+      "YES": {
+        "de": "Ja",
+        "en": "Yes",
+        "_info": "connector.YES"
+      },
+      "ADD_ITEMS": {
+        "de": "Auswahl hinzufügen",
+        "en": "Add selection",
+        "_info": "connector.ADD_ITEMS"
+      },
+      "SELECT-CONNECTOR-SETS-BUTTON": {
+        "de": "Steckersatz-Vorlagen auswählen",
+        "en": "Select Connector Set Template",
+        "_info": "icalc.connector.SELECT-CONNECTOR-SETS-BUTTON"
+      },
+      "CONNECTOR-SETS-HEADLINE": {
+        "de": "Steckersatz-Vorlagen",
+        "en": "Connector Set Templates",
+        "_info": "connector.CONNECTOR-SETS-HEADLINE"
+      },
+      "LOADING-FAVORITES": {
+        "de": "Favoriten werden geladen...",
+        "en": "Loading favorites...",
+        "_info": "connector.LOADING-FAVORITES"
+      },
+      "c847b80b-a7fa-472b-90c1-56ca7a389368": {
+        "de": "Signalstecker 12 pol. Rechtsdrehend Buchse",
+        "en": "Signal connector, 12 poles right hand female",
+        "_info": "connector.c847b80b-a7fa-472b-90c1-56ca7a389368"
+      },
+      "97adfe4e-0e50-4f8a-9921-3740b5210094": {
+        "de": "Signalstecker 12 pol. Linksdrehend Buchse",
+        "en": "Signal connector, 12 poles left hand female",
+        "_info": "connector.97adfe4e-0e50-4f8a-9921-3740b5210094"
+      },
+      "2fddd566-bea2-4e14-9061-1ed1f5a867e9": {
+        "de": "Signalkupplung 12 pol. Rechtsdrehend Stift",
+        "en": "Signal coupling, 12 poles right hand male",
+        "_info": "connector.2fddd566-bea2-4e14-9061-1ed1f5a867e9"
+      },
+      "d50a854c-88e6-4022-a741-c5be459e4bc4": {
+        "de": "Signalkupplung 12 pol. Linksdrehend Stift",
+        "en": "Signal coupling, 12 poles left hand male",
+        "_info": "connector.d50a854c-88e6-4022-a741-c5be459e4bc4"
+      },
+      "84759947-31c6-435a-899a-eebae358b504": {
+        "de": "Signalkupplung 17 pol. Linksdrehend Stift",
+        "en": "Signal coupling, 17 poles left hand male",
+        "_info": "connector.84759947-31c6-435a-899a-eebae358b504"
+      },
+      "e274c852-d7aa-408f-b9e8-fdc1076ce739": {
+        "de": "Signalstecker 17 pol. Linksdrehend Buchse",
+        "en": "Signal coupling, 17 poles left hand female",
+        "_info": "connector.e274c852-d7aa-408f-b9e8-fdc1076ce739"
+      },
+      "0fd9d575-c285-46e0-80ca-9306be8bfe06": {
+        "de": "Signalstecker 8+1 pol. Rechtsdrehend Buchse",
+        "en": "Signal coupling, 8+1 poles right hand male",
+        "_info": "connector.0fd9d575-c285-46e0-80ca-9306be8bfe06"
+      },
+      "31439d2f-c2b4-408a-823b-4536dbffb4bc": {
+        "de": "Signalkupplung 17pol. Rechtsdrehend Stift",
+        "en": "Signal coupling, 17 poles right hand male",
+        "_info": "connector.31439d2f-c2b4-408a-823b-4536dbffb4bc"
+      },
+      "11c16712-94a5-4f04-9665-92065d8c1e9b": {
+        "de": "Signalkupplung 8+1pol. Rechtsdrehend Stift",
+        "en": "Signal coupling, 8+1 poles right hand male",
+        "_info": "connector.11c16712-94a5-4f04-9665-92065d8c1e9b"
+      },
+      "64713296-512e-4c4e-b640-3b657be3f09f": {
+        "de": "Signalkupplung 8+1 pol. Linksdrehend Stift",
+        "en": "Signal coupling, 8+1 poles left hand male",
+        "_info": "connector.64713296-512e-4c4e-b640-3b657be3f09f"
+      },
+      "5ee6231b-d787-44e6-ae2a-c7f704a8d851": {
+        "de": "Signalstecker 9 pol. Rechtsdrehend Buchse",
+        "en": "Signal connector, 9 poles right hand female",
+        "_info": "connector.5ee6231b-d787-44e6-ae2a-c7f704a8d851"
+      },
+      "f13f3d73-1ed2-4dce-8cda-f13e9f5a1760": {
+        "de": "Signalstecker 9 pol. Linksdrehend Buchse",
+        "en": "Signal connector, 9 poles left hand female",
+        "_info": "connector.f13f3d73-1ed2-4dce-8cda-f13e9f5a1760"
+      },
+      "5d780b4f-112b-4a4b-887d-88a8109ffc3a": {
+        "de": "Signalstecker 17 pol. Rechtsdrehend Buchse",
+        "en": "Signal connector, 17 poles right hand female",
+        "_info": "connector.5d780b4f-112b-4a4b-887d-88a8109ffc3a"
+      },
+      "3f7508e4-49e0-4474-9ad2-59ad1fc11a10": {
+        "de": "Signalkupplung 9pol. Rechtsdrehend Stift",
+        "en": "Signal coupling, 9 poles right hand male",
+        "_info": "connector.3f7508e4-49e0-4474-9ad2-59ad1fc11a10"
+      },
+      "6342bdcf-2af0-4e32-abd8-fa558360a6ba": {
+        "de": "Signalkupplung 9 pol. Linksdrehend Stift",
+        "en": "Signal coupling, 9 poles right hand male",
+        "_info": "connector.6342bdcf-2af0-4e32-abd8-fa558360a6ba"
+      },
+      "bcceb6c6-6d89-4c4d-8ff6-4c6b63deb304": {
+        "de": "Signalstecker 8+1 pol. Linksdrehend Buchse",
+        "en": "Signal connector, 8+1 poles left hand female",
+        "_info": "connector.bcceb6c6-6d89-4c4d-8ff6-4c6b63deb304"
+      },
+      "af3492d1-3053-4de5-9ad3-f68ea409ac7c": {
+        "de": "Signalstecker 16+3 pol. Linksdrehend Buchse gewinkelt",
+        "en": "Signal connector, 16+3 poles left hand female 90° angled",
+        "_info": "connector.af3492d1-3053-4de5-9ad3-f68ea409ac7c"
+      },
+      "b0f2572d-aed2-4304-bbef-db8b01e7160d": {
+        "de": "Signalkupplung 16+3 pol. Linksdrehend Buchse gerade",
+        "en": "Signal coupling, 16+3 poles left hand female straight",
+        "_info": "connector.b0f2572d-aed2-4304-bbef-db8b01e7160d"
+      },
+      "636be69f-1b3d-4473-9da0-5c83b83d0e1f": {
+        "de": "Signalkupplung 16+3 pol. Rechtsdrehend Stift gerade",
+        "en": "Signal coupling, 16+3 poles right hand male straight",
+        "_info": "connector.636be69f-1b3d-4473-9da0-5c83b83d0e1f"
+      },
+      "e41a046c-bed8-445b-870f-c0a851a4a365": {
+        "de": "Leistungsstecker Gr.1 6pol. Buchse",
+        "en": "Power connector group 1, 6 poles female",
+        "_info": "connector.e41a046c-bed8-445b-870f-c0a851a4a365"
+      },
+      "06a971f9-460e-4509-bd97-59b64c49efe8": {
+        "de": "Leistungsstecker Gr.1 8pol. Buchse Beschriftung 1 (Kontakt 4 in der Mitte) / Servokontakte bis 1,5qmm",
+        "en": "Power coupling group 1, 8 poles male labeling 1 / servo contacts up to 1.5 mm²",
+        "_info": "connector.06a971f9-460e-4509-bd97-59b64c49efe8"
+      },
+      "846a8e28-744b-4f2d-849d-797af27d3fc0": {
+        "de": "Leistungsstecker Gr.1 9pol. Buchse (Alte Ausführung) / Servokontakte bis 1,5qmm",
+        "en": "Power connector group 1, 9 poles female (old model) / servo contacts up to 1.5 mm²",
+        "_info": "connector.846a8e28-744b-4f2d-849d-797af27d3fc0"
+      },
+      "918f6ae0-2089-4972-987b-6c3933a69e45": {
+        "de": "Leistungskupplung Gr.1 6pol. Stift",
+        "en": "Power coupling group 1, 6 poles male",
+        "_info": "connector.918f6ae0-2089-4972-987b-6c3933a69e45"
+      },
+      "96296007-04ab-45d1-a4ba-043fb3a5bb46": {
+        "de": "Leistungskupplung Gr.1 8pol. Stift Beschriftung 1  / Servokontakte bis 1,5qmm",
+        "en": "Power connector group 1, 8 poles male, labeling 1  / servo contacts up to 1.5 mm²",
+        "_info": "connector.96296007-04ab-45d1-a4ba-043fb3a5bb46"
+      },
+      "ff8efe01-ebb9-48dc-bda6-0c2e55cd9810": {
+        "de": "Leistungskupplung Gr.1 9pol. Stift (Alte Ausführung) / Servokontakte bis 1,5qmm // ANKER",
+        "en": "Power coupling group 1, 9 poles male (old model) / servo contacts up to 1.5 mm² // ANCHOR",
+        "_info": "connector.ff8efe01-ebb9-48dc-bda6-0c2e55cd9810"
+      },
+      "577cb722-a5d8-4650-a829-66b05915db00": {
+        "de": "Leistungsstecker Gr.1,5 6pol. Buchse",
+        "en": "Power connector group 1.5, 6 poles female",
+        "_info": "connector.577cb722-a5d8-4650-a829-66b05915db00"
+      },
+      "8219d6dc-6ae5-4341-b803-a4193db01f2b": {
+        "de": "Leistungskupplung Gr.1,5 6pol. Stift",
+        "en": "Power coupling group 1.5, 6 poles male",
+        "_info": "connector.8219d6dc-6ae5-4341-b803-a4193db01f2b"
+      },
+      "096fa88a-5595-43ca-9400-b56b375c5dce": {
+        "de": "Leistungsstecker Gr.1,5 8pol. Buchse",
+        "en": "Power connector group 1.5, 8 poles female",
+        "_info": "connector.096fa88a-5595-43ca-9400-b56b375c5dce"
+      },
+      "ff820b01-75a0-4273-ae03-5b20888c56d6": {
+        "de": "Leistungskupplung Gr.1,5 8pol. Stift",
+        "en": "Power coupling group 1.5, 8 poles male",
+        "_info": "connector.ff820b01-75a0-4273-ae03-5b20888c56d6"
+      },
+      "d45255ae-9af2-4296-82cf-85f6d7b8cf80": {
+        "de": "Leistungsstecker Gr.1,5 9pol. Buchse",
+        "en": "Power connector group 1.5, 9 poles female",
+        "_info": "connector.d45255ae-9af2-4296-82cf-85f6d7b8cf80"
+      },
+      "758f9528-ccf5-4f2b-b753-73f2cec2e18d": {
+        "de": "Leistungsstecker Gr.3 8pol. Buchse",
+        "en": "Power connector group 3, 8 poles female",
+        "_info": "connector.758f9528-ccf5-4f2b-b753-73f2cec2e18d"
+      },
+      "fff6044e-fdb9-404f-89a6-fc12f64c95d9": {
+        "de": "Leistungskupplung Gr.3 8pol. Stift",
+        "en": "Power coupling group 3, 8 poles male",
+        "_info": "connector.fff6044e-fdb9-404f-89a6-fc12f64c95d9"
+      }
+    },
+    "right-connector": {
+      "SEARCH_PLACEHOLDER": {
+        "de": "Suche nach MAT-Nummer, Artikelbezeichnung 1 & 2 oder Bestellnummer",
+        "en": "Search for MAT number, item description 1 & 2 or part number",
+        "_info": "right-connector.SEARCH_PLACEHOLDER"
+      },
+      "SELECTED_ITEMS": {
+        "de": "{{count}} ausgewählt",
+        "en": "{{count}} elements selected",
+        "_info": "right-connector.SELECTED_ITEMS"
+      },
+      "ADD_ITEMS": {
+        "de": "Fügen Sie MAT017-Artikel auf die Stückliste des rechten Steckers hinzu.",
+        "en": "Add MAT017 items to the item list of the right connector.",
+        "_info": "right-connector.ADD_ITEMS"
+      },
+      "connector-left": {
+        "de": "Zum linken Stecker",
+        "en": "Choose left connector",
+        "_info": "right-connector.connector-left"
+      },
+      "library": {
+        "de": "Skizze",
+        "en": "Library",
+        "_info": "right-connector.library"
+      },
+      "NO_CHAINFLEX": {
+        "de": "Keine Chainflex Leitung ausgewählt",
+        "en": "no Chainflex cable selected",
+        "_info": "right-connector.NO_CHAINFLEX"
+      },
+      "REMOVE": {
+        "de": "Entfernen",
+        "en": "Remove",
+        "_info": "right-connector.REMOVE"
+      }
+    }
+  }
+}

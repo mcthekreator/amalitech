@@ -1,0 +1,133 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$black: #0000004d;
+$grey: #dedede;
+$grey-3: #ececec;
+$white: white;
+$grey-200: kopla.get-color('grey', 200);
+$red-500: kopla.get-color('red', 500);
+
+:host {
+  .title {
+    .sub-header {
+      font-size: 16px;
+      color: grey;
+      margin-left: 3.2rem;
+    }
+    margin-bottom: 2rem;
+  }
+  .content-area {
+    display: flex;
+    .left-panel {
+      flex-basis: 30%;
+      display: flex;
+      flex-direction: column;
+      .chainflex-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        margin-top: 20px;
+        width: 20rem;
+
+        .headline {
+          padding-left: 23px;
+        }
+
+        .sub-headline-wrapper {
+          padding-left: 23px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          .sub-headline {
+            padding-right: 4px;
+          }
+        }
+      }
+      .left-panel-divider {
+        border-top-width: 2px;
+        margin: 0 3rem;
+      }
+      .list-item {
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-weight: 500;
+        padding: 1rem 3rem;
+        cursor: pointer;
+        background-color: #e9f2f5;
+        border-radius: 0 2rem 2rem 0;
+        mat-icon {
+          margin-right: 8px;
+          font-size: 24px;
+        }
+        .favorite-category {
+          font-size: 18px;
+        }
+      }
+      .categories-list {
+        margin-bottom: 3rem;
+      }
+    }
+    .favorites-dialog {
+      flex-basis: 70%;
+    }
+  }
+  table {
+    width: 100%;
+
+    .right {
+      text-align: right;
+    }
+
+    .mat-mdc-cell {
+      padding: 0;
+
+      &:first-of-type {
+        padding-left: 16px;
+      }
+
+      &:last-of-type {
+        padding-right: 16px;
+      }
+    }
+    .disabled-row {
+      background-color: $grey-200;
+    }
+    .active-row {
+      background-color: inherit;
+    }
+  }
+
+  button.mat-mdc-mini-fab {
+    transform: scale(0.745);
+    color: $white;
+  }
+
+  mat-icon {
+    margin-bottom: 2px;
+  }
+
+  .favorite-name {
+    margin-left: 15px;
+  }
+
+  .unavailable {
+    color: $red-500;
+  }
+  .favorites-spinner {
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .options-wrapper {
+    display: block;
+  }
+  .buttons-wrapper {
+    display: none;
+  }
+}

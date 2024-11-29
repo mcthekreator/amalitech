@@ -1,0 +1,29 @@
+<h2 matDialogTitle>{{ 'icalc.assign_configuration_to_existing_calculation_dialog.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p>
+    {{ 'icalc.assign_configuration_to_existing_calculation_dialog.INFO-TEXT' | translate }}
+  </p>
+  <form *ngIf="isFormReady" [formGroup]="assignConfigurationToExistingCalculationForm.form">
+    <formly-form
+      [model]="assignConfigurationToExistingCalculationForm.model"
+      [fields]="assignConfigurationToExistingCalculationForm.fields"
+      [options]="assignConfigurationToExistingCalculationForm.options"
+      [form]="assignConfigurationToExistingCalculationForm.form"
+    ></formly-form>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-button class="kopla-mat-button--small" color="primary" (click)="onActionSelect(primaryButtonAction)">
+    {{ 'icalc.assign_configuration_to_existing_calculation_dialog.CANCEL-BUTTON' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    [disabled]="!assignConfigurationToExistingCalculationForm.form?.valid"
+    class="kopla-mat-button--small"
+    dataCy="link-existing-config-with-existing-calc"
+    color="primary"
+    (click)="onActionSelect(secondaryButtonAction)"
+  >
+    {{ 'icalc.assign_configuration_to_existing_calculation_dialog.CONFIRM-ASSIGN' | translate }}
+  </button>
+</mat-dialog-actions>

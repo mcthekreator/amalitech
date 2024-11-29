@@ -1,0 +1,17 @@
+{
+  "name": "@igus/icalc-calculator",
+  "version": "2.8.0",
+  "license": "UNLICENSED",
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igusdev/icalc.git",
+    "directory": "apps/calculator"
+  },
+  "publishConfig": {
+    "registry": "https://npm.igusdev.igus.de/"
+  },
+  "devDependencies": {
+    "@igus/icalc-domain": "^2.8.0"
+  }
+}

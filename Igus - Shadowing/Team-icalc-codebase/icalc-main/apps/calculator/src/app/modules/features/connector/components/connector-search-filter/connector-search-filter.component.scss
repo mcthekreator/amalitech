@@ -1,0 +1,69 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$grey: #dedede;
+$white: white;
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .search-wrapper {
+    display: flex;
+    border-bottom: 1px solid $grey;
+    align-items: flex-end;
+    justify-content: center;
+
+    .items-info-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-bottom: 18px;
+
+      .headline {
+        padding-left: 23px;
+      }
+
+      .sub-headline-wrapper {
+        padding-left: 23px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .sub-headline {
+          padding-right: 4px;
+        }
+      }
+    }
+    .filter-button {
+      margin-bottom: 18px;
+    }
+  }
+
+  .filter-expansion-panel {
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 10px;
+    overflow: unset;
+
+    mat-expansion-panel-header {
+      background-color: transparent;
+      height: auto;
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+
+    button.apply-filter-button {
+      padding: 0;
+    }
+  }
+}

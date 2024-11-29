@@ -1,0 +1,33 @@
+<h2 matDialogTitle>
+  {{ 'icalc.meta_data_form.CREATE_CONFIGURATION' | translate }}
+</h2>
+<mat-dialog-content>
+  <p>
+    {{ 'icalc.meta_data_form.COPY_CONFIGURATION_EXPLANATION' | translate }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-button matDialogClose color="primary">
+    {{ 'icalc.meta_data_form.CANCEL' | translate }}
+  </button>
+  <div>
+    <button
+      mat-flat-button
+      dataCy="copy-config-into-existing-calc"
+      color="primary"
+      [disabled]="isLocked"
+      (click)="onActionSelect(primaryButtonAction)"
+      disabled="isLocked"
+    >
+      {{ 'icalc.meta_data_form.COPY_IN_EXISTING_CALCULATION' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      dataCy="open-dialog-to-copy-config-into-new-calc"
+      color="primary"
+      (click)="onActionSelect(secondaryButtonAction)"
+    >
+      {{ 'icalc.meta_data_form.COPY_IN_NEW_CALCULATION' | translate }}
+    </button>
+  </div>
+</mat-dialog-actions>

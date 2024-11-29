@@ -1,0 +1,11 @@
+<ng-container *ngIf="columnName === listInformation?.orderBy; else standardArrow">
+  <ng-container *ngIf="listInformation?.orderDirection === 'desc'; else elseTemplate">
+    <mat-icon class="active">arrow_upward</mat-icon>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <mat-icon class="active">arrow_downward</mat-icon>
+  </ng-template>
+</ng-container>
+<ng-template #standardArrow>
+  <mat-icon class="inactive">arrow_downward</mat-icon>
+</ng-template>

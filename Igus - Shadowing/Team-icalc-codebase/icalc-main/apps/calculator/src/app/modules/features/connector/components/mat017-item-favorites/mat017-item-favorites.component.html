@@ -1,0 +1,204 @@
+<div class="title">
+  <h2 matDialogTitle>{{ 'icalc.connector.CONNECTOR-SETS-HEADLINE' | translate }}</h2>
+
+  <div class="sub-header">{{ 'icalc.favorites.SUB_HEADER' | translate }}</div>
+</div>
+
+<div class="content-area">
+  <div class="left-panel">
+    <div class="chainflex-info">
+      <div class="headline">
+        <div class="kopla-font-headline-5">
+          {{ (chainflexCable$ | async).partNumber || 'icalc.connector-search-filter.NO_CHAINFLEX' | translate }}
+        </div>
+      </div>
+      <div class="sub-headline-wrapper">
+        <div
+          class="kopla-font-subheading sub-headline"
+          matTooltip="{{ 'icalc.pin-assignment.TITLE_CABLE_STRUCTURE' | translate }}"
+        >
+          {{ chainflexCableStructure$ | async | translateGerman }}
+        </div>
+        <div class="kopla-font-subheading sub-headline">|</div>
+        <div
+          class="kopla-font-subheading sub-headline"
+          matTooltip="{{ 'icalc.chainflex.TABLE-OUTER-DIAMETER' | translate }}"
+        >
+          Ø {{ (chainflexCable$ | async)?.outerDiameter?.amount }} mm
+        </div>
+      </div>
+    </div>
+    <div class="categories-list">
+      <ng-container *ngFor="let favoriteItemTemplate of favoriteItemTemplates">
+        <div class="list-item" (click)="onCategoryListItemClicked(favoriteItemTemplate.name)">
+          <mat-icon>{{ favoriteItemTemplate.icon }}</mat-icon>
+          <div class="favorite-category">
+            {{ 'icalc.favorites.' + favoriteItemTemplate.name | translate }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <mat-divider class="left-panel-divider"></mat-divider>
+    <div class="content-tree"></div>
+  </div>
+
+  <div class="favorites-dialog" dataCy="connector-sets-dialog">
+    <mat-dialog-content>
+      <ng-container *ngIf="(favoritesIsLoading$ | async) === true">
+        <mat-progress-spinner
+          class="favorites-spinner"
+          mode="indeterminate"
+          [diameter]="50"
+          [strokeWidth]="4"
+        ></mat-progress-spinner>
+        <div class="search-indicator-text">
+          {{ 'icalc.connector.LOADING-FAVORITES' | translate }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="favorites && isFormReady">
+        <ng-container *ngFor="let favorite of favorites; let favoriteGroupIndex = index">
+          <mat-accordion multi>
+            <mat-expansion-panel [expanded]="getIsExpanded(favoriteGroupIndex)" dataCy="favorites-expansion-panel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div>
+                    <mat-checkbox
+                      dataCy="connector-set-item-checkbox"
+                      color="primary"
+                      [formControl]="getFavoriteGroupControl(favoriteGroupIndex)"
+                      [indeterminate]="favoriteGroupIsPartiallySelected(favoriteGroupIndex)"
+                      (change)="onFavoriteGroupCheckboxChange($event, favoriteGroupIndex)"
+                      (click)="$event.stopPropagation()"
+                    ></mat-checkbox>
+                  </div>
+                  <span class="favorite-name">{{ 'icalc.connector.' + favorite.id | translate }}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <!-- Table of Mat017Items for this Favorites Entry -->
+              <table
+                mat-table
+                [dataSource]="favorite.favoritesToMat017Items"
+                class="mat-elevation-z8"
+                dataCy="mat017-favorite-items-table"
+              >
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element; let itemIndex = index">
+                    <div
+                      [matTooltip]="
+                        (element.mat017Item.itemStatus !== itemHasBeenRemoved
+                          ? 'icalc.connector-mat017-items-table.MAT017ITEM_SELECTION_DISABLED'
+                          : 'icalc.connector-mat017-items-table.MAT017ITEM_SELECTION_REMOVED_DISABLED'
+                        ) | translate
+                      "
+                      [matTooltipDisabled]="element.mat017Item.itemStatus === validMat017ItemStatus"
+                    >
+                      <mat-checkbox
+                        dataCy="individual-connector-item-checkbox"
+                        color="primary"
+                        [formControl]="getFavoriteItemControl(favoriteGroupIndex, itemIndex)"
+                        (change)="onFavoriteItemCheckboxChange($event, favoriteGroupIndex, itemIndex)"
+                      ></mat-checkbox>
+                    </div>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="matNumber">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ 'icalc.connector-mat017-items-table.MATNUMBER' | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container
+                      *ngIf="element.mat017Item.itemStatus !== itemHasBeenRemoved; else itemRemovedMatNumber"
+                    >
+                      {{ element.mat017Item.matNumber }}
+                    </ng-container>
+                    <ng-template #itemRemovedMatNumber>
+                      <div class="unavailable">{{ element.mat017Item.matNumber }}</div>
+                    </ng-template>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="itemDescription1">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ 'icalc.connector-mat017-items-table.ITEMDESCRIPTION1' | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" dataCy="connector-set-itemDescription1-cell">
+                    <ng-container *ngIf="element.mat017Item.itemStatus !== itemHasBeenRemoved">
+                      <ng-container *ngIf="element.mat017Item.itemDescription1; else infoUnavailable">
+                        {{ element.mat017Item.itemDescription1 }}
+                      </ng-container>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="itemDescription2">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ 'icalc.connector-mat017-items-table.ITEMDESCRIPTION2' | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="element.mat017Item.itemStatus !== itemHasBeenRemoved">{{
+                      element.mat017Item.itemDescription2
+                    }}</ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="mat017ItemGroup">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ 'icalc.connector-mat017-items-table.GROUP' | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="element.mat017Item.itemStatus !== itemHasBeenRemoved">
+                      <ng-container *ngIf="element.mat017Item.mat017ItemGroup; else infoUnavailable">
+                        {{ element.mat017Item.mat017ItemGroup }}
+                      </ng-container>
+                    </ng-container>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="amount">
+                  <th mat-header-cell *matHeaderCellDef class="right">
+                    {{ 'icalc.connector-mat017-items-table.AMOUNT' | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" class="right">{{ element.amount }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                  [ngClass]="row.mat017Item.itemStatus !== validMat017ItemStatus ? 'disabled-row' : 'active-row'"
+                ></tr>
+              </table>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ng-container>
+      </ng-container>
+      <ng-template #infoUnavailable>
+        <div class="unavailable">{{ 'icalc.connector.INFO_UNAVAILABLE' | translate }}</div>
+      </ng-template>
+    </mat-dialog-content>
+  </div>
+</div>
+
+<mat-dialog-actions class="justify-content-between">
+  <button
+    mat-button
+    *ngIf="(favoritesIsLoading$ | async) !== true"
+    matDialogClose
+    class="kopla-mat-button--small"
+    color="primary"
+    dataCy="close-connector-sets-dialog-button"
+  >
+    {{ 'icalc.connector.CANCEL' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    *ngIf="(favoritesIsLoading$ | async) !== true"
+    (click)="onAddItems()"
+    color="primary"
+    dataCy="add-selected-connector-sets-dialog-button"
+  >
+    {{ 'icalc.connector.ADD_ITEMS' | translate }}
+  </button>
+</mat-dialog-actions>

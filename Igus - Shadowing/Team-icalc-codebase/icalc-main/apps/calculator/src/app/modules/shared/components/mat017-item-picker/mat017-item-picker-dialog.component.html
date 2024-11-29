@@ -1,0 +1,125 @@
+<h2 matDialogTitle>{{ 'icalc.mat017-item-picker-dialog.DIALOG_HEADER' | translate }}</h2>
+<mat-dialog-content>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortDisableClear
+    class="mat017-item-picker-items-table"
+    dataCy="mat017-items-table"
+    [class.asc]="dataSource?.sort?.direction === 'asc'"
+    [class.desc]="dataSource?.sort?.direction === 'desc'"
+  >
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-radio-button
+          color="primary"
+          [value]="element.matNumber"
+          [checked]="selectedMatNumber === element.matNumber"
+          (change)="onChange($event)"
+        ></mat-radio-button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="matNumber">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        #matSortHeader="matSortHeader"
+        [class.sorted]="matSortHeader.id === dataSource?.sort?.active"
+        dataCy="sort-header-mat-number"
+      >
+        {{ 'icalc.mat017-item-picker-dialog.MAT_NUMBER' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.matNumber }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="itemDescription1">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        #matSortHeader="matSortHeader"
+        [class.sorted]="matSortHeader.id === dataSource?.sort?.active"
+        dataCy="sort-header-item-description-1"
+      >
+        {{ 'icalc.mat017-item-picker-dialog.ITEM_DESCRIPTION_1' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.itemDescription1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="itemDescription2">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        #matSortHeader="matSortHeader"
+        [class.sorted]="matSortHeader.id === dataSource?.sort?.active"
+        dataCy="sort-header-item-description-2"
+      >
+        {{ 'icalc.mat017-item-picker-dialog.ITEM_DESCRIPTION_2' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.itemDescription2 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="mat017ItemGroup">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        #matSortHeader="matSortHeader"
+        [class.sorted]="matSortHeader.id === dataSource?.sort?.active"
+        dataCy="sort-header-mat017-item-group"
+      >
+        {{ 'icalc.mat017-item-picker-dialog.MAT_ITEM_GROUP' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.mat017ItemGroup }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="supplierItemNumber">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        #matSortHeader="matSortHeader"
+        [class.sorted]="matSortHeader.id === dataSource?.sort?.active"
+        dataCy="sort-header-supplier-item-number"
+      >
+        {{ 'icalc.mat017-item-picker-dialog.SUPPLIER_ITEM_NUMBER' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.supplierItemNumber }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      dataCy="mat017-item-picker-row"
+      (click)="onRowClicked(row)"
+      [class.selected]="selectedMatNumber === row.matNumber"
+    ></tr>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button
+    mat-button
+    class="kopla-mat-button--small"
+    dataCy="cancel-mat017-item-selection"
+    color="primary"
+    matDialogClose
+  >
+    {{ 'icalc.mat017-item-picker-dialog.SECONDARY_BUTTON_TEXT' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    class="kopla-mat-button--small"
+    dataCy="confirm-mat017-item-selection"
+    [disabled]="!selectedMatNumber"
+    color="primary"
+    (click)="confirm()"
+  >
+    {{ 'icalc.mat017-item-picker-dialog.PRIMARY_BUTTON_TEXT' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,26 @@
+{
+  "icalc": {
+    "assign_configuration_to_existing_calculation_dialog": {
+      "TITLE": {
+        "de": "Bestehende Konfiguration verknüpfen",
+        "en": "Assign existing Configuration",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.TITLE"
+      },
+      "INFO-TEXT": {
+        "de": "Geben Sie bitte die Pflichtangaben an, um die bestehende Leitungskonfiguration zu verknüpfen",
+        "en": "Please insert the mandatory information to assign the existing configuration.",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.INFO-TEXT"
+      },
+      "CONFIRM-ASSIGN": {
+        "de": "Bestehende Konfiguration verknüpfen",
+        "en": "Link existing Configuration",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.CONFIRM-ASSIGN"
+      },
+      "CANCEL-BUTTON": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.CANCEL-BUTTON"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+
+  .container {
+    display: flex;
+    width: 100%;
+
+    .field-container {
+      flex-grow: 1;
+
+      .has-left-addon {
+        padding-left: 6px;
+      }
+    }
+
+    .addon {
+      width: 24px;
+      cursor: pointer;
+      height: 2px;
+      position: relative;
+      margin-left: 6px;
+
+      mat-icon {
+        position: absolute;
+        left: 4px;
+      }
+    }
+  }
+}

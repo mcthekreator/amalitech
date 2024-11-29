@@ -1,0 +1,26 @@
+{
+  "icalc": {
+    "confirm-technical-work-step-overrides-reset-dialog": {
+      "TITLE": {
+        "de": "Zurücksetzen der technischen Arbeitsschritte",
+        "en": "Reset of the technical workSteps.",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.TITLE"
+      },
+      "INFO-TEXT": {
+        "de": "Indem sie auf \"Zurücksetzen\" klicken, gehen alle manuellen Überschreibungen der Arbeitsschritte verloren.",
+        "en": "By clicking on \"Reset\", each technical manuel workStep overwrites will be lost.",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.INFO-TEXT"
+      },
+      "RESET-BUTTON": {
+        "de": "Zurücksetzen",
+        "en": "Reset",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.RESET-BUTTON"
+      },
+      "CANCEL-BUTTON": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.assign_configuration_to_existing_calculation_dialog.CANCEL-BUTTON"
+      }
+    }
+  }
+}

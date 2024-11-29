@@ -1,0 +1,288 @@
+<div class="search-field" dataCy="calc-tab-search-field">
+  <form [formGroup]="calculationSearchForm.form" class="no-validation-padding">
+    <formly-form
+      [model]="calculationSearchForm.model"
+      [fields]="calculationSearchForm.fields"
+      [options]="calculationSearchForm.options"
+      [form]="calculationSearchForm.form"
+    ></formly-form>
+  </form>
+
+  <button
+    mat-button
+    class="expansion-toggle"
+    dataCy="toggle-calculation-search-filter"
+    [color]="calcFilterPanel.expanded ? 'primary' : ''"
+    (click)="calcFilterPanel.toggle()"
+  >
+    <mat-icon class="mat-18">{{ calcFilterPanel.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+    {{ 'icalc.meta_data.FILTER' | translate }}
+  </button>
+</div>
+
+<mat-expansion-panel hideToggle class="filter-expansion-panel mat-elevation-z" #calcFilterPanel>
+  <mat-expansion-panel-header *ngIf="!!calculationFilterSource">
+    <div class="chips-list">
+      <mat-chip *ngIf="calculationFilterSource?.customerType" dataCy="customer-type-filter-chip">
+        <mat-icon class="mat-chip-filter-icon">filter_alt</mat-icon>
+        {{ 'icalc.meta_data.CUSTOMER-TYPE' | translate }}: {{ calculationFilterSource?.customerType }}
+        <button matChipRemove (click)="onRemoveCalculationFilter('customerType')">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+
+      <mat-chip *ngIf="calculationFilterSource?.calculationFactor" dataCy="calculation-factor-filter-chip">
+        <mat-icon class="mat-chip-filter-icon">filter_alt</mat-icon>
+        {{ 'icalc.meta_data.CALCULATION-FACTOR' | translate }}
+        {{ calculationFilterSource?.calculationFactorOperand }}
+        {{ calculationFilterSource?.calculationFactor }}
+        <button
+          matChipRemove
+          (click)="onRemoveCalculationFilter('calculationFactor')"
+          dataCy="calculation-factor-filter-cancel"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+    </div>
+  </mat-expansion-panel-header>
+
+  <form [formGroup]="calculationFilterForm.form">
+    <formly-form
+      [model]="calculationFilterForm.model"
+      [fields]="calculationFilterForm.fields"
+      [options]="calculationFilterForm.options"
+      [form]="calculationFilterForm.form"
+    ></formly-form>
+  </form>
+
+  <button
+    mat-button
+    class="apply-filter-button kopla-mat-button--small"
+    dataCy="apply-calculation-search-filter"
+    color="primary"
+    [disabled]="!calculationFilterForm.form.dirty"
+    (click)="
+      onApplyCalculationFilter();
+      calcFilterPanel.close();
+      calculationFilterForm.options.updateInitialValue();
+      calculationFilterForm.options.resetModel()
+    "
+  >
+    {{ 'icalc.meta_data.APPLY_FILTER' | translate }}
+  </button>
+</mat-expansion-panel>
+
+<ng-container
+  *ngIf="
+    calculationSearchInitiated === true && (calculationTotalCount$ | async) === 0 && noCalculationItemsFound$ | async
+  "
+>
+  <div class="announcement-container" dataCy="announcement-container">
+    {{ 'icalc.chainflex.ANNOUNCEMENT-NO-RESULTS' | translate }}
+  </div>
+</ng-container>
+
+<!-- CALCULATION RESULTS -->
+<ng-container *ngIf="isLoadingCalculationItems$ | async; else calculationResultsTemplate">
+  <div class="is-loading" dataCy="isLoadingCalculationItems">
+    <mat-progress-spinner mode="indeterminate" [diameter]="50" [strokeWidth]="4"></mat-progress-spinner>
+  </div>
+</ng-container>
+<ng-template #calculationResultsTemplate>
+  <div class="results-container">
+    <ng-container *ngIf="calculationItems$ | async as calculationItems">
+      <ng-container *ngIf="calculationListInformation$ | async as calculationListInformation">
+        <table
+          mat-table
+          *ngIf="calculationItems.length > 0"
+          [dataSource]="calculationItems"
+          class="mat-elevation-z8 meta-data-table"
+          dataCy="calculation-search-result-table"
+          matSort
+          matSortDisableClear
+          [matSortDirection]="calculationSortDirection"
+          [matSortActive]="calculationSortActive"
+          (matSortChange)="onCalculationSortChange($event)"
+        >
+          <ng-container matColumnDef="calculationStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.calculation_search.STATUS' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="calculationStatus">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-icon
+                *ngIf="element.isLocked"
+                aria-hidden="false"
+                aria-label="calculation locked"
+                fontIcon="lock"
+              ></mat-icon>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="calculationNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.CALCULATION-NUMBER' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="calculationNumber">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <strong>{{ element.calculationNumber }}</strong>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="matNumbers">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ 'icalc.calculation_search.MAT-NUMBERS' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.matNumbers?.length <= 3; else moreThan3Info">
+                <ng-container *ngFor="let matNumber of element.matNumbers">
+                  <strong>{{ matNumber }}</strong
+                  ><br />
+                </ng-container>
+              </ng-container>
+              <ng-template #moreThan3Info>
+                <strong
+                  >{{ element.matNumbers?.[0] }}<br />
+                  {{ element.matNumbers?.[1] }}<br />
+                  {{ element.matNumbers?.[2] }}...</strong
+                >
+                <mat-icon
+                  *ngIf="!element.isLocked"
+                  matTooltipClass="list-tooltip"
+                  matTooltipHideDelay="100000"
+                  [matTooltip]="
+                    element.matNumbers | formatTooltip: 'icalc.calculation_search.TOOLTIP_CALCULATION_MORE_MATS'
+                  "
+                  >info</mat-icon
+                >
+                <mat-icon
+                  *ngIf="element.isLocked"
+                  matTooltipClass="list-tooltip"
+                  [matTooltip]="
+                    element.matNumbers | formatTooltip: 'icalc.calculation_search.TOOLTIP_CALCULATION_MORE_MATS'
+                  "
+                  >info</mat-icon
+                >
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="calculationFactor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.CALCULATION-FACTOR' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="calculationFactor">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.calculationFactor | convertDecimalToDeString | displayColumnWithFallBack }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="customerType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.CUSTOMER-TYPE' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="customerType">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.customerType === 'serialCustomer'">
+                {{ 'icalc.meta_data.CUSTOMER-SERIAL-CUSTOMER' | displayColumnWithFallBack | translate }}
+              </ng-container>
+              <ng-container *ngIf="element.customerType === 'betriebsMittler'">
+                {{ 'icalc.meta_data.CUSTOMER-BETRIEBSMITTLER' | displayColumnWithFallBack | translate }}
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.CREATION_DATE' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="creationDate">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.creationDate | date: 'd/M/y h:mm' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.CREATED_BY' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="createdBy">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <p>{{ element.createdBy | displayColumnWithFallBack }}</p>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="modificationDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.MODIFICATION_DATE' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="modificationDate">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.modificationDate | date: 'd/M/y h:mm' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="modifiedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.meta_data.MODIFIED_BY' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="modifiedBy">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <p>{{ element.modifiedBy | displayColumnWithFallBack }}</p>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="lockingDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.calculation_search.LOCKING_DATE' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="lockingDate">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="element.isLocked">{{ element.lockingDate | date: 'd/M/y h:mm' }}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="lockedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'icalc.calculation_search.LOCKED_BY' | translate }}
+              <icalc-table-sort-icon [listInformation]="calculationListInformation" columnName="lockedBy">
+              </icalc-table-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <p>{{ element.lockedBy | displayColumnWithFallBack }}</p>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="calcColumnsToDisplay; sticky: true"></tr>
+          <tr
+            mat-row
+            [class.selected-row]="selectedCalculationId === row.id"
+            *matRowDef="let row; columns: calcColumnsToDisplay"
+            (click)="onCalculationRowClicked(row)"
+          ></tr>
+        </table>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="calculationListInformation$ | async as calculationListInformation">
+    <mat-paginator
+      [length]="calculationTotalCount$ | async"
+      [pageIndex]="
+        (calculationListInformation.skip + calculationListInformation.take) / calculationListInformation.take - 1
+      "
+      [pageSize]="calculationListInformation.take"
+      [pageSizeOptions]="[25, 50, 100]"
+      (page)="onCalculationPageChange($event)"
+    >
+    </mat-paginator>
+  </ng-container>
+</ng-template>

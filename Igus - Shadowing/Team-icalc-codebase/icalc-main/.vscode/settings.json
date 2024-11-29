@@ -1,0 +1,7 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.run": "onSave",
+  "eslint.useESLintClass": true,
+  "cSpell.words": ["nestjs", "Serienkunde", "WorkSteps"],
+  "angular.enable-strict-mode-prompt": false
+}

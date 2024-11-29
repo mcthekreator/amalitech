@@ -1,0 +1,10 @@
+<div class="timestamp-container">
+  <span
+    [matTooltip]="'icalc.mat017-item-latest-modification-date.INFO_ICON_HOVER_TEXT' | translate"
+    class="kopla-font-subheading sub-headline info-icon-container"
+  >
+    <mat-icon class="info-icon">info</mat-icon>
+  </span>
+  <span>{{ 'icalc.mat017-item-latest-modification-date.TIME_PREFIX_TEXT' | translate }}</span>
+  <span dataCy="mat017-item-latest-modification-date">{{ latestModificationDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+</div>

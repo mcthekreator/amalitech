@@ -1,0 +1,270 @@
+{
+  "name": "calculator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/calculator/src",
+  "prefix": "icalc",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/calculator",
+        "index": {
+          "input": "apps/calculator/src/index.web.html",
+          "output": "index.html"
+        },
+        "main": "apps/calculator/src/main.ts",
+        "polyfills": "apps/calculator/src/polyfills.ts",
+        "tsConfig": "apps/calculator/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/calculator/src/images/",
+            "output": "/images/"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@igus/kopla-app/images/",
+            "output": "/images/"
+          },
+          {
+            "glob": "favicon.ico",
+            "input": "apps/calculator/src/",
+            "output": "/"
+          }
+        ],
+        "styles": [
+          "apps/calculator/src/scss/index.scss",
+          "node_modules/@igus/kopla-app/kopla.bundle.css",
+          "node_modules/@igus/kopla-app/scss-import/material/kopla-material.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules"]
+        },
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/calculator/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "45kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/calculator/src/environments/environment.ts",
+              "with": "apps/calculator/src/environments/environment.production.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "staging": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "45kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/calculator/src/environments/environment.ts",
+              "with": "apps/calculator/src/environments/environment.staging.ts"
+            }
+          ]
+        },
+        "integration": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "45kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/calculator/src/environments/environment.ts",
+              "with": "apps/calculator/src/environments/environment.integration.ts"
+            }
+          ]
+        },
+        "cordova-production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "45kb"
+            }
+          ],
+          "outputHashing": "all",
+          "outputPath": "cordova/www",
+          "index": {
+            "input": "apps/calculator/src/index.cordova.html",
+            "output": "index.html"
+          },
+          "styles": [
+            "apps/calculator/src/scss/index.cordova.scss",
+            "node_modules/@igus/kopla-app/kopla.bundle.css",
+            "node_modules/@igus/kopla-app/scss-import/material/kopla-material.scss"
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/calculator/src/environments/environment.ts",
+              "with": "apps/calculator/src/environments/environment.cordova-production.ts"
+            }
+          ]
+        },
+        "cordova": {
+          "index": {
+            "input": "apps/calculator/src/index.cordova.html",
+            "output": "index.html"
+          },
+          "styles": [
+            "apps/calculator/src/scss/index.cordova.scss",
+            "node_modules/@igus/kopla-app/kopla.bundle.css",
+            "node_modules/@igus/kopla-app/scss-import/material/kopla-material.scss"
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/calculator/src/environments/environment.ts",
+              "with": "apps/calculator/src/environments/environment.cordova.ts"
+            }
+          ]
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "local": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/calculator/src/environments/environment.ts",
+              "with": "apps/calculator/src/environments/environment.local.ts"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "calculator:build:production"
+        },
+        "development": {
+          "hmr": true,
+          "buildTarget": "calculator:build:development",
+          "host": "0.0.0.0",
+          "port": 4200,
+          "disableHostCheck": true
+        },
+        "local": {
+          "hmr": true,
+          "buildTarget": "calculator:build:local"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "calculator:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/calculator"],
+      "options": {
+        "jestConfig": "apps/calculator/jest.config.ts",
+        "codeCoverage": true
+      }
+    },
+    "doc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn run compodoc -p apps/calculator/tsconfig.app.json -d doc/apps/calculator --hideGenerator --disableCoverage"
+      }
+    },
+    "i18n-download": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn g:kopla t d -n ICALC",
+        "cwd": "apps/calculator"
+      }
+    },
+    "i18n-parse": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn g:kopla t p -n icalc",
+        "cwd": "apps/calculator"
+      }
+    },
+    "i18n-download-parse": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["yarn nx run calculator:i18n-download", "yarn nx run calculator:i18n-parse"],
+        "parallel": false
+      }
+    },
+    "i18n-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn g:kopla t g -n icalc",
+        "cwd": "apps/calculator"
+      }
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/calculator/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "calculator:build"
+      }
+    }
+  }
+}

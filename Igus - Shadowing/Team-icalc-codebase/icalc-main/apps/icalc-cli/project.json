@@ -1,0 +1,60 @@
+{
+  "name": "icalc-cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/icalc-cli/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/icalc-cli",
+        "main": "apps/icalc-cli/src/main.ts",
+        "tsConfig": "apps/icalc-cli/tsconfig.app.json",
+        "externalDependencies": "none",
+        "webpackConfig": "apps/icalc-cli/webpack.config.js",
+        "additionalEntryPoints": [],
+        "assets": [
+          "apps/icalc-cli/src/global-bundle.pem",
+          {
+            "input": "apps/icalc-cli",
+            "glob": "*.env*",
+            "output": "."
+          }
+        ],
+        "tsPlugins": [],
+        "compiler": "tsc",
+        "target": "node"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        },
+        "staging": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        },
+        "integration": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "icalc-cli:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

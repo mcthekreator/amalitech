@@ -1,0 +1,43 @@
+<html>
+<head>
+<script>
+var product = {
+	name: "Iphone"
+};
+
+console.log(Object.isExtensible(product));
+console.log(Object.isSealed(product));
+
+Object.seal(product);
+
+console.log(Object.isExtensible(product));
+console.log(Object.isSealed(product));
+
+product.price = 10;
+
+console.log("price" in product);
+
+
+delete product.name;
+
+console.log("name" in product);
+
+var descriptor = Object.getOwnPropertyDescriptor(product,"name");
+console.log(descriptor.configurable);
+
+
+</script>
+</head>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

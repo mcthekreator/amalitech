@@ -1,0 +1,7 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+:host {
+  .dialog-header {
+    padding: 0;
+  }
+}

@@ -1,0 +1,13 @@
+function Doctor(){
+	
+}
+
+Doctor.prototype = Object.create(Object.prototype,{
+	constructor:{
+		configurable:true,
+		enumerable:true,
+		value:Doctor,
+		writable:true
+	}
+
+});

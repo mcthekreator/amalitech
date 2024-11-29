@@ -1,0 +1,31 @@
+{
+  "icalc": {
+    "connector-mat017-items-price-mismatch-dialog": {
+      "DIALOG_HEADER": {
+        "de": "Preisunterschied auflösen",
+        "en": "Solve price difference",
+        "_info": "icalc.connector-mat017-items-price-mismatch-dialog.DIALOG_HEADER"
+      },
+      "DIALOG_MAIN_CONTENT": {
+        "de": "Dieser Artikel wurde bereits mit einem anderen Preis auf der anderen Seite dieser Konfiguration hinzugefügt. Es ist nicht möglich unterschiedliche Preise für einen Artikel innerhalb einer Konfiguration zu verwenden. Sie können abbrechen oder den Preis des zuvor hinzugefügten Artikels aktualisieren, um den Artikel auch auf dieser Seite hinzuzufügen.",
+        "en": "This item has already been added with a different price on the other connector of this configuration. It is not possible to have different prices for an item within one configuration. You can cancel adding this item to the BOM or you can update the price of the previously added item and add it to this connector as well.",
+        "_info": "icalc.connector-mat017-items-price-mismatch-dialog.DIALOG_MAIN_CONTENT"
+      },
+      "FAVORITE_DIALOG_MAIN_CONTENT": {
+        "de": "Der/die Artikel {{items}} wurde(n) bereits mit einem anderen Preis auf der anderen Seite dieser Konfiguration hinzugefügt. Es ist nicht möglich unterschiedliche Preise für einen Artikel innerhalb einer Konfiguration zu verwenden. Sie können abbrechen oder den Preis des zuvor hinzugefügten Artikels aktualisieren, um den Artikel auch auf dieser Seite hinzuzufügen.",
+        "en": "The item(s) {{items}} has/have already been added with a different price on the other connector of this configuration. It is not possible to have different prices for an item within one configuration. You can cancel adding this item to the BOM or you can update the price of the previously added item and add it to this connector as well.",
+        "_info": "icalc.connector-mat017-items-price-mismatch-dialog.FAVORITE_DIALOG_MAIN_CONTENT"
+      },
+      "PRIMARY_BUTTON_TEXT": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.connector-mat017-items-price-mismatch-dialog.PRIMARY_BUTTON_TEXT"
+      },
+      "SECONDARY_BUTTON_TEXT": {
+        "de": "Preise aktualisieren und Artikel hinzufügen",
+        "en": "Update prices and add item",
+        "_info": "icalc.connector-mat017-items-price-mismatch-dialog.SECONDARY_BUTTON_TEXT"
+      }
+    }
+  }
+}

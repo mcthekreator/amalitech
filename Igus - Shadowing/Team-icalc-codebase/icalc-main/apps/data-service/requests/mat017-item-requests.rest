@@ -1,0 +1,15 @@
+### find all mat017Items by pagination
+GET http://localhost:3000/api/mat017-item?orderBy=score
+    &orderDirection=desc
+    &search=
+    &skip=0
+    &take=100
+    &partNumber=CF10.02.04
+
+### find all mat017Items by pagination
+GET http://localhost:3000/api/mat017-item?search=MAT0170
+    &skip=0
+    &take=100
+    &items=MAT0170182
+    &items=MAT0170640
+    &partNumber=CF10.01.12

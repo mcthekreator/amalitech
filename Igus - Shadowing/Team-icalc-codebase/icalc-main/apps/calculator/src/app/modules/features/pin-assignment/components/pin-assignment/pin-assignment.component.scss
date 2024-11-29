@@ -1,0 +1,1472 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$row-height: 40px;
+$base-margin-left-right: 2px;
+$base-margin-top-bottom: 2px;
+$base-padding-top-bottom: 2px;
+$base-padding-left-right: 2px;
+$sh-width: 20px;
+$row-bg-grey: rgba(214, 214, 214, 0.137);
+
+$label-width: 14%;
+$description-width: 14%;
+$core-width: 29%;
+
+$order-left-start: 50%;
+$order-right-start: -50%;
+$order-gap: 10%;
+
+$black: #0000004d;
+$grey-3: #ececec;
+$white: white;
+
+@mixin order($orderCount, $property, $start: 100%, $addition: 0%) {
+  #{$property}: 100% - ($orderCount * $order-gap) - $addition;
+}
+
+@mixin generate-height-classes($N, $row-height) {
+  @for $i from 1 through $N {
+    &.height-#{$i} {
+      top: -$i * $row-height;
+    }
+  }
+}
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  width: 100%;
+  overflow-y: auto;
+
+  .png-export-header {
+    visibility: hidden;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-content: flex-end;
+    flex-flow: row;
+  }
+
+  .loading-image {
+    position: absolute;
+    margin-top: 300px;
+  }
+}
+
+#container-wrapper_temp,
+.header-wrapper {
+}
+
+.container-wrapper {
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    max-height: 26rem;
+    width: 80%;
+    overflow-y: none;
+    overflow-x: scroll;
+
+    .images {
+      display: flex;
+      justify-content: center;
+
+      &.left {
+        float: left;
+        width: 100%;
+      }
+
+      .right {
+        float: right;
+        width: 100%;
+      }
+    }
+
+    mat-card {
+      background-color: $grey-3;
+      position: relative;
+      border: solid 1px $grey-3;
+      margin: 10px;
+      box-shadow: 0 1px 2px 1px $black;
+      max-width: 230px;
+
+      mat-card-content {
+        margin-bottom: 0 !important;
+      }
+
+      img {
+        height: 100%;
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+#container-wrapper_temp {
+  .pin-container {
+    padding: 0 10px;
+  }
+}
+
+.pin-container {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  margin: 50px auto 0 auto;
+  position: relative;
+
+  &.edit-bridges {
+    .dots-container {
+      width: 50% !important;
+      transition: width 0.2s ease-in-out;
+
+      .connector-dot {
+        display: block !important;
+      }
+    }
+  }
+
+  > div.odd {
+    background-color: $row-bg-grey;
+  }
+
+  .headline-container {
+    margin-bottom: 15px;
+  }
+
+  .error-row {
+    display: flex;
+    justify-content: center;
+
+    .error {
+      color: darkred;
+    }
+  }
+
+  .labels-row {
+    position: relative;
+    display: flex;
+    background-color: white !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+
+    .center-column {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+      align-self: center;
+      width: 100%;
+      height: 10rem;
+
+      .center-column-label {
+        position: absolute;
+        top: 11rem;
+      }
+
+      mat-icon.bridges-icon {
+        transform: rotate(90deg);
+      }
+    }
+
+    .sub-value-automation-reset {
+      position: absolute;
+      top: 8.5rem;
+
+      &.left {
+        left: -11.75rem;
+      }
+
+      &.right {
+        right: -11.5rem;
+      }
+    }
+
+    .pin-automation-reset {
+      position: absolute;
+      top: 8.5rem;
+
+      &.left {
+        left: 6rem;
+      }
+
+      &.right {
+        right: 6.5rem;
+      }
+    }
+
+    .sub-option-select {
+      position: absolute;
+      top: 3rem;
+
+      &.left {
+        left: -15.75rem;
+        width: 15rem;
+      }
+
+      &.right {
+        right: -15rem;
+        width: 14.25rem;
+      }
+    }
+
+    .dropdown-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-flow: column;
+      gap: 1rem;
+      width: 18.5rem;
+
+      &.left {
+        margin-left: auto;
+        align-self: flex-start;
+      }
+
+      &.right {
+        margin-left: auto;
+        align-self: flex-start;
+      }
+    }
+  }
+
+  .cable-structure-container {
+    position: relative;
+
+    &.first {
+      margin-top: 2rem;
+    }
+  }
+
+  .twisting-container {
+    width: 100%;
+    display: flex;
+
+    .description {
+      width: $description-width;
+    }
+
+    .icalc-label {
+      width: $label-width;
+    }
+
+    .twisting-side {
+      width: $core-width;
+      position: relative;
+
+      .twisting {
+        position: absolute;
+        z-index: 10;
+        bottom: 7px;
+        display: flex;
+        flex-direction: row;
+        width: 51px;
+
+        &.order-1 {
+          @include order(4, left, 100%, 5%);
+        }
+
+        &.order-2 {
+          @include order(3, left, 100%, 5%);
+        }
+
+        &.order-3 {
+          @include order(2, left, 100%, 5%);
+        }
+
+        &.order-4 {
+          @include order(1, left, 100%, 5%);
+        }
+
+        &.right {
+          left: unset !important;
+
+          &.order-1 {
+            @include order(4, right, 100%, 5%);
+          }
+
+          &.order-2 {
+            @include order(3, right, 100%, 5%);
+          }
+
+          &.order-3 {
+            @include order(2, right, 100%, 5%);
+          }
+
+          &.order-4 {
+            @include order(1, right, 100%, 5%);
+          }
+        }
+
+        &.core-amount-2 {
+          height: 66px;
+
+          .twist {
+            height: 68px;
+            transform: rotate(-13deg);
+          }
+
+          &.sub-actions-count-1 {
+            height: 110px;
+
+            .twist {
+              height: 110px;
+              transform: rotate(-8deg);
+            }
+
+            &.sub-action-pos-1 {
+              height: 91px;
+
+              .twist {
+                height: 91px;
+                transform: rotate(-9deg);
+              }
+            }
+          }
+
+          &.sub-actions-count-2 {
+            height: 145px;
+
+            .twist {
+              height: 145px;
+              transform: rotate(-6deg);
+            }
+
+            &.sub-action-pos-1 {
+              height: 120px;
+              bottom: 20px;
+
+              .twist {
+                height: 120px;
+                transform: rotate(-7deg);
+              }
+            }
+          }
+        }
+
+        &.core-amount-3 {
+          height: 110px;
+
+          .twist {
+            height: 110px;
+            transform: rotate(-8deg);
+          }
+
+          &.sub-actions-count-1 {
+            height: 145px;
+
+            .twist {
+              height: 145px;
+              transform: rotate(-6deg);
+            }
+          }
+
+          &.sub-actions-count-2 {
+            height: 180px;
+
+            .twist {
+              height: 180px;
+              transform: rotate(-5deg);
+            }
+
+            &.sub-action-pos-3 {
+              height: 180px;
+              bottom: 20px;
+
+              .twist {
+                height: 180px;
+                transform: rotate(-5deg);
+              }
+            }
+          }
+
+          &.sub-actions-count-3 {
+            height: 210px;
+            bottom: 6px;
+
+            &.sub-action-pos-3 {
+              bottom: 15px;
+            }
+
+            .twist {
+              height: 210px;
+              transform: rotate(-4deg);
+            }
+          }
+        }
+
+        &.core-amount-4 {
+          height: 145px;
+
+          .twist {
+            height: 145px;
+            transform: rotate(-6deg);
+          }
+
+          &.sub-action-pos-1 {
+            height: 120px;
+            bottom: 20px;
+
+            .twist {
+              height: 120px;
+              transform: rotate(-7deg);
+            }
+          }
+
+          &.sub-actions-count-1 {
+            &.sub-action-pos-1 {
+              height: 170px;
+              bottom: 5px;
+
+              .twist {
+                height: 170px;
+                transform: rotate(-5deg);
+              }
+            }
+
+            & {
+              height: 170px;
+              bottom: 24px;
+            }
+
+            .twist {
+              height: 170px;
+              transform: rotate(-5deg);
+            }
+
+            &.sub-action-pos-2 {
+              height: 190px;
+              bottom: 5px;
+
+              .twist {
+                height: 190px;
+                transform: rotate(-4deg);
+              }
+            }
+
+            &.sub-action-pos-3 {
+              height: 190px;
+              bottom: 5px;
+
+              .twist {
+                height: 190px;
+                transform: rotate(-4deg);
+              }
+            }
+          }
+
+          &.sub-actions-count-2 {
+            height: 210px;
+            bottom: 6px;
+
+            .twist {
+              height: 210px;
+              transform: rotate(-4deg);
+            }
+
+            &.sub-action-pos-2 {
+              height: 210px;
+              bottom: 6px;
+
+              &.sub-action-pos-3 {
+                bottom: 6px;
+              }
+
+              .twist {
+                height: 210px;
+                transform: rotate(-4deg);
+              }
+            }
+
+            &.sub-action-pos-3 {
+              height: 226px;
+              bottom: 14px;
+
+              .twist {
+                height: 226px;
+                transform: rotate(-4deg);
+              }
+            }
+          }
+
+          &.sub-actions-count-3 {
+            height: 250px;
+
+            .twist {
+              height: 250px;
+              transform: rotate(-3deg);
+            }
+
+            &.sub-action-pos-2,
+            &.sub-action-pos-3 {
+              height: 258px;
+              bottom: 20px;
+
+              .twist {
+                height: 258px;
+                transform: rotate(-3deg);
+              }
+            }
+
+            &.sub-action-pos-1 {
+              height: 241px;
+              bottom: 9px;
+
+              .twist {
+                height: 241px;
+                transform: rotate(-3deg);
+              }
+            }
+          }
+
+          &.sub-actions-count-4 {
+            height: 280px;
+            bottom: 20px;
+
+            .twist {
+              height: 280px;
+              transform: rotate(-3deg);
+            }
+          }
+        }
+
+        .twist-top-line {
+          width: 17px;
+          border-top: 1px solid black;
+        }
+
+        .twist {
+          position: relative;
+          width: 15px;
+          border-left: 1px solid black;
+          transform-origin: 0 0;
+        }
+
+        .twist-bottom-line {
+          width: 17px;
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+  }
+
+  .core-row {
+    height: $row-height;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &.has-sub-actions {
+      height: calc(2 * $row-height);
+
+      .core-container {
+        .sh {
+          bottom: calc(1.5 * $row-height);
+        }
+
+        .sh-label-line {
+          bottom: $row-height;
+        }
+
+        .dots-container {
+          .button-placeholder {
+            .bridge {
+              &.up {
+                height: 55px;
+                top: -50px;
+              }
+              &.down {
+                height: 50px;
+                bottom: -45px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    > div {
+      padding: 0 $base-padding-left-right;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icalc-label {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      width: 14%;
+      min-width: 177px;
+
+      .icalc-pin-assignment-config-form {
+        position: relative;
+        width: 100%;
+
+        mat-form-field.mat-mdc-form-field {
+          .mat-mdc-text-field-wrapper {
+            background-color: transparent;
+          }
+        }
+      }
+
+      .action-value-text {
+        align-self: flex-end;
+      }
+
+      &.right {
+        align-items: flex-start;
+
+        .action-value-text {
+          align-self: flex-start;
+        }
+      }
+
+      .label-input {
+        width: 90%;
+        padding-bottom: 0%;
+        color: #000;
+      }
+    }
+
+    .second-level-left {
+      position: absolute;
+      height: 18px;
+      left: -18.5%;
+    }
+
+    .second-level-right {
+      position: absolute;
+      height: 18px;
+      right: -20.5%;
+    }
+
+    .description {
+      width: $description-width;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: space-evenly;
+
+      &.litze {
+        display: flex;
+        position: relative;
+
+        div.litze-description-container {
+          width: 150%;
+          max-height: 100%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: -25%;
+          display: flex;
+          flex-direction: row;
+          gap: 7px;
+          justify-content: space-evenly;
+          align-items: center;
+
+          div.litze-label {
+            font-size: 12px;
+            width: 50%;
+            min-height: 10px;
+
+            input {
+              max-width: 100%;
+              box-shadow: none !important;
+            }
+          }
+
+          div.litze-label.right {
+            font-size: 12px;
+            width: 50%;
+            text-align: right;
+
+            input {
+              text-align: right;
+            }
+          }
+        }
+      }
+
+      .core-color {
+        max-width: 50%;
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .core-thickness {
+        max-width: 50%;
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+
+    .core-container {
+      width: $core-width;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+      position: relative;
+
+      .dots-container {
+        display: flex;
+        position: absolute;
+        height: 10px;
+        left: 0;
+        transition: width 0.2s ease-in-out;
+        width: 30%;
+
+        $dot-border: rgba(255, 255, 255, 0.733);
+        $down-up-position-value: -24px;
+        $first-dot: kopla.get-color('green', 400);
+        $clickable-button: kopla.get-color('orange', 400);
+        $clickable-button-hover: kopla.get-color('orange', 700);
+        $bridge-color: purple;
+        $disabled-color: grey;
+
+        .button-placeholder {
+          flex-grow: 1;
+          justify-content: space-evenly;
+          align-items: center;
+          min-width: 20%;
+          display: flex;
+          position: relative;
+
+          .separator-line {
+            height: 2px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.733);
+            position: absolute;
+            top: 5px;
+            left: 0;
+            display: none;
+          }
+
+          .bridge {
+            width: 5px;
+            height: 21px;
+            position: absolute;
+            display: none;
+            margin: auto 0;
+
+            &.up {
+              top: -16px;
+              display: none;
+              background-color: $bridge-color;
+
+              &.ending-dot,
+              &.in-between-dot {
+                display: block;
+              }
+
+              &.starting-dot.ending-dot {
+                display: block;
+                border-bottom: 1px solid $dot-border;
+              }
+
+              &.hidden {
+                display: none !important;
+              }
+            }
+
+            &.down {
+              bottom: -16px;
+              display: none;
+              background-color: $bridge-color;
+
+              &.starting-dot,
+              &.in-between-dot {
+                display: block;
+              }
+
+              &.starting-dot.ending-dot {
+                display: block;
+                border-top: 1px solid $dot-border;
+              }
+
+              &.hidden {
+                display: none !important;
+              }
+            }
+
+            &.disabled-dot {
+              background-color: $disabled-color;
+            }
+          }
+
+          .connector-dot {
+            display: none;
+            position: relative;
+            width: 15px;
+            height: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.733);
+            background-color: $clickable-button;
+
+            &:hover {
+              background-color: $clickable-button-hover;
+            }
+
+            .delete-icon {
+              display: none;
+              font-size: 13px;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 13px;
+              height: 13px;
+              background-color: kopla.get-color('red', 500) !important;
+              border-radius: 50%;
+              z-index: 100;
+            }
+
+            &.initial-dot {
+              display: block !important;
+              background-color: $first-dot !important;
+              z-index: 10000;
+
+              &:not(.disabled-dot):hover {
+                background-color: kopla.get-color('red', 500) !important;
+                z-index: 100000;
+
+                .delete-icon {
+                  display: block;
+                }
+              }
+            }
+
+            &.starting-dot {
+              display: block !important;
+              background-color: $bridge-color;
+
+              &:not(.disabled-dot):hover {
+                background-color: kopla.get-color('red', 500) !important;
+                z-index: 100000;
+
+                .delete-icon {
+                  display: block;
+                }
+              }
+
+              &.ending-dot {
+                .separator-line {
+                  display: block;
+                }
+              }
+            }
+
+            &.ending-dot {
+              display: block !important;
+              background-color: $bridge-color;
+            }
+
+            &.disabled-dot {
+              display: block !important;
+              background-color: $disabled-color;
+            }
+
+            &.in-between-dot {
+              display: none !important;
+
+              &.disabled-dot {
+                display: none !important;
+              }
+            }
+
+            &.sharable-dot:hover {
+              background-color: $bridge-color;
+              z-index: 10000;
+
+              .separator-line {
+                display: block !important;
+              }
+            }
+
+            &.hidden {
+              display: none !important;
+            }
+          }
+        }
+
+        &.right {
+          left: unset;
+          right: 0;
+        }
+      }
+
+      // MAIN COLOR
+      .black {
+        background-color: black;
+      }
+
+      .brown {
+        background-color: maroon;
+      }
+
+      .blue {
+        background-color: blue;
+      }
+
+      .darkred {
+        background-color: darkred;
+      }
+
+      .green {
+        background-color: green;
+      }
+
+      .gray {
+        background-color: gray;
+      }
+
+      .orange {
+        background-color: orange;
+      }
+
+      .pink {
+        background-color: pink;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .turquoise {
+        background-color: turquoise;
+      }
+
+      .violet {
+        background-color: violet;
+      }
+
+      .white {
+        background-color: white;
+      }
+
+      .yellow {
+        background-color: yellow;
+      }
+
+      // STRIPES BACKGROUND
+      .blackRed {
+        background-color: black;
+      }
+
+      .blackWhite {
+        background-color: black;
+      }
+
+      .blackYellow {
+        background-color: black;
+      }
+
+      .brownBlack {
+        background-color: maroon;
+      }
+
+      .brownBlue {
+        background-color: maroon;
+      }
+
+      .brownGreen {
+        background-color: maroon;
+      }
+
+      .brownRed {
+        background-color: maroon;
+      }
+
+      .brownGray {
+        background-color: maroon;
+      }
+
+      .brownYellow {
+        background-color: maroon;
+      }
+
+      .blueBlack {
+        background-color: blue;
+      }
+
+      .blueWhite {
+        background-color: blue;
+      }
+
+      .greenBlack {
+        background-color: green;
+      }
+
+      .greenBlue {
+        background-color: green;
+      }
+
+      .greenRed {
+        background-color: green;
+      }
+
+      .greenYellow {
+        background-color: green;
+      }
+
+      .grayBlack {
+        background-color: gray;
+      }
+
+      .grayBlue {
+        background-color: gray;
+      }
+
+      .grayGreen {
+        background-color: gray;
+      }
+
+      .grayPink {
+        background-color: gray;
+      }
+
+      .grayRed {
+        background-color: gray;
+      }
+
+      .grayBrown {
+        background-color: gray;
+      }
+
+      .pinkBlack {
+        background-color: pink;
+      }
+
+      .pinkBrown {
+        background-color: pink;
+      }
+
+      .pinkBlue {
+        background-color: pink;
+      }
+
+      .pinkGreen {
+        background-color: pink;
+      }
+
+      .pinkRed {
+        background-color: pink;
+      }
+
+      .redBlue {
+        background-color: red;
+      }
+
+      .redBlack {
+        background-color: red;
+      }
+
+      .redWhite {
+        background-color: red;
+      }
+
+      .whiteBrown {
+        background-color: white;
+      }
+
+      .whiteBlue {
+        background-color: white;
+      }
+
+      .whiteGreen {
+        background-color: white;
+      }
+
+      .whiteGray {
+        background-color: white;
+      }
+
+      .whiteOrange {
+        background-color: white;
+      }
+
+      .whitePink {
+        background-color: white;
+      }
+
+      .whiteRed {
+        background-color: white;
+      }
+
+      .whiteYellow {
+        background-color: white;
+      }
+
+      .whiteBlack {
+        background-color: white;
+      }
+
+      .whiteViolet {
+        background-color: white;
+      }
+
+      .yellowBlack {
+        background-color: yellow;
+      }
+
+      .yellowBrown {
+        background-color: yellow;
+      }
+
+      .yellowBlue {
+        background-color: yellow;
+      }
+
+      .yellowGray {
+        background-color: yellow;
+      }
+
+      .yellowPink {
+        background-color: yellow;
+      }
+
+      .yellowRed {
+        background-color: yellow;
+      }
+
+      .yellowGreen {
+        background-color: yellow;
+      }
+
+      .yellowWhite {
+        background-color: yellow;
+      }
+
+      .core-bg {
+        height: 8px;
+        border-radius: 4px;
+        width: 100%;
+        border: 1px solid #00000052;
+
+        .core {
+          height: 100%;
+          width: calc(100% - 15px);
+          margin: 0 auto;
+          box-sizing: border-box;
+        }
+
+        // STRIPES
+        .blackRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .blackWhite {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, white 10px, white 30px);
+        }
+
+        .blackYellow {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, yellow 10px, yellow 30px);
+        }
+
+        .brownBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .brownBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .brownGreen {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, green 10px, green 30px);
+        }
+
+        .brownRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .brownGray {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, gray 10px, gray 30px);
+        }
+
+        .brownYellow {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, yellow 10px, yellow 30px);
+        }
+
+        .blueBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .blueWhite {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, white 10px, white 30px);
+        }
+
+        .greenBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .greenBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .greenRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .greenYellow {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, yellow 10px, yellow 30px);
+        }
+
+        .grayBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .grayBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .grayGreen {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, green 10px, green 30px);
+        }
+
+        .grayPink {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, pink 10px, pink 30px);
+        }
+
+        .grayRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .grayBrown {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, maroon 10px, maroon 30px);
+        }
+
+        .pinkBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .pinkBrown {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, maroon 10px, maroon 30px);
+        }
+
+        .pinkBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .pinkGreen {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, green 10px, green 30px);
+        }
+
+        .pinkRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .redBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .redBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .redWhite {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, white 10px, white 30px);
+        }
+
+        .whiteBrown {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, maroon 10px, maroon 30px);
+        }
+
+        .whiteBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .whiteGreen {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, green 10px, green 30px);
+        }
+
+        .whiteGray {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, gray 10px, gray 30px);
+        }
+
+        .whiteOrange {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, orange 10px, orange 30px);
+        }
+
+        .whitePink {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, pink 10px, pink 30px);
+        }
+
+        .whiteRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .whiteYellow {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, yellow 10px, yellow 30px);
+        }
+
+        .whiteBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .whiteViolet {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, violet 10px, violet 30px);
+        }
+
+        .yellowBlack {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, black 10px, black 30px);
+        }
+
+        .yellowBrown {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, maroon 10px, maroon 30px);
+        }
+
+        .yellowBlue {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, blue 10px, blue 30px);
+        }
+
+        .yellowGray {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, gray 10px, gray 30px);
+        }
+
+        .yellowPink {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, pink 10px, pink 30px);
+        }
+
+        .yellowRed {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, red 10px, red 30px);
+        }
+
+        .yellowGreen {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, green 10px, green 30px);
+        }
+
+        .yellowWhite {
+          background: repeating-linear-gradient(-45deg, transparent, transparent 15px, white 10px, white 30px);
+        }
+      }
+
+      .sh-label-line {
+        position: absolute;
+        bottom: calc($row-height / 2);
+        height: calc($row-height / 2);
+        border-bottom: #000 1px solid;
+        border-right: #000 1px solid;
+        margin-left: 10px;
+
+        &.order-1 {
+          left: 0;
+          @include order(4, width);
+        }
+
+        &.order-2 {
+          left: 0;
+          @include order(3, width);
+        }
+
+        &.order-3 {
+          left: 0;
+          @include order(2, width);
+        }
+
+        &.order-4 {
+          left: 0;
+          @include order(1, width);
+        }
+      }
+
+      .sh {
+        position: absolute;
+        bottom: $row-height;
+        width: $sh-width;
+        border-radius: 50%;
+        border: 2px dashed #000;
+        background: transparent;
+
+        @include generate-height-classes(84, $row-height);
+
+        &.order-1 {
+          @include order(4, left);
+        }
+
+        &.order-2 {
+          @include order(3, left);
+        }
+
+        &.order-3 {
+          @include order(2, left);
+        }
+
+        &.order-4 {
+          @include order(1, left);
+        }
+      }
+
+      &.right {
+        .sh-label-line {
+          border-right: none;
+          border-left: #000 1px solid;
+          left: unset !important;
+          right: 10px;
+        }
+
+        .sh {
+          left: unset !important;
+
+          &.order-1 {
+            @include order(4, right);
+          }
+
+          &.order-2 {
+            @include order(3, right);
+          }
+
+          &.order-3 {
+            @include order(2, right);
+          }
+
+          &.order-4 {
+            @include order(1, right);
+          }
+        }
+      }
+    }
+  }
+}
+
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-selection {
+  display: flex;
+
+  .selection {
+    flex-grow: 1;
+    width: 150px;
+    margin: 20px;
+
+    .selection-row {
+      display: flex;
+      justify-content: space-between;
+
+      .selection-alert {
+        color: red;
+        font-weight: bold;
+      }
+    }
+  }
+}

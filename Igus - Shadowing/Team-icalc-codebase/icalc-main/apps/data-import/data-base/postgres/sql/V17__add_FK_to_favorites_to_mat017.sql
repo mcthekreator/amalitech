@@ -1,0 +1,1 @@
+ALTER TABLE ONLY "public"."favorites_to_mat017" ADD CONSTRAINT "FK_ftm017_m017" FOREIGN KEY (mat_number) REFERENCES mat017(mat_number) NOT DEFERRABLE;

@@ -1,0 +1,134 @@
+{
+  "icalc": {
+    "meta_data_form": {
+      "HEADLINE": {
+        "de": "Stammdaten",
+        "en": "Order Data",
+        "en-US": "Order Data",
+        "_info": "icalc.meta_data_form.HEADLINE"
+      },
+      "SUB-HEADLINE_CALCULATION": {
+        "de": "Kalkulation",
+        "en": "Calculation",
+        "_info": "icalc.meta_data_form.SUB-HEADLINE_CALCULATION"
+      },
+      "SUB-HEADLINE_CONFIGURATION": {
+        "de": "Konfiguration",
+        "en": "Configuration",
+        "_info": "icalc.meta_data_form.SUB-HEADLINE_CONFIGURATION"
+      },
+      "DESCRIPTION": {
+        "de": "Geben Sie bitte die folgenden Stammdaten ein, um eine neue Kalkulation zu erstellen.",
+        "en": "Please enter the following data to create a new calculation.",
+        "en-US": "Please enter the following data to create a new calculation.",
+        "_info": "icalc.meta_data_form.DESCRIPTION"
+      },
+      "DESCRIPTION_EDIT": {
+        "de": "Geben Sie bitte die folgenden Stammdaten ein, um die Kalkulation zu editieren.",
+        "en": "Please enter the following data to edit the current calculation.",
+        "en-US": "Please enter the following data to edit the current calculation.",
+        "_info": "icalc.meta_data_form.DESCRIPTION_EDIT"
+      },
+      "COPY_CALCULATION": {
+        "de": "Kalkulation kopieren",
+        "en": "Copy Calculation",
+        "_info": "icalc.meta_data_form.COPY_CALCULATION"
+      },
+      "NEW_CALCULATION_NUMBER_NEEDED-2": {
+        "de": "Zum Kopieren der Kalkulation wird eine neue Kalkulationsnummer benötigt.",
+        "en": "To copy the calculation, a new calculation number is required.",
+        "_info": "icalc.meta_data_form.NEW_MAT_NUMBER_NEEDED-2"
+      },
+      "CONFIRM": {
+        "de": "Bestätigen",
+        "en": "Confirm",
+        "_info": "icalc.meta_data_form.CONFIRM"
+      },
+      "CONFIRM-COPY-CONFIG": {
+        "de": "Konfiguration anlegen",
+        "en": "Create configuration",
+        "_info": "icalc.meta_data_form.CONFIRM"
+      },
+      "CANCEL": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.meta_data_form.CANCEL"
+      },
+      "CREATE_CONFIGURATION": {
+        "de": "Konfiguration anlegen",
+        "en": "Create configuration",
+        "_info": "icalc.meta_data_form.CREATE_CONFIGURATION"
+      },
+      "NEW_CALCULATION_NUMBER": {
+        "de": "Kalkulation anlegen",
+        "en": "Create calculation",
+        "_info": "icalc.meta_data_form.NEW_CALCULATION_NUMBER"
+      },
+      "COPY_CONFIGURATION_EXPLANATION": {
+        "de": "Die MAT-Nummer einer bereits existierenden Konfiguration kann nicht geändert werden.\nBitte erstellen Sie eine Kopie in innerhalb dieser, oder in einer neuen Kalkulation.",
+        "en": "The MAT number of an existing configuration can not be changed.\nPlease either create a copy within the existing, or within a new calculation",
+        "_info": "icalc.meta_data_form.COPY_CONFIGURATION_EXPLANATION"
+      },
+      "NEW_MAT_NUMBER_NEEDED": {
+        "de": "Geben Sie bitte die Pflichtangaben an, um die Konfiguration zu kopieren und anzulegen",
+        "en": "Please provide the mandatory information to copy and create the configuration",
+        "_info": "icalc.meta_data_form.NEW_MAT_NUMBER_NEEDED"
+      },
+      "NEW_CALCULATION_NUMBER_NEEDED": {
+        "de": "Zum Kopieren der Konfiguration geben Sie bitte die Pflichtangaben für die neue Kalkulation ein.",
+        "en": "To copy the configuration, please enter the mandatory data for the new calculation.",
+        "_info": "icalc.meta_data_form.NEW_CALCULATION_NUMBER_NEEDED"
+      },
+      "COPY_IN_EXISTING_CALCULATION": {
+        "de": "Konfiguration innerhalb dieser Kalkulation kopieren",
+        "en": "Copy configuration in this calculation",
+        "_info": "icalc.meta_data_form.COPY_IN_EXISTING_CALCULATION"
+      },
+      "COPY_IN_NEW_CALCULATION": {
+        "de": "Konfiguration in neue Kalkulation kopieren",
+        "en": "Copy configuration in new calculation",
+        "_info": "icalc.meta_data_form.COPY_IN_NEW_CALCULATION"
+      },
+      "TOOLTIP": {
+        "de": "Eingabewert in das rechte Feld kopieren",
+        "en": "Copy input value to the right input field",
+        "_info": "icalc.meta_data_form.TOOLTIP"
+      },
+      "CLEAR-DATA-TOOLTIP": {
+        "de": "Werte leeren",
+        "en": "Clear field value",
+        "_info": "icalc.meta_data_form.CLEAR-DATA-TOOLTIP"
+      },
+      "TOOLTIP_CALCULATION_NUMBER": {
+        "de": "Die Kalkulationsnummer einer bereits existierenden Kalkulation kann nicht geändert werden. Bitte erstellen Sie eine Kopie.",
+        "en": "The calculation number of an existing calculation can not be changed.Please create a copy.",
+        "_info": "icalc.meta_data_form.TOOLTIP_CALCULATION_NUMBER"
+      },
+      "TOOLTIP_CONFIGURATION_DESCRIPTION": {
+        "de": "Die Konfigurationsbeschreibung wird nach Excel in das Feld “IB” (Ihre Bezeichnung) übertragen.",
+        "en": "The configuration description is transferred to Excel into the field “IB” (Ihre Bezeichnung).",
+        "_info": "icalc.meta_data_form.TOOLTIP_CONFIGURATION_DESCRIPTION"
+      },
+      "TOOLTIP_MAT_NUMBER": {
+        "de": "Die MAT-Nummer einer bereits existierenden Konfiguration kann nicht geändert werden. Bitte erstellen Sie eine Kopie.",
+        "en": "The MAT number of an existing configuration can not be changed. Please create a copy.",
+        "_info": "icalc.meta_data_form.TOOLTIP_MAT_NUMBER"
+      },
+      "SELECT_Configuration_ITEMS": {
+        "de": "Wählen Sie bitte die Konfigurationen aus, die Sie der neuen Kalkulation zuordnen möchten.",
+        "en": "Please select the configurations which should be assigned to the new calculation.",
+        "_info": "icalc.meta_data_form.SELECT_Configuration_ITEMS"
+      },
+      "SELECT_Configuration_ITEMS_ALL": {
+        "de": "Alle auswählen",
+        "en": "Select all",
+        "_info": "icalc.meta_data_form.SELECT_Configuration_ITEMS_ALL"
+      },
+      "LOCKED_INFO": {
+        "de": "Diese Kalkulation wurde abgeschlossen und kann nicht mehr geändert werden. Sie können eine Kopie dieser erstellen und in einer neuen Kalkulation Anpassungen der Konfiguration vornehmen.",
+        "en": "This calculation has been completed and can not be changed. You can create a copy of this and make adjustments to the configuration in a new calculation.",
+        "_info": "icalc.meta_data_form.LOCKED_INFO"
+      }
+    }
+  }
+}

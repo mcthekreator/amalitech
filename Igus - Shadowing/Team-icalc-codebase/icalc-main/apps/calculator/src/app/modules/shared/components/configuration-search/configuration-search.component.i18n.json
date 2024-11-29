@@ -1,0 +1,21 @@
+{
+  "icalc": {
+    "configuration_search": {
+      "CALCULATION-NUMBERS": {
+        "de": "Kalkulationsnummern",
+        "en": "Calculation numbers",
+        "_info": "icalc.configuration_search.CALCULATION-NUMBERS"
+      },
+      "CHAIN_FLEX_NUMBER": {
+        "de": "Chainflexnummer",
+        "en": "Chainflex number",
+        "_info": "icalc.configuration_search.CHAIN_FLEX_NUMBER"
+      },
+      "TOOLTIP_Configuration_MORE_CALCS": {
+        "de": "Diese Konfiguration ist mehr als drei Kalkulationen zugeordnet:",
+        "en": "This configuration is assigned to more than three calculations:",
+        "_info": "icalc.configuration_search.TOOLTIP_Configuration_MORE_CALCS"
+      }
+    }
+  }
+}

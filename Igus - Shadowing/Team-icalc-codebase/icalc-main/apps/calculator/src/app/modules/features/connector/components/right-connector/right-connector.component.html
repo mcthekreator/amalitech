@@ -1,0 +1,135 @@
+<icalc-connector-search-filter
+  [chainflexCable]="chainflexCable$ | async"
+  [chainflexCableStructure]="chainflexCableStructure$ | async"
+  [isLocked]="isLocked$ | async"
+  [mat017ItemListWithWidenData]="mat017ItemListWithWidenData$ | async"
+  which="rightConnector"
+></icalc-connector-search-filter>
+<div class="wrapper">
+  <icalc-connector-mat017-items-table
+    whichConnector="rightConnector"
+    [isLocked]="isLocked"
+  ></icalc-connector-mat017-items-table>
+
+  <div class="sidebar">
+    <div class="itemlist-text">
+      <span
+        class="kopla-font-headline-6"
+        matBadge="{{ mat017ItemListWithWidenDataCount$ | async }}"
+        matBadgeOverlap="false"
+        matBadgeSize="medium"
+        >{{ 'icalc.connector.ITEM_LIST' | translate }}</span
+      >
+      <p *ngIf="(mat017ItemListWithWidenData$ | async)?.length === 0" class="paragraph">
+        {{ 'icalc.right-connector.ADD_ITEMS' | translate }}
+      </p>
+    </div>
+
+    <mat-card class="" *ngFor="let item of mat017ItemListWithWidenData$ | async">
+      <mat-card-content>
+        <div class="input">
+          <!--INPUT for non-fractionable and fractionable item groups -->
+          <input
+            icalcDecimalDigitInput
+            [disabled]="isLocked"
+            [value]="displayFractionedValue(item.quantity)"
+            (change)="fractionedValueChanged($event, item.matNumber)"
+          />
+        </div>
+        <p class="headline-6">{{ item.matNumber }}</p>
+        <p class="text">{{ item.itemDescription1 }} {{ item.itemDescription2 }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          class="kopla-mat-button--small"
+          mat-button
+          color="primary"
+          [disabled]="isLocked"
+          (click)="onRemoveFromMat017ItemListWithWidenData(item)"
+        >
+          {{ 'icalc.right-connector.REMOVE' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<icalc-cdk-portal [selectorId]="'footer-left-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    mat-button
+    *ngIf="previousStep$ | async as previousStep"
+    [routerLink]="[previousStep.route]"
+    dataCy="step-back-to-left-connector-button"
+  >
+    {{ 'icalc.right-connector.' + previousStep.label | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-right-side'">
+  <div class="options-wrapper">
+    <formly-form
+      [model]="footerActionButtons.model"
+      [fields]="footerActionButtons.fields"
+      [options]="footerActionButtons.options"
+      [form]="footerActionButtons.form"
+    ></formly-form>
+  </div>
+  <div class="buttons-wrapper">
+    <button
+      mat-stroked-button
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-button
+      [disabled]="isLocked"
+      (click)="onCreateMat017Items()"
+    >
+      {{ 'icalc.left-connector.ADD_NEW_ITEMS' | translate }}
+    </button>
+    <button
+      mat-stroked-button
+      class="kopla-mat-button--small"
+      dataCy="rightConnector-select-sets-button"
+      color="primary"
+      mat-button
+      [disabled]="isLocked"
+      (click)="openFavoritesDialog()"
+    >
+      {{ 'icalc.connector.SELECT-CONNECTOR-SETS-BUTTON' | translate }}
+    </button>
+    <button
+      mat-stroked-button
+      class="kopla-mat-button--small"
+      color="primary"
+      mat-button
+      [disabled]="isLocked"
+      (click)="openCopyConnectorDialogWithoutRef()"
+    >
+      {{ 'icalc.connector.COPY_DATA' | translate }}
+    </button>
+  </div>
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    dataCy="save-connector-mat017-items"
+    mat-flat-button
+    *ngIf="nextStep$ | async as nextStep"
+    [routerLink]="[nextStep.route]"
+  >
+    {{ 'icalc.right-connector.' + nextStep.label | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<ng-template #confirmCopyConnectorDialogRight>
+  <h2 matDialogTitle>{{ 'icalc.connector.COPY_DATA' | translate }}</h2>
+  <mat-dialog-content>
+    <h5>{{ 'icalc.connector.INFO_TEXT' | translate }}</h5>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-between">
+    <button mat-button matDialogClose color="primary">{{ 'icalc.connector.CANCEL' | translate }}</button>
+    <button mat-flat-button [disabled]="isLocked" (click)="copyConnector()" color="primary">
+      {{ 'icalc.connector.YES' | translate }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>

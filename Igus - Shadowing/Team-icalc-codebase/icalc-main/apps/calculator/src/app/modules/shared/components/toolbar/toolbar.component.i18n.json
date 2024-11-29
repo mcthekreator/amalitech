@@ -1,0 +1,41 @@
+{
+  "toolbar": {
+    "stepper": {
+      "meta-data": {
+        "de": "Stammdaten",
+        "en": "Order Data",
+        "_info": "title for step 1"
+      },
+      "chainflex": {
+        "de": "Leitung",
+        "en": "Chainflex",
+        "_info": "title for step 2"
+      },
+      "connector-left": {
+        "de": "Stecker links",
+        "en": "Connector left",
+        "_info": "title for step 3"
+      },
+      "connector-right": {
+        "de": "Stecker rechts",
+        "en": "Connector right",
+        "_info": "title for step 4"
+      },
+      "library": {
+        "de": "Skizze",
+        "en": "Library",
+        "_info": "title for step 5"
+      },
+      "pin-assignment": {
+        "de": "Pinbelegung",
+        "en": "Pin Assignment",
+        "_info": "title for step 6"
+      },
+      "results": {
+        "de": "Ergebnis",
+        "en": "Result",
+        "_info": "title for step 7"
+      }
+    }
+  }
+}

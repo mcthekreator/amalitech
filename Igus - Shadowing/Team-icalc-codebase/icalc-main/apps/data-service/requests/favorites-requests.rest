@@ -1,0 +1,24 @@
+### favorites post (create)
+POST http://localhost:3000/api/favorites
+Content-Type: application/json
+
+{
+  "name": "Beispiel Konfiguration",
+  "favoritesToMat017Items": [
+    {
+      "matNumber": "MAT0171129",
+      "amount": 1
+    },
+    {
+      "matNumber": "MAT0171130",
+      "amount": 1
+    },
+  ]
+}
+
+### find all favorites
+GET http://localhost:3000/api/favorites
+
+
+### find all mat017Item favoritesToMat017Items for a favorites entry
+GET http://localhost:3000/api/favorites/c847b80b-a7fa-472b-90c1-56ca7a389368/favoritesToMat017Items

@@ -1,0 +1,36 @@
+{
+  "name": "domain",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/domain/src",
+  "tags": ["scope:shared"],
+  "implicitDependencies": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/domain"],
+      "options": {
+        "jestConfig": "libs/domain/jest.config.ts",
+        "codeCoverage": true
+      }
+    },
+    "test-int": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/domain"],
+      "options": {
+        "jestConfig": "{projectRoot}/jest-int.config.ts",
+        "codeCoverage": true
+      }
+    },
+    "doc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn run g:kopla d d -s libs/domain/src/index.ts -c libs/domain/tsconfig.lib.json -o doc/libs/domain"
+      }
+    }
+  }
+}

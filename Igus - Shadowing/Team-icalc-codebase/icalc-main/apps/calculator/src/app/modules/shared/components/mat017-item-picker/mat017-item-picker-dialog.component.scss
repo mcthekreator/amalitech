@@ -1,0 +1,29 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$gray-50: kopla.get-color('gray', 50);
+$orange-100: kopla.get-color('orange', 100);
+$orange-500: kopla.get-color('orange', 500);
+
+.mat017-item-picker-items-table {
+  margin-top: 20px;
+  tr {
+    cursor: pointer;
+    &.selected {
+      background: $orange-100;
+    }
+    &:not(.selected):hover {
+      background: $gray-50;
+    }
+  }
+
+  .mat-sort-header-arrow {
+    opacity: 0.5 !important;
+  }
+
+  .sorted {
+    .mat-sort-header-arrow {
+      opacity: 1 !important;
+      color: $orange-500;
+    }
+  }
+}

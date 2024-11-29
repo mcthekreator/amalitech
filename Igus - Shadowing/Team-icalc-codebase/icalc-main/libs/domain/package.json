@@ -1,0 +1,14 @@
+{
+  "name": "@igus/icalc-domain",
+  "description": "Business domain logic for icalc",
+  "version": "2.8.0",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igusdev/icalc.git",
+    "directory": "libs/domain"
+  },
+  "publishConfig": {
+    "registry": "https://npm.igusdev.igus.de/"
+  }
+}

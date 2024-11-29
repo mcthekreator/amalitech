@@ -1,0 +1,185 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+// general server errors
+$red-50: kopla.get-color('red', 50);
+
+// navigation list
+$orange-300: kopla.get-color('orange', 300);
+$blue-400: kopla.get-color('blue', 400);
+$gray-50: kopla.get-color('gray', 50);
+$gray-200: kopla.get-color('gray', 200);
+
+// info-i
+$orange-400: kopla.get-color('orange', 400);
+
+// cf-price-info-box
+$orange-300: kopla.get-color('orange', 300);
+
+:host {
+  .kopla-table {
+    .kopla-table__row:hover {
+      background-color: kopla.get-color('grey', 100);
+    }
+
+    &__header {
+      &__icon :not(.discount-header) {
+        margin-right: 7px;
+      }
+    }
+
+    .kopla-table__cell {
+      vertical-align: top;
+      padding-right: 3px;
+      word-wrap: break-word;
+
+      &.info-i {
+        color: $orange-400;
+      }
+
+      mat-form-field.small {
+        max-width: 100px;
+      }
+
+      .amount-input {
+        border: 1px solid $gray-200;
+        outline: none;
+        width: 90%;
+        border-radius: 2px;
+        text-align: right;
+      }
+
+      // LEFT COLUMNS
+      &.primary-cell {
+        min-width: 88px;
+      }
+
+      &.scc-primary-cell {
+        display: flex;
+        gap: 7px;
+        min-width: 200px;
+
+        .align-vertically {
+          padding-top: 3px;
+        }
+
+        mat-icon {
+          &.override {
+            color: $orange-300;
+          }
+        }
+      }
+
+      &.description-chainflex {
+        min-width: 350px;
+      }
+
+      &.description {
+        min-width: 199px;
+      }
+
+      &.work-step {
+        min-width: 470px;
+        &.highlighted {
+          color: $blue-400;
+        }
+      }
+      // meta data calculation factor
+      &.calculation-factor {
+        min-width: 175px;
+      }
+
+      // meta data risk factor cell
+      &.risk-factor-cell {
+        display: inline-flex;
+        gap: 7px;
+
+        .align-vertically {
+          padding-top: 3px;
+        }
+
+        mat-icon {
+          &.default-deviation {
+            color: $orange-300;
+          }
+        }
+      }
+
+      // RIGHT COLUMNS
+      &.price {
+        float: right;
+        text-align: right;
+        width: 130px;
+      }
+
+      &.discount {
+        float: right;
+        text-align: right;
+        width: 130px;
+      }
+
+      &.calc-factor {
+        float: right;
+        text-align: right;
+        width: 130px;
+      }
+
+      &.selling-price-per-unit {
+        float: right;
+        text-align: right;
+        width: 130px;
+      }
+
+      // for CF
+      &.length {
+        float: right;
+        text-align: right;
+        width: 130px;
+      }
+
+      // for MAT017 and work steps
+      &.quantity {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        float: right;
+        text-align: right;
+        width: 130px;
+
+        mat-icon {
+          font-size: 20px;
+          padding-right: 10px;
+          color: $orange-300;
+
+          &.reset {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &.selling-price {
+        float: right;
+        text-align: right;
+        width: 130px;
+      }
+    }
+
+    .scc-edit-mode {
+      display: flex;
+      gap: 7px;
+
+      .align-vertically {
+        padding-top: 16px;
+      }
+
+      mat-icon {
+        color: $orange-300;
+
+        &.reset {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

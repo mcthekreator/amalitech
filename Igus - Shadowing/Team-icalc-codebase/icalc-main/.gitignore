@@ -1,0 +1,74 @@
+
+#######################################################################################################################
+## Infrastructure (git, nodejs)
+
+.awcache
+.angular/cache
+**/.angular/cache
+**/coverage
+**/.serve.local
+
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+#######################################################################################################################
+## Generated Code
+
+cordova/hooks/*
+cordova/platforms/*
+cordova/plugins/*
+cordova/www/*
+dist
+doc
+i18n
+public
+typings
+coverage
+apps/expert/i18n
+apps/calculator-e2e/coverage
+apps/calculator-e2e/.nyc_output
+apps/calculator-e2e/cypress/downloads
+cyreport
+
+#######################################################################################################################
+## Test Data
+apps/data-import/csv-files/MAT017_item_bu_excel.csv
+
+#######################################################################################################################
+## IDEs
+
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+#######################################################################################################################
+## OS
+
+# MacOS
+.DS_Store
+
+#######################################################################################################################
+## but not
+
+!.gitkeep
+
+.angular
+.nx
+
+#######################################################################################################################
+## env variables
+.env.local

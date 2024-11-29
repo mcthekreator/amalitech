@@ -1,0 +1,79 @@
+{
+  "icalc": {
+    "connector-mat017-items-table": {
+      "SELECT_CHAINFLEX_WARNING": {
+        "de": "Bitte wählen Sie eine Chainflexleitung in dem vorherigen Schritt aus, damit passende Artikel angezeigt werden können.",
+        "en": "Please select a chainflex cable so icalc can search for suitable parts.",
+        "_info": "icalc.connector-mat017-items-table.SELECT_CHAINFLEX_WARNING"
+      },
+      "SEARCHING_FOR_SUITABLE_ELEMENTS": {
+        "de": "Passende Artikel werden gesucht...",
+        "en": "Searching for suitable items...",
+        "_info": "icalc.connector-mat017-items-table.SEARCHING_FOR_SUITABLE_ELEMENTS"
+      },
+      "MATNUMBER": { "de": "MAT-Nummer", "en": "MAT number", "_info": "icalc.connector-mat017-items-table.MATNUMBER" },
+      "SCORE": {
+        "de": "Bisher kombiniert",
+        "en": "Previous Matches",
+        "_info": "icalc.connector-mat017-items-table.SCORE"
+      },
+      "ITEMDESCRIPTION1": {
+        "de": "Artikelbezeichnung 1",
+        "en": "Item description 1",
+        "_info": "icalc.connector-mat017-items-table.ITEMDESCRIPTION1"
+      },
+      "ITEMDESCRIPTION2": {
+        "de": "Artikelbezeichnung 2",
+        "en": "Item description 2",
+        "_info": "icalc.connector-mat017-items-table.ITEMDESCRIPTION2"
+      },
+      "GROUP": { "de": "Artikelgruppe", "en": "Item Group", "_info": "icalc.connector-mat017-items-table.GROUP" },
+      "PARTNUMBER": {
+        "de": "Bestellnummer",
+        "en": "Part number",
+        "_info": "icalc.connector-mat017-items-table.PARTNUMBER"
+      },
+      "PURCHASEPRICE": {
+        "de": "Einkaufspreis",
+        "en": "Purchase price",
+        "_info": "icalc.connector-mat017-items-table.PURCHASEPRICE"
+      },
+      "AMOUNT": { "de": "Anzahl", "en": "Amount", "_info": "icalc.connector-mat017-items-table.AMOUNT" },
+      "STATUS": {
+        "de": "Status",
+        "en": "Status",
+        "_info": "icalc.connector-mat017-items-table.STATUS"
+      },
+      "MAT017ITEM_SELECTION_DISABLED": {
+        "de": "Dieser Artikel kann nicht ausgewählt werden, da notwendige Daten fehlen. Diese können die Artikelbezeichnung 1, die Artikelgruppe oder der Preis sein. ",
+        "en": "This item cannot be selected as mandatory data are missing. This can be the item description 1, the item group or the price",
+        "_info": "icalc.connector-mat017-items-table.MAT017ITEM_SELECTION_DISABLED"
+      },
+      "MAT017ITEM_SELECTION_REMOVED_DISABLED": {
+        "de": "Dieser Artikel kann nicht ausgewählt werden, da er nicht im letzten Datenimport enthalten war.",
+        "en": "This item cannot be selected as it was not included in the last data import.",
+        "_info": "icalc.connector-mat017-items-table.MAT017ITEM_SELECTION_REMOVED_DISABLED"
+      },
+      "DELETION_OF_MANUALLY_CREATED_MAT017ITEM": {
+        "de": "Dieser Artikel kann gelöscht werden, da er manuell erzeugt und nicht durch den automatischen MAT017 Datenimport überschrieben wurde.",
+        "en": "This item can be deleted as it has been added manually and not been overwritten by the automated MAT017 data import.",
+        "_info": "icalc.connector-mat017-items-table.MAT017ITEM_SELECTION_REMOVED_DISABLED"
+      },
+      "INVALID_ITEM_REMOVAL_WARNING_HEADER": {
+        "de": "Achtung",
+        "en": "Warning",
+        "_info": "icalc.connector-mat017-items-table.INVALID_ITEM_REMOVAL_WARNING_HEADER"
+      },
+      "INVALID_ITEM_REMOVAL_WARNING": {
+        "de": "Der momentan ausgewählte MAT017 Artikel ist veraltet oder ungültig. Sobald der Artikel aus der Stückliste entfernt wird, kann er nicht wieder hinzugefügt werden.",
+        "en": "The currently selected MAT017 item is outdated or invalid. As soon as the item will be removed from the item list it cannot be added again.",
+        "_info": "icalc.connector-mat017-items-table.INVALID_ITEM_REMOVAL_WARNING"
+      },
+      "DELETE_MANUALLY_CREATED_ITEM_WARNING": {
+        "de": "Dieser Artikel wird permanent von der Liste verfügbarer Artikel gelöscht. Die Löschung hat keinen Einfluss auf die Stückliste dieser oder anderer Konfigurationen. Möchten Sie fortfahren?",
+        "en": "This item will be deleted permanently from the list of available items. This deletion does not affect the BOM of this or any other configuration. Do you want to proceed?",
+        "_info": "icalc.connector-mat017-items-table.DELETE_MANUALLY_CREATED_ITEM_WARNING"
+      }
+    }
+  }
+}

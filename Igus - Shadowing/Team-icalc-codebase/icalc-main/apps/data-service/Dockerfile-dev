@@ -1,0 +1,28 @@
+FROM node:20-slim as base
+
+WORKDIR app
+
+RUN apt-get update && apt-get install -y \
+      curl \
+      libreoffice-calc \
+      xvfb \
+    && rm -rf /var/lib/apt/lists/* \
+
+FROM base as dev-runner
+
+ENV POSTGRES_HOST=127.0.0.1
+
+COPY .yarn ./.yarn
+COPY apps/data-service ./apps/data-service
+COPY /libs ./libs
+COPY .yarnrc.yml ./.yarnrc.yml
+COPY nx.json ./nx.json
+COPY package.json ./package.json
+COPY tsconfig.base.json ./tsconfig.base.json
+COPY webpack-options.js ./webpack-options.js
+
+RUN yarn
+
+EXPOSE 3000
+
+ENTRYPOINT ./node_modules/.bin/nx run data-service:serve

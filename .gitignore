@@ -10,7 +10,7 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-/Team-icalc-codebase/icalc-main
+/icalc-main
 
 # IDEs and editors
 .idea/

@@ -1,0 +1,21 @@
+{
+  "icalc": {
+    "assign_configuration_search_dialog": {
+      "CONFIGURATION-SEARCH": {
+        "de": "Konfigurationssuche",
+        "en": "Configuration Search",
+        "_info": "icalc.assign_configuration_search_dialog.CONFIGURATION-SEARCH"
+      },
+      "INFO_TEXT": {
+        "de": "Wählen Sie eine Konfiguration aus, um sie der selektierten Kalkulation hinzuzufügen.",
+        "en": "Choose a configuration to add it to the selected calculation.",
+        "_info": "icalc.assign_configuration_search_dialog.INFO_TEXT"
+      },
+      "CANCEL": {
+        "de": "Abbrechen",
+        "en": "Cancel",
+        "_info": "icalc.assign_configuration_search_dialog.CANCEL"
+      }
+    }
+  }
+}

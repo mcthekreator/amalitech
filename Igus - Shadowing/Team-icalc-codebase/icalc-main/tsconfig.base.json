@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@icalc/frontend/app/*": ["apps/calculator/src/app/*"],
+      "@icalc/frontend/modules/*": ["apps/calculator/src/app/modules/*"],
+      "@icalc/frontend/state/*": ["apps/calculator/src/app/modules/core/state/*"],
+      "@igus/icalc-auth": ["libs/auth/src/index.ts"],
+      "@igus/icalc-auth-infrastructure": ["libs/auth/infrastructure/src/index.ts"],
+      "@igus/icalc-calculations-application": ["libs/calculations/application/src/index.ts"],
+      "@igus/icalc-calculations-infrastructure": ["libs/calculations/infrastructure/src/index.ts"],
+      "@igus/icalc-calculations-presentation": ["libs/calculations/presentation/src/index.ts"],
+      "@igus/icalc-common": ["libs/common/src/index.ts"],
+      "@igus/icalc-configurations-application": ["libs/configurations/application/src/index.ts"],
+      "@igus/icalc-configurations-infrastructure": ["libs/configurations/infrastructure/src/index.ts"],
+      "@igus/icalc-configurations-presentation": ["libs/configurations/presentation/src/index.ts"],
+      "@igus/icalc-domain": ["libs/domain/src/index.ts"],
+      "@igus/icalc-entities": ["libs/entities/src/index.ts"],
+      "@igus/icalc-postgres": ["libs/domain/src/environment/postgres.environment.ts"],
+      "@igus/icalc-result": ["libs/domain/src/models/result/index.ts"],
+      "@igus/icalc-utils": ["libs/domain/src/utils/index.ts"],
+      "@igus/state-actions-plugin": ["libs/state-actions-plugin/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

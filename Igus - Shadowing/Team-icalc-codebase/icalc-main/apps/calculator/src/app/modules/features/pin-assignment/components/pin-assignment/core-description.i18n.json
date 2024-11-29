@@ -1,0 +1,1216 @@
+{
+  "icalc": {
+    "core-description": {
+      "CORE_DESC_-": {
+        "de": "",
+        "en": "",
+        "_info": "core-description.CORE_DESC_-"
+      },
+      "CORE_DESC_1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_1"
+      },
+      "CORE_DESC_2": {
+        "de": "2",
+        "en": "2",
+        "_info": "core-description.CORE_DESC_2"
+      },
+      "CORE_DESC_3": {
+        "de": "3",
+        "en": "3",
+        "_info": "core-description.CORE_DESC_3"
+      },
+      "CORE_DESC_4": {
+        "de": "4",
+        "en": "4",
+        "_info": "core-description.CORE_DESC_4"
+      },
+      "CORE_DESC_5": {
+        "de": "5",
+        "en": "5",
+        "_info": "core-description.CORE_DESC_5"
+      },
+      "CORE_DESC_6": {
+        "de": "6",
+        "en": "6",
+        "_info": "core-description.CORE_DESC_6"
+      },
+      "CORE_DESC_7": {
+        "de": "7",
+        "en": "7",
+        "_info": "core-description.CORE_DESC_7"
+      },
+      "CORE_DESC_8": {
+        "de": "8",
+        "en": "8",
+        "_info": "core-description.CORE_DESC_8"
+      },
+      "CORE_DESC_9": {
+        "de": "9",
+        "en": "9",
+        "_info": "core-description.CORE_DESC_9"
+      },
+      "CORE_DESC_10": {
+        "de": "10",
+        "en": "10",
+        "_info": "core-description.CORE_DESC_10"
+      },
+      "CORE_DESC_11": {
+        "de": "11",
+        "en": "11",
+        "_info": "core-description.CORE_DESC_11"
+      },
+      "CORE_DESC_12": {
+        "de": "12",
+        "en": "12",
+        "_info": "core-description.CORE_DESC_12"
+      },
+      "CORE_DESC_13": {
+        "de": "13",
+        "en": "13",
+        "_info": "core-description.CORE_DESC_13"
+      },
+      "CORE_DESC_14": {
+        "de": "14",
+        "en": "14",
+        "_info": "core-description.CORE_DESC_14"
+      },
+      "CORE_DESC_15": {
+        "de": "15",
+        "en": "15",
+        "_info": "core-description.CORE_DESC_15"
+      },
+      "CORE_DESC_16": {
+        "de": "16",
+        "en": "16",
+        "_info": "core-description.CORE_DESC_16"
+      },
+      "CORE_DESC_17": {
+        "de": "17",
+        "en": "17",
+        "_info": "core-description.CORE_DESC_17"
+      },
+      "CORE_DESC_18": {
+        "de": "18",
+        "en": "18",
+        "_info": "core-description.CORE_DESC_18"
+      },
+      "CORE_DESC_19": {
+        "de": "19",
+        "en": "19",
+        "_info": "core-description.CORE_DESC_19"
+      },
+      "CORE_DESC_20": {
+        "de": "20",
+        "en": "20",
+        "_info": "core-description.CORE_DESC_20"
+      },
+      "CORE_DESC_21": {
+        "de": "21",
+        "en": "21",
+        "_info": "core-description.CORE_DESC_21"
+      },
+      "CORE_DESC_22": {
+        "de": "22",
+        "en": "22",
+        "_info": "core-description.CORE_DESC_22"
+      },
+      "CORE_DESC_23": {
+        "de": "23",
+        "en": "23",
+        "_info": "core-description.CORE_DESC_23"
+      },
+      "CORE_DESC_24": {
+        "de": "24",
+        "en": "24",
+        "_info": "core-description.CORE_DESC_24"
+      },
+      "CORE_DESC_25": {
+        "de": "25",
+        "en": "25",
+        "_info": "core-description.CORE_DESC_25"
+      },
+      "CORE_DESC_26": {
+        "de": "26",
+        "en": "26",
+        "_info": "core-description.CORE_DESC_26"
+      },
+      "CORE_DESC_27": {
+        "de": "27",
+        "en": "27",
+        "_info": "core-description.CORE_DESC_27"
+      },
+      "CORE_DESC_28": {
+        "de": "28",
+        "en": "28",
+        "_info": "core-description.CORE_DESC_28"
+      },
+      "CORE_DESC_29": {
+        "de": "29",
+        "en": "29",
+        "_info": "core-description.CORE_DESC_29"
+      },
+      "CORE_DESC_30": {
+        "de": "30",
+        "en": "30",
+        "_info": "core-description.CORE_DESC_30"
+      },
+      "CORE_DESC_31": {
+        "de": "31",
+        "en": "31",
+        "_info": "core-description.CORE_DESC_31"
+      },
+      "CORE_DESC_32": {
+        "de": "32",
+        "en": "32",
+        "_info": "core-description.CORE_DESC_32"
+      },
+      "CORE_DESC_33": {
+        "de": "33",
+        "en": "33",
+        "_info": "core-description.CORE_DESC_33"
+      },
+      "CORE_DESC_34": {
+        "de": "34",
+        "en": "34",
+        "_info": "core-description.CORE_DESC_34"
+      },
+      "CORE_DESC_35": {
+        "de": "35",
+        "en": "35",
+        "_info": "core-description.CORE_DESC_35"
+      },
+      "CORE_DESC_36": {
+        "de": "36",
+        "en": "36",
+        "_info": "core-description.CORE_DESC_36"
+      },
+      "CORE_DESC_37": {
+        "de": "37",
+        "en": "37",
+        "_info": "core-description.CORE_DESC_37"
+      },
+      "CORE_DESC_38": {
+        "de": "38",
+        "en": "38",
+        "_info": "core-description.CORE_DESC_38"
+      },
+      "CORE_DESC_39": {
+        "de": "39",
+        "en": "39",
+        "_info": "core-description.CORE_DESC_39"
+      },
+      "CORE_DESC_40": {
+        "de": "40",
+        "en": "40",
+        "_info": "core-description.CORE_DESC_40"
+      },
+      "CORE_DESC_41": {
+        "de": "41",
+        "en": "41",
+        "_info": "core-description.CORE_DESC_41"
+      },
+      "CORE_DESC_BH": {
+        "de": "",
+        "en": "",
+        "_info": "core-description.CORE_DESC_BH"
+      },
+      "CORE_DESC_BK": {
+        "de": "schwarz",
+        "en": "black",
+        "_info": "core-description.CORE_DESC_BK"
+      },
+      "CORE_DESC_BK1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_BK1"
+      },
+      "CORE_DESC_BK2": {
+        "de": "2",
+        "en": "2",
+        "_info": "core-description.CORE_DESC_BK2"
+      },
+      "CORE_DESC_BK3": {
+        "de": "3",
+        "en": "3",
+        "_info": "core-description.CORE_DESC_BK3"
+      },
+      "CORE_DESC_BK4": {
+        "de": "4",
+        "en": "4",
+        "_info": "core-description.CORE_DESC_BK4"
+      },
+      "CORE_DESC_BK5": {
+        "de": "5",
+        "en": "5",
+        "_info": "core-description.CORE_DESC_BK5"
+      },
+      "CORE_DESC_BK6": {
+        "de": "6",
+        "en": "6",
+        "_info": "core-description.CORE_DESC_BK6"
+      },
+      "CORE_DESC_BK7": {
+        "de": "7",
+        "en": "7",
+        "_info": "core-description.CORE_DESC_BK7"
+      },
+      "CORE_DESC_BK8": {
+        "de": "8",
+        "en": "8",
+        "_info": "core-description.CORE_DESC_BK8"
+      },
+      "CORE_DESC_BK9": {
+        "de": "9",
+        "en": "9",
+        "_info": "core-description.CORE_DESC_BK9"
+      },
+      "CORE_DESC_BK10": {
+        "de": "10",
+        "en": "10",
+        "_info": "core-description.CORE_DESC_BK10"
+      },
+      "CORE_DESC_BK11": {
+        "de": "11",
+        "en": "11",
+        "_info": "core-description.CORE_DESC_BK11"
+      },
+      "CORE_DESC_BK12": {
+        "de": "12",
+        "en": "12",
+        "_info": "core-description.CORE_DESC_BK12"
+      },
+      "CORE_DESC_BK13": {
+        "de": "13",
+        "en": "13",
+        "_info": "core-description.CORE_DESC_BK13"
+      },
+      "CORE_DESC_BK14": {
+        "de": "14",
+        "en": "14",
+        "_info": "core-description.CORE_DESC_BK14"
+      },
+      "CORE_DESC_BK15": {
+        "de": "15",
+        "en": "15",
+        "_info": "core-description.CORE_DESC_BK15"
+      },
+      "CORE_DESC_BK16": {
+        "de": "16",
+        "en": "16",
+        "_info": "core-description.CORE_DESC_BK16"
+      },
+      "CORE_DESC_BK17": {
+        "de": "17",
+        "en": "17",
+        "_info": "core-description.CORE_DESC_BK17"
+      },
+      "CORE_DESC_BK18": {
+        "de": "18",
+        "en": "18",
+        "_info": "core-description.CORE_DESC_BK18"
+      },
+      "CORE_DESC_BK19": {
+        "de": "19",
+        "en": "19",
+        "_info": "core-description.CORE_DESC_BK19"
+      },
+      "CORE_DESC_BK20": {
+        "de": "20",
+        "en": "20",
+        "_info": "core-description.CORE_DESC_BK20"
+      },
+      "CORE_DESC_BK21": {
+        "de": "21",
+        "en": "21",
+        "_info": "core-description.CORE_DESC_BK21"
+      },
+      "CORE_DESC_BK22": {
+        "de": "22",
+        "en": "22",
+        "_info": "core-description.CORE_DESC_BK22"
+      },
+      "CORE_DESC_BK23": {
+        "de": "23",
+        "en": "23",
+        "_info": "core-description.CORE_DESC_BK23"
+      },
+      "CORE_DESC_BK24": {
+        "de": "24",
+        "en": "24",
+        "_info": "core-description.CORE_DESC_BK24"
+      },
+      "CORE_DESC_BK25": {
+        "de": "25",
+        "en": "25",
+        "_info": "core-description.CORE_DESC_BK25"
+      },
+      "CORE_DESC_BK26": {
+        "de": "26",
+        "en": "26",
+        "_info": "core-description.CORE_DESC_BK26"
+      },
+      "CORE_DESC_BK27": {
+        "de": "27",
+        "en": "27",
+        "_info": "core-description.CORE_DESC_BK27"
+      },
+      "CORE_DESC_BK28": {
+        "de": "28",
+        "en": "28",
+        "_info": "core-description.CORE_DESC_BK28"
+      },
+      "CORE_DESC_BK29": {
+        "de": "29",
+        "en": "29",
+        "_info": "core-description.CORE_DESC_BK29"
+      },
+      "CORE_DESC_BK_DC": {
+        "de": "DC-",
+        "en": "DC-",
+        "_info": "core-description.CORE_DESC_BK_DC"
+      },
+      "CORE_DESC_BK_DC_plus": {
+        "de": "DC+",
+        "en": "DC+",
+        "_info": "core-description.CORE_DESC_BK_DC_plus"
+      },
+      "CORE_DESC_BK_L1_": {
+        "de": "L1",
+        "en": "L1",
+        "_info": "core-description.CORE_DESC_BK_L1_"
+      },
+      "CORE_DESC_BK_L2_": {
+        "de": "L2",
+        "en": "L2",
+        "_info": "core-description.CORE_DESC_BK_L2_"
+      },
+      "CORE_DESC_BK_L3_": {
+        "de": "L3",
+        "en": "L3",
+        "_info": "core-description.CORE_DESC_BK_L3_"
+      },
+      "CORE_DESC_BK_L4_": {
+        "de": "L4",
+        "en": "L4",
+        "_info": "core-description.CORE_DESC_BK_L4_"
+      },
+      "CORE_DESC_BK_V_L2": {
+        "de": "V/L2",
+        "en": "V/L2",
+        "_info": "core-description.CORE_DESC_BK_V_L2"
+      },
+      "CORE_DESC_BKRD": {
+        "de": "schwarz-rot",
+        "en": "black-red",
+        "_info": "core-description.CORE_DESC_BKRD"
+      },
+      "CORE_DESC_BKWH": {
+        "de": "schwarz-weiß",
+        "en": "black-white",
+        "_info": "core-description.CORE_DESC_BKWH"
+      },
+      "CORE_DESC_BKYE": {
+        "de": "schwarz-gelb",
+        "en": "black-yellow",
+        "_info": "core-description.CORE_DESC_BKYE"
+      },
+      "CORE_DESC_BN": {
+        "de": "braun",
+        "en": "brown",
+        "_info": "core-description.CORE_DESC_BN"
+      },
+      "CORE_DESC_BN1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_BN1"
+      },
+      "CORE_DESC_BN7": {
+        "de": "7",
+        "en": "7",
+        "_info": "core-description.CORE_DESC_BN7"
+      },
+      "CORE_DESC_BN24": {
+        "de": "24",
+        "en": "24",
+        "_info": "core-description.CORE_DESC_BN24"
+      },
+      "CORE_DESC_BN30": {
+        "de": "30",
+        "en": "30",
+        "_info": "core-description.CORE_DESC_BN30"
+      },
+      "CORE_DESC_BN_BK": {
+        "de": "braun-schwarz",
+        "en": "brown-black",
+        "_info": "core-description.CORE_DESC_BN_BK"
+      },
+      "CORE_DESC_BN_BU": {
+        "de": "braun-blau",
+        "en": "brown-blue",
+        "_info": "core-description.CORE_DESC_BN_BU"
+      },
+      "CORE_DESC_BN_GN": {
+        "de": "braun-grün",
+        "en": "brown-green",
+        "_info": "core-description.CORE_DESC_BN_GN"
+      },
+      "CORE_DESC_BN_RD": {
+        "de": "braun-rot",
+        "en": "brown-red",
+        "_info": "core-description.CORE_DESC_BN_RD"
+      },
+      "CORE_DESC_BN_W_L3_D_L": {
+        "de": "W/L3/D/L-",
+        "en": "W/L3/D/L-",
+        "_info": "core-description.CORE_DESC_BN_W_L3_D_L"
+      },
+      "CORE_DESC_BNBK": {
+        "de": "braun-schwarz",
+        "en": "brown-black",
+        "_info": "core-description.CORE_DESC_BNBK"
+      },
+      "CORE_DESC_BNBU": {
+        "de": "braun-blau",
+        "en": "brown-blue",
+        "_info": "core-description.CORE_DESC_BNBU"
+      },
+      "CORE_DESC_BNGN": {
+        "de": "braun-grün",
+        "en": "brown-green",
+        "_info": "core-description.CORE_DESC_BNGN"
+      },
+      "CORE_DESC_BNGY": {
+        "de": "braun-grau",
+        "en": "brown-gray",
+        "_info": "core-description.CORE_DESC_BNGY"
+      },
+      "CORE_DESC_BNRD": {
+        "de": "braun-rot",
+        "en": "brown-red",
+        "_info": "core-description.CORE_DESC_BNRD"
+      },
+      "CORE_DESC_BNYE": {
+        "de": "braun-gelb",
+        "en": "brown-yellow",
+        "_info": "core-description.CORE_DESC_BNYE"
+      },
+      "CORE_DESC_BU": {
+        "de": "blau",
+        "en": "blue",
+        "_info": "core-description.CORE_DESC_BU"
+      },
+      "CORE_DESC_BU1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_BU1"
+      },
+      "CORE_DESC_BU2": {
+        "de": "2",
+        "en": "2",
+        "_info": "core-description.CORE_DESC_BU2"
+      },
+      "CORE_DESC_BU3": {
+        "de": "3",
+        "en": "3",
+        "_info": "core-description.CORE_DESC_BU3"
+      },
+      "CORE_DESC_BU4": {
+        "de": "4",
+        "en": "4",
+        "_info": "core-description.CORE_DESC_BU4"
+      },
+      "CORE_DESC_BU8": {
+        "de": "8",
+        "en": "8",
+        "_info": "core-description.CORE_DESC_BU8"
+      },
+      "CORE_DESC_BU25": {
+        "de": "25",
+        "en": "25",
+        "_info": "core-description.CORE_DESC_BU25"
+      },
+      "CORE_DESC_BUBK": {
+        "de": "blau-schwarz",
+        "en": "blue-black",
+        "_info": "core-description.CORE_DESC_BUBK"
+      },
+      "CORE_DESC_BUWH": {
+        "de": "blau-weiß",
+        "en": "blue-white",
+        "_info": "core-description.CORE_DESC_BUWH"
+      },
+      "CORE_DESC_BWH": {
+        "de": "",
+        "en": "",
+        "_info": "core-description.CORE_DESC_BWH"
+      },
+      "CORE_DESC_DR": {
+        "de": "dunkelrot",
+        "en": "darkred",
+        "_info": "core-description.CORE_DESC_DR"
+      },
+      "CORE_DESC_GN": {
+        "de": "grün",
+        "en": "green",
+        "_info": "core-description.CORE_DESC_GN"
+      },
+      "CORE_DESC_GN3": {
+        "de": "3",
+        "en": "3",
+        "_info": "core-description.CORE_DESC_GN3"
+      },
+      "CORE_DESC_GN9": {
+        "de": "9",
+        "en": "9",
+        "_info": "core-description.CORE_DESC_GN9"
+      },
+      "CORE_DESC_GN26": {
+        "de": "26",
+        "en": "26",
+        "_info": "core-description.CORE_DESC_GN26"
+      },
+      "CORE_DESC_GN_BK": {
+        "de": "grün-schwarz",
+        "en": "green-black",
+        "_info": "core-description.CORE_DESC_GN_BK"
+      },
+      "CORE_DESC_GN_BU": {
+        "de": "grün-blau",
+        "en": "green-blue",
+        "_info": "core-description.CORE_DESC_GN_BU"
+      },
+      "CORE_DESC_GN_RD": {
+        "de": "grün-rot",
+        "en": "green-red",
+        "_info": "core-description.CORE_DESC_GN_RD"
+      },
+      "CORE_DESC_GNBK": {
+        "de": "grün-schwarz",
+        "en": "green-black",
+        "_info": "core-description.CORE_DESC_GNBK"
+      },
+      "CORE_DESC_GNBU": {
+        "de": "grün-blau",
+        "en": "green-blue",
+        "_info": "core-description.CORE_DESC_GNBU"
+      },
+      "CORE_DESC_GNRD": {
+        "de": "grün-rot",
+        "en": "green-red",
+        "_info": "core-description.CORE_DESC_GNRD"
+      },
+      "CORE_DESC_GNYE": {
+        "de": "grün-gelb",
+        "en": "green-yellow",
+        "_info": "core-description.CORE_DESC_GNYE"
+      },
+      "CORE_DESC_GNYE1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_GNYE1"
+      },
+      "CORE_DESC_GNYE2": {
+        "de": "2",
+        "en": "2",
+        "_info": "core-description.CORE_DESC_GNYE2"
+      },
+      "CORE_DESC_GR": {
+        "de": "grau",
+        "en": "grey",
+        "_info": "core-description.CORE_DESC_GR"
+      },
+      "CORE_DESC_GR_U_L1_C_L_": {
+        "de": "U/L1",
+        "en": "U/L1",
+        "_info": "core-description.CORE_DESC_GR_U_L1_C_L_"
+      },
+      "CORE_DESC_GY": {
+        "de": "grau",
+        "en": "gray",
+        "_info": "core-description.CORE_DESC_GY"
+      },
+      "CORE_DESC_GY6": {
+        "de": "6",
+        "en": "6",
+        "_info": "core-description.CORE_DESC_GY6"
+      },
+      "CORE_DESC_GY23": {
+        "de": "23",
+        "en": "23",
+        "_info": "core-description.CORE_DESC_GY23"
+      },
+      "CORE_DESC_GY29": {
+        "de": "29",
+        "en": "29",
+        "_info": "core-description.CORE_DESC_GY29"
+      },
+      "CORE_DESC_GY_BK": {
+        "de": "grau-schwarz",
+        "en": "gray-black",
+        "_info": "core-description.CORE_DESC_GY_BK"
+      },
+      "CORE_DESC_GY_BN": {
+        "de": "grau-braun",
+        "en": "gray-brown",
+        "_info": "core-description.CORE_DESC_GY_BN"
+      },
+      "CORE_DESC_GY_BU": {
+        "de": "grau-blau",
+        "en": "gray-blue",
+        "_info": "core-description.CORE_DESC_GY_BU"
+      },
+      "CORE_DESC_GY_GN": {
+        "de": "grau-grün",
+        "en": "gray-green",
+        "_info": "core-description.CORE_DESC_GY_GN"
+      },
+      "CORE_DESC_GY_PK": {
+        "de": "grau-rosa",
+        "en": "gray-pink",
+        "_info": "core-description.CORE_DESC_GY_PK"
+      },
+      "CORE_DESC_GY_RD": {
+        "de": "grau-rot",
+        "en": "gray-red",
+        "_info": "core-description.CORE_DESC_GY_RD"
+      },
+      "CORE_DESC_GYBK": {
+        "de": "grau-schwarz",
+        "en": "gray-black",
+        "_info": "core-description.CORE_DESC_GYBK"
+      },
+      "CORE_DESC_GYBN": {
+        "de": "grau-braun",
+        "en": "gray-brown",
+        "_info": "core-description.CORE_DESC_GYBN"
+      },
+      "CORE_DESC_GYBU": {
+        "de": "grau-blau",
+        "en": "gray-blue",
+        "_info": "core-description.CORE_DESC_GYBU"
+      },
+      "CORE_DESC_GYGN": {
+        "de": "grau-grün",
+        "en": "gray-green",
+        "_info": "core-description.CORE_DESC_GYGN"
+      },
+      "CORE_DESC_GYPK": {
+        "de": "grau-rosa",
+        "en": "gray-pink",
+        "_info": "core-description.CORE_DESC_GYPK"
+      },
+      "CORE_DESC_GYRD": {
+        "de": "grau-rot",
+        "en": "gray-red",
+        "_info": "core-description.CORE_DESC_GYRD"
+      },
+      "CORE_DESC_L1": {
+        "de": "L1",
+        "en": "L1",
+        "_info": "core-description.CORE_DESC_L1"
+      },
+      "CORE_DESC_L2": {
+        "de": "L2",
+        "en": "L2",
+        "_info": "core-description.CORE_DESC_L2"
+      },
+      "CORE_DESC_L3": {
+        "de": "L3",
+        "en": "L3",
+        "_info": "core-description.CORE_DESC_L3"
+      },
+      "CORE_DESC_OR": {
+        "de": "orange",
+        "en": "orange",
+        "_info": "core-description.CORE_DESC_OR"
+      },
+      "CORE_DESC_PK": {
+        "de": "rosa",
+        "en": "pink",
+        "_info": "core-description.CORE_DESC_PK"
+      },
+      "CORE_DESC_PK_BK": {
+        "de": "rosa-schwarz",
+        "en": "pink-black",
+        "_info": "core-description.CORE_DESC_PK_BK"
+      },
+      "CORE_DESC_PK_BN": {
+        "de": "rosa-braun",
+        "en": "pink-brown",
+        "_info": "core-description.CORE_DESC_PK_BN"
+      },
+      "CORE_DESC_PK_BU": {
+        "de": "rosa-blau",
+        "en": "pink-blue",
+        "_info": "core-description.CORE_DESC_PK_BU"
+      },
+      "CORE_DESC_PK_GN": {
+        "de": "rosa-grün",
+        "en": "pink-green",
+        "_info": "core-description.CORE_DESC_PK_GN"
+      },
+      "CORE_DESC_PK_RD": {
+        "de": "rosa-rot",
+        "en": "pink-red",
+        "_info": "core-description.CORE_DESC_PK_RD"
+      },
+      "CORE_DESC_PKBK": {
+        "de": "rosa-schwarz",
+        "en": "pink-black",
+        "_info": "core-description.CORE_DESC_PKBK"
+      },
+      "CORE_DESC_PKBN": {
+        "de": "rosa-braun",
+        "en": "pink-brown",
+        "_info": "core-description.CORE_DESC_PKBN"
+      },
+      "CORE_DESC_PKBU": {
+        "de": "rosa-blau",
+        "en": "pink-blue",
+        "_info": "core-description.CORE_DESC_PKBU"
+      },
+      "CORE_DESC_PKGN": {
+        "de": "rosa-grün",
+        "en": "pink-green",
+        "_info": "core-description.CORE_DESC_PKGN"
+      },
+      "CORE_DESC_PKRD": {
+        "de": "rosa-rot",
+        "en": "pink-red",
+        "_info": "core-description.CORE_DESC_PKRD"
+      },
+      "CORE_DESC_RD": {
+        "de": "rot",
+        "en": "red",
+        "_info": "core-description.CORE_DESC_RD"
+      },
+      "CORE_DESC_RD11": {
+        "de": "11",
+        "en": "11",
+        "_info": "core-description.CORE_DESC_RD11"
+      },
+      "CORE_DESC_RD12": {
+        "de": "12",
+        "en": "12",
+        "_info": "core-description.CORE_DESC_RD12"
+      },
+      "CORE_DESC_RD13": {
+        "de": "13",
+        "en": "13",
+        "_info": "core-description.CORE_DESC_RD13"
+      },
+      "CORE_DESC_RD14": {
+        "de": "14",
+        "en": "14",
+        "_info": "core-description.CORE_DESC_RD14"
+      },
+      "CORE_DESC_RD15": {
+        "de": "15",
+        "en": "15",
+        "_info": "core-description.CORE_DESC_RD15"
+      },
+      "CORE_DESC_RD_BU": {
+        "de": "rot-blau",
+        "en": "red-blue",
+        "_info": "core-description.CORE_DESC_RD_BU"
+      },
+      "CORE_DESC_RDBK": {
+        "de": "rot-schwarz",
+        "en": "red-black",
+        "_info": "core-description.CORE_DESC_RDBK"
+      },
+      "CORE_DESC_RDBU": {
+        "de": "rot-blau",
+        "en": "red-blue",
+        "_info": "core-description.CORE_DESC_RDBU"
+      },
+      "CORE_DESC_RDWH": {
+        "de": "rot-weiß",
+        "en": "red-white",
+        "_info": "core-description.CORE_DESC_RDWH"
+      },
+      "CORE_DESC_TQ": {
+        "de": "türkis",
+        "en": "turquoise",
+        "_info": "core-description.CORE_DESC_TQ"
+      },
+      "CORE_DESC_VT": {
+        "de": "violett",
+        "en": "violet",
+        "_info": "core-description.CORE_DESC_VT"
+      },
+      "CORE_DESC_VT4": {
+        "de": "4",
+        "en": "4",
+        "_info": "core-description.CORE_DESC_VT4"
+      },
+      "CORE_DESC_VT10": {
+        "de": "10",
+        "en": "10",
+        "_info": "core-description.CORE_DESC_VT10"
+      },
+      "CORE_DESC_VT27": {
+        "de": "27",
+        "en": "27",
+        "_info": "core-description.CORE_DESC_VT27"
+      },
+      "CORE_DESC_WH": {
+        "de": "weiß",
+        "en": "white",
+        "_info": "core-description.CORE_DESC_WH"
+      },
+      "CORE_DESC_WH1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_WH1"
+      },
+      "CORE_DESC_WH2": {
+        "de": "2",
+        "en": "2",
+        "_info": "core-description.CORE_DESC_WH2"
+      },
+      "CORE_DESC_WH3": {
+        "de": "3",
+        "en": "3",
+        "_info": "core-description.CORE_DESC_WH3"
+      },
+      "CORE_DESC_WH4": {
+        "de": "4",
+        "en": "4",
+        "_info": "core-description.CORE_DESC_WH4"
+      },
+      "CORE_DESC_WH5": {
+        "de": "5",
+        "en": "5",
+        "_info": "core-description.CORE_DESC_WH5"
+      },
+      "CORE_DESC_WH6": {
+        "de": "6",
+        "en": "6",
+        "_info": "core-description.CORE_DESC_WH6"
+      },
+      "CORE_DESC_WH7": {
+        "de": "7",
+        "en": "7",
+        "_info": "core-description.CORE_DESC_WH7"
+      },
+      "CORE_DESC_WH8": {
+        "de": "8",
+        "en": "8",
+        "_info": "core-description.CORE_DESC_WH8"
+      },
+      "CORE_DESC_WH9": {
+        "de": "9",
+        "en": "9",
+        "_info": "core-description.CORE_DESC_WH9"
+      },
+      "CORE_DESC_WH10": {
+        "de": "10",
+        "en": "10",
+        "_info": "core-description.CORE_DESC_WH10"
+      },
+      "CORE_DESC_WH11": {
+        "de": "11",
+        "en": "11",
+        "_info": "core-description.CORE_DESC_WH11"
+      },
+      "CORE_DESC_WH12": {
+        "de": "12",
+        "en": "12",
+        "_info": "core-description.CORE_DESC_WH12"
+      },
+      "CORE_DESC_WH13": {
+        "de": "13",
+        "en": "13",
+        "_info": "core-description.CORE_DESC_WH13"
+      },
+      "CORE_DESC_WH14": {
+        "de": "14",
+        "en": "14",
+        "_info": "core-description.CORE_DESC_WH14"
+      },
+      "CORE_DESC_WH15": {
+        "de": "15",
+        "en": "15",
+        "_info": "core-description.CORE_DESC_WH15"
+      },
+      "CORE_DESC_WH16": {
+        "de": "16",
+        "en": "16",
+        "_info": "core-description.CORE_DESC_WH16"
+      },
+      "CORE_DESC_WH17": {
+        "de": "17",
+        "en": "17",
+        "_info": "core-description.CORE_DESC_WH17"
+      },
+      "CORE_DESC_WH18": {
+        "de": "18",
+        "en": "18",
+        "_info": "core-description.CORE_DESC_WH18"
+      },
+      "CORE_DESC_WH19": {
+        "de": "19",
+        "en": "19",
+        "_info": "core-description.CORE_DESC_WH19"
+      },
+      "CORE_DESC_WH20": {
+        "de": "20",
+        "en": "20",
+        "_info": "core-description.CORE_DESC_WH20"
+      },
+      "CORE_DESC_WH21": {
+        "de": "21",
+        "en": "21",
+        "_info": "core-description.CORE_DESC_WH21"
+      },
+      "CORE_DESC_WH22": {
+        "de": "22",
+        "en": "22",
+        "_info": "core-description.CORE_DESC_WH22"
+      },
+      "CORE_DESC_WH23": {
+        "de": "23",
+        "en": "23",
+        "_info": "core-description.CORE_DESC_WH23"
+      },
+      "CORE_DESC_WH24": {
+        "de": "24",
+        "en": "24",
+        "_info": "core-description.CORE_DESC_WH24"
+      },
+      "CORE_DESC_WH25": {
+        "de": "25",
+        "en": "25",
+        "_info": "core-description.CORE_DESC_WH25"
+      },
+      "CORE_DESC_WH_BK": {
+        "de": "weiß-schwarz",
+        "en": "white-black",
+        "_info": "core-description.CORE_DESC_WH_BK"
+      },
+      "CORE_DESC_WH_BN": {
+        "de": "weiß-braun",
+        "en": "white-brown",
+        "_info": "core-description.CORE_DESC_WH_BN"
+      },
+      "CORE_DESC_WH_BU": {
+        "de": "weiß-blau",
+        "en": "white-blue",
+        "_info": "core-description.CORE_DESC_WH_BU"
+      },
+      "CORE_DESC_WH_GN": {
+        "de": "weiß-grün",
+        "en": "white-green",
+        "_info": "core-description.CORE_DESC_WH_GN"
+      },
+      "CORE_DESC_WH_GY": {
+        "de": "weiß-grau",
+        "en": "white-gray",
+        "_info": "core-description.CORE_DESC_WH_GY"
+      },
+      "CORE_DESC_WH_OR": {
+        "de": "weiß-orange",
+        "en": "white-orange",
+        "_info": "core-description.CORE_DESC_WH_OR"
+      },
+      "CORE_DESC_WH_PK": {
+        "de": "weiß-rosa",
+        "en": "white-pink",
+        "_info": "core-description.CORE_DESC_WH_PK"
+      },
+      "CORE_DESC_WH_RD": {
+        "de": "weiß-rot",
+        "en": "white-red",
+        "_info": "core-description.CORE_DESC_WH_RD"
+      },
+      "CORE_DESC_WH_YE": {
+        "de": "weiß-gelb",
+        "en": "white-yellow",
+        "_info": "core-description.CORE_DESC_WH_YE"
+      },
+      "CORE_DESC_WHBK": {
+        "de": "weiß-schwarz",
+        "en": "white-black",
+        "_info": "core-description.CORE_DESC_WHBK"
+      },
+      "CORE_DESC_WHBN": {
+        "de": "weiß-braun",
+        "en": "white-brown",
+        "_info": "core-description.CORE_DESC_WHBN"
+      },
+      "CORE_DESC_WHBU": {
+        "de": "weiß-blau",
+        "en": "white-blue",
+        "_info": "core-description.CORE_DESC_WHBU"
+      },
+      "CORE_DESC_WHGN": {
+        "de": "weiß-grün",
+        "en": "white-green",
+        "_info": "core-description.CORE_DESC_WHGN"
+      },
+      "CORE_DESC_WHGY": {
+        "de": "weiß-grau",
+        "en": "white-gray",
+        "_info": "core-description.CORE_DESC_WHGY"
+      },
+      "CORE_DESC_WHOR": {
+        "de": "weiß-orange",
+        "en": "white-orange",
+        "_info": "core-description.CORE_DESC_WHOR"
+      },
+      "CORE_DESC_WHPK": {
+        "de": "weiß-rosa",
+        "en": "white-pink",
+        "_info": "core-description.CORE_DESC_WHPK"
+      },
+      "CORE_DESC_WHRD": {
+        "de": "weiß-rot",
+        "en": "white-red",
+        "_info": "core-description.CORE_DESC_WHRD"
+      },
+      "CORE_DESC_WHVT": {
+        "de": "weiß-violett",
+        "en": "white-violet",
+        "_info": "core-description.CORE_DESC_WHVT"
+      },
+      "CORE_DESC_WHYE": {
+        "de": "weiß-gelb",
+        "en": "white-yellow",
+        "_info": "core-description.CORE_DESC_WHYE"
+      },
+      "CORE_DESC_YE": {
+        "de": "gelb",
+        "en": "yellow",
+        "_info": "core-description.CORE_DESC_YE"
+      },
+      "CORE_DESC_YE1": {
+        "de": "1",
+        "en": "1",
+        "_info": "core-description.CORE_DESC_YE1"
+      },
+      "CORE_DESC_YE2": {
+        "de": "2",
+        "en": "2",
+        "_info": "core-description.CORE_DESC_YE2"
+      },
+      "CORE_DESC_YE3": {
+        "de": "3",
+        "en": "3",
+        "_info": "core-description.CORE_DESC_YE3"
+      },
+      "CORE_DESC_YE4": {
+        "de": "4",
+        "en": "4",
+        "_info": "core-description.CORE_DESC_YE4"
+      },
+      "CORE_DESC_YE5": {
+        "de": "5",
+        "en": "5",
+        "_info": "core-description.CORE_DESC_YE5"
+      },
+      "CORE_DESC_YE6": {
+        "de": "6",
+        "en": "6",
+        "_info": "core-description.CORE_DESC_YE6"
+      },
+      "CORE_DESC_YE7": {
+        "de": "7",
+        "en": "7",
+        "_info": "core-description.CORE_DESC_YE7"
+      },
+      "CORE_DESC_YE8": {
+        "de": "8",
+        "en": "8",
+        "_info": "core-description.CORE_DESC_YE8"
+      },
+      "CORE_DESC_YE9": {
+        "de": "9",
+        "en": "9",
+        "_info": "core-description.CORE_DESC_YE9"
+      },
+      "CORE_DESC_YE22": {
+        "de": "22",
+        "en": "22",
+        "_info": "core-description.CORE_DESC_YE22"
+      },
+      "CORE_DESC_YE28": {
+        "de": "28",
+        "en": "28",
+        "_info": "core-description.CORE_DESC_YE28"
+      },
+      "CORE_DESC_YE_BK": {
+        "de": "gelb-schwarz",
+        "en": "yellow-black",
+        "_info": "core-description.CORE_DESC_YE_BK"
+      },
+      "CORE_DESC_YE_BN": {
+        "de": "gelb-braun",
+        "en": "yellow-brown",
+        "_info": "core-description.CORE_DESC_YE_BN"
+      },
+      "CORE_DESC_YE_BU": {
+        "de": "gelb-blau",
+        "en": "yellow-blue",
+        "_info": "core-description.CORE_DESC_YE_BU"
+      },
+      "CORE_DESC_YE_GY": {
+        "de": "gelb-grau",
+        "en": "yellow-gray",
+        "_info": "core-description.CORE_DESC_YE_GY"
+      },
+      "CORE_DESC_YE_PK": {
+        "de": "gelb-rosa",
+        "en": "yellow-pink",
+        "_info": "core-description.CORE_DESC_YE_PK"
+      },
+      "CORE_DESC_YE_RD": {
+        "de": "gelb-rot",
+        "en": "yellow-red",
+        "_info": "core-description.CORE_DESC_YE_RD"
+      },
+      "CORE_DESC_YEBK": {
+        "de": "gelb-schwarz",
+        "en": "yellow-black",
+        "_info": "core-description.CORE_DESC_YEBK"
+      },
+      "CORE_DESC_YEBN": {
+        "de": "gelb-braun",
+        "en": "yellow-brown",
+        "_info": "core-description.CORE_DESC_YEBN"
+      },
+      "CORE_DESC_YEBU": {
+        "de": "gelb-blau",
+        "en": "yellow-blue",
+        "_info": "core-description.CORE_DESC_YEBU"
+      },
+      "Nu_Coulour_YEGN": {
+        "de": "gelb-grün",
+        "en": "yellow-green",
+        "_info": "core-description.Nu_Coulour_YEGN"
+      },
+      "CORE_DESC_YEGY": {
+        "de": "gelb-grau",
+        "en": "yellow-gray",
+        "_info": "core-description.CORE_DESC_YEGY"
+      },
+      "CORE_DESC_YEPK": {
+        "de": "gelb-rosa",
+        "en": "yellow-pink",
+        "_info": "core-description.CORE_DESC_YEPK"
+      },
+      "CORE_DESC_YERD": {
+        "de": "gelb-rot",
+        "en": "yellow-red",
+        "_info": "core-description.CORE_DESC_YERD"
+      },
+      "CORE_DESC_YEWH": {
+        "de": "gelb-weiß",
+        "en": "yellow-white",
+        "_info": "core-description.CORE_DESC_YEWH"
+      }
+    }
+  }
+}

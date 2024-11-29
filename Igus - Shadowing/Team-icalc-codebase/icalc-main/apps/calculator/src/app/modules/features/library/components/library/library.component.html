@@ -1,0 +1,694 @@
+<div class="sidebar">
+  <ng-container *ngFor="let item of allItemList">
+    <mat-card *ngIf="item.mat017ItemGroup !== 'RC-K2'">
+      <!-- Non-Connector MatCard -->
+      <mat-card-content dataCy="library-mat-card-content">
+        <p class="headline-6" matBadge="{{ item.quantity }}" matBadgeOverlap="true" matBadgeSize="small">
+          {{ item.matNumber }}
+        </p>
+        <p class="text">
+          {{ item.itemDescription1 }} <span class="desc-2">{{ item.itemDescription2 }}</span>
+        </p>
+        <p class="part-number">{{ 'icalc.library.PARTNUMBER' | translate }} {{ item.supplierItemNumber }}</p>
+        <div>
+          <mat-progress-spinner
+            diameter="40"
+            *ngIf="mat017ItemLoadingStatus[item.matNumber].photoIsLoading"
+            mode="indeterminate"
+            color="primary"
+            dataCy="photo-loading-spinner"
+          >
+          </mat-progress-spinner>
+        </div>
+      </mat-card-content>
+      <mat-card-actions *ngIf="mat017ItemLoadingStatus[item.matNumber].photoIsLoading === false">
+        <img [src]="item.photoUrl" class="" dataCy="widen-image-in-mat-card" />
+        <div class="align-buttons">
+          <div class="file-name">
+            <mat-icon class="upload-icon">file_upload</mat-icon>
+            <input
+              type="file"
+              [matTooltip]="'icalc.library.card-action-upload' | translate"
+              matTooltipPosition="above"
+              class="fileInput"
+              name="fileInput"
+              accept="image/*"
+              multiple
+              [disabled]="isLocked"
+              (change)="selectFiles($event, item.matNumber, item.itemDescription1, item.itemDescription2, 'photo')"
+              dataCy="upload-widen-image-button-photo"
+            />
+          </div>
+          <button
+            *ngIf="item.status === 'left'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-left' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.photoUrl === '' || isLocked"
+            (click)="addImageToSketch('left', item.photoUrl, item.matNumber, item.mat017ItemGroup, 'photo')"
+          >
+            <mat-icon>arrow_backward</mat-icon>
+          </button>
+          <button
+            *ngIf="item.status === 'right'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-right' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.photoUrl === '' || isLocked"
+            (click)="addImageToSketch('right', item.photoUrl, item.matNumber, item.mat017ItemGroup, 'photo')"
+          >
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <!-- Connector MatCard 1 of 3: photo-->
+    <mat-card class="photo" *ngIf="item.mat017ItemGroup === 'RC-K2'">
+      <mat-card-content>
+        <p class="headline-6" matBadge="{{ item.quantity }}" matBadgeOverlap="true" matBadgeSize="small">
+          {{ item.matNumber }}
+        </p>
+        <p class="text">
+          {{ item.itemDescription1 }} <span class="desc-2">{{ item.itemDescription2 }}</span>
+        </p>
+        <p class="part-number">{{ 'icalc.library.PARTNUMBER' | translate }} {{ item.supplierItemNumber }}</p>
+        <p class="picType">
+          <span class="pic-type">{{ 'icalc.library.card-picture-type-photo' | translate }}</span>
+        </p>
+        <div>
+          <mat-progress-spinner
+            diameter="40"
+            *ngIf="mat017ItemLoadingStatus[item.matNumber].photoIsLoading"
+            mode="indeterminate"
+            color="primary"
+            dataCy="photo-loading-spinner"
+          >
+          </mat-progress-spinner>
+        </div>
+      </mat-card-content>
+      <mat-card-actions *ngIf="mat017ItemLoadingStatus[item.matNumber].photoIsLoading === false">
+        <img [src]="item.photoUrl" class="" />
+        <div class="align-buttons">
+          <div class="file-name">
+            <mat-icon class="upload-icon">file_upload</mat-icon>
+            <input
+              type="file"
+              [matTooltip]="'icalc.library.card-action-upload' | translate"
+              matTooltipPosition="above"
+              class="fileInput"
+              name="fileInput"
+              accept="image/*"
+              multiple
+              (change)="selectFiles($event, item.matNumber, item.itemDescription1, item.itemDescription2, 'photo')"
+              dataCy="upload-widen-image-button-photo"
+            />
+          </div>
+          <button
+            *ngIf="item.status === 'left'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-left' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.photoUrl === ''"
+            (click)="addImageToSketch('left', item.photoUrl, item.matNumber, item.mat017ItemGroup, 'photo')"
+          >
+            <mat-icon>arrow_backward</mat-icon>
+          </button>
+          <button
+            *ngIf="item.status === 'right'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-right' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.photoUrl === ''"
+            (click)="addImageToSketch('right', item.photoUrl, item.matNumber, item.mat017ItemGroup, 'photo')"
+          >
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <!-- Connector MatCard 2 of 3: techDraw-->
+    <mat-card class="techDraw" *ngIf="item.mat017ItemGroup === 'RC-K2'">
+      <mat-card-content>
+        <p class="headline-6" matBadge="{{ item.quantity }}" matBadgeOverlap="true" matBadgeSize="small">
+          {{ item.matNumber }}
+        </p>
+        <p class="text">
+          {{ item.itemDescription1 }} <span class="desc-2">{{ item.itemDescription2 }}</span>
+        </p>
+        <p class="part-number">{{ 'icalc.library.PARTNUMBER' | translate }} {{ item.supplierItemNumber }}</p>
+        <p class="picType">
+          <span class="pic-type">{{ 'icalc.library.card-picture-type-tech-draw' | translate }}</span>
+        </p>
+        <div>
+          <mat-progress-spinner
+            diameter="40"
+            *ngIf="mat017ItemLoadingStatus[item.matNumber].techDrawIsLoading"
+            mode="indeterminate"
+            color="primary"
+            dataCy="tech-draw-loading-spinner"
+          >
+          </mat-progress-spinner>
+        </div>
+      </mat-card-content>
+      <mat-card-actions *ngIf="mat017ItemLoadingStatus[item.matNumber].techDrawIsLoading === false">
+        <img [src]="item.techDrawUrl" class="" />
+        <div class="align-buttons">
+          <div class="file-name">
+            <mat-icon class="upload-icon">file_upload</mat-icon>
+            <input
+              type="file"
+              [matTooltip]="'icalc.library.card-action-upload' | translate"
+              matTooltipPosition="above"
+              class="fileInput"
+              name="fileInput"
+              accept="image/*"
+              multiple
+              (change)="selectFiles($event, item.matNumber, item.itemDescription1, item.itemDescription2, 'techDraw')"
+            />
+          </div>
+          <button
+            *ngIf="item.status === 'left'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-left' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.techDrawUrl === ''"
+            (click)="addImageToSketch('left', item.techDrawUrl, item.matNumber, item.mat017ItemGroup, 'techDraw')"
+          >
+            <mat-icon>arrow_backward</mat-icon>
+          </button>
+          <button
+            *ngIf="item.status === 'right'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-right' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.techDrawUrl === ''"
+            (click)="addImageToSketch('right', item.techDrawUrl, item.matNumber, item.mat017ItemGroup, 'techDraw')"
+          >
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <!-- Connector MatCard 3 of 3: pinAss-->
+    <mat-card class="pinAss" *ngIf="item.mat017ItemGroup === 'RC-K2'">
+      <mat-card-content>
+        <p class="headline-6" matBadge="{{ item.quantity }}" matBadgeOverlap="true" matBadgeSize="small">
+          {{ item.matNumber }}
+        </p>
+        <p class="text">
+          {{ item.itemDescription1 }} <span class="desc-2">{{ item.itemDescription2 }}</span>
+        </p>
+        <p class="part-number">{{ 'icalc.library.PARTNUMBER' | translate }} {{ item.supplierItemNumber }}</p>
+        <p class="picType">
+          <span class="pic-type">{{ 'icalc.library.card-picture-type-pin-ass' | translate }}</span>
+        </p>
+        <div>
+          <mat-progress-spinner
+            diameter="40"
+            *ngIf="mat017ItemLoadingStatus[item.matNumber].pinAssIsLoading"
+            mode="indeterminate"
+            color="primary"
+            dataCy="pin-assignment-loading-spinner"
+          >
+          </mat-progress-spinner>
+        </div>
+      </mat-card-content>
+      <mat-card-actions *ngIf="mat017ItemLoadingStatus[item.matNumber].pinAssIsLoading === false">
+        <img [src]="item.pinAssUrl" class="" />
+        <div class="align-buttons">
+          <div class="file-name">
+            <mat-icon class="upload-icon">file_upload</mat-icon>
+            <input
+              type="file"
+              [matTooltip]="'icalc.library.card-action-upload' | translate"
+              matTooltipPosition="above"
+              class="fileInput"
+              name="fileInput"
+              accept="image/*"
+              multiple
+              (change)="selectFiles($event, item.matNumber, item.itemDescription1, item.itemDescription2, 'pinAss')"
+            />
+          </div>
+          <button
+            *ngIf="item.status === 'left'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-left' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.pinAssUrl === ''"
+            (click)="addImageToSketch('left', item.pinAssUrl, item.matNumber, item.mat017ItemGroup, 'pinAss')"
+          >
+            <mat-icon>arrow_backward</mat-icon>
+          </button>
+          <button
+            *ngIf="item.status === 'right'"
+            class="kopla-mat-button--small buttons"
+            mat-button
+            [matTooltip]="'icalc.library.action-add-to-right' | translate"
+            matTooltipPosition="above"
+            color="primary"
+            [disabled]="item.pinAssUrl === ''"
+            (click)="addImageToSketch('right', item.pinAssUrl, item.matNumber, item.mat017ItemGroup, 'pinAss')"
+          >
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>
+
+<div class="drop-area" id="drop-area" (click)="resetActions($event)">
+  <div class="metadata-box" dataCy="library-meta-data-box">
+    <div class="configuration">{{ configurationMatNumber }}</div>
+  </div>
+
+  <!-- IMAGES -->
+  <ng-container *ngFor="let image of imageList$ | async">
+    <icalc-sketch-element
+      cdkDrag
+      cdkDragBoundary=".drop-area"
+      class="content resizable-sketch-image"
+      dataCy="library-image-element"
+      [selectedId]="selectedId$ | async"
+      [elementId]="image.id"
+      [isFlipped]="image.isFlipped"
+      [rotationDegree]="image.rotationDegree"
+      [style.width.px]="image.width"
+      [style.height.px]="image.height"
+      [width]="image.width"
+      [height]="image.height"
+      [cdkDragFreeDragPosition]="{ x: image.x, y: image.y }"
+      (flipped)="onItemFlip({ isFlipped: $event }, image?.id, 'image', image?.rotationDegree)"
+      (rotated)="onItemRotate({ rotationDegree: image.rotationDegree }, image?.id, 'image')"
+      (deleted)="onRemoveFromImageList(image)"
+      (click)="onSelect(image?.id)"
+      (cdkDragEnded)="addItemPosition($event, image?.id, 'image')"
+      (resized)="onItemResize($event, image?.id, 'image', image?.rotationDegree)"
+    >
+      <img
+        [src]="image.src"
+        class="sketch content"
+        [ngClass]="{
+          'border-red': image.matNumber && isMat017ItemRemovedFromConfiguration(image.matNumber, image.side)
+        }"
+        [alt]="image.matNumber"
+        dataCy="library-image"
+      />
+    </icalc-sketch-element>
+  </ng-container>
+
+  <!-- COMMENTS -->
+  <ng-container *ngFor="let comment of commentList$ | async as commentList; let index = index">
+    <icalc-sketch-element
+      cdkDragBoundary=".drop-area"
+      cdkDrag
+      class="resizable-sketch-comment"
+      dataCy="library-comment-element"
+      [selectedId]="selectedId$ | async"
+      [elementId]="comment.id"
+      [fontSize]="comment.fontSize"
+      [rotationDegree]="comment.rotationDegree"
+      [style.width.px]="comment.width"
+      [style.height.px]="comment.height"
+      [width]="comment.width"
+      [height]="comment.height"
+      [showFontButtons]="true"
+      [cdkDragFreeDragPosition]="{ x: comment.x, y: comment.y }"
+      (resized)="onItemResize($event, comment?.id, 'comment', comment?.rotationDegree)"
+      (click)="onSelect(comment?.id)"
+      (cdkDragEnded)="addItemPosition($event, comment?.id, 'comment')"
+      (rotated)="onItemRotate({ rotationDegree: comment.rotationDegree }, comment?.id, 'comment')"
+      (flipped)="onItemFlip({ isFlipped: $event }, comment?.id, 'box', comment?.rotationDegree)"
+      (deleted)="onRemoveFromImageList(comment)"
+      (decreasedFontSize)="changeCommentFontSize(comment.id, comment.fontSize, 'decrease', comment?.rotationDegree)"
+      (increasedFontSize)="changeCommentFontSize(comment.id, comment.fontSize, 'increase', comment?.rotationDegree)"
+    >
+      <textarea
+        (blur)="changeCommentText(comment.id, $event?.target?.['value'], comment?.rotationDegree)"
+        class="field content"
+        cols="20"
+        rows="10"
+        [ngStyle]="{ 'font-size': comment.fontSize + 'px' }"
+        >{{ comment.text }}</textarea
+      >
+    </icalc-sketch-element>
+  </ng-container>
+
+  <!-- BOXES -->
+  <ng-container *ngFor="let box of boxList$ | async as boxList; let index = index">
+    <icalc-sketch-element
+      cdkDragBoundary=".drop-area"
+      cdkDrag
+      class="content resizable-sketch-box"
+      dataCy="library-box-element"
+      [cdkDragFreeDragPosition]="{ x: box.x, y: box.y }"
+      [rotationDegree]="box.rotationDegree"
+      [isFlipped]="box.isFlipped"
+      [style.width.px]="box.width"
+      [style.height.px]="box.height"
+      [selectedId]="selectedId$ | async"
+      [elementId]="box.id"
+      [width]="box.width"
+      [height]="box.height"
+      (resized)="onItemResize($event, box?.id, 'box', box?.rotationDegree)"
+      (rotated)="onItemRotate({ rotationDegree: box.rotationDegree }, box?.id, 'box')"
+      (flipped)="onItemFlip({ isFlipped: $event }, box?.id, 'box', box?.rotationDegree)"
+      (deleted)="onRemoveFromImageList(box)"
+      (cdkDragEnded)="addItemPosition($event, box?.id, 'box')"
+      (click)="onSelect(box?.id)"
+    >
+      <div class="content box"></div>
+    </icalc-sketch-element>
+  </ng-container>
+
+  <!-- CIRCLES -->
+  <ng-container *ngFor="let circle of circleList$ | async as circleList; let index = index">
+    <icalc-sketch-element
+      cdkDragBoundary=".drop-area"
+      cdkDrag
+      class="content resizable-sketch-circle"
+      dataCy="library-circle-element"
+      [style.width.px]="circle.width"
+      [style.height.px]="circle.height"
+      [cdkDragFreeDragPosition]="{ x: circle.x, y: circle.y }"
+      [isFlipped]="circle.isFlipped"
+      [selectedId]="selectedId$ | async"
+      [elementId]="circle.id"
+      [width]="circle.width"
+      [height]="circle.height"
+      [rotationDegree]="circle.rotationDegree"
+      (flipped)="onItemFlip({ isFlipped: $event }, circle?.id, 'circle', circle?.rotationDegree)"
+      (rotated)="onItemRotate({ rotationDegree: circle.rotationDegree }, circle?.id, 'circle')"
+      (deleted)="onRemoveFromImageList(circle)"
+      (click)="onSelect(circle?.id)"
+      (resized)="onItemResize($event, circle?.id, 'circle', circle?.rotationDegree)"
+      (cdkDragEnded)="addItemPosition($event, circle?.id, 'circle')"
+    >
+      <div class="content circle"></div>
+    </icalc-sketch-element>
+  </ng-container>
+
+  <!-- LINES -->
+  <ng-container *ngFor="let line of lineList$ | async as lineList; let index = index">
+    <icalc-sketch-element
+      cdkDragBoundary=".drop-area"
+      cdkDrag
+      class="content resizable-sketch-line"
+      dataCy="library-line-element"
+      [selectedId]="selectedId$ | async"
+      [elementId]="line.id"
+      [isFlipped]="line.isFlipped"
+      [width]="line.width"
+      [height]="line.height"
+      [rotationDegree]="line.rotationDegree"
+      [cdkDragFreeDragPosition]="{ x: line.x, y: line.y }"
+      [style.width.px]="line.width"
+      (flipped)="onItemFlip({ isFlipped: $event }, line?.id, 'line', line?.rotationDegree)"
+      (rotated)="onItemRotate({ rotationDegree: line.rotationDegree }, line?.id, 'line')"
+      (deleted)="onRemoveFromImageList(line)"
+      (resized)="onItemResize($event, line?.id, 'line', line?.rotationDegree)"
+      (click)="onSelect(line?.id)"
+      (cdkDragEnded)="addItemPosition($event, line?.id, 'line')"
+    >
+      <div class="content icalc-line"></div>
+    </icalc-sketch-element>
+  </ng-container>
+
+  <!-- ARROWS -->
+  <ng-container *ngFor="let arrow of arrowList$ | async as arrowList; let index = index">
+    <icalc-sketch-element
+      cdkDragBoundary=".drop-area"
+      cdkDrag
+      class="content resizable-sketch-arrow"
+      dataCy="library-arrow-element"
+      [selectedId]="selectedId$ | async"
+      [elementId]="arrow.id"
+      [isFlipped]="arrow.isFlipped"
+      [rotationDegree]="arrow.rotationDegree"
+      [width]="arrow.width"
+      [height]="arrow.height"
+      [cdkDragFreeDragPosition]="{ x: arrow.x, y: arrow.y }"
+      [style.width.px]="arrow.width"
+      [style.height.px]="arrow.height"
+      (flipped)="onItemFlip({ isFlipped: $event }, arrow?.id, 'arrow', arrow?.rotationDegree)"
+      (rotated)="onItemRotate({ rotationDegree: arrow.rotationDegree }, arrow?.id, 'arrow')"
+      (deleted)="onRemoveFromImageList(arrow)"
+      (resized)="onItemResize($event, arrow?.id, 'arrow', arrow?.rotationDegree)"
+      (cdkDragEnded)="addItemPosition($event, arrow?.id, 'arrow')"
+      (click)="onSelect(arrow?.id)"
+    >
+      <div class="content icalc-arrow">
+        <mat-icon>arrow_right</mat-icon>
+      </div>
+    </icalc-sketch-element>
+  </ng-container>
+
+  <!-- CHAINFLEX CABLE CONFIGURATION -->
+  <div class="chainflex-wrapper" id="chainflex-wrapper">
+    <div class="chainflex" *ngIf="leftChainFlex$ | async as leftChainFlex">
+      <div class="cable"></div>
+      <div class="marker-input-wrapper-left">
+        <div class="input">
+          <input
+            type="number"
+            min="0"
+            max="200"
+            dataCy="library-marker-distance-input-field-left"
+            [disabled]="isLocked"
+            (keyup)="checkValue($event)"
+            [value]="leftMarkerDistance$ | async"
+            (change)="leftMarkerDistanceSubject$.next($event?.target['value'])"
+          />
+        </div>
+      </div>
+      <div class="left-arrow">
+        <mat-icon>arrow_left</mat-icon>
+        <span class="input-unit">{{ 'icalc.library.marker-input-unit' | translate }}</span>
+        <mat-icon>arrow_right</mat-icon>
+      </div>
+      <div class="left-marker"></div>
+      <div class="curve-right"></div>
+      <div class="text-field-wrapper">
+        <div class="field" [ngStyle]="{ 'font-size': leftChainFlex.fontSize + 'px' }">
+          <input
+            type="text"
+            dataCy="library-label-input-field-left"
+            [disabled]="isLocked"
+            [value]="(chainFlexLabelLeft$ | async) || ''"
+            (blur)="changeChainflexText('left', $event?.target?.['value'], configurationMatNumber)"
+          />
+          <div class="text" dataCy="library-label-text-field-left">
+            <span>{{ configurationMatNumber }}</span>
+            <span>[LENGTH]</span>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button
+            mat-icon-button
+            [disabled]="leftChainFlex.fontSize === minSize"
+            color="primary"
+            class="comment-size-buttom mat-elevation-z4"
+            (click)="changeChainflexFont('decrease', 'left', leftChainFlex.fontSize)"
+          >
+            <mat-icon>text_decrease</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            [disabled]="leftChainFlex.fontSize === maxSize"
+            class="comment-size-buttom mat-elevation-z4"
+            color="primary"
+            (click)="changeChainflexFont('increase', 'left', leftChainFlex.fontSize)"
+          >
+            <mat-icon>text_increase</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="marker-input-wrapper-right">
+        <div class="input">
+          <input
+            type="number"
+            min="0"
+            max="200"
+            dataCy="library-marker-distance-input-field-right"
+            (keyup)="checkValue($event)"
+            [value]="rightMarkerDistance$ | async"
+            [disabled]="isLocked"
+            (change)="rightMarkerDistanceSubject$.next($event?.target['value'])"
+          />
+        </div>
+      </div>
+      <div class="right-arrow">
+        <mat-icon>arrow_left</mat-icon>
+        <span class="input-unit">{{ 'icalc.library.marker-input-unit' | translate }}</span>
+        <mat-icon>arrow_right</mat-icon>
+      </div>
+    </div>
+    <div class="chainflex rotate" *ngIf="rightChainFlex$ | async as rightChainFlex">
+      <div class="cable"></div>
+      <div class="right-marker"></div>
+      <div class="curve-right"></div>
+      <div class="text-field-wrapper">
+        <div class="field" [ngStyle]="{ 'font-size': rightChainFlex.fontSize + 'px' }">
+          <input
+            type="text"
+            dataCy="library-label-input-field-right"
+            [disabled]="isLocked"
+            [value]="(chainFlexLabelRight$ | async) || ''"
+            (blur)="changeChainflexText('right', $event?.target?.['value'], configurationMatNumber)"
+          />
+          <div class="text" dataCy="library-label-text-field-right">
+            <span>{{ configurationMatNumber }}</span>
+            <span>[LENGTH]</span>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button
+            mat-icon-button
+            [disabled]="rightChainFlex.fontSize === minSize"
+            color="primary"
+            class="comment-size-buttom mat-elevation-z4"
+            (click)="changeChainflexFont('decrease', 'right', rightChainFlex.fontSize)"
+          >
+            <mat-icon>text_decrease</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            [disabled]="rightChainFlex.fontSize === maxSize"
+            color="primary"
+            class="comment-size-buttom mat-elevation-z4"
+            (click)="changeChainflexFont('increase', 'right', rightChainFlex.fontSize)"
+          >
+            <mat-icon>text_increase</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<icalc-cdk-portal [selectorId]="'footer-left-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    dataCy="library-right-connector-button"
+    mat-button
+    *ngIf="previousStep$ | async as previousStep"
+    [routerLink]="[previousStep.route]"
+  >
+    {{ 'icalc.library.' + previousStep.label | translate }}
+  </button>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-center'">
+  <div class="buttons-wrapper">
+    <mat-button-toggle-group>
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-add-comment' | translate"
+        matTooltipPosition="above"
+        dataCy="library-add-comment-button"
+        (click)="onAddComment()"
+      >
+        <mat-icon>comment</mat-icon>
+      </mat-button-toggle>
+
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-add-image' | translate"
+        matTooltipPosition="above"
+        dataCy="library-add-image-button"
+      >
+        <mat-icon>image</mat-icon>
+        <input
+          type="file"
+          class="fileInput"
+          dataCy="library-image-input"
+          name="fileInput"
+          accept="image/*"
+          multiple
+          (change)="selectImageFiles($event)"
+        />
+      </mat-button-toggle>
+
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-add-box' | translate"
+        matTooltipPosition="above"
+        dataCy="library-add-box-button"
+        (click)="onAddBox()"
+      >
+        <mat-icon>check_box_outline_blank</mat-icon>
+      </mat-button-toggle>
+
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-add-circle' | translate"
+        matTooltipPosition="above"
+        dataCy="library-add-circle-button"
+        (click)="onAddCircle()"
+      >
+        <mat-icon>radio_button_unchecked</mat-icon>
+      </mat-button-toggle>
+
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-add-line' | translate"
+        matTooltipPosition="above"
+        dataCy="library-add-line-button"
+        (click)="onAddLine()"
+      >
+        <mat-icon>horizontal_rule</mat-icon>
+      </mat-button-toggle>
+
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-add-arrow' | translate"
+        matTooltipPosition="above"
+        dataCy="library-add-arrow-button"
+        (click)="onAddArrow()"
+      >
+        <mat-icon>trending_flat</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group>
+      <mat-button-toggle disabled [matTooltip]="'icalc.library.action-undo' | translate" matTooltipPosition="above">
+        <mat-icon>undo</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle disabled [matTooltip]="'icalc.library.action-redo' | translate" matTooltipPosition="above">
+        <mat-icon>redo</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle
+        [matTooltip]="'icalc.library.action-reset-sketch' | translate"
+        matTooltipPosition="above"
+        dataCy="library-reset-sketch-button"
+        (click)="resetSketch()"
+      >
+        <mat-icon>close</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</icalc-cdk-portal>
+
+<icalc-cdk-portal [selectorId]="'footer-right-side'">
+  <button
+    class="kopla-mat-button--small"
+    color="primary"
+    mat-flat-button
+    dataCy="save-library"
+    *ngIf="nextStep$ | async as nextStep"
+    [disabled]="isNavigating || (isLibraryValid$ | async) === false"
+    (click)="isNavigating = true; onNext(nextStep)"
+  >
+    {{ 'icalc.library.' + nextStep.label | translate }}
+  </button>
+</icalc-cdk-portal>

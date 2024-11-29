@@ -1,0 +1,79 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$red-100: kopla.get-color('red', 100);
+
+:host {
+  --padding-var-name: 0;
+  --mat-form-field-container-height: 2px;
+  --mat-form-field-container-vertical-padding: 0.6rem;
+  --mat-form-field-container-text-size: 12px;
+  --mat-form-field-subscript-text-size: 10px;
+
+  .header-list {
+    list-style-type: none;
+    margin: 1rem;
+    padding: 0;
+  }
+  .header-list li::before {
+    content: '-';
+    padding: 1rem;
+  }
+  .dialog-actions {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    .data-action-button-container {
+      justify-content: flex-start;
+      align-self: center;
+      display: flex;
+      width: 90%;
+      margin-bottom: 3rem;
+      .action-button {
+        flex-basis: 40%;
+        text-wrap: nowrap;
+      }
+    }
+    .dialog-action-button-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .error-info-container {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+    padding: 1rem;
+    .error-info {
+      display: flex;
+      background-color: $red-100;
+      justify-content: center;
+      width: 40rem;
+      margin: 1rem;
+      padding: 0.5rem;
+      span:not(.warning-close) {
+        align-self: center;
+        font-size: 14px;
+        padding: 1rem 1rem;
+      }
+      .warning-text {
+        margin: 1rem auto 1rem 1.5rem;
+      }
+      .warning-close {
+        align-self: first baseline;
+        cursor: pointer;
+        padding-left: 0.5rem;
+      }
+    }
+  }
+  .title-container {
+    p,
+    h3,
+    ul {
+      margin-left: 3.8rem;
+    }
+  }
+}

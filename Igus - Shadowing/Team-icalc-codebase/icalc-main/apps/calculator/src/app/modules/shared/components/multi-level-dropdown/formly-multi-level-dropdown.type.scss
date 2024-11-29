@@ -1,0 +1,55 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+$orange-400: kopla.get-color('orange', 400);
+$border-color: rgba(0, 0, 0, 0.42);
+$arrow-color: rgba(0, 0, 0, 0.54);
+$active-surface-gray: rgba(0, 0, 0, 0.04);
+
+:host {
+  width: 14%;
+  min-width: 177px;
+}
+
+.action-select-btn {
+  height: 40px !important;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  font-weight: normal;
+  padding: 0 2px !important;
+
+  .mdc-button__label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.select-trigger-container {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+}
+
+.arrow {
+  width: 18px;
+}
+.arrow > svg {
+  fill: $arrow-color;
+}
+
+.sub-action {
+  margin-top: 4px;
+  margin-bottom: 4.5px;
+}
+
+.multi-level-dropdown-option {
+  display: flex;
+  justify-content: space-between;
+  width: 175px;
+}
+.active {
+  background-color: $active-surface-gray;
+  color: $orange-400;
+}

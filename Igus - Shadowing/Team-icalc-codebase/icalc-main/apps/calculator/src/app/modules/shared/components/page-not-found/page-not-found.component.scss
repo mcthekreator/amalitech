@@ -1,0 +1,26 @@
+:host {
+  padding-top: 200px;
+  padding: 0;
+  max-width: none;
+
+  .wrapper {
+    margin: 0 20px;
+
+    .call-to-action {
+      display: flex;
+      justify-content: space-evenly;
+
+      .contact {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+    }
+  }
+
+  kopla-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,56 @@
+<div>
+  <div class="select-trigger-container" [ngClass]="{ 'no-value': currentValue === 'none'}">
+    <button
+      mat-button
+      class="action-select-btn"
+      [matMenuTriggerFor]=" disabled ? null : levelOne"
+      #levelOneTrigger="matMenuTrigger"
+      [disabled]="disabled"
+      [attr.dataCy]="dataCy"
+    >
+      <span class="select-value"> {{ optionsMap.get(currentValue)?.label | translate }} </span>
+
+      <div class="arrow">
+        <svg viewBox="0 0 24 24" width="24px" height="24px" focusable="false" aria-hidden="true">
+          <path d="M7 10l5 5 5-5z"></path>
+        </svg>
+      </div>
+    </button>
+  </div>
+  <p class="sub-action" *ngIf="subActionValue">
+    {{ optionsMap.get(currentValue + '.' + subActionValue)?.label | translate }}
+  </p>
+</div>
+
+<mat-menu #levelOne="matMenu" direction="down" yPosition="below" class="mat-primary">
+  <ng-container *ngFor="let action of selectOptions">
+    <span (mouseleave)="levelOneTrigger.closeMenu()"></span>
+    <ng-container *ngIf="!action.children">
+      <li
+        mat-menu-item
+        (click)="onValueSelect(action.value)"
+        class="multi-level-dropdown-option"
+        [class.active]="action.value === currentValue"
+      >
+        <span>{{action.label}}</span>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="action.children">
+      <li mat-menu-item [matMenuTriggerFor]="levelTwo" [class.active]="action.value === currentValue">
+        <span>{{action.label}}</span>
+      </li>
+      <mat-menu #levelTwo="matMenu" class="mat-primary">
+        <ng-container *ngFor="let subAction of action.children">
+          <button
+            mat-menu-item
+            (click)="onValueSelect(action.value, subAction.value)"
+            class="multi-level-dropdown-second-level"
+            [class.active]="subAction.value === subActionValue"
+          >
+            <span> {{subAction.label | translate}}</span>
+          </button>
+        </ng-container>
+      </mat-menu>
+    </ng-container>
+  </ng-container>
+</mat-menu>

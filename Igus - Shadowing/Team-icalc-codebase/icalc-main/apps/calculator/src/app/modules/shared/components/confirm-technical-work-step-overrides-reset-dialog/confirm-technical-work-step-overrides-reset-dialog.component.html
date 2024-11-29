@@ -1,0 +1,20 @@
+<h2 matDialogTitle>{{ 'icalc.confirm-technical-work-step-overrides-reset-dialog.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p>
+    {{ 'icalc.confirm-technical-work-step-overrides-reset-dialog.INFO-TEXT' | translate }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-stroked-button class="kopla-mat-button--small" color="primary" (click)="close()">
+    {{ 'icalc.confirm-technical-work-step-overrides-reset-dialog.CANCEL-BUTTON' | translate }}
+  </button>
+  <button
+    mat-stroked-button
+    class="kopla-mat-button--small"
+    dataCy="confirm-technical-work-step-overrides-reset-dialog"
+    color="primary"
+    (click)="acceptReset()"
+  >
+    {{ 'icalc.confirm-technical-work-step-overrides-reset-dialog.RESET-BUTTON' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,12 @@
+@use '@igus/kopla-app/scss-import' as kopla;
+
+mat-icon {
+  font-size: 14px;
+  padding-top: 5px;
+  &.active {
+    color: kopla.get-color('orange', 500);
+  }
+  &.inactive {
+    color: kopla.get-color('grey', 200);
+  }
+}

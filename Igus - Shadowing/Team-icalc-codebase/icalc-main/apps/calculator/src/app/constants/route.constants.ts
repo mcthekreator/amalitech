@@ -1,0 +1,17 @@
+export enum IcalcRoutes {
+  metaData = 'meta-data',
+  chainFlex = 'chainflex',
+  connector = 'connector',
+  connectorLeft = 'connector-left',
+  connectorRight = 'connector-right',
+  left = 'left',
+  right = 'right',
+  recommendations = 'recommendations',
+  mat017ItemListWithWidenData = 'mat017-item-list',
+  library = 'library',
+  pinAssignment = 'pin-assignment',
+  results = 'results',
+  admin = 'admin',
+  auth = 'auth',
+  pageNotFound = '404',
+}

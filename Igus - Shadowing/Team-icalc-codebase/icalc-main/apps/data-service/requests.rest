@@ -1,0 +1,252 @@
+### basic health
+GET http://localhost:3000/api/
+
+### auth login with credentials test
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "john", 
+  "password": "changeme"
+}
+
+### auth login with credentials test
+GET http://localhost:3000/api/profile
+Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTY2NjY1MDg5NywiZXhwIjoxNjY2NjUxNzk3fQ.KL9574elnL_kEM2yfnznyEIV_E8nn89Hf3EWCLBEwUg}
+
+### find all chainflex items
+GET http://localhost:3000/api/chainflex?orderDirection=desc
+  &search=
+  &skip=0
+  &take=100
+  &orderBy=outerDiameter
+
+### [INT] find all chainflex items
+GET https://data-icalc-kopla-integration.igusdev.igus.de/api/chainflex?orderDirection=desc
+  &search=
+  &skip=0
+  &take=100
+  &orderBy=zzz
+
+### create chainflex item
+POST http://localhost:3000/api/chainflex
+Content-Type: application/json
+
+{
+  "partNumber": "CFLG.2LB.PUR.62.5/125",
+  "description": {
+    "en_US": "chainflex® CFLG-LB fibre optic cable PUR, 5 x",
+    "de_DE": "chainflex® PUR Lichtwellen-Ltg. 2 Gradientenfasern / Festadern | Ø 8,5 mm"
+  },
+  "overallShield": "val_overall_shield_07",
+  "outerJacket": "val_outer_jacket_12",
+  "innerJacket": {},
+  "numberOfCores": "no data",
+  "nominalCrossSection": { "en_US": "AWG2/0 / AWG4/0", "de_DE": "62,5/125" },
+  "outerDiameter": { "amount": 8.5, "unit": "MILLIMETER" },
+  "cableStructure": "no data",
+  "purchasePrice": null,
+  "shopImageUrl": "https://igus.widen.net/content/azordkicii/jpeg/chainflex_CFLG.LB.PUR.jpeg?w=1050&h=700&position=c&color=ffffffff&quality=80&u=gqh1pb"
+}
+
+### find chainflex item by partNumber
+GET http://localhost:3000/api/chainflex/search?partNumber=CF10.01.12
+
+### delete chainflex item by partNumber
+DELETE http://localhost:3000/api/chainflex/CF2828
+
+### find all mat017Items by pagination
+GET http://localhost:3000/api/mat017-item?orderBy=score
+    &orderDirection=desc
+    &search=
+    &skip=0
+    &take=100
+    &partNumber=CF10.02.04
+
+### meta-data get excel
+GET http://localhost:3000/api/meta-data/excel
+
+### production-plan post
+POST http://localhost:3000/api/production-plan
+Content-Type: application/json
+
+{
+    "matNumber":  "MAT-12345",
+    "chainflexNumber": "CFLG.2LB.PUR.62.5/125",
+    "chainflexOuterDiameter": "8.5000 MILLIMETER",
+    "chainflexCableStructure": "no data"
+}
+
+### calculation post
+POST http://localhost:3000/api/calculation
+Content-Type: application/json
+
+{
+  "metaData": {
+    "matNumber": "MAT-TEST-CALC",
+    "labelingLeft": "testIB left",
+    "labelingRight": "testIB right",
+    "batchSize": 1,
+    "calculationFactor": 2,
+    "customerType": "serialCustomer"
+  },
+  "chainflex": {
+    "partNumber": "CF10.01.12",
+    "length": 4
+  },
+  "leftMat017ItemList": [
+    {
+      "matNumber": "MAT0171129",
+      "quantity": 1
+    }
+  ],
+  "rightMat017ItemList": [
+    {
+      "matNumber": "MAT0172105",
+      "quantity": 1
+    }
+  ],
+  "workStepQuantities": {
+    "strip": 5,
+    "shieldHandling": 2,
+    "skinning": 8,
+    "crimp": 3
+  }
+}
+
+### calculation post
+POST http://localhost:3000/api/calculation
+Content-Type: application/json
+
+{
+    "batchSize":  "2"
+}
+
+### update Mat017ItemsOverrides
+PATCH http://localhost:3000/api/calculation/updateMat017ItemsOverrides
+Content-Type: application/json
+
+{
+  "calculationId": "64a7fb3c-fbe1-4421-ac4e-9a8a51cbd62e",
+  "configurationIds": ["859f502f-b3d6-4a3b-bf4b-4af8c9117304", "e76842cc-6d28-4ae8-be93-6dbbfc1c8943", "fb242e8a-35a8-4bbb-9367-85126ba94389"],
+  "updateProperties": [ "mat017ItemGroup", "amountDividedByPriceUnit"]
+}
+
+### calculation post
+POST http://localhost:3000/api/calculation/calculate
+Content-Type: application/json
+
+{
+    "matNumber":  "test"
+}
+
+### find all mat017Items by pagination
+GET http://localhost:3000/api/mat017-item?search=MAT0170
+    &skip=0
+    &take=100
+    &items=MAT0170182
+    &items=MAT0170640
+    &partNumber=CF10.01.12
+
+### find configuration items by MAT number
+GET http://localhost:3000/api/calculation/findConfiguration?matNumber=MAT-Test-001
+
+### save or update configuration item
+POST http://localhost:3000/api/calculation/saveConfiguration
+Content-Type: application/json
+
+{
+  "matNumber":"aaa",
+  "modifiedBy":"test",
+  "state":{}
+}
+
+### create calculation
+POST http://localhost:3000/api/calculation/create
+Content-Type: application/json
+
+{
+  "calculationNumber": "002",
+  "calculationFactor": 1,
+  "customerType": "serialCustomer"
+}
+
+### find all configuration items by pagination
+GET http://localhost:3000/api/calculation/filterConfiguration?batchSize=45
+  &calculationFactor=12
+  &batchSizeOperand==
+  &calculationFactorOperand==
+  &orderDirection=asc
+  &search=
+  &skip=0
+  &take=100
+  &orderBy=matNumber
+
+### favorites post (create)
+POST http://localhost:3000/api/favorites
+Content-Type: application/json
+
+{
+  "name": "Beispiel Konfiguration",
+  "favoritesToMat017Items": [
+    {
+      "matNumber": "MAT0171129",
+      "amount": 1
+    },
+    {
+      "matNumber": "MAT0171130",
+      "amount": 1
+    },
+  ]
+}
+
+### find all favorites
+GET http://localhost:3000/api/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTI1NjUwNC1mYjIyLTQ0OGYtOWUyMy05YTZlMmM5ODJmNzgiLCJlbWFpbCI6ImtzYXZjaUB5YWhvby5jb20iLCJpYXQiOjE2NjY3MzQ5MzksImV4cCI6MTY2NjczNDk3NH0.B_UwZfhpQSyJdHeejAhwfnMegNv84eDpgJGdmRUR_Co
+
+### find all mat017Item favoritesToMat017Items for a favorites entry
+GET http://localhost:3000/api/favorites/c847b80b-a7fa-472b-90c1-56ca7a389368/favoritesToMat017Items
+
+// To use this endpoint, uncomment the "signup" endpoint in auth.controller.ts
+### authentication post (signup)
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "firstName", 
+  "lastName": "lastName", 
+  "role": "ProjectResponsible", 
+  "email": "your@email.de",
+  "password": "yourpassword"
+}
+
+### authentication post (signin)
+POST http://localhost:3000/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "tgs@aleri.de",
+  "password": "beispielPasswordTGS"
+}
+
+### authentication post (logout)
+POST http://localhost:3000/api/auth/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTI1NjUwNC1mYjIyLTQ0OGYtOWUyMy05YTZlMmM5ODJmNzgiLCJlbWFpbCI6ImtzYXZjaUB5YWhvby5jb20iLCJpYXQiOjE2NjY3Mjk2OTMsImV4cCI6MTY2NjcyOTcyOH0.nH4tSMcA4c-eeZgS2Jm6F_HCrvTAI5RuRty5DjDcseo
+
+
+### authentication post (refresh)
+POST http://localhost:3000/api/auth/refresh
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTI1NjUwNC1mYjIyLTQ0OGYtOWUyMy05YTZlMmM5ODJmNzgiLCJlbWFpbCI6ImtzYXZjaUB5YWhvby5jb20iLCJpYXQiOjE2NjY3Mjk0MDUsImV4cCI6MTY2NzMzNDIwNX0.smGzSn2RydmD3l9Kv0lIE-wOBus6hzb9DETDV_AGh_A
+
+### find all favorites
+GET http://localhost:3000/api/auth/cookie
+
+### authentication post (remove user)
+POST http://localhost:3000/api/auth/delete-account
+Content-Type: application/json
+
+{
+  "email": "de-icalc-support@igusgmbh.onmicrosoft.com"
+}

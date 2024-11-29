@@ -1,0 +1,16 @@
+{
+  "packages": ["apps/*", "libs/*"],
+  "registry": "https://npm.igusdev.igus.de",
+  "npmClient": "yarn",
+  "version": "2.8.0",
+  "command": {
+    "version": {
+      "allowBranch": ["main", "fix/**", "hotfix/**"],
+      "conventionalCommits": true,
+      "changelogPreset": {
+        "name": "conventionalcommits"
+      }
+    }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+}

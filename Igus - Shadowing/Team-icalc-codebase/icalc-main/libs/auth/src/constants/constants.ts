@@ -1,0 +1,1 @@
+export const ICALC_CONNECTION = 'ICALC_CONNECTION';

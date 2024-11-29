@@ -1,0 +1,15 @@
+### validation - loops through all Akeneo CF items, validates conductor data and stores cable structure information to chainflex table, returns validation error list
+GET http://localhost:3000/api/akeneo/validate
+
+### health check for akeneo
+GET http://localhost:3000/api/akeneo/first-page
+
+### chainflex/structure - returns cable structure information for a CF item with a given part number
+GET http://localhost:3000/api/chainflex/structure/CF894.022
+
+### get first chainflex page directly from akeneo
+GET https://igus-orange.cloud.akeneo.com/api/rest/v1/products
+Authorization: Bearer token-here
+
+{"search":{"categories":[{"operator":"IN CHILDREN","value":["CF"]}],"completeness":[{"operator":"=","value":100,"scope":"ecommerce"}],"enabled":[{"operator":"=","value":true}]},"with_count":true,"pagination_type":"search_after","locales":"en_US,de_DE","attributes":"part_number,article_description_text_area,attr_shielding_boolean,attr_jacket_material,attr_inner_jacket_simple_select,attr_number_of_cores_text,nominal_cross_section_text_localized,attr_outer_diameter_max_metric_mm,attr_number_of_cores_and_conductor_nominal_cross_section_simple_select,webshop_URL_picture,attr_ul_csa_boolean,attr_conductor_number_01,attr_conductor_number_02,attr_conductor_number_03,attr_conductor_number_04,attr_conductor_number_05,attr_conductor_number_06,attr_conductor_number_07,attr_conductor_number_08,attr_conductor_number_09,attr_conductor_number_10,attr_conductor_number_11,attr_conductor_number_12,attr_conductor_number_13,attr_conductor_number_14,attr_conductor_number_15,attr_conductor_number_16,attr_conductor_number_17,attr_conductor_number_18,attr_conductor_number_19,attr_conductor_number_20,attr_conductor_number_21,attr_conductor_number_22,attr_conductor_number_23,attr_conductor_number_24,attr_conductor_number_25,attr_conductor_number_26,attr_conductor_number_27,attr_conductor_number_28,attr_conductor_number_29,attr_conductor_number_30,attr_conductor_number_31,attr_conductor_number_32,attr_conductor_number_33,attr_conductor_number_34,attr_conductor_number_35,attr_conductor_number_36,attr_conductor_number_37,attr_conductor_number_38,attr_conductor_number_39,attr_conductor_number_40,attr_conductor_number_41,attr_conductor_number_42,attr_conductor_number_43,attr_conductor_number_44,attr_conductor_number_45,attr_conductor_number_46,attr_conductor_number_47,attr_conductor_number_48,attr_conductor_number_49,attr_conductor_number_50,attr_conductor_number_51,attr_conductor_number_52,attr_conductor_number_53,attr_conductor_number_54,attr_conductor_number_55,attr_conductor_number_56,attr_conductor_number_57,attr_conductor_number_58,attr_conductor_number_59,attr_conductor_number_60,attr_conductor_number_61","limit":100,"with_attribute_options":true}
+

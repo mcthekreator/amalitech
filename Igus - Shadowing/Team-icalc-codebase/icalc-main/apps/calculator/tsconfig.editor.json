@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["**/*.ts", "../../libs/domain/src/utils/object-utils.ts"],
+  "compilerOptions": {
+    "types": ["jest", "node", "cordova", "cordova-plugin-device"]
+  },
+  "exclude": [
+    "jest.config.ts",
+    "cypress/**/*",
+    "cypress.config.ts",
+    "./**/*.cy.ts",
+    "./**/*.cy.tsx",
+    "./cypress/**/*.ts"
+  ]
+}

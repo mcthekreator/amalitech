@@ -5,14 +5,14 @@
 // let a  = "red"
 // let b  = "blue"
 
-// console.log(a);
-// console.log(b);
-// if (a == "red" && b == "blue")
-// console.log("color is red and blue");
-// else if (a =="blue" && b =="red")
-// console.log("color not foung");
-// else
-// console.log("err");
+console.log(a);
+console.log(b);
+if (a == "red" && b == "blue")
+console.log("color is red and blue");
+else if (a =="blue" && b =="red")
+console.log("color not foung");
+else
+console.log("err");
 1   `    `
 const towNumber = (num1,num2) =>{
 

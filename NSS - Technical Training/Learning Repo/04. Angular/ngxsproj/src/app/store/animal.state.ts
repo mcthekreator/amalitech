@@ -37,3 +37,8 @@ export class ZooState {
     }
 }
 
+
+@Injectable()
+export class UserState{
+}
+

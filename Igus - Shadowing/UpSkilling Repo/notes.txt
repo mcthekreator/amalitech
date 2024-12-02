@@ -1,0 +1,92 @@
+refine this "So I look into typeORM yesterday 
+So I discovered it an Object-Relational Mapping library in TypeScript that's supports
+both relational and NoSQL databases. 
+
+So its basically a layer between the application and the database and it transforms
+hight level typescript constructs like classes and decorators into SQL quries and maging database interactions. 
+
+So I discoveed TypeORM relies on decorators and Reflect Metadata API to collect information about entities, columns, and relationships.
+When you use a decorator like @Entity() or @Column(), the decorator registers metadata into a centralized metadata registry during runtime.
+
+so the @Entity() decorator registers the User class as a table in the registry and the
+@Column() registers the fields (id, name) as database columns.
+
+
+
+also, The MetadataArgsStorage is a singleton and contains arrays for all metadata like
+tables which Stores table metadata from @Entity,
+columns which Stores column metadata from @Column, @PrimaryGeneratedColumn, etc.
+relations which also Stores relationship metadata from @OneToMany, @ManyToOne, etc."
+
+
+
+
+
+
+
+Yesterday, I explored TypeORM and discovered that it is an Object-Relational Mapping (ORM) library for TypeScript. 
+It supports both relational and NoSQL databases and it servs as a layer between the application and the database.
+On interesting thing about it is that, it transforms high-level TypeScript constructs like classes and decorators into SQL queries, 
+which acually simplefies database interactions.
+
+I also discovered that TypeORM relies heavly on decorators and the Reflect Metadata API to gather information about entities, columns, and relationships. For example:
+
+The @Entity() decorator registers a class as a table in a centralized metadata registry at runtime.
+The @Column() decorator registers class fields (e.g., id, name) as database columns.
+
+Also, each decorator calls internal methods of the MetadataStorage object.
+Example: The @Column() decorator adds ColumnMetadata to the registry.
+and uses Reflect.defineMetadata() to attach type and design information to the fields.
+
+
+also, The MetadataArgsStorage is a singleton and contains arrays for all metadata like
+It's a class within TypeORM that collects and organizes metadata arguments passed via decorators like @Entity(), @Column(), @PrimaryGeneratedColumn(), @JoinColumn(), and others
+Tables: Stores metadata from @Entity.
+Columns: Stores metadata from @Column, @PrimaryGeneratedColumn, etc.
+Relationships: Stores metadata from relationship decorators like @OneToMany and @ManyToOne.
+Overall, TypeORM’s metadata handling system provides a robust and flexible way to map TypeScript constructs to database schema.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typeorm schema:sync: Synchronizes the database schema with the current entity definitions.
+typeorm schema:log: Shows the SQL statements that would be executed during synchronization.
+typeorm migration:generate: Creates a migration file based on changes in the entity definitions.
+
+looked into how to generate a db schema using type. 
+
+Create Your Entity Classes : defines the structure of your database tables which basically is using the TypeORM decorators to specify table and column properties.
+
+Configure the Data Source : which also defines your database connection and TypeORM configuration.
+
+TypeORM can automatically generate and synchronize the database schema based on the entity 
+definitions by setting synchronize property to true in the DataSource configuration.
+
+synchronize: When set to true, TypeORM automatically creates and updates the database schema based on your entity definitions. 
+which is acutally very useful for development but not encouraged for production environments.
+
+
+
+
+
+
+
+
+
+

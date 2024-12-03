@@ -1,0 +1,745 @@
+so what they do is that they  provide a way to annotate or 
+modify the structure the behaviour with changing the source code directly 
+
+so there essential functions that are applied using the  @ symbol are they are called at runtime
+
+To enable them, you need to set the "experimentalDecorators": true flag in your tsconfig.json file
+
+so whena class in instanciated its contructor is the one that is been called first 
+
+
+I began with the basics of Angular, exploring components and their structure. 
+I then looked into rendering dynamic data, setting dynamic properties and attributes, and also some  handling events.
+
+I also looked into how data models communicate with view templates, and one interesting I noticed was Angular's change detection mechanism
+
+Which basically checks for changes in the component data and updates the view emplate.
+and these chnage can be triggred manully or through some asynchronous events. 
+
+and also the change dection involves a tree of componenets where each conponenets tracks chnages to its properties 
+ and it uses zones for that, specifically zone.js, to intercept asynchronous operations like user intractions or http request.
+
+but the angular 18 alows you to  handle change detection without the Zone.js. which signals is the alternative
+so with the signals they directly notify Angular of data changes without relying on the zone mechanism. but am yet to dive more into that. 
+
+ also realized the change detection is based on unidirectional data flow. which bassically mean data flowing in one direction so when data changes in a component, 
+ Angular updates the view to reflect those changes. it is done, by triggering the change detection cycle, which check each componenet in a specific sequence.
+
+also looked into how angular check for chnages.
+1. checks the componenets properties i.e checking  if properties on each component have changed.
+2. Checks Input Properties of Child Components.
+3. the expressions in the template are evaluated to see if they produce a different result than before.
+
+
+Also Looked into some change detection startgies 
+
+and realzied angular has two main change detection strategies, which is the default and the onPush:
+
+so bassically with the default strategy, Angular will check the entire component tree when a change detection cycle is triggered and 
+i realized that is generally the default setting for most components.
+
+and the second is the OnPush: 
+and with that strategy, Angular skips the component unless:
+The component’s inputs have changed or 
+An event is triggered within the component (like a user interaction).
+A manual change detection cycle is triggered.
+
+and i noticed the onpush improve performance because Angular only re-renders the component when necessary that is reducing the number of checks.
+
+
+
+
+
+
+Yesterday, I continued exploring Angular’s change detection system, and I looked into some directive specifically the structual directive and how the syntax has chnage base  on the version of
+angular, how the legacy version were using the ngif and the latest version uses @if and also introducing the @else 
+i also look into some decorators specifically on some property decorators like @Input and @Output and their responsiveness to change detection.
+
+I realized that when passing complex data types, such as arrays or objects, to @Input properties, you've to be cautious about mutations. 
+because the angular’s change detection primarily relies on reference comparisons rather than deep property checks within objects or arrays. 
+which bassically means that the internal changes to an array or object won’t trigger change detection unless the reference itself changes.
+
+so i tried my hand on it and i realized ensure Angular detects updates particularly in cases like that, you can reassign  a new array or object reference 
+after the modifications and it will notify Angular of the change, ensuring the change detection picks it up.
+
+so that will be all for me. 
+
+
+
+
+Onchanges: it is called before the oninit if you.ve an input value 
+triggers whenever any input property changes.
+
+ngOnInit method runs after Angular has initialized all the component inputs with their initial values
+
+ngDoCheck lifecycle hook is called every time Angular runs change detection for a component. I realized it is very useful when implementing
+a custom change detection logic like detecting changes in complex data structures, 
+such as objects and arrays since internal changes to an array or object won’t trigger change detection unless the reference itself changes.
+
+
+ngAfterViewInit is a lifecycle hook that is called after Angular has fully initialized a component's view.
+ It s also useful in dom manupulations since it manupulates the elements in the components 
+since the view is fully initialized. It is also use in intergrating third party-libraries that requires the dom. 
+
+ngAfterContentInit method runs once after all the children nested inside the component (it’s content) have been initialized. 
+so cases where components accept dynamic content through content projection, 
+the ngAfterContentInit allows for the initialization of any logic that depends on this content.
+
+
+ngAfterViewChecked lifecycle hook is called after every change detection cycle when the component's view has been checked.
+his hook is primarily used to respond to changes in the component's view after the view has been checked
+
+
+ngAfterContentChecked lifecycle hook is called after every change detection cycle when the component’s content has been checked. 
+
+so i noticed some similairities with the ngAfterContentChecked and the ngAfterViewChecked and realizd that the ngAfterContentChecked handles 
+changes specifically in the content projected into your component. 
+For example, if you have a parent component projecting a dynamic list of items and you want to react whenever those items change, you can use that.
+while the ngAfterViewChecked react to changes in the entire view of the component, including all its children. 
+
+
+
+
+
+so i looked in to dependancy inject in angular, and learnt it bassically allows us to inject services arrow compoenents........
+i also descovered if you inject a service in a  componenet this something called the injector which  is responsible for 
+facilitating the interaction between the dependancy provider and the dependancy consumer 
+i.e the injector creates an instance of the dependancy and inject it into  a constructor in the component 
+const component - new  component ()
+
+
+
+
+
+
+
+two main types ( model injector Hierarchy andelement injector Hierarchy)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Okay, so for last friday I looked into ngModules
+so basicallly ngModule is a class that is uesd to orginzed angular application into cohesive blocks.
+It takes a metadata object that describes how to compile a 
+component's template and how to create an injector at runtime 
+
+so I looked into the properties in the metadata object 
+
+ 1. declarations is an array contains the components, directives, and pipes that belong to the module. 
+i descovered Items declared in declarations are private to that module unless they are exported.
+ you can declare a component, directive, or pipe in only one module. Declaring it in multiple modules causes a compilation error
+
+another property is 
+2. imports which is also an array that contains imported modules 
+e.g will be how we import the commonmodule in our componenets into order to access directives like ngif etc
+3. exports which is also and array that is use to make declarations from a modle to be avaliable to other modules 
+4. providers is also an array registers services that the module uses. which i find it intresting so I will be deeping more into that 
+5. bootstrap is also a property that only used in the root module (typically AppModule). 
+It specifies the root component that Angular should bootstrap when the application starts.
+
+
+Every Angular application has at least one module i.e root module also known as the app moudule
+
+so the root module provides the entry point for the application and bootstraps the root component. 
+
+also realized root module is somehow enough when working in an application with few components. 
+but when working on larger applications or as the application grows, you've to refactor the root 
+module into feature modules then import them into the root module.
+
+the feature module delivers a cohesive set of functionality focused on a specific application need 
+such as a user workflow, routing, or forms. While you can do everything within the root module, 
+feature modules help you partition the application into focused areas which bassically makes the application structure clear and scalable.
+
+
+
+
+declarations: Components, directives, and pipes that belong to the module.
+imports: Other modules that this module needs.
+exports: Components, directives, and pipes that can be used in other modules.
+providers: Services available throughout the module.
+bootstrap: The root component for bootstrapping the app (used only in the root module).
+
+
+
+
+
+
+
+
+
+A feature module is an organizational best practice, as opposed to a concept of the core Angular API. 
+A feature module delivers a cohesive set of functionality focused on a specific application 
+need such as a user workflow, routing, or forms. While you can do everything within the root module, 
+feature modules help you partition the application into focused areas
+
+ takes a metadata object that describes how to compile a 
+component's template and how to create an injector at runtime. It identifies the module's own 
+components, directives, and pipes, making some of them public, through the exports property, 
+so that external components can use them. @NgModule can also add service providers to the application dependency injectors.
+
+
+
+
+
+
+providing dependancies in modules
+shared modules
+core modules
+lazy-loaded modules
+signleton service
+
+
+
+
+
+
+NgModule: helps orginze the complex relationship between views such as componenets and directives to data providers such as servics and guards. 
+I works by allowing you to define all these relationships in a single file.
+
+the ngmodule metadata 
+1. declarration: where yuo will put componenets, directives or pipes and it will be privatly avaliable to that module
+2. Expotrs: components are privte by defualt but become public when you add them to export 
+3. imports: other modules get access to it by importing them in thier owen metadata 
+
+NB: declaratins, import and exports defined the relationship between components and how their shared between diffrent ngmodules 
+
+4. boostrap: it defines a component which is initially use to load your application. By default it is the app compoenent which is created b yht angula cli 
+5. providers: here is where you register data providers such as services and guards that can be injected in the component within the module. 
+The injectable class will  be avalbale to any  componenets in the moduleot any module that imports it. 
+
+
+
+
+shared module which is also known as the widget module its like the feature module but they add all their declarations to the exports
+so they can be distrubuted to other modules, 
+Realized it very helpful when working with spinners or icons, basically things tha will be used globally throught the project   
+
+Core Module: holds singleton services and application-wide logic and acts as a centralized functionality source.
+ I also realized It is only imported into the root AppModule to 
+prevent redundant or conflicting instances because it can be  accidentally imported into other feature modules.
+when working with it, using the @Optional() and @SkipSelf() in the constructor ensure that 
+Angular checks if the Core Module has already been loaded in the root module, preventing re-imports that might cause multiple instances of singletons.
+
+Lazy loading allows Angular to load specific modules only when they are needed, such as when the user navigates to a certain route
+and it optimizes application performance by reducing the initial load time.
+and its actually useful when working with feature modules that aren’t needed immediately when the application loads
+or some part of the application that is being accessed based on user interaction. 
+It is linked to routing so today I will be looking deep into that and routing as well. 
+
+
+
+
+
+so the router module helps us navigate between diffrent view without actually loading a new HTML page from the server. 
+Also tried myy hands on come parent child route which is actaully a go to when working with dynamic URL parameter 
+Also tried my hands on some parent child routing and also some 404 error page. 
+
+also practiced on some guards, which actaully helps us for controlling access to diffrenet route of our application . 
+it used interfaces that implement to change the behaviour of the router
+
+1. the canActivate - Controls whether a route can be accessed or activated by a user.
+so with this it has a route and state as parameters and
+the route: provides route informatin, such as query params and 
+the state: representes the router state snapshot which contains the full url for which the navigation was initiated 
+and also it returns a boolean or a urltree.
+When a user tries to navigate to a route protected by CanActivate, Angular pauses the navigation and calls the guard. 
+If CanActivate returns true, navigation proceeds. If it returns false or a UrlTree, navigation is either stopped or redirected
+
+2. the CanActivateChild - Controls access to child routes within a parent route.
+so its just like the CanActivate but specifically for child routes. 
+so when parent route is accessible, but some child routes need additional checks, like roles or permissions
+
+
+
+
+
+looked into router module, navigate between different views without actually loading a new HTML page from the server. 
+the application dynamically updates the content in the browser by loading the necessary components and data based on the requested route
+
+I also tried my hand on some parent child route which is actaully a go to when working with dynamic  URL parameter.
+so when working with the child route, it listens to chnage in the URL paerameter and renders its corresponing page.
+so with that also you can use the activated route, which basically allows us to listen to chnage changes in the router.
+
+Also tried ma hands on an 404 error page, which with that in your router config. the path key the values is going to be ** and the conponents key value will be the coressponding component 
+
+Lazyloading: you configure the lazy loading in the rout config, and set the path. and with the loadehildern property simply means that the child routes should be loaded in an
+asynchronous way, s
+in the loadedchildren, use dynamic import which bassiaclyis using the import as the funtion 
+
+loadchildren: a an async function which returns a promise that when successfully evaluated give back it corresponing module. 
+
+
+
+also looked into gaurds its an angular service that has some special interfaces that implement to change the behaviour of the router
+and the comman use case is to protect the rout from unauthorized users 
+
+one of the interfaces of the guard is the canActivate, it returns a boolean which bassiacly is boolean with can be  a primitive or and observable or a promise
+and if its an observable it will automatically subscribe for you. 
+
+  
+
+
+
+
+with bassically give information about the state of the route. 
+and for the gaurd to work  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CanActivateChild for Nested Route Security: Use CanActivateChild guards on parent routes to enforce guard logic across all child routes. This is particularly useful for admin or settings pages where access is restricted.
+
+
+
+
+
+
+3. the CanDeactivet - Determines if a user can navigate away from the current route so its basically
+ prevents users from leaving a route without fulfilling certain conditions. It is very useful when working with forms 
+ or editable pages cos it could prevent the users from accidentally navigating when their unsave change. 
+ so it also returns a boolean or observable. so if it returns true the navigation proceeds and if it retuns false then it is blocked 
+ one of it use case that i tried is also to prompt a users when trying to navigate away from the page 
+
+4. the Canload - controls access to lazy-loaded modules. It's often used for protecting routes based on user roles or authentication status.
+Returns a boolean or Observable<boolean>.
+If true, the module loads; if false, loading is blocked.
+CanLoad doesn’t have access to route parameters (like :id)
+beacuse it is designed to make decisions when loading the module
+and at that state there's no specific route context or parameters that are available because the module and its routes haven't been parsed or initialized.
+so it’s best suited for routes without parameters.
+
+5. resolvers, which can also preload data into your route so basically it retrieve data before the route activates
+It is similar to the canActivate but it returns a data that want to be avaliable where the route is being navigated to. 
+allows data to be fetched and made available to components without having to loaders or  spinners.
+
+The resolver retrieves the data and provides it via the ActivatedRoute's data property.
+If data cannot be fetched, navigation can be redirected or an error can be shown.
+
+NB
+when working with multiple gaurds on a router,  
+order of guards in the route configuration impacts which guard Angular evaluates first. 
+If the first guard fails, Angular cancels navigation without checking the next guard 
+
+
+
+
+
+
+
+
+
+
+
+
+Nx : holds and multiple projects in asingle repo 
+
+setting it up is interactive becuase you select your preset, 
+and if you want the projects to be intergrated or standalone 
+you also select your package manager 
+
+so when you generate a workspace, all your projejct will be in the app directory
+and libs directory.
+
+the apps are the main entry point of for running applications and i contains all your projects.
+and the lib contains all your liberries or reeuasebale component. 
+
+I descovered it is recommened that you 
+keep the appps directory as light as possible and allow the libs to do all the heavy lifting that are imported by each application,
+
+the toolas directory, is for srcipts that act on your code like db scripts or deply srcipts.
+theres also schematics dirctory in the tools that nx uses to create and modify your existing code 
+
+so when adding a new project into your work space you can do that by running the nrwl plugin and adding your preset and 
+it will add is as a dev dependancy.
+
+and then after you can use the nx generate to generate a new app. 
+it also generated a e2e foldeer for ened to end testing  which is written in cypress by default 
+
+so the lib directory cotaians componenets or liberair and the compoenets can be exported from the index.ts file 
+and it can be refrenced by other libreries or apps
+and nx uses a lint rule to block other liberiees that is not explictily exported in the index.ts,  
+
+one tool that i also discovered and is very useful when working when working on a larger project is the dep-graph 
+so when working on larger projcts it gonna hard to identify how the components depend on eah other so the nx cli 
+provides a dep-graph commad that provides a visual reperesntation of how the apps and liberiees depend of each other,
+and it is represented in a tree form. 
+
+it was all fun till. 
+
+
+
+
+
+
+HTTP Client.
+is basically a  built-in service class that simplifies HTTP operations. 
+
+so how the HTTp client works is that it, delegates HTTP requests to a lower-level service called the HttpXhrBackend, 
+which handles browser-specific operations. so basically the HttpXhrBackend is responsible for performing the actual HTTP 
+requests using the browser’s built-in XMLHttpRequest API.
+
+so I discovered when a request is initiated  and the request method is invoked, it goes through some process and first 
+the HTTPClinet, it prepares the structure for the request and crates an observable and wraps it with the request logic 
+
+The constructed HttpRequest object is passed to the HttpHandler. 
+which is the HttpInterceptingHandler i.e when interceptors are registered.
+so the interceptors are just controller that ensures the request flows through them before reaching the HttpXhrBackend.
+Each interceptor’s intercept() method wraps the next.handle() call. 
+This means the request passes through each interceptor in sequence, modifying or adding properties as necessary.
+
+The last handler in the chain is typically HttpXhrBackend, which is responsible for the actual network call using XMLHttpRequest.
+
+also discovered 
+
+the HTTPclient set automtic headers, so depending on the request method and body, HttpClient may automatically set headers 
+(e.g., Content-Type: application/json for JSON payloads).
+
+also discovered
+
+HttpClient uses RxJS Observables to manage asynchronous data flows which allows developers to handle complex asynchronous pattern.
+and It uses the RxJS observable-based APIs, which means it returns the observable and what we need to subscribe to it. 
+
+also discovered that 
+espicially when you've a get request The Observable it returns is cold. This means that it won’t emit any data until you subscribed to it.
+and also each subscription that the Observable returns by HttpClient creates a new network request. 
+This is different from hot Observables which is basically observers with multiple subcribers, which share a single execution across subscribers.
+
+I will be looking into interceptors today. 
+
+
+
+
+
+
+
+
+cypress
+Time Travel: takes snapshots as your test runs. 
+after the the test has executed, you can see all screenshot in the commad log (hover and you will see the screenshots)
+which make sit easy to revew and debug 
+
+
+you can also see the satte of your application before and after the test has executed,
+and you see all the error message and statc traces with the commad windows ,
+
+automatic waits, you do not need to add waits, beecuase cypress takes care of all the 
+waits if you've some assertions 
+before moving, you can also add your own custom wiats. 
+
+it also has it own inbuilt test runner called - mocha
+
+describe : A function used to group related tests. It's a way to organize your test suite into logical blocks.
+
+
+
+
+
+
+
+interceptor:
+ act as middleware for HTTP requests and responses. 
+ They allow you to modify or handle HTTP operations globally,
+
+Angular constructs a chain of interceptors. Each interceptor implements the HttpInterceptor interface and uses the intercept() method to handle requests.
+and this  chain of interceptors is created when the Angular application initializes, based on the order of registration in the module.
+
+so order in ehich the interceptor is registered in the providers array affects how requests are processed and how responses 
+flow back through the interceptors. 
+so you've to be concious about how the interceptos is ordered in the providers 
+If interceptors anyhow, it can lead to unexpected behavior.
+
+and also 
+When HttpClient makes a request, it passes the request through each registered interceptor in sequence.
+Each interceptor receives the HttpRequest object and can clone or modify it before forwarding it to the next interceptor via next.handle() method.
+
+Once the request reaches the server and the response comes back, the interceptors process the response in reverse order.
+Each interceptor can inspect, modify, or handle the response and errors before it reaches the HttpClient consumer.
+
+so in  this case 
+HttpClient -> AuthInterceptor -> LoggingInterceptor -> Server
+Server -> LoggingInterceptor -> AuthInterceptor -> HttpClient
+
+ interceptors use RxJS Observables to handle asynchronous operations. The next.handle() method returns an Observable<HttpEvent>, 
+ allowing the interceptor to hook into the response pipeline using operators like map, tap, or catchError.
+
+ Angular's HttpRequest objects are immutable. When you modify a request (e.g., adding a header), you need to clone it using req.clone(). 
+ This design ensures that any changes made in one interceptor don’t affect the original request, preserving request safety
+
+
+
+ 
+
+
+ Trickiness: If an interceptor makes a new HTTP request (e.g., to refresh a token), there is a risk of creating an infinite loop where the interceptor continuously intercepts its own request.
+Tip: Use flags or conditions to bypass certain logic when a request matches the one triggered by the interceptor itself. For example:
+typescript
+Copy code
+if (req.url.includes('/refresh-token')) {
+  return next.handle(req);
+}
+
+
+
+
+
+
+
+
+Structural Directives
+Hierarchical Injector
+@NgModule
+host, host-context, etc.
+@NgPlural and other i18n features
+Angular Elements
+Angular Standalone Components
+
+
+
+
+
+
+Daily Stand up
+
+design pattern used to create and manage dependencies in an application, so it allows an object to 
+receive its dependencies from an external source rather than creating them internally.
+
+and in angular 
+Angular's DI framework is responsible for creating, maintaining, and also injecting dependencies automatically. 
+and their typically services or classes that a component or another service depends on.
+which actually is very useful because it decouples components and services, which makes the code more modular and maintainable.
+
+also Angualr's Dependancy Injection has two key compoenent i.e 
+the providers and 
+the injetors 
+
+so the providers are responsible for configurations or instructions that tell the Angular's DI how to create and supply a dependency. 
+and the 
+Injectors are the mechanisms or containers which are responsible for creating instances of dependencies based on the registered providers and injecting them where needed.
+
+so basically 
+the Providers describe how to create dependencies.
+and the Injectors are tools that use those providers to inject dependencies into components or services.
+
+and also
+Angular’s DI has a hierarchical structure. so with a that 
+there’s a root injector which is created when the app starts, and the child injectors are created based on module or component scope.
+
+which is part of my presentation so we will be looking more into that when i present.
+
+
+Daily stand up <Observables>
+obersavbles repesent sequence of data and can be observed over time 
+and their used for handling asynchronous data 
+but we can also use promises for handling asynchronous data as well. 
+but there some uses you will use obsrvales over promises because promises return a single value 
+whill obersavles can return multiple values.
+
+Oberservable pattern 
+with that we have the 
+1. Oberservable which is also Event Emitter: which basically triggers the event.
+2, oberserver which is also the event listener or subscriber: 
+which basically listen to the event 
+3. handler: which is  handle the event. 
+ 
+
+also when you create an obersavble it emits three events. 
+1. Next : he next() method is used to emit values to the subscribers and it is also 
+the primary way for an observable to send data.
+2. error : The error() method is used to signal that an 
+error has occurred during the observable’s execution.
+3. Completion : The complete() method indicates that the 
+observable has finished sending values. 
+so after the complete method no futher calls
+like the next and error will be made. 
+
+
+
+
+
+The share operator in RxJS is used to transform a cold observable into a shared observable, 
+which allows multiple subscribers to share a single subscription and 
+It prevents multiple subscriptions from triggering repeated side effects like API calls, timers, or event listeners.
+
+
+looked into some rxjs array methods like the 
+
+1. filter:  values emitted by an observable based on a condition.
+Overusing filter can lead to "silent observables" if no values pass the condition, which might seem like the observable isn't working.
+
+2. reduce: Accumulates all values emitted by the observable into a single value
+reduce only emits once the observable completes. If the observable never completes (e.g., interval), you'll never see a result.
+
+3. scan: Like reduce, but emits the accumulated value for each emission. 
+Unlike reduce, scan doesn't wait for the observable to complete, which might lead to confusion when comparing the two.
+
+4. every: Checks if every value emitted by the observable meets a condition.
+it  completes immediately if a value doesn't satisfy the condition, so subsequent emissions are ignored.
+
+
+ther's 
+1. find 
+2.findIndex 
+3. distinct and distinctUntilChanged
+4. toArray
+
+
+
+
+99
+
+so I looked into ngxs yesterfay 
+
+The store 
+which is a global state manager that dispatches actions 
+that the state containers listen to and provides a way 
+to select data slices out from the global state.
+
+
+State:
+which epresents a slice of the application state.
+and is defined using a class with decorators to specify initial values and behavior.
+
+Actions:
+Represent events or operations that modify the state.
+and it is dispatched to trigger state changes.
+
+Selectors:
+Used to query and compute derived state.
+and it provides an efficient way to read state data.
+
+Dispatch:
+which is also a mechanism to trigger actions and update the state.
+which is typically called in services or components.
+
+Middleware:
+whith the middleware also it hooks into the action flow, allowing interception, logging, or transformation.
+
+HOW IT WORKS 
+Actions are dispatched through the Store.
+and the middleware processes the actions before the state changes are applied.
+so how the state is updated is that, it uses a mechanism which is called the 
+
+StateContext to interact with the state tree.
+so it provides methods like 
+setState which replaces the entire state with a new state.
+and 
+patchState which also Updates only specific parts of the state by merging new properties into the existing state.
+So the setState and patchState create shallow copies to ensure immutability.
+and the Selectors uses memoization to cache results.
+so they listen for state changes and recompute only when necessary.
+
+There's also plugin intergration like the 
+StoragePlugin which intercept state changes and boardcast them to the desired storage mechanism.
+
+also comparing it to ngrx it has a  minimal boilerplate. 
+
+
+
+
+
+
+
+
+
+The express() function is used to create an application instance:
+
+app: The main application object, which is an instance of the Express class. 
+and its  provides methods for configuring the app (like app.use(), app.get(), app.listen()).
+
+Express is built on top of Node.js's HTTP module, but it abstracts much of the complexity of handling HTTP requests. 
+When you call app.listen(), which is basically used to set the port and listen to incoming requests, 
+Express uses the Node.js http.createServer() to start a server that listens for incoming requests.
+
+
+Middlewares are one of the key concepts in express
+
+one interesting thing was the middleware pipeline
+So their are functions that receive the request (req), 
+the response (res), 
+and the next function (next) to pass control to the next middleware function in the stack.
+So express processes middleware functions in the order in which they are defined.
+
+which means that each incoming request passes through each middleware in the order they were defined, 
+with each middleware modifys the request and response objects or terminating the cycle.
+
+
+a. Types of Middleware
+Global Middleware: which is defined using app.use() method and it runs all requests, regardless of the route or HTTP method.
+Route-Specific Middleware: Middleware can also be applied to specific routes:
+Error Handling Middleware: Express supports a special kind of middleware to handle errors. It has four arguments (err, req, res, next):
+
+Express comes with several built-in middleware functions:
+express.static(): Serves static files.
+express.json(): Parses incoming JSON requests.
+express.urlencoded(): Parses incoming form data.
+
+Third-Party Middleware
+Express supports third-party middleware that can be installed via npm:
+body-parser: Parses incoming request bodies.
+morgan: HTTP request logger middleware.
+
+
+
+Routing
+Once a request has passed through the middleware, it is routed to the appropriate route handler.
+
+Express uses a router to map incoming HTTP requests to route handlers. 
+so the router checks the method (GET, POST, etc.) and the request URL to find the appropriate handler.
+
+and then internally too express uses a routing table (often implemented using a map or tree structure) 
+to match the incoming request method and URL path against registered routes
+
+
+Express allows dynamic routing by using route parameters and query strings:
+
+Route Parameters: These are part of the URL (e.g., /users/:id) and are accessible via req.params.
+Query Parameters: These are part of the URL query string (e.g., /search?name=John) and are accessible via req.query.
+e. Route Handling Order
+Express evaluates routes in the order they are defined in the code. If no matching route is found, the 404 handler is triggered.
+
+
+
+
+
+
+
+Yesterday, I made significant progress in my Express journey. I focused on setting up endpoints and integrating 
+TypeORM for seamless interaction with the database. I also addressed challenges around data retrieval and CORS configuration, 
+which gave me deeper insights into handling backend complexities. Here's a breakdown:
+
+Setting Up Endpoints for Data Retrieval
+
+Querying All Data:
+I implemented a GET endpoint to fetch all records from a specific database table. Using TypeORM’s repository pattern, 
+I utilized the find() method to retrieve all entities from the table. Here’s how the implementation looked:
+
+To make this endpoint more robust, I included error handling to ensure the server responds gracefully in case of database connectivity issues or unexpected errors.
+
+Querying Data Based on Request Parameters:
+I added dynamic endpoints to query specific data, such as retrieving user details by ID. This involved handling parameters passed through the URL and ensuring type safety using parseInt().
+
+
+Challenge: At first, I was getting null for valid user IDs. Debugging revealed that some IDs were being passed as strings, leading to mismatches in TypeORM queries. 
+Casting the ID with parseInt() resolved this issue.

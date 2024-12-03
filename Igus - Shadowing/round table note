@@ -1,0 +1,232 @@
+when angular see an * beforee a directive name, it creates a template ad wrappes the
+view of the strutural directive and moves the structural directive on that template.
+and in that template wrapper the strucutral directive is used as an attribute directive.
+
+
+
+<!-- ng for -->
+Item : The local template variable that represents each item in the array.
+Items: The array or iterable being iterated over.
+
+
+<!-- ng If -->
+condition: A Boolean expression that evaluates to true or false. If it’s true, the content is rendered; if false, the
+content is removed from the DOM.
+
+you can also have and else just like the normal conditional statement. 
+so the else is used  to display an alternative template when the condition is false.
+
+so in the else you provide an ng-template reference that provides a fallback template.
+
+<div *ngIf="isLoggedIn; else loggedOutTemplate">
+  Welcome back, user!
+</div>
+<ng-template #loggedOutTemplate>
+  <p>Please log in to continue.</p>
+</ng-template>
+
+
+
+<!-- ngSwitch -->
+2. Basic Syntax and Structure
+*ngSwitch is used with the [ngSwitch] directive on a parent container and *ngSwitchCase for each possible condition. An
+*ngSwitchDefault can be used for fallback content.
+
+How it works is that, it first Evaluates the given expression.
+and renders its associated content if its value matches the value of [ngSwitch].
+the it renders the *ngSwitchDefault if none of the *ngSwitchCase values match.
+
+4. Using *ngSwitch with Different Types of Cases
+*ngSwitch can handle cases with different types of values such as strings, numbers, or even variables.
+html
+<div [ngSwitch]="userRole">
+  <div *ngSwitchCase="'admin'">Welcome, Admin!</div>
+  <div *ngSwitchCase="'user'">Hello, User!</div>
+  <div *ngSwitchCase="'guest'">Greetings, Guest!</div>
+  <div *ngSwitchDefault>Access Restricted</div>
+</div>
+
+
+<!-- one Directive per element  -->
+An intuitive way to do that is to put both an *ngFor and an *ngIf on the same element. However, since both *ngFor and
+*ngIf are structural directives, this would be treated as an error by the compiler. You may apply only one structural
+directive to an element.
+
+
+<!-- custom directive -->
+
+<!-- creating a structural directive.  -->
+you cn use the angular cli to generate the directive
+which will  the generate a boilerplate template for you. 
+which includes the @directive decorator and some meta data object. 
+and automatically add it to the declaration array in the ng module
+
+so when creating a structural directive we need two things.
+1. access to the dom element we chage to modify. which is the templateref
+2. A place where we want to add or remove the DOM element, which is the viewContainer 
+
+so every element where we use the the directive is representated by the template ref. 
+and a refrence of the ngtemplate will be assigned to the viewContainer.  
+
+so there's a set display because before assigning any value we want it to execute some logic before, so with setter on the property we can will be able to implement it as a method. 
+
+and also he this.template is is storing the reference of the ng template. 
+and the view is being passed in the create embeded if which is going to basically create the view. 
+
+
+and the template.clear( ) will clear. 
+
+<!-- herarchical injector -->
+so with herachical injector, i will briefly talk about Dependency injection. so it a codding pattern in which a 
+and the mean rreason for dependency injection is go avoid the hard dependancies between classes. and the decoulping of creating an object and using it enbles you to replace dependancies without chnaging the class which  is using them.  
+so when you inject a service ia compoenent, the component class doesn't create the instance of the service by it self but rather it delegates to the injector.
+so the  inject is  responsible for creating of the object. 
+
+
+module injector: associated with the @NgModule and is responsible for providing services at the root level.
+
+Element Injector: : Is created for any tag that matches component or any tag on which directive is applied. and you can configure it in componenets and directive annotation in the provider's property.
+ 
+
+So when angular starts it create a root injector which will be registred in our service we provided via the injectable annotation. 
+
+and angular recusrive goes through the application and creates instance for the provided services in the root injector, so if you prbbly think  if you provide some service in some module and it will be avaliable only in the scope of the module then that will be wrong. because if provide some service in an loaded module it will be added to the root inject which will make it avaliable in the whole application.  
+
+But the root injetctor isnt the highest in the herarachy, bacuse during the application boostrap the angular create a few injectors.
+
+above the root injector 
+ we have the platform injector. 
+ and it is created by bowser dynamic function inside the main.ts file and it provides some platform specific features like dom sanitizer,
+ planform id token and others
+
+and ontop of the plaform injector is the null injector
+so the null injector just throws an error when something tries to find a dependacies there.
+
+
+<!-- Element  injector -->
+So with the element injector when a d andepedancy is declare in the grandchild component and provides in our service in our root application component. Angular checks if we have the service provided in the current componenet where the dependency declared, and if it doesnt have it.
+It moves on to the parent, and if also doesnt have it. then it goes up the hierarchy and encounters the root component. 
+and when it finds it the grandchild will have the instance of the service from the root. 
+
+so in case where the service is not provided in the root.  
+it goes back to the where it started and checks in which which module inject scope it exits, so it moves to the root inject and goes up till it probbly not found and the nul injector throws the error. 
+
+
+
+
+
+
+
+
+<!-- when we want angular to injects instance of a service to our component class or directive, we use the provider array to tell what type of instance it need to provide us .
+So the dependency injecor is a herarchical injactor; 
+
+which basically means, if we provides a service on a component. 
+so on the component c, the angular will create a and inject an instance of the userService in component C and all its called components as well.
+
+so in the image the we provided the userService only for the component C, but angular will inject an instance of the user service in the component C1 and C2 and their child components. 
+
+
+When a component or service requests a dependency:
+Angular first looks for the dependency in the component's injector.
+If not found, it searches up the hierarchy until it reaches the root injector.
+If the service is not found in any injector, Angular throws an error indicating an unresolvable dependency.
+
+
+4. Providing Services at Different Levels
+AppModule (Root Level): Services provided here are singleton and shared across the entire app.
+NgModule (Feature Module): Providing services in feature modules can scope them to the module, avoiding shared instances
+with other modules.
+Component Level: Providing services at the component level creates new instances each time the component is used. This
+approach is useful for scenarios requiring unique service instances for each component. -->
+
+
+
+
+<!-- Ng module -->
+
+Module Initialization:
+When an Angular application is bootstrapped, the module metadata is parsed and the module system sets up the components,
+directives, and services declared in the module.
+
+
+// app.module.ts - main app module
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+
+
+
+
+
+
+
+
+<!-- Standalone componenet -->
+Bootstrapping Standalone Components
+
+Standalone components can be bootstrapped directly in the main.ts file without relying on a module:
+typescript.
+Standalone components manage their imports directly using the imports array:
+typescript
+Copy code
+You can still use standalone components alongside traditional NgModules. This is useful for gradually adopting standalone components in existing projects.
+
+
+<!-- Host -->
+hosr psudo-calss: This example ensures that the component itself, not the inner elements, is styled with a border.
+
+host function: This applies a background color to the host element only when it has the active class.
+
+:host-context() Pseudo-class: If any ancestor of the component (e.g.,
+
+<body>) has the dark-mode class, the component will inherit these styles.
+
+  How :host and :host-context Differ
+  :host: Only applies styles directly to the host element itself.
+  :host-context: Applies styles when a specific condition is found in an ancestor or surrounding context.
+  Key Points to Remember
+  :host ensures styles do not leak out of the component, while :host-context provides adaptability based on external
+  factors.
+  These selectors help maintain encapsulation but offer controlled interaction with the parent context or the
+  component's own state.
+
+
+
+  <!-- NgPural -->
+
+  Key Points:
+Works with the ngPlural directive.
+You define plural cases using ngPluralCase with specific keywords like =0, =1, few, many, other, etc.
+Follows the CLDR (Unicode Common Locale Data Repository) for language-specific rules.<div [ngPlural]="messages.length"> <ng-template ngPluralCase="=0">No messages</ng-template> <ng-template ngPluralCase="=1">One message</ng-template> <ng-template ngPluralCase="few">A few messages</ng-template> <ng-template ngPluralCase="other">Several messages</ng-template> </div>
+
+
+
+<!-- Angulae Elemenst  -->
+2. Use Cases and Benefits
+Integrate Angular components into non-Angular projects.
+Migrate legacy applications incrementally.
+Share Angular functionality as standalone web components across different projects.
+
+
